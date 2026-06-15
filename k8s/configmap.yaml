@@ -1,0 +1,8 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: ccms-configmap
+data:
+  JwtSettings__Issuer: "CCMS.API"
+  JwtSettings__Audience: "CCMS.Client"
+  BatchSettings__IntervalMinutes: "15"

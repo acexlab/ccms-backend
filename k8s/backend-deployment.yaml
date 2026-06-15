@@ -1,0 +1,74 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ccms-backend
+  labels:
+    app: ccms-backend
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: ccms-backend
+  template:
+    metadata:
+      labels:
+        app: ccms-backend
+    spec:
+      containers:
+      - name: ccms-backend
+        image: ccmsacr.azurecr.io/ccms-backend:latest
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 80
+        - containerPort: 5000
+        env:
+        # Sensitive values injected via Kubernetes Secret
+        - name: ConnectionStrings__DefaultConnection
+          valueFrom:
+            secretKeyRef:
+              name: ccms-secrets
+              key: ConnectionStrings__DefaultConnection
+        - name: JwtSettings__Secret
+          valueFrom:
+            secretKeyRef:
+              name: ccms-secrets
+              key: JwtSettings__Secret
+        
+        # Non-sensitive configuration values injected via ConfigMap
+        - name: JwtSettings__Issuer
+          valueFrom:
+            configMapKeyRef:
+              name: ccms-configmap
+              key: JwtSettings__Issuer
+        - name: JwtSettings__Audience
+          valueFrom:
+            configMapKeyRef:
+              name: ccms-configmap
+              key: JwtSettings__Audience
+        - name: BatchSettings__IntervalMinutes
+          valueFrom:
+            configMapKeyRef:
+              name: ccms-configmap
+              key: BatchSettings__IntervalMinutes
+        
+        # Resource Requests and Limits
+        resources:
+          requests:
+            memory: "256Mi"
+            cpu: "100m"
+          limits:
+            memory: "512Mi"
+            cpu: "500m"
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: ccms-backend-service
+spec:
+  selector:
+    app: ccms-backend
+  ports:
+  - protocol: TCP
+    port: 80
+    targetPort: 80
+  type: ClusterIP
