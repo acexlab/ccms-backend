@@ -232,14 +232,46 @@ public class CasesController : ControllerBase
                 .Where(c => c.CreatedByUserId == user.Id)
                 .OrderByDescending(c => c.CreatedAt)
                 .ToListAsync();
-            return Ok(cases);
+
+            var caseIds = cases.Select(c => c.Id).ToList();
+            var defendants = await _context.Defendants
+                .Where(d => caseIds.Contains(d.CaseId))
+                .ToListAsync();
+
+            var result = cases.Select(c => new CaseSummaryDto
+            {
+                Id = c.Id,
+                CaseNumber = c.CaseNumber,
+                OrderType = c.OrderType.ToString(),
+                Status = c.Status.ToString(),
+                DefendantName = defendants.FirstOrDefault(d => d.CaseId == c.Id)?.FullName ?? "Unknown",
+                CreatedAt = c.CreatedAt
+            }).ToList();
+
+            return Ok(result);
         }
         else if (user.Role == UserRole.Bank)
         {
             var cases = await _context.Cases
                 .OrderByDescending(c => c.CreatedAt)
                 .ToListAsync();
-            return Ok(cases);
+
+            var caseIds = cases.Select(c => c.Id).ToList();
+            var defendants = await _context.Defendants
+                .Where(d => caseIds.Contains(d.CaseId))
+                .ToListAsync();
+
+            var result = cases.Select(c => new CaseSummaryDto
+            {
+                Id = c.Id,
+                CaseNumber = c.CaseNumber,
+                OrderType = c.OrderType.ToString(),
+                Status = c.Status.ToString(),
+                DefendantName = defendants.FirstOrDefault(d => d.CaseId == c.Id)?.FullName ?? "Unknown",
+                CreatedAt = c.CreatedAt
+            }).ToList();
+
+            return Ok(result);
         }
 
         return Forbid();
