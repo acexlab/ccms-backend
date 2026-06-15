@@ -1,0 +1,74 @@
+# CCMS Backend CI/CD Pipeline
+trigger:
+- deployment
+
+resources:
+- repo: self
+
+variables:
+  # Service Connection Names inside Azure DevOps
+  dockerRegistryServiceConnection: 'ccms-acr-conn'
+  kubernetesServiceConnection: 'ccms-aks-conn'
+  
+  # ACR Details
+  containerRegistry: 'ccmsacr.azurecr.io'
+  imageRepository: 'ccms-backend'
+  imagePullSecret: 'ccmsacr-pull-secret'
+  
+  # Workspace paths
+  dockerfilePath: '$(Build.SourcesDirectory)/Dockerfile'
+  tag: '$(Build.BuildId)'
+  namespace: 'default'
+
+stages:
+- stage: Build
+  displayName: Build & Push Image
+  jobs:
+  - job: Build
+    pool:
+      vmImage: 'ubuntu-latest'
+    steps:
+    - task: Docker@2
+      displayName: Build and Push Docker Image
+      inputs:
+        containerRegistry: '$(dockerRegistryServiceConnection)'
+        repository: '$(imageRepository)'
+        command: 'buildAndPush'
+        Dockerfile: '$(dockerfilePath)'
+        tags: |
+          $(tag)
+          latest
+
+- stage: Deploy
+  displayName: Deploy to AKS
+  dependsOn: Build
+  jobs:
+  - job: Deploy
+    pool:
+      vmImage: 'ubuntu-latest'
+    steps:
+    - task: KubernetesManifest@0
+      displayName: Create Image Pull Secrets in AKS
+      inputs:
+        action: 'createSecret'
+        kubernetesServiceConnection: '$(kubernetesServiceConnection)'
+        namespace: '$(namespace)'
+        secretType: 'dockerRegistry'
+        secretName: '$(imagePullSecret)'
+        dockerRegistryEndpoint: '$(dockerRegistryServiceConnection)'
+
+    - task: KubernetesManifest@0
+      displayName: Deploy to AKS Cluster
+      inputs:
+        action: 'deploy'
+        kubernetesServiceConnection: '$(kubernetesServiceConnection)'
+        namespace: '$(namespace)'
+        manifests: |
+          $(System.DefaultWorkingDirectory)/k8s/secrets.yaml
+          $(System.DefaultWorkingDirectory)/k8s/configmap.yaml
+          $(System.DefaultWorkingDirectory)/k8s/backend-deployment.yaml
+          $(System.DefaultWorkingDirectory)/k8s/ingress.yaml
+        imagePullSecrets: |
+          $(imagePullSecret)
+        containers: |
+          $(containerRegistry)/$(imageRepository):$(tag)
