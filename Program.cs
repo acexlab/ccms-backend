@@ -11,18 +11,28 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllers();
 builder.Services.AddSwaggerGen();
 
-// Configure CORS
+// Configure CORS — allow local dev (4200) and Docker frontend (4300)
 builder.Services.AddCors(opts => opts.AddPolicy("CcmsPolicy",
-    p => p.WithOrigins("http://localhost:4200", "http://localhost:8080")
+    p => p.WithOrigins("http://localhost:4200", "http://localhost:4300", "http://localhost:8080")
           .AllowAnyHeader()
           .AllowAnyMethod()
           .AllowCredentials()));
 
-// Configure EF Core with MySQL (Pomelo)
-var connectionString = builder.Configuration.GetConnectionString("DefaultConnection")
-    ?? throw new InvalidOperationException("Connection string 'DefaultConnection' not found.");
-builder.Services.AddDbContext<AppDbContext>(options =>
-    options.UseMySql(connectionString, ServerVersion.AutoDetect(connectionString)));
+// Configure EF Core:
+//   Development → InMemory (no MySQL needed locally)
+//   Production  → MySQL via Pomelo (used in Docker / AKS)
+if (builder.Environment.IsDevelopment())
+{
+    builder.Services.AddDbContext<AppDbContext>(options =>
+        options.UseInMemoryDatabase("CcmsDb"));
+}
+else
+{
+    var connectionString = builder.Configuration.GetConnectionString("DefaultConnection")
+        ?? throw new InvalidOperationException("Connection string 'DefaultConnection' not found.");
+    builder.Services.AddDbContext<AppDbContext>(options =>
+        options.UseMySql(connectionString, ServerVersion.AutoDetect(connectionString)));
+}
 
 // Configure Repositories
 builder.Services.AddScoped<ICaseRepository, CaseRepository>();
