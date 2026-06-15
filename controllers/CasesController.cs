@@ -9,6 +9,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Security.Claims;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
@@ -34,17 +35,59 @@ public class CasesController : ControllerBase
 
     [HttpPost]
     [Authorize(Roles = "Court")]
-    public async Task<IActionResult> CreateCase([FromForm] CreateCaseDto dto, [FromForm] List<IFormFile> files)
+    public async Task<IActionResult> CreateCase(
+        [FromForm] CreateCaseDto dto,
+        IFormFile courtOrderFile,
+        IFormFile aadhaarFile,
+        IFormFile panFile)
     {
         if (dto == null)
         {
-            return BadRequest("Invalid case data.");
+            return BadRequest(new { message = "Invalid case data." });
         }
 
-        var uploadedFiles = files ?? Request.Form.Files.ToList();
-        if (uploadedFiles == null || uploadedFiles.Count == 0)
+        // Validate mandatory files
+        if (courtOrderFile == null || courtOrderFile.Length == 0)
         {
-            return BadRequest("Court Order File is required.");
+            return BadRequest(new { message = "Court Order PDF file is required." });
+        }
+        if (aadhaarFile == null || aadhaarFile.Length == 0)
+        {
+            return BadRequest(new { message = "Aadhaar Copy file is required." });
+        }
+        if (panFile == null || panFile.Length == 0)
+        {
+            return BadRequest(new { message = "PAN Copy file is required." });
+        }
+
+        // String validations (Regex patterns)
+        var nameRegex = new Regex(@"^[a-zA-Z\s]{3,100}$");
+        var idRegex = new Regex(@"^(?:\d{12}|[a-zA-Z]{5}[0-9]{4}[a-zA-Z]{1})$");
+        var accountRegex = new Regex(@"^\d{9,18}$");
+
+        if (!nameRegex.IsMatch(dto.ComplainantName ?? ""))
+        {
+            return BadRequest(new { message = "Complainant Name must contain only letters and spaces, between 3 and 100 characters." });
+        }
+        if (!idRegex.IsMatch(dto.ComplainantId ?? ""))
+        {
+            return BadRequest(new { message = "Complainant Identity Number must be a valid 12-digit Aadhaar or 10-char PAN." });
+        }
+        if (!nameRegex.IsMatch(dto.DefendantName ?? ""))
+        {
+            return BadRequest(new { message = "Defendant Name must contain only letters and spaces, between 3 and 100 characters." });
+        }
+        if (!idRegex.IsMatch(dto.DefendantId ?? ""))
+        {
+            return BadRequest(new { message = "Defendant Identity Number must be a valid 12-digit Aadhaar or 10-char PAN." });
+        }
+        if (!accountRegex.IsMatch(dto.DefendantAccountNumber ?? ""))
+        {
+            return BadRequest(new { message = "Defendant Bank Account Number must contain between 9 and 18 digits." });
+        }
+        if (!nameRegex.IsMatch(dto.DefendantBankName ?? ""))
+        {
+            return BadRequest(new { message = "Defendant Bank Name must contain only letters and spaces, between 3 and 100 characters." });
         }
 
         var username = User.Identity?.Name ?? User.FindFirst("unique_name")?.Value;
@@ -111,33 +154,56 @@ public class CasesController : ControllerBase
                 Directory.CreateDirectory(uploadsFolder);
             }
 
-            for (int i = 0; i < uploadedFiles.Count; i++)
+            // Save Court Order File
+            var uniqueCourtOrderName = $"{Guid.NewGuid()}_{courtOrderFile.FileName}";
+            var courtOrderPath = Path.Combine(uploadsFolder, uniqueCourtOrderName);
+            using (var stream = new FileStream(courtOrderPath, FileMode.Create))
             {
-                var file = uploadedFiles[i];
-                if (file.Length == 0) continue;
-
-                var docType = DocumentType.CourtOrder;
-                if (i == 1) docType = DocumentType.AadhaarCopy;
-                else if (i == 2) docType = DocumentType.PANCopy;
-
-                var uniqueFileName = $"{Guid.NewGuid()}_{file.FileName}";
-                var filePath = Path.Combine(uploadsFolder, uniqueFileName);
-                using (var stream = new FileStream(filePath, FileMode.Create))
-                {
-                    await file.CopyToAsync(stream);
-                }
-
-                var document = new CaseDocument
-                {
-                    CaseId = @case.Id,
-                    DocumentType = docType,
-                    FileName = file.FileName,
-                    FilePath = $"/uploads/{uniqueFileName}",
-                    FileSize = (int)file.Length,
-                    UploadedAt = DateTime.UtcNow
-                };
-                _context.CaseDocuments.Add(document);
+                await courtOrderFile.CopyToAsync(stream);
             }
+            _context.CaseDocuments.Add(new CaseDocument
+            {
+                CaseId = @case.Id,
+                DocumentType = DocumentType.CourtOrder,
+                FileName = courtOrderFile.FileName,
+                FilePath = $"/uploads/{uniqueCourtOrderName}",
+                FileSize = (int)courtOrderFile.Length,
+                UploadedAt = DateTime.UtcNow
+            });
+
+            // Save Aadhaar Copy File
+            var uniqueAadhaarName = $"{Guid.NewGuid()}_{aadhaarFile.FileName}";
+            var aadhaarPath = Path.Combine(uploadsFolder, uniqueAadhaarName);
+            using (var stream = new FileStream(aadhaarPath, FileMode.Create))
+            {
+                await aadhaarFile.CopyToAsync(stream);
+            }
+            _context.CaseDocuments.Add(new CaseDocument
+            {
+                CaseId = @case.Id,
+                DocumentType = DocumentType.AadhaarCopy,
+                FileName = aadhaarFile.FileName,
+                FilePath = $"/uploads/{uniqueAadhaarName}",
+                FileSize = (int)aadhaarFile.Length,
+                UploadedAt = DateTime.UtcNow
+            });
+
+            // Save PAN Copy File
+            var uniquePanName = $"{Guid.NewGuid()}_{panFile.FileName}";
+            var panPath = Path.Combine(uploadsFolder, uniquePanName);
+            using (var stream = new FileStream(panPath, FileMode.Create))
+            {
+                await panFile.CopyToAsync(stream);
+            }
+            _context.CaseDocuments.Add(new CaseDocument
+            {
+                CaseId = @case.Id,
+                DocumentType = DocumentType.PANCopy,
+                FileName = panFile.FileName,
+                FilePath = $"/uploads/{uniquePanName}",
+                FileSize = (int)panFile.Length,
+                UploadedAt = DateTime.UtcNow
+            });
 
             await _context.SaveChangesAsync();
             await transaction.CommitAsync();
