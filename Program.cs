@@ -50,6 +50,8 @@ var app = builder.Build();
 // Configure the HTTP request pipeline.
 app.UseCors("CcmsPolicy");
 
+app.UseStaticFiles();
+
 app.UseAuthentication();
 app.UseAuthorization();
 
