@@ -1,23 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\jonadh.ef\\OneDrive - NeST Group\\Documents\\codes\\team-ccms\\ccms-backend\\ccms-backend.csproj": {}
+    "C:\\CCMS\\ccms-backend\\ccms-backend.csproj": {}
   },
   "projects": {
-    "C:\\Users\\jonadh.ef\\OneDrive - NeST Group\\Documents\\codes\\team-ccms\\ccms-backend\\ccms-backend.csproj": {
+    "C:\\CCMS\\ccms-backend\\ccms-backend.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\jonadh.ef\\OneDrive - NeST Group\\Documents\\codes\\team-ccms\\ccms-backend\\ccms-backend.csproj",
+        "projectUniqueName": "C:\\CCMS\\ccms-backend\\ccms-backend.csproj",
         "projectName": "ccms-backend",
-        "projectPath": "C:\\Users\\jonadh.ef\\OneDrive - NeST Group\\Documents\\codes\\team-ccms\\ccms-backend\\ccms-backend.csproj",
-        "packagesPath": "C:\\Users\\jonadh.ef\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\jonadh.ef\\OneDrive - NeST Group\\Documents\\codes\\team-ccms\\ccms-backend\\obj\\",
+        "projectPath": "C:\\CCMS\\ccms-backend\\ccms-backend.csproj",
+        "packagesPath": "C:\\Users\\isha.harish\\.nuget\\packages\\",
+        "outputPath": "C:\\CCMS\\ccms-backend\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\jonadh.ef\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\isha.harish\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
