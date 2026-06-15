@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 
 namespace ccms_backend.models;
 
@@ -17,4 +18,5 @@ public class Case
     public Complainant? Complainant { get; set; }
     public ICollection<CaseDocument> Documents { get; set; } = new List<CaseDocument>();
     public CaseResponse? Response { get; set; }
+    public CaseValidationResult? ValidationResult { get; set; }
 }

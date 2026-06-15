@@ -10,4 +10,5 @@ public class CaseSummaryDto
     public string Status { get; set; } = string.Empty;
     public string DefendantName { get; set; } = string.Empty;
     public DateTime CreatedAt { get; set; }
+    public DateTime? ValidationDate { get; set; }
 }
