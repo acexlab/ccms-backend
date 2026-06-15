@@ -1,0 +1,100 @@
+C:\Users\jonadh.ef\OneDrive - NeST Group\Documents\codes\team-ccms\ccms-backend\bin\Debug\net10.0\appsettings.Development.json
+C:\Users\jonadh.ef\OneDrive - NeST Group\Documents\codes\team-ccms\ccms-backend\bin\Debug\net10.0\appsettings.json
+C:\Users\jonadh.ef\OneDrive - NeST Group\Documents\codes\team-ccms\ccms-backend\bin\Debug\net10.0\appsettings.Production.json
+C:\Users\jonadh.ef\OneDrive - NeST Group\Documents\codes\team-ccms\ccms-backend\bin\Debug\net10.0\ccms-backend.staticwebassets.endpoints.json
+C:\Users\jonadh.ef\OneDrive - NeST Group\Documents\codes\team-ccms\ccms-backend\bin\Debug\net10.0\ccms-backend.exe
+C:\Users\jonadh.ef\OneDrive - NeST Group\Documents\codes\team-ccms\ccms-backend\bin\Debug\net10.0\ccms-backend.deps.json
+C:\Users\jonadh.ef\OneDrive - NeST Group\Documents\codes\team-ccms\ccms-backend\bin\Debug\net10.0\ccms-backend.runtimeconfig.json
+C:\Users\jonadh.ef\OneDrive - NeST Group\Documents\codes\team-ccms\ccms-backend\bin\Debug\net10.0\ccms-backend.dll
+C:\Users\jonadh.ef\OneDrive - NeST Group\Documents\codes\team-ccms\ccms-backend\bin\Debug\net10.0\ccms-backend.pdb
+C:\Users\jonadh.ef\OneDrive - NeST Group\Documents\codes\team-ccms\ccms-backend\bin\Debug\net10.0\BCrypt.Net-Next.dll
+C:\Users\jonadh.ef\OneDrive - NeST Group\Documents\codes\team-ccms\ccms-backend\bin\Debug\net10.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
+C:\Users\jonadh.ef\OneDrive - NeST Group\Documents\codes\team-ccms\ccms-backend\bin\Debug\net10.0\Microsoft.EntityFrameworkCore.dll
+C:\Users\jonadh.ef\OneDrive - NeST Group\Documents\codes\team-ccms\ccms-backend\bin\Debug\net10.0\Microsoft.EntityFrameworkCore.Abstractions.dll
+C:\Users\jonadh.ef\OneDrive - NeST Group\Documents\codes\team-ccms\ccms-backend\bin\Debug\net10.0\Microsoft.EntityFrameworkCore.Relational.dll
+C:\Users\jonadh.ef\OneDrive - NeST Group\Documents\codes\team-ccms\ccms-backend\bin\Debug\net10.0\Microsoft.IdentityModel.Abstractions.dll
+C:\Users\jonadh.ef\OneDrive - NeST Group\Documents\codes\team-ccms\ccms-backend\bin\Debug\net10.0\Microsoft.IdentityModel.JsonWebTokens.dll
+C:\Users\jonadh.ef\OneDrive - NeST Group\Documents\codes\team-ccms\ccms-backend\bin\Debug\net10.0\Microsoft.IdentityModel.Logging.dll
+C:\Users\jonadh.ef\OneDrive - NeST Group\Documents\codes\team-ccms\ccms-backend\bin\Debug\net10.0\Microsoft.IdentityModel.Protocols.dll
+C:\Users\jonadh.ef\OneDrive - NeST Group\Documents\codes\team-ccms\ccms-backend\bin\Debug\net10.0\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
+C:\Users\jonadh.ef\OneDrive - NeST Group\Documents\codes\team-ccms\ccms-backend\bin\Debug\net10.0\Microsoft.IdentityModel.Tokens.dll
+C:\Users\jonadh.ef\OneDrive - NeST Group\Documents\codes\team-ccms\ccms-backend\bin\Debug\net10.0\MySqlConnector.dll
+C:\Users\jonadh.ef\OneDrive - NeST Group\Documents\codes\team-ccms\ccms-backend\bin\Debug\net10.0\Pomelo.EntityFrameworkCore.MySql.dll
+C:\Users\jonadh.ef\OneDrive - NeST Group\Documents\codes\team-ccms\ccms-backend\bin\Debug\net10.0\System.IdentityModel.Tokens.Jwt.dll
+C:\Users\jonadh.ef\OneDrive - NeST Group\Documents\codes\team-ccms\ccms-backend\obj\Debug\net10.0\ccms-backend.csproj.AssemblyReference.cache
+C:\Users\jonadh.ef\OneDrive - NeST Group\Documents\codes\team-ccms\ccms-backend\obj\Debug\net10.0\rpswa.dswa.cache.json
+C:\Users\jonadh.ef\OneDrive - NeST Group\Documents\codes\team-ccms\ccms-backend\obj\Debug\net10.0\ccms-backend.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\jonadh.ef\OneDrive - NeST Group\Documents\codes\team-ccms\ccms-backend\obj\Debug\net10.0\ccms-backend.AssemblyInfoInputs.cache
+C:\Users\jonadh.ef\OneDrive - NeST Group\Documents\codes\team-ccms\ccms-backend\obj\Debug\net10.0\ccms-backend.AssemblyInfo.cs
+C:\Users\jonadh.ef\OneDrive - NeST Group\Documents\codes\team-ccms\ccms-backend\obj\Debug\net10.0\ccms-backend.csproj.CoreCompileInputs.cache
+C:\Users\jonadh.ef\OneDrive - NeST Group\Documents\codes\team-ccms\ccms-backend\obj\Debug\net10.0\ccms-backend.MvcApplicationPartsAssemblyInfo.cache
+C:\Users\jonadh.ef\OneDrive - NeST Group\Documents\codes\team-ccms\ccms-backend\obj\Debug\net10.0\ccms-backend.sourcelink.json
+C:\Users\jonadh.ef\OneDrive - NeST Group\Documents\codes\team-ccms\ccms-backend\obj\Debug\net10.0\rjimswa.dswa.cache.json
+C:\Users\jonadh.ef\OneDrive - NeST Group\Documents\codes\team-ccms\ccms-backend\obj\Debug\net10.0\rjsmrazor.dswa.cache.json
+C:\Users\jonadh.ef\OneDrive - NeST Group\Documents\codes\team-ccms\ccms-backend\obj\Debug\net10.0\rjsmcshtml.dswa.cache.json
+C:\Users\jonadh.ef\OneDrive - NeST Group\Documents\codes\team-ccms\ccms-backend\obj\Debug\net10.0\scopedcss\bundle\ccms-backend.styles.css
+C:\Users\jonadh.ef\OneDrive - NeST Group\Documents\codes\team-ccms\ccms-backend\obj\Debug\net10.0\staticwebassets.build.json
+C:\Users\jonadh.ef\OneDrive - NeST Group\Documents\codes\team-ccms\ccms-backend\obj\Debug\net10.0\staticwebassets.build.json.cache
+C:\Users\jonadh.ef\OneDrive - NeST Group\Documents\codes\team-ccms\ccms-backend\obj\Debug\net10.0\staticwebassets.development.json
+C:\Users\jonadh.ef\OneDrive - NeST Group\Documents\codes\team-ccms\ccms-backend\obj\Debug\net10.0\staticwebassets.build.endpoints.json
+C:\Users\jonadh.ef\OneDrive - NeST Group\Documents\codes\team-ccms\ccms-backend\obj\Debug\net10.0\swae.build.ex.cache
+C:\Users\jonadh.ef\OneDrive - NeST Group\Documents\codes\team-ccms\ccms-backend\obj\Debug\net10.0\ccms-bac.4A68DD20.Up2Date
+C:\Users\jonadh.ef\OneDrive - NeST Group\Documents\codes\team-ccms\ccms-backend\obj\Debug\net10.0\ccms-backend.dll
+C:\Users\jonadh.ef\OneDrive - NeST Group\Documents\codes\team-ccms\ccms-backend\obj\Debug\net10.0\refint\ccms-backend.dll
+C:\Users\jonadh.ef\OneDrive - NeST Group\Documents\codes\team-ccms\ccms-backend\obj\Debug\net10.0\ccms-backend.pdb
+C:\Users\jonadh.ef\OneDrive - NeST Group\Documents\codes\team-ccms\ccms-backend\obj\Debug\net10.0\ccms-backend.genruntimeconfig.cache
+C:\Users\jonadh.ef\OneDrive - NeST Group\Documents\codes\team-ccms\ccms-backend\obj\Debug\net10.0\ref\ccms-backend.dll
+C:\Users\jonadh.ef\OneDrive - NeST Group\Documents\codes\team-ccms\ccms-backend\bin\Debug\net10.0\ccms-backend.staticwebassets.runtime.json
+D:\ccms\ccms-backend\bin\Debug\net10.0\appsettings.Development.json
+D:\ccms\ccms-backend\bin\Debug\net10.0\appsettings.json
+D:\ccms\ccms-backend\bin\Debug\net10.0\appsettings.Production.json
+D:\ccms\ccms-backend\bin\Debug\net10.0\ccms-backend.staticwebassets.runtime.json
+D:\ccms\ccms-backend\bin\Debug\net10.0\ccms-backend.staticwebassets.endpoints.json
+D:\ccms\ccms-backend\bin\Debug\net10.0\ccms-backend.exe
+D:\ccms\ccms-backend\bin\Debug\net10.0\ccms-backend.deps.json
+D:\ccms\ccms-backend\bin\Debug\net10.0\ccms-backend.runtimeconfig.json
+D:\ccms\ccms-backend\bin\Debug\net10.0\ccms-backend.dll
+D:\ccms\ccms-backend\bin\Debug\net10.0\ccms-backend.pdb
+D:\ccms\ccms-backend\bin\Debug\net10.0\BCrypt.Net-Next.dll
+D:\ccms\ccms-backend\bin\Debug\net10.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
+D:\ccms\ccms-backend\bin\Debug\net10.0\Microsoft.EntityFrameworkCore.dll
+D:\ccms\ccms-backend\bin\Debug\net10.0\Microsoft.EntityFrameworkCore.Abstractions.dll
+D:\ccms\ccms-backend\bin\Debug\net10.0\Microsoft.EntityFrameworkCore.InMemory.dll
+D:\ccms\ccms-backend\bin\Debug\net10.0\Microsoft.EntityFrameworkCore.Relational.dll
+D:\ccms\ccms-backend\bin\Debug\net10.0\Microsoft.IdentityModel.Abstractions.dll
+D:\ccms\ccms-backend\bin\Debug\net10.0\Microsoft.IdentityModel.JsonWebTokens.dll
+D:\ccms\ccms-backend\bin\Debug\net10.0\Microsoft.IdentityModel.Logging.dll
+D:\ccms\ccms-backend\bin\Debug\net10.0\Microsoft.IdentityModel.Protocols.dll
+D:\ccms\ccms-backend\bin\Debug\net10.0\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
+D:\ccms\ccms-backend\bin\Debug\net10.0\Microsoft.IdentityModel.Tokens.dll
+D:\ccms\ccms-backend\bin\Debug\net10.0\Microsoft.OpenApi.dll
+D:\ccms\ccms-backend\bin\Debug\net10.0\MySqlConnector.dll
+D:\ccms\ccms-backend\bin\Debug\net10.0\Pomelo.EntityFrameworkCore.MySql.dll
+D:\ccms\ccms-backend\bin\Debug\net10.0\Swashbuckle.AspNetCore.Swagger.dll
+D:\ccms\ccms-backend\bin\Debug\net10.0\Swashbuckle.AspNetCore.SwaggerGen.dll
+D:\ccms\ccms-backend\bin\Debug\net10.0\Swashbuckle.AspNetCore.SwaggerUI.dll
+D:\ccms\ccms-backend\bin\Debug\net10.0\System.IdentityModel.Tokens.Jwt.dll
+D:\ccms\ccms-backend\obj\Debug\net10.0\ccms-backend.csproj.AssemblyReference.cache
+D:\ccms\ccms-backend\obj\Debug\net10.0\rpswa.dswa.cache.json
+D:\ccms\ccms-backend\obj\Debug\net10.0\ccms-backend.GeneratedMSBuildEditorConfig.editorconfig
+D:\ccms\ccms-backend\obj\Debug\net10.0\ccms-backend.AssemblyInfoInputs.cache
+D:\ccms\ccms-backend\obj\Debug\net10.0\ccms-backend.AssemblyInfo.cs
+D:\ccms\ccms-backend\obj\Debug\net10.0\ccms-backend.csproj.CoreCompileInputs.cache
+D:\ccms\ccms-backend\obj\Debug\net10.0\ccms-backend.MvcApplicationPartsAssemblyInfo.cs
+D:\ccms\ccms-backend\obj\Debug\net10.0\ccms-backend.MvcApplicationPartsAssemblyInfo.cache
+D:\ccms\ccms-backend\obj\Debug\net10.0\ccms-backend.sourcelink.json
+D:\ccms\ccms-backend\obj\Debug\net10.0\rjimswa.dswa.cache.json
+D:\ccms\ccms-backend\obj\Debug\net10.0\rjsmrazor.dswa.cache.json
+D:\ccms\ccms-backend\obj\Debug\net10.0\rjsmcshtml.dswa.cache.json
+D:\ccms\ccms-backend\obj\Debug\net10.0\scopedcss\bundle\ccms-backend.styles.css
+D:\ccms\ccms-backend\obj\Debug\net10.0\staticwebassets.build.json
+D:\ccms\ccms-backend\obj\Debug\net10.0\staticwebassets.build.json.cache
+D:\ccms\ccms-backend\obj\Debug\net10.0\staticwebassets.development.json
+D:\ccms\ccms-backend\obj\Debug\net10.0\staticwebassets.build.endpoints.json
+D:\ccms\ccms-backend\obj\Debug\net10.0\swae.build.ex.cache
+D:\ccms\ccms-backend\obj\Debug\net10.0\ccms-bac.4A68DD20.Up2Date
+D:\ccms\ccms-backend\obj\Debug\net10.0\ccms-backend.dll
+D:\ccms\ccms-backend\obj\Debug\net10.0\refint\ccms-backend.dll
+D:\ccms\ccms-backend\obj\Debug\net10.0\ccms-backend.pdb
+D:\ccms\ccms-backend\obj\Debug\net10.0\ccms-backend.genruntimeconfig.cache
+D:\ccms\ccms-backend\obj\Debug\net10.0\ref\ccms-backend.dll
