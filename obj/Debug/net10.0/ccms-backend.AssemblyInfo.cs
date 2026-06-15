@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("ccms-backend")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+baafec91ea8bcfaa2a3d3f9b5b78f4416f997f4f")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+fc6bccde70b223517d66ecb4d6caad7a85d8ff4b")]
 [assembly: System.Reflection.AssemblyProductAttribute("ccms-backend")]
 [assembly: System.Reflection.AssemblyTitleAttribute("ccms-backend")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
