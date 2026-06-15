@@ -44,3 +44,4 @@ C:\Users\jonadh.ef\OneDrive - NeST Group\Documents\codes\team-ccms\ccms-backend\
 C:\Users\jonadh.ef\OneDrive - NeST Group\Documents\codes\team-ccms\ccms-backend\obj\Debug\net10.0\ccms-backend.pdb
 C:\Users\jonadh.ef\OneDrive - NeST Group\Documents\codes\team-ccms\ccms-backend\obj\Debug\net10.0\ccms-backend.genruntimeconfig.cache
 C:\Users\jonadh.ef\OneDrive - NeST Group\Documents\codes\team-ccms\ccms-backend\obj\Debug\net10.0\ref\ccms-backend.dll
+C:\Users\jonadh.ef\OneDrive - NeST Group\Documents\codes\team-ccms\ccms-backend\bin\Debug\net10.0\ccms-backend.staticwebassets.runtime.json
