@@ -1,6 +1,10 @@
-/*
- * File: ICaseRepository.cs
- * Description: Interface defining data operations for Case entities.
- * To Implement: Implement using Entity Framework Core DbContext.
- */
-// For sequential numbering
+using System.Collections.Generic;
+using System.Threading.Tasks;
+using ccms_backend.models;
+
+namespace ccms_backend.data;
+
+public interface ICaseRepository
+{
+    Task<IEnumerable<Case>> GetCasesForBankAsync();
+}
