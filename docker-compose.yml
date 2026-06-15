@@ -1,0 +1,73 @@
+services:
+  # ────────────────────────────────────────────────
+  # MySQL 8 Database
+  # ────────────────────────────────────────────────
+  ccms-db:
+    image: mysql:8.0
+    container_name: ccms-db
+    restart: unless-stopped
+    environment:
+      MYSQL_ROOT_PASSWORD: Madrollsbyme10$$
+      MYSQL_DATABASE: ccms
+    ports:
+      - "3307:3306"          # Exposed on 3307 to avoid clash with local MySQL on 3306
+    volumes:
+      - ccms-db-data:/var/lib/mysql
+    networks:
+      - ccms-net
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-u", "root", "-pMadrollsbyme10$$"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+      start_period: 30s
+
+  # ────────────────────────────────────────────────
+  # .NET 10 Backend API
+  # ────────────────────────────────────────────────
+  ccms-backend:
+    build:
+      context: ./ccms-backend
+      dockerfile: Dockerfile
+    image: ccms-backend:local
+    container_name: ccms-backend
+    restart: unless-stopped
+    ports:
+      - "5000:80"
+    environment:
+      ASPNETCORE_ENVIRONMENT: Production
+      ConnectionStrings__DefaultConnection: "server=ccms-db;port=3306;database=ccms;user=root;password=Madrollsbyme10$$"
+      JwtSettings__Secret: "SuperSecretJWTKey12345678901234567890"
+      JwtSettings__Issuer: "CCMS.API"
+      JwtSettings__Audience: "CCMS.Client"
+      BatchSettings__IntervalMinutes: "15"
+    depends_on:
+      ccms-db:
+        condition: service_healthy
+    networks:
+      - ccms-net
+
+  # ────────────────────────────────────────────────
+  # Angular 21 Frontend (served by NGINX)
+  # ────────────────────────────────────────────────
+  ccms-frontend:
+    build:
+      context: ./ccms-frontend
+      dockerfile: Dockerfile
+    image: ccms-frontend:local
+    container_name: ccms-frontend
+    restart: unless-stopped
+    ports:
+      - "4300:80"
+    depends_on:
+      - ccms-backend
+    networks:
+      - ccms-net
+
+volumes:
+  ccms-db-data:
+    driver: local
+
+networks:
+  ccms-net:
+    driver: bridge
