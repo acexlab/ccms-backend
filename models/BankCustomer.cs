@@ -1,6 +1,12 @@
-/*
- * File: BankCustomer.cs
- * Description: Represents a seeded bank customer profile, used by batch jobs for verification.
- * To Implement: Seed sufficient data in the dev environment for account matching.
- */
-// "Active" | "Frozen" | "Closed"
+namespace ccms_backend.models;
+
+public class BankCustomer
+{
+    public int Id { get; set; }
+    public string AccountNumber { get; set; } = string.Empty;
+    public string AadhaarNumber { get; set; } = string.Empty;
+    public string PANNumber { get; set; } = string.Empty;
+    public string AccountHolderName { get; set; } = string.Empty;
+    public AccountStatus AccountStatus { get; set; } = AccountStatus.Active;
+    public decimal CurrentBalance { get; set; }
+}

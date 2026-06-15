@@ -1,7 +1,15 @@
-/*
- * File: CaseResponse.cs
- * Description: Represents a Bank Officer's formal response, or a system-generated "AccountNotFound" response.
- * To Implement: Keep in sync with Case terminal states.
- */
-// "FreezeApplied" | "BalanceProvided" | "AccountNotFound"
-// true = created automatically by batch job
+using System;
+
+namespace ccms_backend.models;
+
+public class CaseResponse
+{
+    public int Id { get; set; }
+    public int CaseId { get; set; }
+    public int? RespondedByUserId { get; set; }
+    public ResponseType ResponseType { get; set; }
+    public decimal? FreezeAmountApplied { get; set; }
+    public decimal? BalanceReported { get; set; }
+    public string? Remarks { get; set; }
+    public DateTime SubmittedAt { get; set; } = DateTime.UtcNow;
+}

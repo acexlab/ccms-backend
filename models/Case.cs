@@ -1,13 +1,15 @@
-/*
- * File: Case.cs
- * Description: Entity representing a court case.
- * To Implement: State validation rules and entity structure.
- */
-// Format: CCMS-YYYYMMDD-XXXX
-// Stored raw; masked on retrieval
-// Stored raw; masked on retrieval
-// Stored raw; masked on retrieval
-// Set if OrderType = FreezeAccount
-// Set by batch validation
-// Set by batch validation
-// Set by batch validation
+using System;
+
+namespace ccms_backend.models;
+
+public class Case
+{
+    public int Id { get; set; }
+    public string CaseNumber { get; set; } = string.Empty;
+    public int CreatedByUserId { get; set; }
+    public OrderType OrderType { get; set; }
+    public decimal? FreezeAmount { get; set; }
+    public CaseStatus Status { get; set; } = CaseStatus.Pending;
+    public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
+    public DateTime UpdatedAt { get; set; } = DateTime.UtcNow;
+}
