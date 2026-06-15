@@ -3,11 +3,13 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using ccms_backend.data;
+using ccms_backend.services;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllers();
+builder.Services.AddSwaggerGen();
 
 // Configure CORS
 builder.Services.AddCors(opts => opts.AddPolicy("CcmsPolicy",
@@ -16,10 +18,18 @@ builder.Services.AddCors(opts => opts.AddPolicy("CcmsPolicy",
           .AllowAnyMethod()
           .AllowCredentials()));
 
-// Configure EF Core with MySQL
+// Configure EF Core with InMemory for easy testing
 var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
 builder.Services.AddDbContext<AppDbContext>(options =>
-    options.UseMySql(connectionString, ServerVersion.AutoDetect(connectionString)));
+    options.UseInMemoryDatabase("CcmsDb"));
+
+// Configure Repositories
+builder.Services.AddScoped<ICaseRepository, CaseRepository>();
+builder.Services.AddScoped<IBatchJobLogRepository, BatchJobLogRepository>();
+
+// Configure Services
+builder.Services.AddScoped<CaseService>();
+builder.Services.AddScoped<BatchValidationService>();
 
 // Configure JWT Authentication
 var jwtSettings = builder.Configuration.GetSection("JwtSettings");
@@ -46,6 +56,9 @@ builder.Services.AddAuthentication(opts =>
 builder.Services.AddAuthorization();
 
 var app = builder.Build();
+
+app.UseSwagger();
+app.UseSwaggerUI();
 
 // Configure the HTTP request pipeline.
 app.UseCors("CcmsPolicy");
