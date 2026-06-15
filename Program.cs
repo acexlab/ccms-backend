@@ -30,6 +30,7 @@ builder.Services.AddScoped<IBatchJobLogRepository, BatchJobLogRepository>();
 // Configure Services
 builder.Services.AddScoped<CaseService>();
 builder.Services.AddScoped<BatchValidationService>();
+builder.Services.AddHostedService<BatchSchedulerService>();
 
 // Configure JWT Authentication
 var jwtSettings = builder.Configuration.GetSection("JwtSettings");
