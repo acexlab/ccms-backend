@@ -13,15 +13,16 @@ builder.Services.AddSwaggerGen();
 
 // Configure CORS
 builder.Services.AddCors(opts => opts.AddPolicy("CcmsPolicy",
-    p => p.WithOrigins("http://localhost:4200")
+    p => p.WithOrigins("http://localhost:4200", "http://localhost:8080")
           .AllowAnyHeader()
           .AllowAnyMethod()
           .AllowCredentials()));
 
-// Configure EF Core with InMemory for easy testing
-var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
+// Configure EF Core with MySQL (Pomelo)
+var connectionString = builder.Configuration.GetConnectionString("DefaultConnection")
+    ?? throw new InvalidOperationException("Connection string 'DefaultConnection' not found.");
 builder.Services.AddDbContext<AppDbContext>(options =>
-    options.UseInMemoryDatabase("CcmsDb"));
+    options.UseMySql(connectionString, ServerVersion.AutoDetect(connectionString)));
 
 // Configure Repositories
 builder.Services.AddScoped<ICaseRepository, CaseRepository>();
