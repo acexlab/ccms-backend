@@ -93,5 +93,63 @@ public static class DatabaseSeeder
             await context.BankCustomers.AddAsync(sampleCustomer);
             await context.SaveChangesAsync();
         }
+
+        // 4. Seed BatchJobLogs
+        if (!await context.BatchJobLogs.AnyAsync())
+        {
+            var logs = new List<BatchJobLog>
+            {
+                new BatchJobLog
+                {
+                    RunId = "BATCH-20231027-01",
+                    TriggeredBy = TriggeredBy.Scheduled,
+                    StartTime = new DateTime(2023, 10, 27, 22, 0, 4, DateTimeKind.Utc),
+                    EndTime = new DateTime(2023, 10, 28, 0, 14, 12, DateTimeKind.Utc),
+                    CasesProcessed = 12482,
+                    AccountsMatched = 11904,
+                    AccountsNotFound = 578,
+                    DurationSeconds = 8048,
+                    Status = BatchJobStatus.Success
+                },
+                new BatchJobLog
+                {
+                    RunId = "BATCH-20231026-01",
+                    TriggeredBy = TriggeredBy.Scheduled,
+                    StartTime = new DateTime(2023, 10, 26, 22, 0, 1, DateTimeKind.Utc),
+                    EndTime = new DateTime(2023, 10, 27, 0, 8, 55, DateTimeKind.Utc),
+                    CasesProcessed = 12100,
+                    AccountsMatched = 12100,
+                    AccountsNotFound = 0,
+                    DurationSeconds = 7734,
+                    Status = BatchJobStatus.Success
+                },
+                new BatchJobLog
+                {
+                    RunId = "BATCH-20231025-01",
+                    TriggeredBy = TriggeredBy.Scheduled,
+                    StartTime = new DateTime(2023, 10, 25, 22, 0, 5, DateTimeKind.Utc),
+                    EndTime = new DateTime(2023, 10, 25, 23, 15, 30, DateTimeKind.Utc),
+                    CasesProcessed = 10500,
+                    AccountsMatched = 9500,
+                    AccountsNotFound = 1000,
+                    DurationSeconds = 4525,
+                    Status = BatchJobStatus.Success
+                },
+                new BatchJobLog
+                {
+                    RunId = "BATCH-20231024-01",
+                    TriggeredBy = TriggeredBy.Scheduled,
+                    StartTime = new DateTime(2023, 10, 24, 22, 0, 2, DateTimeKind.Utc),
+                    EndTime = new DateTime(2023, 10, 25, 0, 5, 12, DateTimeKind.Utc),
+                    CasesProcessed = 11000,
+                    AccountsMatched = 10000,
+                    AccountsNotFound = 1000,
+                    DurationSeconds = 7510,
+                    Status = BatchJobStatus.Success
+                }
+            };
+            await context.BatchJobLogs.AddRangeAsync(logs);
+            await context.SaveChangesAsync();
+        }
     }
 }
