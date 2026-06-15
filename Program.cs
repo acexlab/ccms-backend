@@ -18,10 +18,10 @@ builder.Services.AddCors(opts => opts.AddPolicy("CcmsPolicy",
           .AllowAnyMethod()
           .AllowCredentials()));
 
-// Configure EF Core with InMemory for easy testing
+// Configure EF Core with MySQL
 var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
 builder.Services.AddDbContext<AppDbContext>(options =>
-    options.UseInMemoryDatabase("CcmsDb"));
+    options.UseMySql(connectionString, ServerVersion.AutoDetect(connectionString)));
 
 // Configure Repositories
 builder.Services.AddScoped<ICaseRepository, CaseRepository>();
