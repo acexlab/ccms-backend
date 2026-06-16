@@ -24,38 +24,11 @@ public class AppDbContext : DbContext
     {
         base.OnModelCreating(modelBuilder);
 
-        // Configure User Role enum conversion
-        modelBuilder.Entity<User>()
-            .Property(u => u.Role)
-            .HasConversion<string>();
-
-        // Configure Case OrderType and Status conversion
-        modelBuilder.Entity<Case>()
-            .Property(c => c.OrderType)
-            .HasConversion<string>();
-
-        modelBuilder.Entity<Case>()
-            .Property(c => c.Status)
-            .HasConversion<string>();
-
-        // Configure CaseDocument DocumentType conversion
-        modelBuilder.Entity<CaseDocument>()
-            .Property(d => d.DocumentType)
-            .HasConversion<string>();
-
-        // Configure BankCustomer AccountStatus conversion
-        modelBuilder.Entity<BankCustomer>()
-            .Property(b => b.AccountStatus)
-            .HasConversion<string>();
+        modelBuilder.ApplyConfigurationsFromAssembly(typeof(AppDbContext).Assembly);
 
         // Configure CaseValidationResult MatchedOn conversion
         modelBuilder.Entity<CaseValidationResult>()
             .Property(v => v.MatchedOn)
-            .HasConversion<string>();
-
-        // Configure CaseResponse ResponseType conversion
-        modelBuilder.Entity<CaseResponse>()
-            .Property(r => r.ResponseType)
             .HasConversion<string>();
 
         // Configure BatchJobLog TriggeredBy and Status conversion

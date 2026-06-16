@@ -59,7 +59,9 @@ public static class TestDataSeeder
             AadhaarNumber = "123456789012",
             PANNumber = "ABCDE1234F",
             BankCode = "SBI",
-            CurrentBalance = 150000m,
+            TotalBalance = 150000m,
+            AvailableBalance = 150000m,
+            FrozenAmount = 0m,
             AccountStatus = AccountStatus.Active
         };
 
@@ -70,7 +72,9 @@ public static class TestDataSeeder
             AadhaarNumber = "987654321098",
             PANNumber = "PQRSX5678Z",
             BankCode = "HDFC",
-            CurrentBalance = 75000m,
+            TotalBalance = 75000m,
+            AvailableBalance = 75000m,
+            FrozenAmount = 0m,
             AccountStatus = AccountStatus.Active
         };
 
@@ -81,7 +85,9 @@ public static class TestDataSeeder
             AadhaarNumber = "222233334444",
             PANNumber = "LMNOP4321K",
             BankCode = "SBI",
-            CurrentBalance = 20000m,
+            TotalBalance = 20000m,
+            AvailableBalance = 0m,
+            FrozenAmount = 20000m,
             AccountStatus = AccountStatus.Frozen
         };
 

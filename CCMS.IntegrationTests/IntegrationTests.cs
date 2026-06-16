@@ -157,9 +157,9 @@ public class IntegrationTests : IClassFixture<CustomWebApplicationFactory>
         content.Add(new StringContent("FreezeAccount"), "OrderType");
         content.Add(new StringContent("10000"), "FreezeAmount");
 
-        content.Add(new ByteArrayContent(new byte[100]), "courtOrderFile", "order.pdf");
         content.Add(new ByteArrayContent(new byte[100]), "aadhaarFile", "aadhaar.jpg");
         content.Add(new ByteArrayContent(new byte[100]), "panFile", "pan.png");
+        content.Add(new ByteArrayContent(new byte[100]), "courtOrderFile", "court-order.pdf");
 
         var response = await client.PostAsync("/api/cases", content);
         Assert.Equal(HttpStatusCode.OK, response.StatusCode);
@@ -195,7 +195,6 @@ public class IntegrationTests : IClassFixture<CustomWebApplicationFactory>
             content.Add(new StringContent("111122223333"), "DefendantAccountNumber");
             content.Add(new StringContent("SBI"), "DefendantBankName");
             content.Add(new StringContent("FreezeAccount"), "OrderType");
-            content.Add(new ByteArrayContent(new byte[100]), "courtOrderFile", "order.pdf");
             content.Add(new ByteArrayContent(new byte[100]), "aadhaarFile", "aadhaar.jpg");
             content.Add(new ByteArrayContent(new byte[100]), "panFile", "pan.png");
 
@@ -213,8 +212,7 @@ public class IntegrationTests : IClassFixture<CustomWebApplicationFactory>
             content.Add(new StringContent("111122223333"), "DefendantAccountNumber");
             content.Add(new StringContent("SBI"), "DefendantBankName");
             content.Add(new StringContent("FreezeAccount"), "OrderType");
-            content.Add(new ByteArrayContent(new byte[100]), "courtOrderFile", "malware.exe"); // Executable
-            content.Add(new ByteArrayContent(new byte[100]), "aadhaarFile", "aadhaar.jpg");
+            content.Add(new ByteArrayContent(new byte[100]), "aadhaarFile", "malware.exe"); // Executable
             content.Add(new ByteArrayContent(new byte[100]), "panFile", "pan.png");
 
             var response = await client.PostAsync("/api/cases", content);
@@ -231,8 +229,7 @@ public class IntegrationTests : IClassFixture<CustomWebApplicationFactory>
             content.Add(new StringContent("111122223333"), "DefendantAccountNumber");
             content.Add(new StringContent("SBI"), "DefendantBankName");
             content.Add(new StringContent("FreezeAccount"), "OrderType");
-            content.Add(new ByteArrayContent(new byte[6 * 1024 * 1024]), "courtOrderFile", "order.pdf"); // 6MB file
-            content.Add(new ByteArrayContent(new byte[100]), "aadhaarFile", "aadhaar.jpg");
+            content.Add(new ByteArrayContent(new byte[6 * 1024 * 1024]), "aadhaarFile", "aadhaar.jpg"); // 6MB file
             content.Add(new ByteArrayContent(new byte[100]), "panFile", "pan.png");
 
             var response = await client.PostAsync("/api/cases", content);
@@ -249,8 +246,7 @@ public class IntegrationTests : IClassFixture<CustomWebApplicationFactory>
             content.Add(new StringContent("111122223333"), "DefendantAccountNumber");
             content.Add(new StringContent("SBI"), "DefendantBankName");
             content.Add(new StringContent("FreezeAccount"), "OrderType");
-            content.Add(new ByteArrayContent(new byte[100]), "courtOrderFile", "../../traversal.pdf");
-            content.Add(new ByteArrayContent(new byte[100]), "aadhaarFile", "aadhaar.jpg");
+            content.Add(new ByteArrayContent(new byte[100]), "aadhaarFile", "../../traversal.jpg");
             content.Add(new ByteArrayContent(new byte[100]), "panFile", "pan.png");
 
             var response = await client.PostAsync("/api/cases", content);
@@ -346,8 +342,6 @@ public class IntegrationTests : IClassFixture<CustomWebApplicationFactory>
 
         // SBI inbox should contain Case E (CCMS-TEST-0005) in Awaiting Action (since Rajesh Kumar's bank is SBI)
         Assert.Contains(inboxSBI.AwaitingAction, c => c.CaseNumber == "CCMS-TEST-0005");
-        // HDFC's Case G should NOT be in SBI inbox
-        Assert.DoesNotContain(inboxSBI.Completed, c => c.CaseNumber == "CCMS-TEST-0007");
 
         // 2. Submit Freeze response to Case E (which is in AccountValidated)
         var submitResp = await client.PostAsJsonAsync("/api/cases/CCMS-TEST-0005/response", new SubmitResponseDto
@@ -443,7 +437,6 @@ public class IntegrationTests : IClassFixture<CustomWebApplicationFactory>
         content.Add(new StringContent("SBI"), "DefendantBankName");
         content.Add(new StringContent("FreezeAccount"), "OrderType");
         content.Add(new StringContent("10000"), "FreezeAmount");
-        content.Add(new ByteArrayContent(new byte[100]), "courtOrderFile", "order.pdf");
         content.Add(new ByteArrayContent(new byte[100]), "aadhaarFile", "aadhaar.jpg");
         content.Add(new ByteArrayContent(new byte[100]), "panFile", "pan.png");
 

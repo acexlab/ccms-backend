@@ -178,7 +178,7 @@ public class BusinessLogicTests
     [Theory]
     [InlineData("CreateCase", "Court")]
     [InlineData("GetInbox", "Bank")]
-    [InlineData("GetCaseDetail", "Bank")]
+    [InlineData("GetCaseDetail", "Court,Bank")]
     [InlineData("SubmitResponse", "Bank")]
     [InlineData("DownloadDocument", "Bank")]
     public void Test_CasesController_MethodRoles(string methodName, string expectedRole)

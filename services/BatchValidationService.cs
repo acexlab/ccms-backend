@@ -14,12 +14,14 @@ public class BatchValidationService
     private readonly IBatchJobLogRepository _batchLogRepo;
     private readonly ICaseRepository _caseRepo;
     private readonly AppDbContext _context;
+    private readonly IBankCustomerRepository _bankCustomerRepository;
 
-    public BatchValidationService(IBatchJobLogRepository batchLogRepo, ICaseRepository caseRepo, AppDbContext context)
+    public BatchValidationService(IBatchJobLogRepository batchLogRepo, ICaseRepository caseRepo, AppDbContext context, IBankCustomerRepository bankCustomerRepository)
     {
         _batchLogRepo = batchLogRepo;
         _caseRepo = caseRepo;
         _context = context;
+        _bankCustomerRepository = bankCustomerRepository;
     }
 
     public async Task<BatchJobLog> TriggerManualRunAsync(int? userId)
@@ -68,8 +70,7 @@ public class BatchValidationService
             if (!string.IsNullOrWhiteSpace(def.BankAccountNumber))
             {
                 var accountNum = def.BankAccountNumber.Trim();
-                matchedCustomer = await _context.BankCustomers
-                    .FirstOrDefaultAsync(bc => bc.AccountNumber == accountNum && bc.BankCode == def.BankName);
+                matchedCustomer = await _bankCustomerRepository.GetByAccountNumberAsync(accountNum);
                 
                 if (matchedCustomer != null)
                 {
@@ -85,8 +86,7 @@ public class BatchValidationService
                 if (aadhaarMatch.Success)
                 {
                     var cleanedAadhaar = aadhaarMatch.Value.Replace("-", "").Replace(" ", "");
-                    matchedCustomer = await _context.BankCustomers
-                        .FirstOrDefaultAsync(bc => bc.AadhaarNumber.Replace("-", "").Replace(" ", "") == cleanedAadhaar && bc.BankCode == def.BankName);
+                    matchedCustomer = await _bankCustomerRepository.GetByAadhaarAsync(cleanedAadhaar);
                     
                     if (matchedCustomer != null)
                     {
@@ -103,8 +103,7 @@ public class BatchValidationService
                 if (panMatch.Success)
                 {
                     var cleanedPan = panMatch.Value.ToUpper();
-                    matchedCustomer = await _context.BankCustomers
-                        .FirstOrDefaultAsync(bc => bc.PANNumber.ToUpper() == cleanedPan && bc.BankCode == def.BankName);
+                    matchedCustomer = await _bankCustomerRepository.GetByPanAsync(cleanedPan);
                     
                     if (matchedCustomer != null)
                     {
@@ -126,7 +125,7 @@ public class BatchValidationService
                     MatchedAccountNumber = matchedCustomer.AccountNumber,
                     AccountHolderName = matchedCustomer.AccountHolderName,
                     AccountStatus = matchedCustomer.AccountStatus.ToString(),
-                    CurrentBalance = matchedCustomer.CurrentBalance,
+                    CurrentBalance = matchedCustomer.AvailableBalance,
                     MatchedOn = matchedOn!.Value,
                     ValidatedAt = DateTime.UtcNow
                 };
