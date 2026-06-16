@@ -5,8 +5,17 @@ using Microsoft.IdentityModel.Tokens;
 using ccms_backend.data;
 using ccms_backend.services;
 using FluentValidation;
+using Serilog;
 
+Log.Logger = new LoggerConfiguration()
+    .MinimumLevel.Information()
+    .WriteTo.Console()
+    .WriteTo.File("logs/ccms-log-.txt", rollingInterval: RollingInterval.Day)
+    .CreateLogger();
+
+Log.Information("Starting web application");
 var builder = WebApplication.CreateBuilder(args);
+builder.Host.UseSerilog();
 
 // Add services to the container.
 builder.Services.AddControllers().AddJsonOptions(options =>
@@ -145,5 +154,6 @@ if (app.Environment.EnvironmentName != "Testing")
 }
 
 app.Run();
+Log.CloseAndFlush();
 
 public partial class Program { }
