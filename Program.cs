@@ -66,7 +66,8 @@ builder.Services.AddCors(opts => opts.AddPolicy("CcmsPolicy",
 if (builder.Environment.IsDevelopment())
 {
     builder.Services.AddDbContext<AppDbContext>(options =>
-        options.UseInMemoryDatabase("CcmsDb"));
+        options.UseInMemoryDatabase("CcmsDb")
+               .ConfigureWarnings(x => x.Ignore(Microsoft.EntityFrameworkCore.Diagnostics.InMemoryEventId.TransactionIgnoredWarning)));
 }
 else
 {
