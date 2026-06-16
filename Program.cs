@@ -7,9 +7,40 @@ using ccms_backend.services;
 
 var builder = WebApplication.CreateBuilder(args);
 
+// Explicitly configure configuration loading priority
+builder.Configuration.Sources.Clear();
+builder.Configuration
+    .SetBasePath(Directory.GetCurrentDirectory())
+    .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
+    .AddJsonFile($"appsettings.{builder.Environment.EnvironmentName}.json", optional: true, reloadOnChange: true)
+    .AddEnvironmentVariables();
+
+// Override configuration with secret environment variables if present
+var envDbConn = Environment.GetEnvironmentVariable("DB_CONNECTION_STRING");
+if (!string.IsNullOrEmpty(envDbConn))
+{
+    builder.Configuration["ConnectionStrings:DefaultConnection"] = envDbConn;
+}
+var envJwtSecret = Environment.GetEnvironmentVariable("JWT_SECRET");
+if (!string.IsNullOrEmpty(envJwtSecret))
+{
+    builder.Configuration["JwtSettings:Secret"] = envJwtSecret;
+}
+var envJwtIssuer = Environment.GetEnvironmentVariable("JWT_ISSUER");
+if (!string.IsNullOrEmpty(envJwtIssuer))
+{
+    builder.Configuration["JwtSettings:Issuer"] = envJwtIssuer;
+}
+var envJwtAudience = Environment.GetEnvironmentVariable("JWT_AUDIENCE");
+if (!string.IsNullOrEmpty(envJwtAudience))
+{
+    builder.Configuration["JwtSettings:Audience"] = envJwtAudience;
+}
+
 // Add services to the container.
 builder.Services.AddControllers();
 builder.Services.AddSwaggerGen();
+builder.Services.AddHealthChecks();
 
 // Configure CORS — allow local dev (4200) and Docker frontend (4300)
 builder.Services.AddCors(opts => opts.AddPolicy("CcmsPolicy",
@@ -83,6 +114,7 @@ app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllers();
+app.MapHealthChecks("/health");
 
 // Seed the database at startup
 using (var scope = app.Services.CreateScope())

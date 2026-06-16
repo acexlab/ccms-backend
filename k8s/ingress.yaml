@@ -2,15 +2,20 @@ apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: ccms-ingress
+  namespace: ccms
   annotations:
     kubernetes.io/ingress.class: nginx
-    nginx.ingress.kubernetes.io/ssl-redirect: "false"
+    nginx.ingress.kubernetes.io/ssl-redirect: "true"
+    nginx.ingress.kubernetes.io/proxy-body-size: "15m"
 spec:
-  ingressClassName: nginx
+  tls:
+  - hosts:
+    - myapp.company.com
+    secretName: ccms-tls-secret
   rules:
-  - http:
+  - host: myapp.company.com
+    http:
       paths:
-      # Map API endpoints to the backend service, retaining '/api' prefix
       - path: /api
         pathType: Prefix
         backend:
@@ -18,8 +23,6 @@ spec:
             name: ccms-backend-service
             port:
               number: 80
-              
-      # Map all other page routes to the frontend SPA service
       - path: /
         pathType: Prefix
         backend:
