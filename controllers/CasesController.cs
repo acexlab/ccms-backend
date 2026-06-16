@@ -18,6 +18,7 @@ using Microsoft.EntityFrameworkCore;
 using ccms_backend.data;
 using ccms_backend.dtos;
 using ccms_backend.models;
+using ccms_backend.services;
 
 namespace ccms_backend.controllers;
 
@@ -27,10 +28,12 @@ namespace ccms_backend.controllers;
 public class CasesController : ControllerBase
 {
     private readonly AppDbContext _context;
+    private readonly IFileStorageService _fileStorageService;
 
-    public CasesController(AppDbContext context)
+    public CasesController(AppDbContext context, IFileStorageService fileStorageService)
     {
         _context = context;
+        _fileStorageService = fileStorageService;
     }
 
     [HttpPost]
@@ -148,59 +151,62 @@ public class CasesController : ControllerBase
             };
             _context.Defendants.Add(defendant);
 
-            var uploadsFolder = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "uploads");
-            if (!Directory.Exists(uploadsFolder))
+            // Save files to Azure Blob Storage using FileStorageService
+            var year = DateTime.UtcNow.Year.ToString();
+            
+            // Court Order File upload
+            var courtOrderExt = Path.GetExtension(courtOrderFile.FileName);
+            var courtOrderBlobName = $"{year}/case-{@case.Id}/{Guid.NewGuid()}_court_order{courtOrderExt}";
+            using (var stream = courtOrderFile.OpenReadStream())
             {
-                Directory.CreateDirectory(uploadsFolder);
-            }
-
-            // Save Court Order File
-            var uniqueCourtOrderName = $"{Guid.NewGuid()}_{courtOrderFile.FileName}";
-            var courtOrderPath = Path.Combine(uploadsFolder, uniqueCourtOrderName);
-            using (var stream = new FileStream(courtOrderPath, FileMode.Create))
-            {
-                await courtOrderFile.CopyToAsync(stream);
+                await _fileStorageService.UploadFileAsync(stream, courtOrderBlobName, courtOrderFile.ContentType);
             }
             _context.CaseDocuments.Add(new CaseDocument
             {
                 CaseId = @case.Id,
                 DocumentType = DocumentType.CourtOrder,
                 FileName = courtOrderFile.FileName,
-                FilePath = $"/uploads/{uniqueCourtOrderName}",
+                FilePath = courtOrderBlobName,
+                BlobName = courtOrderBlobName,
+                ContentType = courtOrderFile.ContentType,
                 FileSize = (int)courtOrderFile.Length,
                 UploadedAt = DateTime.UtcNow
             });
 
-            // Save Aadhaar Copy File
-            var uniqueAadhaarName = $"{Guid.NewGuid()}_{aadhaarFile.FileName}";
-            var aadhaarPath = Path.Combine(uploadsFolder, uniqueAadhaarName);
-            using (var stream = new FileStream(aadhaarPath, FileMode.Create))
+            // Aadhaar Copy File upload
+            var aadhaarExt = Path.GetExtension(aadhaarFile.FileName);
+            var aadhaarBlobName = $"{year}/case-{@case.Id}/{Guid.NewGuid()}_aadhaar{aadhaarExt}";
+            using (var stream = aadhaarFile.OpenReadStream())
             {
-                await aadhaarFile.CopyToAsync(stream);
+                await _fileStorageService.UploadFileAsync(stream, aadhaarBlobName, aadhaarFile.ContentType);
             }
             _context.CaseDocuments.Add(new CaseDocument
             {
                 CaseId = @case.Id,
                 DocumentType = DocumentType.AadhaarCopy,
                 FileName = aadhaarFile.FileName,
-                FilePath = $"/uploads/{uniqueAadhaarName}",
+                FilePath = aadhaarBlobName,
+                BlobName = aadhaarBlobName,
+                ContentType = aadhaarFile.ContentType,
                 FileSize = (int)aadhaarFile.Length,
                 UploadedAt = DateTime.UtcNow
             });
 
-            // Save PAN Copy File
-            var uniquePanName = $"{Guid.NewGuid()}_{panFile.FileName}";
-            var panPath = Path.Combine(uploadsFolder, uniquePanName);
-            using (var stream = new FileStream(panPath, FileMode.Create))
+            // PAN Copy File upload
+            var panExt = Path.GetExtension(panFile.FileName);
+            var panBlobName = $"{year}/case-{@case.Id}/{Guid.NewGuid()}_pan{panExt}";
+            using (var stream = panFile.OpenReadStream())
             {
-                await panFile.CopyToAsync(stream);
+                await _fileStorageService.UploadFileAsync(stream, panBlobName, panFile.ContentType);
             }
             _context.CaseDocuments.Add(new CaseDocument
             {
                 CaseId = @case.Id,
                 DocumentType = DocumentType.PANCopy,
                 FileName = panFile.FileName,
-                FilePath = $"/uploads/{uniquePanName}",
+                FilePath = panBlobName,
+                BlobName = panBlobName,
+                ContentType = panFile.ContentType,
                 FileSize = (int)panFile.Length,
                 UploadedAt = DateTime.UtcNow
             });
@@ -286,6 +292,20 @@ public class CasesController : ControllerBase
         var complainant = await _context.Complainants.FirstOrDefaultAsync(c => c.CaseId == id);
         var defendant = await _context.Defendants.FirstOrDefaultAsync(d => d.CaseId == id);
         var documents = await _context.CaseDocuments.Where(d => d.CaseId == id).ToListAsync();
+        foreach (var doc in documents)
+        {
+            if (!string.IsNullOrEmpty(doc.BlobName))
+            {
+                try
+                {
+                    doc.FilePath = _fileStorageService.GenerateSasUri(doc.BlobName);
+                }
+                catch (Exception ex)
+                {
+                    doc.FilePath = $"#error-sas-{ex.Message}";
+                }
+            }
+        }
         var response = await _context.CaseResponses.FirstOrDefaultAsync(r => r.CaseId == id);
         var validationResult = await _context.CaseValidationResults.FirstOrDefaultAsync(v => v.CaseId == id);
 
@@ -407,5 +427,30 @@ public class CasesController : ControllerBase
             await transaction.RollbackAsync();
             return StatusCode(500, new { message = "An error occurred while submitting the response.", error = ex.Message });
         }
+    }
+
+    [HttpDelete("documents/{id}")]
+    [Authorize(Roles = "Court")]
+    public async Task<IActionResult> DeleteDocument(int id)
+    {
+        var document = await _context.CaseDocuments.FindAsync(id);
+        if (document == null) return NotFound();
+
+        try
+        {
+            if (!string.IsNullOrEmpty(document.BlobName))
+            {
+                await _fileStorageService.DeleteFileAsync(document.BlobName);
+            }
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"Failed to delete blob {document.BlobName}: {ex.Message}");
+        }
+
+        _context.CaseDocuments.Remove(document);
+        await _context.SaveChangesAsync();
+
+        return NoContent();
     }
 }

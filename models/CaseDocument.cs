@@ -11,4 +11,6 @@ public class CaseDocument
     public string FilePath { get; set; } = string.Empty;
     public int FileSize { get; set; }
     public DateTime UploadedAt { get; set; } = DateTime.UtcNow;
+    public string BlobName { get; set; } = string.Empty;
+    public string ContentType { get; set; } = string.Empty;
 }

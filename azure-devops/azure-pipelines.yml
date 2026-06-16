@@ -81,6 +81,7 @@ stages:
             --from-literal=JWT_ISSUER="$(JWT_ISSUER)" \
             --from-literal=JWT_AUDIENCE="$(JWT_AUDIENCE)" \
             --from-literal=API_KEYS="$(API_KEYS)" \
+            --from-literal=AZURE_STORAGE_CONNECTION_STRING="$(AZURE_STORAGE_CONNECTION_STRING)" \
             --dry-run=client -o yaml | kubectl apply -f -
 
     # Deploy all other manifests using KubernetesManifest task

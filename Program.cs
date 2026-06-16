@@ -37,6 +37,17 @@ if (!string.IsNullOrEmpty(envJwtAudience))
     builder.Configuration["JwtSettings:Audience"] = envJwtAudience;
 }
 
+var envBlobConn = Environment.GetEnvironmentVariable("AZURE_STORAGE_CONNECTION_STRING");
+if (!string.IsNullOrEmpty(envBlobConn))
+{
+    builder.Configuration["AZURE_STORAGE_CONNECTION_STRING"] = envBlobConn;
+}
+var envBlobContainer = Environment.GetEnvironmentVariable("AZURE_STORAGE_CONTAINER_NAME");
+if (!string.IsNullOrEmpty(envBlobContainer))
+{
+    builder.Configuration["AZURE_STORAGE_CONTAINER_NAME"] = envBlobContainer;
+}
+
 // Add services to the container.
 builder.Services.AddControllers();
 builder.Services.AddSwaggerGen();
@@ -73,6 +84,17 @@ builder.Services.AddScoped<IBatchJobLogRepository, BatchJobLogRepository>();
 builder.Services.AddScoped<CaseService>();
 builder.Services.AddScoped<BatchValidationService>();
 builder.Services.AddHostedService<BatchSchedulerService>();
+builder.Services.AddSingleton<Azure.Storage.Blobs.BlobServiceClient>(sp =>
+{
+    var configuration = sp.GetRequiredService<IConfiguration>();
+    var connectionString = configuration["AZURE_STORAGE_CONNECTION_STRING"];
+    if (string.IsNullOrEmpty(connectionString))
+    {
+        connectionString = "UseDevelopmentStorage=true";
+    }
+    return new Azure.Storage.Blobs.BlobServiceClient(connectionString);
+});
+builder.Services.AddScoped<IFileStorageService, FileStorageService>();
 
 // Configure JWT Authentication
 var jwtSettings = builder.Configuration.GetSection("JwtSettings");

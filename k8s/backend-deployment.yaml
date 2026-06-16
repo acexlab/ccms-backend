@@ -70,3 +70,13 @@ spec:
             secretKeyRef:
               name: ccms-secrets
               key: JWT_AUDIENCE
+        - name: AZURE_STORAGE_CONTAINER_NAME
+          valueFrom:
+            configMapKeyRef:
+              name: app-config
+              key: AZURE_STORAGE_CONTAINER_NAME
+        - name: AZURE_STORAGE_CONNECTION_STRING
+          valueFrom:
+            secretKeyRef:
+              name: ccms-secrets
+              key: AZURE_STORAGE_CONNECTION_STRING
