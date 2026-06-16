@@ -1,11 +1,4 @@
-/*
- * File: BatchJobLogRepository.cs
- * Description: EF Core repository implementation to audit Batch Validation execution logs.
- * To Implement: GetLastRunAsync orders logs descending by RunAt and takes the first log.
- */
-
 using System.Linq;
-using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using ccms_backend.models;
@@ -21,16 +14,17 @@ public class BatchJobLogRepository : IBatchJobLogRepository
         _context = context;
     }
 
-    public async Task AddAsync(BatchJobLog log, CancellationToken ct = default)
-    {
-        await _context.BatchJobLogs.AddAsync(log, ct);
-        await _context.SaveChangesAsync(ct);
-    }
-
-    public async Task<BatchJobLog?> GetLastRunAsync(CancellationToken ct = default)
+    public async Task<BatchJobLog?> GetLastRunAsync()
     {
         return await _context.BatchJobLogs
-            .OrderByDescending(l => l.RunAt)
-            .FirstOrDefaultAsync(ct);
+            .OrderByDescending(b => b.StartTime)
+            .FirstOrDefaultAsync();
+    }
+
+    public async Task<BatchJobLog> AddLogAsync(BatchJobLog log)
+    {
+        _context.BatchJobLogs.Add(log);
+        await _context.SaveChangesAsync();
+        return log;
     }
 }
