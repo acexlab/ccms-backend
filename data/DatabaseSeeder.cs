@@ -87,7 +87,9 @@ public static class DatabaseSeeder
                     PANNumber = "ABCDE1234F",
                     AccountHolderName = "John Smith",
                     AccountStatus = AccountStatus.Active,
-                    CurrentBalance = 25000.00m,
+                    TotalBalance = 25000.00m,
+                    AvailableBalance = 25000.00m,
+                    FrozenAmount = 0.00m,
                     BankCode = "SBI"
                 },
                 new BankCustomer
@@ -97,7 +99,9 @@ public static class DatabaseSeeder
                     PANNumber = "ABCDE1234F",
                     AccountHolderName = "Rajesh Kumar",
                     AccountStatus = AccountStatus.Active,
-                    CurrentBalance = 150000.00m,
+                    TotalBalance = 150000.00m,
+                    AvailableBalance = 150000.00m,
+                    FrozenAmount = 0.00m,
                     BankCode = "SBI"
                 },
                 new BankCustomer
@@ -107,7 +111,9 @@ public static class DatabaseSeeder
                     PANNumber = "PQRSX5678Z",
                     AccountHolderName = "Priya Sharma",
                     AccountStatus = AccountStatus.Active,
-                    CurrentBalance = 75000.00m,
+                    TotalBalance = 75000.00m,
+                    AvailableBalance = 75000.00m,
+                    FrozenAmount = 0.00m,
                     BankCode = "HDFC"
                 },
                 new BankCustomer
@@ -117,7 +123,9 @@ public static class DatabaseSeeder
                     PANNumber = "LMNOP4321K",
                     AccountHolderName = "Amit Verma",
                     AccountStatus = AccountStatus.Frozen,
-                    CurrentBalance = 20000.00m,
+                    TotalBalance = 20000.00m,
+                    AvailableBalance = 0.00m,
+                    FrozenAmount = 20000.00m,
                     BankCode = "SBI"
                 }
             };

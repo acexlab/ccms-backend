@@ -21,11 +21,6 @@ public class CaseRepository : ICaseRepository
             .Include(c => c.Complainant)
             .AsQueryable();
 
-        if (!string.IsNullOrEmpty(bankCode))
-        {
-            query = query.Where(c => c.Defendant != null && c.Defendant.BankName == bankCode);
-        }
-
         return await query.ToListAsync();
     }
 }

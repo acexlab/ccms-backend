@@ -4,11 +4,15 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using ccms_backend.data;
 using ccms_backend.services;
+using FluentValidation;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-builder.Services.AddControllers();
+builder.Services.AddControllers().AddJsonOptions(options =>
+{
+    options.JsonSerializerOptions.Converters.Add(new ccms_backend.services.UtcDateTimeJsonConverter());
+});
 builder.Services.AddSwaggerGen(c =>
 {
     c.SwaggerDoc("v1", new Microsoft.OpenApi.OpenApiInfo { Title = "CCMS API", Version = "v1" });
@@ -49,12 +53,24 @@ if (builder.Environment.EnvironmentName != "Testing")
 // Configure Repositories
 builder.Services.AddScoped<ICaseRepository, CaseRepository>();
 builder.Services.AddScoped<IBatchJobLogRepository, BatchJobLogRepository>();
+builder.Services.AddScoped<IUserRepository, UserRepository>();
+builder.Services.AddScoped<IBankCustomerRepository, BankCustomerRepository>();
 
 // Configure Services
+if (builder.Environment.EnvironmentName == "Production")
+{
+    builder.Services.AddScoped<IFileStorageService, AzureBlobStorageService>();
+}
+else
+{
+    builder.Services.AddScoped<IFileStorageService, LocalFileStorageService>();
+}
 builder.Services.AddScoped<IJwtTokenService, JwtTokenService>();
 builder.Services.AddScoped<CaseService>();
 builder.Services.AddScoped<BatchValidationService>();
 builder.Services.AddHostedService<BatchSchedulerService>();
+builder.Services.AddValidatorsFromAssembly(typeof(Program).Assembly);
+builder.Services.AddAutoMapper(typeof(Program).Assembly);
 
 // Configure JWT Authentication
 var jwtSettings = builder.Configuration.GetSection("JwtSettings");
@@ -81,6 +97,19 @@ builder.Services.AddAuthentication(opts =>
 builder.Services.AddAuthorization();
 
 var app = builder.Build();
+
+if (args.Contains("--reset-db"))
+{
+    using (var scope = app.Services.CreateScope())
+    {
+        var context = scope.ServiceProvider.GetRequiredService<AppDbContext>();
+        await context.Database.EnsureDeletedAsync();
+        await DatabaseSeeder.SeedAsync(context);
+        ccms_backend.services.GenerateTestFiles.EnsureTestFilesExist();
+    }
+    Console.WriteLine("Database has been reset and seeded successfully!");
+    return;
+}
 
 app.UseSwagger();
 app.UseSwaggerUI();
