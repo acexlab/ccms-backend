@@ -479,12 +479,12 @@ public class CasesController : ControllerBase
     private string MaskPan(string? pan)
     {
         if (string.IsNullOrEmpty(pan) || pan.Length < 4) return pan ?? "";
-        return new string('X', Math.Max(0, pan.Length - 4)) + pan.Substring(pan.Length - 4);
+        return "XXXXXXXXX" + pan.Substring(pan.Length - 4);
     }
 
     private string MaskAccount(string? account)
     {
         if (string.IsNullOrEmpty(account) || account.Length < 4) return account ?? "";
-        return new string('X', Math.Max(0, account.Length - 4)) + account.Substring(account.Length - 4);
+        return "XXXXXXXXXXXX" + account.Substring(account.Length - 4);
     }
 }
