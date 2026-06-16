@@ -38,10 +38,13 @@ builder.Services.AddCors(opts => opts.AddPolicy("CcmsPolicy",
           .AllowAnyMethod()
           .AllowCredentials()));
 
-// Configure EF Core with MySQL
-var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
-builder.Services.AddDbContext<AppDbContext>(options =>
-    options.UseMySql(connectionString, ServerVersion.AutoDetect(connectionString)));
+// Configure EF Core with MySQL (skip during testing to avoid provider collision in integration tests)
+if (builder.Environment.EnvironmentName != "Testing")
+{
+    var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
+    builder.Services.AddDbContext<AppDbContext>(options =>
+        options.UseMySql(connectionString, ServerVersion.AutoDetect(connectionString)));
+}
 
 // Configure Repositories
 builder.Services.AddScoped<ICaseRepository, CaseRepository>();
@@ -92,20 +95,26 @@ app.UseAuthorization();
 
 app.MapControllers();
 
-// Seed the database at startup
-using (var scope = app.Services.CreateScope())
+// Seed the database at startup (skip during testing to let test suite handle seeding)
+if (app.Environment.EnvironmentName != "Testing")
 {
-    var services = scope.ServiceProvider;
-    try
+    using (var scope = app.Services.CreateScope())
     {
-        var context = services.GetRequiredService<AppDbContext>();
-        await DatabaseSeeder.SeedAsync(context);
-    }
-    catch (Exception ex)
-    {
-        var logger = services.GetRequiredService<ILogger<Program>>();
-        logger.LogError(ex, "An error occurred seeding the DB.");
+        var services = scope.ServiceProvider;
+        try
+        {
+            var context = services.GetRequiredService<AppDbContext>();
+            await DatabaseSeeder.SeedAsync(context);
+            ccms_backend.services.GenerateTestFiles.EnsureTestFilesExist();
+        }
+        catch (Exception ex)
+        {
+            var logger = services.GetRequiredService<ILogger<Program>>();
+            logger.LogError(ex, "An error occurred seeding the DB.");
+        }
     }
 }
 
 app.Run();
+
+public partial class Program { }

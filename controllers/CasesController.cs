@@ -60,6 +60,26 @@ public class CasesController : ControllerBase
             return BadRequest(new { message = "PAN Copy file is required." });
         }
 
+        // Validate file extensions, size limits and filename security
+        var allowedExtensions = new[] { ".pdf", ".jpg", ".png" };
+        var uploadedFiles = new[] { courtOrderFile, aadhaarFile, panFile };
+        foreach (var file in uploadedFiles)
+        {
+            var ext = Path.GetExtension(file.FileName).ToLowerInvariant();
+            if (!allowedExtensions.Contains(ext))
+            {
+                return BadRequest(new { message = $"Unsupported file format. Only PDF, JPG and PNG are allowed." });
+            }
+            if (file.Length > 5 * 1024 * 1024)
+            {
+                return BadRequest(new { message = "File size exceeds the maximum limit of 5 MB." });
+            }
+            if (file.FileName.Contains("..") || file.FileName.Contains("/") || file.FileName.Contains("\\"))
+            {
+                return BadRequest(new { message = "Malicious file name detected." });
+            }
+        }
+
         // String validations (Regex patterns)
         var nameRegex = new Regex(@"^[a-zA-Z\s]{3,100}$");
         var idRegex = new Regex(@"^(?:\d{12}|[a-zA-Z]{5}[0-9]{4}[a-zA-Z]{1})$");
@@ -221,10 +241,18 @@ public class CasesController : ControllerBase
     [Authorize(Roles = "Bank")]
     public async Task<ActionResult<CaseInboxDto>> GetInbox()
     {
-        var cases = await _context.Cases
+        var bankCode = User.FindFirst("bank_code")?.Value;
+        var query = _context.Cases
             .Include(c => c.Defendant)
             .Include(c => c.ValidationResult)
-            .ToListAsync();
+            .AsQueryable();
+
+        if (!string.IsNullOrEmpty(bankCode))
+        {
+            query = query.Where(c => c.Defendant != null && c.Defendant.BankName == bankCode);
+        }
+
+        var cases = await query.ToListAsync();
 
         var summaries = cases.Select(c => new CaseSummaryDto
         {
@@ -397,7 +425,13 @@ public class CasesController : ControllerBase
         }
         else if (user.Role == UserRole.Bank)
         {
-            var cases = await _context.Cases
+            var query = _context.Cases.AsQueryable();
+            if (!string.IsNullOrEmpty(user.BankCode))
+            {
+                query = query.Include(c => c.Defendant).Where(c => c.Defendant != null && c.Defendant.BankName == user.BankCode);
+            }
+
+            var cases = await query
                 .OrderByDescending(c => c.CreatedAt)
                 .ToListAsync();
 
@@ -474,19 +508,19 @@ public class CasesController : ControllerBase
         return File(stream, contentType, doc.FileName);
     }
 
-    private string MaskAadhaar(string? aadhaar)
+    public static string MaskAadhaar(string? aadhaar)
     {
         if (string.IsNullOrEmpty(aadhaar) || aadhaar.Length < 4) return aadhaar ?? "";
         return "XXXX XXXX " + aadhaar.Substring(aadhaar.Length - 4);
     }
 
-    private string MaskPan(string? pan)
+    public static string MaskPan(string? pan)
     {
         if (string.IsNullOrEmpty(pan) || pan.Length < 4) return pan ?? "";
         return "XXXXXXXXX" + pan.Substring(pan.Length - 4);
     }
 
-    private string MaskAccount(string? account)
+    public static string MaskAccount(string? account)
     {
         if (string.IsNullOrEmpty(account) || account.Length < 4) return account ?? "";
         return "XXXXXXXXXXXX" + account.Substring(account.Length - 4);
