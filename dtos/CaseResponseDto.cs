@@ -1,6 +1,12 @@
-/*
- * File: CaseResponseDto.cs
- * Description: Data transfer object representing the bank's formal case response.
- * To Implement: Contains validation responses for freeze or balance enquiries.
- */
-// "FreezeApplied" | "BalanceProvided" | "AccountNotFound"
+using System;
+
+namespace ccms_backend.dtos;
+
+public class CaseResponseDto
+{
+    public string ResponseType { get; set; } = string.Empty;
+    public decimal? FreezeAmountApplied { get; set; }
+    public decimal? BalanceReported { get; set; }
+    public string? Remarks { get; set; }
+    public DateTime SubmittedAt { get; set; }
+}

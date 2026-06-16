@@ -9,4 +9,5 @@ public class BankCustomer
     public string AccountHolderName { get; set; } = string.Empty;
     public AccountStatus AccountStatus { get; set; } = AccountStatus.Active;
     public decimal CurrentBalance { get; set; }
+    public string? BankCode { get; set; }
 }

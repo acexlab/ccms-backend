@@ -18,6 +18,7 @@ public class AppDbContext : DbContext
     public DbSet<CaseValidationResult> CaseValidationResults { get; set; } = null!;
     public DbSet<CaseResponse> CaseResponses { get; set; } = null!;
     public DbSet<BatchJobLog> BatchJobLogs { get; set; } = null!;
+    public DbSet<Bank> Banks { get; set; } = null!;
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {

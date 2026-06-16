@@ -69,7 +69,7 @@ public class BatchValidationService
             {
                 var accountNum = def.BankAccountNumber.Trim();
                 matchedCustomer = await _context.BankCustomers
-                    .FirstOrDefaultAsync(bc => bc.AccountNumber == accountNum);
+                    .FirstOrDefaultAsync(bc => bc.AccountNumber == accountNum && bc.BankCode == def.BankName);
                 
                 if (matchedCustomer != null)
                 {
@@ -86,7 +86,7 @@ public class BatchValidationService
                 {
                     var cleanedAadhaar = aadhaarMatch.Value.Replace("-", "").Replace(" ", "");
                     matchedCustomer = await _context.BankCustomers
-                        .FirstOrDefaultAsync(bc => bc.AadhaarNumber.Replace("-", "").Replace(" ", "") == cleanedAadhaar);
+                        .FirstOrDefaultAsync(bc => bc.AadhaarNumber.Replace("-", "").Replace(" ", "") == cleanedAadhaar && bc.BankCode == def.BankName);
                     
                     if (matchedCustomer != null)
                     {
@@ -104,7 +104,7 @@ public class BatchValidationService
                 {
                     var cleanedPan = panMatch.Value.ToUpper();
                     matchedCustomer = await _context.BankCustomers
-                        .FirstOrDefaultAsync(bc => bc.PANNumber.ToUpper() == cleanedPan);
+                        .FirstOrDefaultAsync(bc => bc.PANNumber.ToUpper() == cleanedPan && bc.BankCode == def.BankName);
                     
                     if (matchedCustomer != null)
                     {
@@ -138,6 +138,15 @@ public class BatchValidationService
             {
                 c.Status = CaseStatus.AccountNotFound;
                 c.UpdatedAt = DateTime.UtcNow;
+
+                var systemResponse = new CaseResponse
+                {
+                    CaseId = c.Id,
+                    ResponseType = ResponseType.AccountNotFound,
+                    Remarks = "No matching account found in bank records",
+                    SubmittedAt = DateTime.UtcNow
+                };
+                _context.CaseResponses.Add(systemResponse);
                 
                 notFoundCount++;
             }

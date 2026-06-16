@@ -6,5 +6,5 @@ namespace ccms_backend.data;
 
 public interface ICaseRepository
 {
-    Task<IEnumerable<Case>> GetCasesForBankAsync();
+    Task<IEnumerable<Case>> GetCasesForBankAsync(string? bankCode = null);
 }
