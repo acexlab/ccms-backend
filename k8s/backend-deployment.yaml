@@ -22,7 +22,7 @@ spec:
     spec:
       containers:
       - name: backend
-        image: ccmsacr.azurecr.io/ccms-backend:$(Build.BuildId)
+        image: ccmsacr9596.azurecr.io/ccms-backend:$(Build.BuildId)
         imagePullPolicy: IfNotPresent
         ports:
         - containerPort: 80
@@ -80,3 +80,4 @@ spec:
             secretKeyRef:
               name: ccms-secrets
               key: AZURE_STORAGE_CONNECTION_STRING
+

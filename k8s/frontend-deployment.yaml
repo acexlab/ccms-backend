@@ -22,7 +22,7 @@ spec:
     spec:
       containers:
       - name: frontend
-        image: ccmsacr.azurecr.io/ccms-frontend:$(Build.BuildId)
+        image: ccmsacr9596.azurecr.io/ccms-frontend:$(Build.BuildId)
         imagePullPolicy: IfNotPresent
         ports:
         - containerPort: 80
@@ -46,3 +46,4 @@ spec:
             port: 80
           initialDelaySeconds: 5
           periodSeconds: 10
+

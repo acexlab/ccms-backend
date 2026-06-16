@@ -13,7 +13,7 @@ variables:
   - name: aksConnection
     value: 'ccms-aks-sc'
   - name: acrHost
-    value: 'ccmsacr.azurecr.io'
+    value: 'ccmsacr9596.azurecr.io'
   - name: k8sNamespace
     value: 'ccms'
 
@@ -103,3 +103,4 @@ stages:
         containers: |
           $(acrHost)/ccms-frontend:$(Build.BuildId)
           $(acrHost)/ccms-backend:$(Build.BuildId)
+
