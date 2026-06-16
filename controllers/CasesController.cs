@@ -18,6 +18,8 @@ using Microsoft.EntityFrameworkCore;
 using ccms_backend.data;
 using ccms_backend.dtos;
 using ccms_backend.models;
+using ccms_backend.services;
+using AutoMapper;
 
 namespace ccms_backend.controllers;
 
@@ -27,19 +29,27 @@ namespace ccms_backend.controllers;
 public class CasesController : ControllerBase
 {
     private readonly AppDbContext _context;
+    private readonly IFileStorageService _fileStorage;
+    private readonly IUserRepository _userRepository;
+    private readonly IBankCustomerRepository _bankCustomerRepository;
+    private readonly IMapper _mapper;
 
-    public CasesController(AppDbContext context)
+    public CasesController(AppDbContext context, IFileStorageService fileStorage, IUserRepository userRepository, IBankCustomerRepository bankCustomerRepository, IMapper mapper)
     {
         _context = context;
+        _fileStorage = fileStorage;
+        _userRepository = userRepository;
+        _bankCustomerRepository = bankCustomerRepository;
+        _mapper = mapper;
     }
 
     [HttpPost]
     [Authorize(Roles = "Court")]
     public async Task<IActionResult> CreateCase(
         [FromForm] CreateCaseDto dto,
-        IFormFile courtOrderFile,
         IFormFile aadhaarFile,
-        IFormFile panFile)
+        IFormFile panFile,
+        IFormFile courtOrderFile)
     {
         if (dto == null)
         {
@@ -47,10 +57,6 @@ public class CasesController : ControllerBase
         }
 
         // Validate mandatory files
-        if (courtOrderFile == null || courtOrderFile.Length == 0)
-        {
-            return BadRequest(new { message = "Court Order PDF file is required." });
-        }
         if (aadhaarFile == null || aadhaarFile.Length == 0)
         {
             return BadRequest(new { message = "Aadhaar Copy file is required." });
@@ -58,6 +64,30 @@ public class CasesController : ControllerBase
         if (panFile == null || panFile.Length == 0)
         {
             return BadRequest(new { message = "PAN Copy file is required." });
+        }
+        if (courtOrderFile == null || courtOrderFile.Length == 0)
+        {
+            return BadRequest(new { message = "Court Order file is required." });
+        }
+
+        // Validate file extensions, size limits and filename security
+        var allowedExtensions = new[] { ".pdf", ".jpg", ".png" };
+        var uploadedFiles = new[] { aadhaarFile, panFile, courtOrderFile };
+        foreach (var file in uploadedFiles)
+        {
+            var ext = Path.GetExtension(file.FileName).ToLowerInvariant();
+            if (!allowedExtensions.Contains(ext))
+            {
+                return BadRequest(new { message = $"Unsupported file format. Only PDF, JPG and PNG are allowed." });
+            }
+            if (file.Length > 5 * 1024 * 1024)
+            {
+                return BadRequest(new { message = "File size exceeds the maximum limit of 5 MB." });
+            }
+            if (file.FileName.Contains("..") || file.FileName.Contains("/") || file.FileName.Contains("\\"))
+            {
+                return BadRequest(new { message = "Malicious file name detected." });
+            }
         }
 
         // String validations (Regex patterns)
@@ -96,7 +126,7 @@ public class CasesController : ControllerBase
             return Unauthorized();
         }
 
-        var user = await _context.Users.FirstOrDefaultAsync(u => u.Username == username);
+        var user = await _userRepository.GetByUsernameAsync(username);
         if (user == null)
         {
             return Unauthorized();
@@ -148,59 +178,51 @@ public class CasesController : ControllerBase
             };
             _context.Defendants.Add(defendant);
 
-            var uploadsFolder = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "uploads");
-            if (!Directory.Exists(uploadsFolder))
+            // Save Court Order File using file storage
+            string courtOrderStoredPath;
+            using (var courtOrderStream = courtOrderFile.OpenReadStream())
             {
-                Directory.CreateDirectory(uploadsFolder);
+                courtOrderStoredPath = await _fileStorage.SaveFileAsync(courtOrderStream, courtOrderFile.FileName);
             }
-
-            // Save Court Order File
-            var uniqueCourtOrderName = $"{Guid.NewGuid()}_{courtOrderFile.FileName}";
-            var courtOrderPath = Path.Combine(uploadsFolder, uniqueCourtOrderName);
-            
-            // Generate realistic Court Order PDF based on case details
-            ccms_backend.services.PdfGenerator.GenerateCourtOrder(dto, caseNumber, courtOrderPath);
 
             _context.CaseDocuments.Add(new CaseDocument
             {
                 CaseId = @case.Id,
                 DocumentType = DocumentType.CourtOrder,
                 FileName = courtOrderFile.FileName,
-                FilePath = $"/uploads/{uniqueCourtOrderName}",
-                FileSize = (int)new FileInfo(courtOrderPath).Length,
+                FilePath = courtOrderStoredPath,
+                FileSize = (int)courtOrderFile.Length,
                 UploadedAt = DateTime.UtcNow
             });
 
-            // Save Aadhaar Copy File
-            var uniqueAadhaarName = $"{Guid.NewGuid()}_{aadhaarFile.FileName}";
-            var aadhaarPath = Path.Combine(uploadsFolder, uniqueAadhaarName);
-            using (var stream = new FileStream(aadhaarPath, FileMode.Create))
+            // Save Aadhaar Copy File using file storage
+            string aadhaarStoredPath;
+            using (var aadhaarStream = aadhaarFile.OpenReadStream())
             {
-                await aadhaarFile.CopyToAsync(stream);
+                aadhaarStoredPath = await _fileStorage.SaveFileAsync(aadhaarStream, aadhaarFile.FileName);
             }
             _context.CaseDocuments.Add(new CaseDocument
             {
                 CaseId = @case.Id,
                 DocumentType = DocumentType.AadhaarCopy,
                 FileName = aadhaarFile.FileName,
-                FilePath = $"/uploads/{uniqueAadhaarName}",
+                FilePath = aadhaarStoredPath,
                 FileSize = (int)aadhaarFile.Length,
                 UploadedAt = DateTime.UtcNow
             });
 
-            // Save PAN Copy File
-            var uniquePanName = $"{Guid.NewGuid()}_{panFile.FileName}";
-            var panPath = Path.Combine(uploadsFolder, uniquePanName);
-            using (var stream = new FileStream(panPath, FileMode.Create))
+            // Save PAN Copy File using file storage
+            string panStoredPath;
+            using (var panStream = panFile.OpenReadStream())
             {
-                await panFile.CopyToAsync(stream);
+                panStoredPath = await _fileStorage.SaveFileAsync(panStream, panFile.FileName);
             }
             _context.CaseDocuments.Add(new CaseDocument
             {
                 CaseId = @case.Id,
                 DocumentType = DocumentType.PANCopy,
                 FileName = panFile.FileName,
-                FilePath = $"/uploads/{uniquePanName}",
+                FilePath = panStoredPath,
                 FileSize = (int)panFile.Length,
                 UploadedAt = DateTime.UtcNow
             });
@@ -221,19 +243,14 @@ public class CasesController : ControllerBase
     [Authorize(Roles = "Bank")]
     public async Task<ActionResult<CaseInboxDto>> GetInbox()
     {
-        var cases = await _context.Cases
+        var query = _context.Cases
             .Include(c => c.Defendant)
             .Include(c => c.ValidationResult)
-            .ToListAsync();
+            .AsQueryable();
 
-        var summaries = cases.Select(c => new CaseSummaryDto
-        {
-            CaseNumber = c.CaseNumber,
-            DefendantName = c.Defendant?.FullName ?? string.Empty,
-            OrderType = c.OrderType.ToString(),
-            Status = c.Status.ToString(),
-            ValidationDate = c.ValidationResult?.ValidatedAt
-        }).ToList();
+        var cases = await query.OrderByDescending(c => c.CreatedAt).ToListAsync();
+
+        var summaries = _mapper.Map<List<CaseSummaryDto>>(cases);
 
         var inbox = new CaseInboxDto
         {
@@ -247,15 +264,22 @@ public class CasesController : ControllerBase
     }
 
     [HttpGet("{caseNumber}")]
-    [Authorize(Roles = "Bank")]
+    [Authorize(Roles = "Court,Bank")]
     public async Task<ActionResult<CaseDetailDto>> GetCaseDetail(string caseNumber)
     {
+        var username = User.Identity?.Name ?? User.FindFirst("unique_name")?.Value;
+        if (string.IsNullOrEmpty(username)) return Unauthorized();
+
+        var user = await _userRepository.GetByUsernameAsync(username);
+        if (user == null) return Unauthorized();
+
         var caseEntity = await _context.Cases
             .Include(c => c.Complainant)
             .Include(c => c.Defendant)
             .Include(c => c.ValidationResult)
             .Include(c => c.Documents)
             .Include(c => c.Response)
+                .ThenInclude(r => r.RespondedByUser)
             .FirstOrDefaultAsync(c => c.CaseNumber == caseNumber);
 
         if (caseEntity == null)
@@ -263,44 +287,24 @@ public class CasesController : ControllerBase
             return NotFound(new { message = "Case not found" });
         }
 
-        var dto = new CaseDetailDto
+        // Access checks
+        if (user.Role == UserRole.Court)
         {
-            CaseNumber = caseEntity.CaseNumber,
-            OrderType = caseEntity.OrderType.ToString(),
-            Status = caseEntity.Status.ToString(),
-            ComplainantName = caseEntity.Complainant?.FullName ?? string.Empty,
-            ComplainantIdentityNumber = caseEntity.Complainant?.IdentityNumber ?? string.Empty,
-            DefendantName = caseEntity.Defendant?.FullName ?? string.Empty,
-            DefendantAadhaar = MaskAadhaar(caseEntity.Defendant?.IdentityNumber),
-            DefendantPan = MaskPan(caseEntity.Defendant?.IdentityNumber),
-            DefendantAccountNumber = MaskAccount(caseEntity.Defendant?.BankAccountNumber),
-
-            MatchedAccountNumber = caseEntity.ValidationResult?.MatchedAccountNumber,
-            AccountStatus = caseEntity.ValidationResult?.AccountStatus,
-            CurrentBalance = caseEntity.ValidationResult?.CurrentBalance,
-            ValidationTimestamp = caseEntity.ValidationResult?.ValidatedAt,
-
-            Documents = caseEntity.Documents.Select(d => new CaseDocumentDto
+            if (caseEntity.CreatedByUserId != user.Id)
             {
-                Id = d.Id,
-                DocumentType = d.DocumentType.ToString(),
-                FileName = d.FileName,
-                FileSize = d.FileSize,
-                DownloadUrl = $"/api/cases/{caseEntity.CaseNumber}/documents/{d.Id}/download"
-            }).ToList()
-        };
-
-        if (caseEntity.Response != null)
-        {
-            dto.Response = new CaseResponseDto
-            {
-                ResponseType = caseEntity.Response.ResponseType.ToString(),
-                FreezeAmountApplied = caseEntity.Response.FreezeAmountApplied,
-                BalanceReported = caseEntity.Response.BalanceReported,
-                Remarks = caseEntity.Response.Remarks,
-                SubmittedAt = caseEntity.Response.SubmittedAt
-            };
+                return Forbid();
+            }
         }
+        else if (user.Role == UserRole.Bank)
+        {
+            // Allow access to all cases for bank role
+        }
+        else
+        {
+            return Forbid();
+        }
+
+        var dto = _mapper.Map<CaseDetailDto>(caseEntity);
 
         return Ok(dto);
     }
@@ -311,6 +315,8 @@ public class CasesController : ControllerBase
     {
         var caseEntity = await _context.Cases
             .Include(c => c.Response)
+            .Include(c => c.ValidationResult)
+            .Include(c => c.Defendant)
             .FirstOrDefaultAsync(c => c.CaseNumber == caseNumber);
 
         if (caseEntity == null)
@@ -326,6 +332,34 @@ public class CasesController : ControllerBase
         using var transaction = await _context.Database.BeginTransactionAsync();
         try
         {
+            if (payload.ResponseType == "FreezeApplied")
+            {
+                if (payload.FreezeAmountApplied == null || payload.FreezeAmountApplied <= 0)
+                {
+                    return BadRequest(new { message = "Freeze amount must be greater than zero." });
+                }
+
+                if (caseEntity.ValidationResult == null)
+                {
+                    return BadRequest(new { message = "Case validation result is missing." });
+                }
+
+                var customer = await _bankCustomerRepository.GetByAccountNumberAsync(caseEntity.ValidationResult.MatchedAccountNumber);
+
+                if (customer == null)
+                {
+                    return BadRequest(new { message = "Associated bank customer not found." });
+                }
+
+                if (payload.FreezeAmountApplied > customer.AvailableBalance)
+                {
+                    return BadRequest(new { message = "Freeze amount cannot exceed available balance." });
+                }
+
+                customer.AvailableBalance -= payload.FreezeAmountApplied.Value;
+                customer.FrozenAmount += payload.FreezeAmountApplied.Value;
+            }
+
             var newStatus = payload.ResponseType == "FreezeApplied" ? CaseStatus.FreezeApplied :
                             payload.ResponseType == "BalanceProvided" ? CaseStatus.BalanceProvided :
                             payload.ResponseType == "AccountNotFound" ? CaseStatus.AccountNotFound : CaseStatus.Pending;
@@ -368,54 +402,30 @@ public class CasesController : ControllerBase
         var username = User.Identity?.Name ?? User.FindFirst("unique_name")?.Value;
         if (string.IsNullOrEmpty(username)) return Unauthorized();
 
-        var user = await _context.Users.FirstOrDefaultAsync(u => u.Username == username);
+        var user = await _userRepository.GetByUsernameAsync(username);
         if (user == null) return Unauthorized();
 
         if (user.Role == UserRole.Court)
         {
             var cases = await _context.Cases
+                .Include(c => c.Defendant)
+                .Include(c => c.ValidationResult)
                 .Where(c => c.CreatedByUserId == user.Id)
                 .OrderByDescending(c => c.CreatedAt)
                 .ToListAsync();
 
-            var caseIds = cases.Select(c => c.Id).ToList();
-            var defendants = await _context.Defendants
-                .Where(d => caseIds.Contains(d.CaseId))
-                .ToListAsync();
-
-            var result = cases.Select(c => new CaseSummaryDto
-            {
-                Id = c.Id,
-                CaseNumber = c.CaseNumber,
-                OrderType = c.OrderType.ToString(),
-                Status = c.Status.ToString(),
-                DefendantName = defendants.FirstOrDefault(d => d.CaseId == c.Id)?.FullName ?? "Unknown",
-                CreatedAt = c.CreatedAt
-            }).ToList();
-
+            var result = _mapper.Map<List<CaseSummaryDto>>(cases);
             return Ok(result);
         }
         else if (user.Role == UserRole.Bank)
         {
             var cases = await _context.Cases
+                .Include(c => c.Defendant)
+                .Include(c => c.ValidationResult)
                 .OrderByDescending(c => c.CreatedAt)
                 .ToListAsync();
 
-            var caseIds = cases.Select(c => c.Id).ToList();
-            var defendants = await _context.Defendants
-                .Where(d => caseIds.Contains(d.CaseId))
-                .ToListAsync();
-
-            var result = cases.Select(c => new CaseSummaryDto
-            {
-                Id = c.Id,
-                CaseNumber = c.CaseNumber,
-                OrderType = c.OrderType.ToString(),
-                Status = c.Status.ToString(),
-                DefendantName = defendants.FirstOrDefault(d => d.CaseId == c.Id)?.FullName ?? "Unknown",
-                CreatedAt = c.CreatedAt
-            }).ToList();
-
+            var result = _mapper.Map<List<CaseSummaryDto>>(cases);
             return Ok(result);
         }
 
@@ -474,21 +484,7 @@ public class CasesController : ControllerBase
         return File(stream, contentType, doc.FileName);
     }
 
-    private string MaskAadhaar(string? aadhaar)
-    {
-        if (string.IsNullOrEmpty(aadhaar) || aadhaar.Length < 4) return aadhaar ?? "";
-        return "XXXX XXXX " + aadhaar.Substring(aadhaar.Length - 4);
-    }
-
-    private string MaskPan(string? pan)
-    {
-        if (string.IsNullOrEmpty(pan) || pan.Length < 4) return pan ?? "";
-        return "XXXXXXXXX" + pan.Substring(pan.Length - 4);
-    }
-
-    private string MaskAccount(string? account)
-    {
-        if (string.IsNullOrEmpty(account) || account.Length < 4) return account ?? "";
-        return "XXXXXXXXXXXX" + account.Substring(account.Length - 4);
-    }
+    public static string MaskAadhaar(string? aadhaar) => DataMaskingHelper.MaskAadhaar(aadhaar);
+    public static string MaskPan(string? pan) => DataMaskingHelper.MaskPan(pan);
+    public static string MaskAccount(string? account) => DataMaskingHelper.MaskAccount(account);
 }

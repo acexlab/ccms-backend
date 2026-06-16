@@ -1,0 +1,468 @@
+{
+  "info": {
+    "name": "CCMS Test Collection",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Authentication",
+      "item": [
+        {
+          "name": "Login as Court Officer",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Status code is 200\", function () {",
+                  "    pm.response.to.have.status(200);",
+                  "});",
+                  "var jsonData = pm.response.json();",
+                  "pm.environment.set(\"jwt_token\", jsonData.token);",
+                  "pm.test(\"Token is saved\", function () {",
+                  "    pm.expect(jsonData.token).to.not.be.undefined;",
+                  "    pm.expect(jsonData.role).to.eql(\"Court\");",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"username\": \"court.user\",\n  \"password\": \"Password@123\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/auth/login",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "auth",
+                "login"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Login as Bank Officer",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Status code is 200\", function () {",
+                  "    pm.response.to.have.status(200);",
+                  "});",
+                  "var jsonData = pm.response.json();",
+                  "pm.environment.set(\"jwt_token\", jsonData.token);",
+                  "pm.test(\"Token is saved\", function () {",
+                  "    pm.expect(jsonData.token).to.not.be.undefined;",
+                  "    pm.expect(jsonData.role).to.eql(\"Bank\");",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"username\": \"bank.user\",\n  \"password\": \"Password@123\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/auth/login",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "auth",
+                "login"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Court Portal",
+      "item": [
+        {
+          "name": "Create Freeze Case",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Status code is 200\", function () {",
+                  "    pm.response.to.have.status(200);",
+                  "});",
+                  "var jsonData = pm.response.json();",
+                  "pm.environment.set(\"last_case_number\", jsonData.caseNumber);",
+                  "pm.test(\"Case number is generated\", function () {",
+                  "    pm.expect(jsonData.caseNumber).to.not.be.undefined;",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{jwt_token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "ComplainantName",
+                  "value": "State Tax Dept",
+                  "type": "text"
+                },
+                {
+                  "key": "ComplainantId",
+                  "value": "TAX12345",
+                  "type": "text"
+                },
+                {
+                  "key": "DefendantName",
+                  "value": "Rajesh Kumar",
+                  "type": "text"
+                },
+                {
+                  "key": "DefendantId",
+                  "value": "123456789012",
+                  "type": "text"
+                },
+                {
+                  "key": "DefendantAccountNumber",
+                  "value": "111122223333",
+                  "type": "text"
+                },
+                {
+                  "key": "DefendantBankName",
+                  "value": "SBI",
+                  "type": "text"
+                },
+                {
+                  "key": "OrderType",
+                  "value": "FreezeAccount",
+                  "type": "text"
+                },
+                {
+                  "key": "FreezeAmount",
+                  "value": "10000",
+                  "type": "text"
+                },
+                {
+                  "key": "courtOrderFile",
+                  "description": "Needs to be PDF",
+                  "type": "file",
+                  "src": "wwwroot/test-files/small-order.pdf"
+                },
+                {
+                  "key": "aadhaarFile",
+                  "description": "Aadhaar Copy",
+                  "type": "file",
+                  "src": "wwwroot/test-files/aadhaar.jpg"
+                },
+                {
+                  "key": "panFile",
+                  "description": "PAN Copy",
+                  "type": "file",
+                  "src": "wwwroot/test-files/pan.png"
+                }
+              ]
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/cases",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "cases"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get Cases List",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Status code is 200\", function () {",
+                  "    pm.response.to.have.status(200);",
+                  "});",
+                  "var jsonData = pm.response.json();",
+                  "pm.test(\"Returns a list\", function () {",
+                  "    pm.expect(jsonData).to.be.an('array');",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{jwt_token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/cases",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "cases"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Batch Engine",
+      "item": [
+        {
+          "name": "Run Manual Batch",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Status code is 200\", function () {",
+                  "    pm.response.to.have.status(200);",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{jwt_token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/batch/run",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "batch",
+                "run"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Bank Portal",
+      "item": [
+        {
+          "name": "Get Inbox",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Status code is 200\", function () {",
+                  "    pm.response.to.have.status(200);",
+                  "});",
+                  "var jsonData = pm.response.json();",
+                  "pm.test(\"Inbox tabs validation\", function () {",
+                  "    pm.expect(jsonData.awaitingAction).to.be.an('array');",
+                  "    pm.expect(jsonData.pendingBatch).to.be.an('array');",
+                  "    pm.expect(jsonData.completed).to.be.an('array');",
+                  "    pm.expect(jsonData.autoResolved).to.be.an('array');",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{jwt_token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/cases/inbox",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "cases",
+                "inbox"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get Case Detail (SBI - Case E)",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Status code is 200\", function () {",
+                  "    pm.response.to.have.status(200);",
+                  "});",
+                  "var jsonData = pm.response.json();",
+                  "pm.test(\"Details and masking checks\", function () {",
+                  "    pm.expect(jsonData.caseNumber).to.eql(\"CCMS-TEST-0005\");",
+                  "    pm.expect(jsonData.defendantAadhaar).to.contain(\"XXXX\");",
+                  "    pm.expect(jsonData.defendantPan).to.contain(\"XXXX\");",
+                  "    pm.expect(jsonData.defendantAccountNumber).to.contain(\"XXXX\");",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{jwt_token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/cases/CCMS-TEST-0005",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "cases",
+                "CCMS-TEST-0005"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Submit Response (FreezeApplied - Case E)",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Status code is 200\", function () {",
+                  "    pm.response.to.have.status(200);",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{jwt_token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"responseType\": \"FreezeApplied\",\n  \"freezeAmountApplied\": 12000,\n  \"remarks\": \"Freeze applied successfully\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/cases/CCMS-TEST-0005/response",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "cases",
+                "CCMS-TEST-0005",
+                "response"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    }
+  ]
+}

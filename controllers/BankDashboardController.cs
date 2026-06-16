@@ -26,7 +26,8 @@ public class BankDashboardController : ControllerBase
     [HttpGet]
     public async Task<ActionResult<BankDashboardResponseDto>> GetDashboard()
     {
-        var cases = await _caseRepository.GetCasesForBankAsync();
+        var bankCode = User.FindFirst("bank_code")?.Value;
+        var cases = await _caseRepository.GetCasesForBankAsync(bankCode);
         var lastRun = await _batchJobLogRepository.GetLastRunAsync();
 
         var pending = cases.Count(c => c.Status == CaseStatus.Pending);
