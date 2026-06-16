@@ -56,6 +56,18 @@ public class BatchValidationService
             {
                 c.Status = CaseStatus.AccountNotFound;
                 c.UpdatedAt = DateTime.UtcNow;
+
+                // Add CaseResponse automatically for Auto-Resolved cases
+                var autoResponse = new CaseResponse
+                {
+                    CaseId = c.Id,
+                    RespondedByUserId = null,
+                    ResponseType = ResponseType.AccountNotFound,
+                    Remarks = "No matching account found in bank records.",
+                    SubmittedAt = DateTime.UtcNow
+                };
+                _context.CaseResponses.Add(autoResponse);
+
                 notFoundCount++;
                 continue;
             }
@@ -138,7 +150,18 @@ public class BatchValidationService
             {
                 c.Status = CaseStatus.AccountNotFound;
                 c.UpdatedAt = DateTime.UtcNow;
-                
+
+                // Add CaseResponse automatically for Auto-Resolved cases
+                var autoResponse = new CaseResponse
+                {
+                    CaseId = c.Id,
+                    RespondedByUserId = null,
+                    ResponseType = ResponseType.AccountNotFound,
+                    Remarks = "No matching account found in bank records.",
+                    SubmittedAt = DateTime.UtcNow
+                };
+                _context.CaseResponses.Add(autoResponse);
+
                 notFoundCount++;
             }
         }

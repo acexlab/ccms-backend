@@ -286,6 +286,22 @@ public class CasesController : ControllerBase
         var complainant = await _context.Complainants.FirstOrDefaultAsync(c => c.CaseId == id);
         var defendant = await _context.Defendants.FirstOrDefaultAsync(d => d.CaseId == id);
         var documents = await _context.CaseDocuments.Where(d => d.CaseId == id).ToListAsync();
+        var response = await _context.CaseResponses.FirstOrDefaultAsync(r => r.CaseId == id);
+        var validationResult = await _context.CaseValidationResults.FirstOrDefaultAsync(v => v.CaseId == id);
+
+        object? maskedDefendant = null;
+        if (defendant != null)
+        {
+            maskedDefendant = new
+            {
+                defendant.Id,
+                defendant.CaseId,
+                defendant.FullName,
+                IdentityNumber = ccms_backend.services.DataMaskingHelper.MaskIdentity(defendant.IdentityNumber),
+                BankAccountNumber = ccms_backend.services.DataMaskingHelper.MaskAccount(defendant.BankAccountNumber),
+                defendant.BankName
+            };
+        }
 
         return Ok(new
         {
@@ -296,8 +312,100 @@ public class CasesController : ControllerBase
             @case.Status,
             @case.CreatedAt,
             Complainant = complainant,
-            Defendant = defendant,
-            Documents = documents
+            Defendant = maskedDefendant,
+            Documents = documents,
+            Response = response,
+            ValidationResult = validationResult
         });
+    }
+
+    [HttpPost("{id}/response")]
+    [Authorize(Roles = "Bank")]
+    public async Task<IActionResult> SubmitResponse(int id, [FromBody] SubmitResponseDto dto)
+    {
+        if (dto == null)
+        {
+            return BadRequest(new { message = "Invalid response data." });
+        }
+
+        var @case = await _context.Cases.FirstOrDefaultAsync(c => c.Id == id);
+        if (@case == null)
+        {
+            throw new CaseNotFoundException($"Case with ID {id} was not found.");
+        }
+
+        // Duplicate response check: check if state is terminal
+        if (@case.Status == CaseStatus.AccountNotFound || 
+            @case.Status == CaseStatus.FreezeApplied || 
+            @case.Status == CaseStatus.BalanceProvided)
+        {
+            throw new CaseAlreadyRespondedException("This case has already received a terminal response and cannot be modified.");
+        }
+
+        // Check if case is in AccountValidated state
+        if (@case.Status != CaseStatus.AccountValidated)
+        {
+            throw new UnauthorisedActionException("Responses can only be submitted for cases in 'AccountValidated' status.");
+        }
+
+        // Parse ResponseType from DTO
+        if (!Enum.TryParse<ResponseType>(dto.ResponseType, true, out var parsedResponseType))
+        {
+            return BadRequest(new { message = $"Invalid response type '{dto.ResponseType}'." });
+        }
+
+        // Validate values according to response type
+        if (parsedResponseType == ResponseType.FreezeApplied)
+        {
+            if (!dto.FreezeAmountApplied.HasValue || dto.FreezeAmountApplied < 0)
+            {
+                return BadRequest(new { message = "A valid non-negative Freeze Amount is required for a Freeze response." });
+            }
+        }
+        else if (parsedResponseType == ResponseType.BalanceProvided)
+        {
+            if (!dto.BalanceReported.HasValue || dto.BalanceReported < 0)
+            {
+                return BadRequest(new { message = "A valid non-negative Account Balance is required for a Balance Enquiry response." });
+            }
+        }
+
+        var username = User.Identity?.Name ?? User.FindFirst("unique_name")?.Value;
+        var user = await _context.Users.FirstOrDefaultAsync(u => u.Username == username);
+        int? bankOfficerId = user?.Id;
+
+        using var transaction = await _context.Database.BeginTransactionAsync();
+        try
+        {
+            // Map case response
+            var response = new CaseResponse
+            {
+                CaseId = @case.Id,
+                RespondedByUserId = bankOfficerId,
+                ResponseType = parsedResponseType,
+                FreezeAmountApplied = parsedResponseType == ResponseType.FreezeApplied ? dto.FreezeAmountApplied : null,
+                BalanceReported = parsedResponseType == ResponseType.BalanceProvided ? dto.BalanceReported : null,
+                Remarks = dto.Remarks,
+                SubmittedAt = DateTime.UtcNow
+            };
+
+            _context.CaseResponses.Add(response);
+
+            // Update case status
+            @case.Status = parsedResponseType == ResponseType.FreezeApplied 
+                ? CaseStatus.FreezeApplied 
+                : CaseStatus.BalanceProvided;
+            @case.UpdatedAt = DateTime.UtcNow;
+
+            await _context.SaveChangesAsync();
+            await transaction.CommitAsync();
+
+            return Ok(new { success = true, message = "Response submitted successfully." });
+        }
+        catch (Exception ex)
+        {
+            await transaction.RollbackAsync();
+            return StatusCode(500, new { message = "An error occurred while submitting the response.", error = ex.Message });
+        }
     }
 }
