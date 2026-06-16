@@ -219,6 +219,21 @@ public static class TestDataSeeder
         };
         await context.CaseResponses.AddAsync(respH);
 
+        // Case I: Balance Enquiry, Account Validated (HDFC)
+        var caseI = await AddTestCase("CCMS-TEST-0009", OrderType.BalanceEnquiry, null, CaseStatus.AccountValidated,
+            "Central Police", "POL999", "Priya Sharma", "987654321098", "444455556666", "HDFC");
+        var valI = new CaseValidationResult
+        {
+            CaseId = caseI.Id,
+            MatchedAccountNumber = "444455556666",
+            AccountHolderName = "Priya Sharma",
+            AccountStatus = "Active",
+            CurrentBalance = 75000m,
+            MatchedOn = MatchedOn.AccountNumber,
+            ValidatedAt = DateTime.UtcNow
+        };
+        await context.CaseValidationResults.AddAsync(valI);
+
         await context.SaveChangesAsync();
     }
 }
