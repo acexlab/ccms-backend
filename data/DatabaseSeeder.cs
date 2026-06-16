@@ -10,7 +10,19 @@ public static class DatabaseSeeder
         // Automatically create the database if it doesn't exist
         await context.Database.EnsureCreatedAsync();
 
-        // 1. Seed Users (Role matches ENUM('Court', 'Bank') in DDL)
+        // 1. Seed Banks
+        if (!await context.Banks.AnyAsync())
+        {
+            var banks = new List<Bank>
+            {
+                new Bank { Name = "State Bank of India", Code = "SBI" },
+                new Bank { Name = "HDFC Bank", Code = "HDFC" }
+            };
+            await context.Banks.AddRangeAsync(banks);
+            await context.SaveChangesAsync();
+        }
+
+        // 2. Seed Users (Role matches ENUM('Court', 'Bank') in DDL)
         if (!await context.Users.AnyAsync())
         {
             var users = new List<User>
@@ -26,6 +38,26 @@ public static class DatabaseSeeder
                     Username = "bank_officer",
                     PasswordHash = BCrypt.Net.BCrypt.HashPassword("bank_officer_pwd"),
                     Role = UserRole.Bank
+                },
+                new User
+                {
+                    Username = "court.user",
+                    PasswordHash = BCrypt.Net.BCrypt.HashPassword("Password@123"),
+                    Role = UserRole.Court
+                },
+                new User
+                {
+                    Username = "bank.user",
+                    PasswordHash = BCrypt.Net.BCrypt.HashPassword("Password@123"),
+                    Role = UserRole.Bank,
+                    BankCode = "SBI"
+                },
+                new User
+                {
+                    Username = "hdfc.user",
+                    PasswordHash = BCrypt.Net.BCrypt.HashPassword("Password@123"),
+                    Role = UserRole.Bank,
+                    BankCode = "HDFC"
                 }
             };
 
@@ -37,7 +69,7 @@ public static class DatabaseSeeder
         var courtOfficer = await context.Users.FirstOrDefaultAsync(u => u.Username == "court_officer");
         int courtOfficerId = courtOfficer?.Id ?? 1;
 
-        // 2. Seed Cases, Complainants, and Defendants
+        // 3. Seed Cases, Complainants, and Defendants
         if (!await context.Cases.AnyAsync())
         {
             var sampleCase = new Case
@@ -70,14 +102,14 @@ public static class DatabaseSeeder
                 FullName = "John Smith",
                 IdentityNumber = "Aadhaar: 1234-5678-9012, PAN: ABCDE1234F",
                 BankAccountNumber = "9876543210",
-                BankName = "WEST"
+                BankName = "SBI" // changed to match seeded bank
             };
             await context.Defendants.AddAsync(defendant);
 
             await context.SaveChangesAsync();
         }
 
-        // 3. Seed BankCustomers (Bank Data)
+        // 4. Seed BankCustomers (Bank Data)
         if (!await context.BankCustomers.AnyAsync())
         {
             var sampleCustomer = new BankCustomer
@@ -87,7 +119,8 @@ public static class DatabaseSeeder
                 PANNumber = "ABCDE1234F",
                 AccountHolderName = "John Smith",
                 AccountStatus = AccountStatus.Active,
-                CurrentBalance = 25000.00m
+                CurrentBalance = 25000.00m,
+                BankCode = "SBI"
             };
 
             await context.BankCustomers.AddAsync(sampleCustomer);
