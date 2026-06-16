@@ -157,17 +157,17 @@ public class CasesController : ControllerBase
             // Save Court Order File
             var uniqueCourtOrderName = $"{Guid.NewGuid()}_{courtOrderFile.FileName}";
             var courtOrderPath = Path.Combine(uploadsFolder, uniqueCourtOrderName);
-            using (var stream = new FileStream(courtOrderPath, FileMode.Create))
-            {
-                await courtOrderFile.CopyToAsync(stream);
-            }
+            
+            // Generate realistic Court Order PDF based on case details
+            ccms_backend.services.PdfGenerator.GenerateCourtOrder(dto, caseNumber, courtOrderPath);
+
             _context.CaseDocuments.Add(new CaseDocument
             {
                 CaseId = @case.Id,
                 DocumentType = DocumentType.CourtOrder,
                 FileName = courtOrderFile.FileName,
                 FilePath = $"/uploads/{uniqueCourtOrderName}",
-                FileSize = (int)courtOrderFile.Length,
+                FileSize = (int)new FileInfo(courtOrderPath).Length,
                 UploadedAt = DateTime.UtcNow
             });
 
@@ -459,15 +459,19 @@ public class CasesController : ControllerBase
         if (doc == null)
             return NotFound();
 
-        var filePath = doc.FilePath;
-        if (!System.IO.File.Exists(filePath))
+        var physicalPath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", doc.FilePath.TrimStart('/'));
+        if (!System.IO.File.Exists(physicalPath))
         {
             var bytes = System.Text.Encoding.UTF8.GetBytes("Dummy file content");
             return File(bytes, "application/octet-stream", doc.FileName);
         }
 
-        var stream = System.IO.File.OpenRead(filePath);
-        return File(stream, "application/octet-stream", doc.FileName);
+        var contentType = doc.FileName.EndsWith(".pdf", StringComparison.OrdinalIgnoreCase)
+            ? "application/pdf"
+            : "application/octet-stream";
+
+        var stream = System.IO.File.OpenRead(physicalPath);
+        return File(stream, contentType, doc.FileName);
     }
 
     private string MaskAadhaar(string? aadhaar)
