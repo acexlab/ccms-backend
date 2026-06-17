@@ -15,9 +15,9 @@ public class CaseService
         _caseRepository = caseRepository;
     }
 
-    public async Task<IEnumerable<CaseSummaryDto>> GetCasesForBankAsync(string? bankCode = null)
+    public async Task<IEnumerable<CaseSummaryDto>> GetCasesForBankAsync()
     {
-        var cases = await _caseRepository.GetCasesForBankAsync(bankCode);
+        var cases = await _caseRepository.GetCasesForBankAsync();
         return cases.Select(c => new CaseSummaryDto
         {
             Id = c.Id,

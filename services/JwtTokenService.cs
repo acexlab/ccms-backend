@@ -25,20 +25,12 @@ public class JwtTokenService : IJwtTokenService
         var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(secret));
         var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
 
-        var claimsList = new List<Claim>
+        var claims = new[]
         {
             new Claim("unique_name", user.Username),
             new Claim("role", user.Role.ToString()),
-            new Claim(ClaimTypes.NameIdentifier, user.Id.ToString()),
             new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString())
         };
-
-        if (!string.IsNullOrEmpty(user.BankCode))
-        {
-            claimsList.Add(new Claim("bank_code", user.BankCode));
-        }
-
-        var claims = claimsList.ToArray();
 
         var token = new JwtSecurityToken(
             issuer: issuer,

@@ -20,7 +20,7 @@ public static class PdfGenerator
         catch { }
     }
 
-    public static void GenerateCourtOrder(CreateCaseDto dto, string caseNumber, Stream stream)
+    public static byte[] GenerateCourtOrder(CreateCaseDto dto, string caseNumber)
     {
         var document = new PdfDocument();
         document.Info.Title = $"Court Order - {caseNumber}";
@@ -204,12 +204,8 @@ public static class PdfGenerator
         DrawDivider();
         DrawCenterText("END OF DOCUMENT", fontSmall, XBrushes.DarkGray);
 
-        document.Save(stream);
-    }
-
-    public static void GenerateCourtOrder(CreateCaseDto dto, string caseNumber, string filePath)
-    {
-        using var fs = new FileStream(filePath, FileMode.Create, FileAccess.Write);
-        GenerateCourtOrder(dto, caseNumber, fs);
+        using var ms = new MemoryStream();
+        document.Save(ms);
+        return ms.ToArray();
     }
 }

@@ -13,12 +13,12 @@ namespace ccms_backend.controllers;
 [Route("api/[controller]")]
 public class AuthController : ControllerBase
 {
-    private readonly IUserRepository _userRepository;
+    private readonly AppDbContext _context;
     private readonly IJwtTokenService _jwtTokenService;
 
-    public AuthController(IUserRepository userRepository, IJwtTokenService jwtTokenService)
+    public AuthController(AppDbContext context, IJwtTokenService jwtTokenService)
     {
-        _userRepository = userRepository;
+        _context = context;
         _jwtTokenService = jwtTokenService;
     }
 
@@ -26,7 +26,7 @@ public class AuthController : ControllerBase
     [AllowAnonymous]
     public async Task<IActionResult> Login([FromBody] LoginDto dto)
     {
-        var user = await _userRepository.GetByUsernameAsync(dto.Username);
+        var user = await _context.Users.FirstOrDefaultAsync(u => u.Username == dto.Username);
         if (user == null)
         {
             return Unauthorized(new { message = "Invalid username or password." });

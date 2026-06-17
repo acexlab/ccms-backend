@@ -9,5 +9,4 @@ public class CaseResponseDto
     public decimal? BalanceReported { get; set; }
     public string? Remarks { get; set; }
     public DateTime SubmittedAt { get; set; }
-    public string? ProcessedBy { get; set; }
 }

@@ -12,5 +12,4 @@ public class CaseResponse
     public decimal? BalanceReported { get; set; }
     public string? Remarks { get; set; }
     public DateTime SubmittedAt { get; set; } = DateTime.UtcNow;
-    public User? RespondedByUser { get; set; }
 }

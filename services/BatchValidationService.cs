@@ -14,14 +14,12 @@ public class BatchValidationService
     private readonly IBatchJobLogRepository _batchLogRepo;
     private readonly ICaseRepository _caseRepo;
     private readonly AppDbContext _context;
-    private readonly IBankCustomerRepository _bankCustomerRepository;
 
-    public BatchValidationService(IBatchJobLogRepository batchLogRepo, ICaseRepository caseRepo, AppDbContext context, IBankCustomerRepository bankCustomerRepository)
+    public BatchValidationService(IBatchJobLogRepository batchLogRepo, ICaseRepository caseRepo, AppDbContext context)
     {
         _batchLogRepo = batchLogRepo;
         _caseRepo = caseRepo;
         _context = context;
-        _bankCustomerRepository = bankCustomerRepository;
     }
 
     public async Task<BatchJobLog> TriggerManualRunAsync(int? userId)
@@ -70,7 +68,8 @@ public class BatchValidationService
             if (!string.IsNullOrWhiteSpace(def.BankAccountNumber))
             {
                 var accountNum = def.BankAccountNumber.Trim();
-                matchedCustomer = await _bankCustomerRepository.GetByAccountNumberAsync(accountNum);
+                matchedCustomer = await _context.BankCustomers
+                    .FirstOrDefaultAsync(bc => bc.AccountNumber == accountNum);
                 
                 if (matchedCustomer != null)
                 {
@@ -86,7 +85,8 @@ public class BatchValidationService
                 if (aadhaarMatch.Success)
                 {
                     var cleanedAadhaar = aadhaarMatch.Value.Replace("-", "").Replace(" ", "");
-                    matchedCustomer = await _bankCustomerRepository.GetByAadhaarAsync(cleanedAadhaar);
+                    matchedCustomer = await _context.BankCustomers
+                        .FirstOrDefaultAsync(bc => bc.AadhaarNumber.Replace("-", "").Replace(" ", "") == cleanedAadhaar);
                     
                     if (matchedCustomer != null)
                     {
@@ -103,7 +103,8 @@ public class BatchValidationService
                 if (panMatch.Success)
                 {
                     var cleanedPan = panMatch.Value.ToUpper();
-                    matchedCustomer = await _bankCustomerRepository.GetByPanAsync(cleanedPan);
+                    matchedCustomer = await _context.BankCustomers
+                        .FirstOrDefaultAsync(bc => bc.PANNumber.ToUpper() == cleanedPan);
                     
                     if (matchedCustomer != null)
                     {
@@ -125,7 +126,7 @@ public class BatchValidationService
                     MatchedAccountNumber = matchedCustomer.AccountNumber,
                     AccountHolderName = matchedCustomer.AccountHolderName,
                     AccountStatus = matchedCustomer.AccountStatus.ToString(),
-                    CurrentBalance = matchedCustomer.AvailableBalance,
+                    CurrentBalance = matchedCustomer.CurrentBalance,
                     MatchedOn = matchedOn!.Value,
                     ValidatedAt = DateTime.UtcNow
                 };
@@ -137,15 +138,15 @@ public class BatchValidationService
             {
                 c.Status = CaseStatus.AccountNotFound;
                 c.UpdatedAt = DateTime.UtcNow;
-
-                var systemResponse = new CaseResponse
+                
+                var response = new CaseResponse
                 {
                     CaseId = c.Id,
                     ResponseType = ResponseType.AccountNotFound,
-                    Remarks = "No matching account found in bank records",
+                    Remarks = "System Auto-Response: Defendant bank account could not be found matching the provided details.",
                     SubmittedAt = DateTime.UtcNow
                 };
-                _context.CaseResponses.Add(systemResponse);
+                _context.CaseResponses.Add(response);
                 
                 notFoundCount++;
             }

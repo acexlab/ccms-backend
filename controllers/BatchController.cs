@@ -71,24 +71,6 @@ public class BatchController : ControllerBase
             ? Math.Round((double)accountsMatched / casesProcessed * 100, 1) 
             : 0;
 
-        // Compute not found rate
-        double notFoundRate = casesProcessed > 0
-            ? Math.Round((double)accountsNotFound / casesProcessed * 100, 1)
-            : 0;
-
-        // Compute change rate of cases processed compared to the previous run
-        double changeRate = 0;
-        var orderedRuns = logs.OrderByDescending(l => l.StartTime).ToList();
-        if (orderedRuns.Count >= 2)
-        {
-            var latest = orderedRuns[0];
-            var previous = orderedRuns[1];
-            if (previous.CasesProcessed > 0)
-            {
-                changeRate = Math.Round((double)(latest.CasesProcessed - previous.CasesProcessed) / previous.CasesProcessed * 100, 1);
-            }
-        }
-
         // Compute duration of last successful run
         var lastRun = logs.OrderByDescending(l => l.StartTime).FirstOrDefault();
         string durationStr = lastRun != null && lastRun.DurationSeconds.HasValue
@@ -114,8 +96,6 @@ public class BatchController : ControllerBase
                 accountsNotFound = 578,
                 duration = "02h 14m",
                 matchRate = 95.3,
-                notFoundRate = 4.6,
-                changeRate = 12.0,
                 avgDuration = "02h 05m"
             });
         }
@@ -127,8 +107,6 @@ public class BatchController : ControllerBase
             accountsNotFound,
             duration = durationStr,
             matchRate,
-            notFoundRate,
-            changeRate,
             avgDuration = avgDurationStr
         });
     }

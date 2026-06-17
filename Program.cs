@@ -4,24 +4,12 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using ccms_backend.data;
 using ccms_backend.services;
-using FluentValidation;
-using Serilog;
 
-Log.Logger = new LoggerConfiguration()
-    .MinimumLevel.Information()
-    .WriteTo.Console()
-    .WriteTo.File("logs/ccms-log-.txt", rollingInterval: RollingInterval.Day)
-    .CreateLogger();
-
-Log.Information("Starting web application");
 var builder = WebApplication.CreateBuilder(args);
-builder.Host.UseSerilog();
 
 // Add services to the container.
-builder.Services.AddControllers().AddJsonOptions(options =>
-{
-    options.JsonSerializerOptions.Converters.Add(new ccms_backend.services.UtcDateTimeJsonConverter());
-});
+builder.Services.AddControllers();
+builder.Services.AddSingleton<IBlobStorageService, AzureBlobStorageService>();
 builder.Services.AddSwaggerGen(c =>
 {
     c.SwaggerDoc("v1", new Microsoft.OpenApi.OpenApiInfo { Title = "CCMS API", Version = "v1" });
@@ -51,35 +39,22 @@ builder.Services.AddCors(opts => opts.AddPolicy("CcmsPolicy",
           .AllowAnyMethod()
           .AllowCredentials()));
 
-// Configure EF Core with MySQL (skip during testing to avoid provider collision in integration tests)
+var connectionString = Environment.GetEnvironmentVariable("DB_CONNECTION_STRING") ?? builder.Configuration.GetConnectionString("DefaultConnection");
 if (builder.Environment.EnvironmentName != "Testing")
 {
-    var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
     builder.Services.AddDbContext<AppDbContext>(options =>
-        options.UseMySql(connectionString, ServerVersion.AutoDetect(connectionString)));
+        options.UseMySql(connectionString, new MySqlServerVersion(new Version(8, 0, 36))));
 }
 
 // Configure Repositories
 builder.Services.AddScoped<ICaseRepository, CaseRepository>();
 builder.Services.AddScoped<IBatchJobLogRepository, BatchJobLogRepository>();
-builder.Services.AddScoped<IUserRepository, UserRepository>();
-builder.Services.AddScoped<IBankCustomerRepository, BankCustomerRepository>();
 
 // Configure Services
-if (builder.Environment.EnvironmentName == "Production")
-{
-    builder.Services.AddScoped<IFileStorageService, AzureBlobStorageService>();
-}
-else
-{
-    builder.Services.AddScoped<IFileStorageService, LocalFileStorageService>();
-}
 builder.Services.AddScoped<IJwtTokenService, JwtTokenService>();
 builder.Services.AddScoped<CaseService>();
 builder.Services.AddScoped<BatchValidationService>();
 builder.Services.AddHostedService<BatchSchedulerService>();
-builder.Services.AddValidatorsFromAssembly(typeof(Program).Assembly);
-builder.Services.AddAutoMapper(typeof(Program).Assembly);
 
 // Configure JWT Authentication
 var jwtSettings = builder.Configuration.GetSection("JwtSettings");
@@ -107,19 +82,6 @@ builder.Services.AddAuthorization();
 
 var app = builder.Build();
 
-if (args.Contains("--reset-db"))
-{
-    using (var scope = app.Services.CreateScope())
-    {
-        var context = scope.ServiceProvider.GetRequiredService<AppDbContext>();
-        await context.Database.EnsureDeletedAsync();
-        await DatabaseSeeder.SeedAsync(context);
-        ccms_backend.services.GenerateTestFiles.EnsureTestFilesExist();
-    }
-    Console.WriteLine("Database has been reset and seeded successfully!");
-    return;
-}
-
 app.UseSwagger();
 app.UseSwaggerUI();
 
@@ -132,28 +94,22 @@ app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllers();
+app.MapGet("/health", () => Results.Ok("Healthy"));
 
-// Seed the database at startup (skip during testing to let test suite handle seeding)
-if (app.Environment.EnvironmentName != "Testing")
+// Seed the database at startup
+using (var scope = app.Services.CreateScope())
 {
-    using (var scope = app.Services.CreateScope())
+    var services = scope.ServiceProvider;
+    try
     {
-        var services = scope.ServiceProvider;
-        try
-        {
-            var context = services.GetRequiredService<AppDbContext>();
-            await DatabaseSeeder.SeedAsync(context);
-            ccms_backend.services.GenerateTestFiles.EnsureTestFilesExist();
-        }
-        catch (Exception ex)
-        {
-            var logger = services.GetRequiredService<ILogger<Program>>();
-            logger.LogError(ex, "An error occurred seeding the DB.");
-        }
+        var context = services.GetRequiredService<AppDbContext>();
+        await DatabaseSeeder.SeedAsync(context);
+    }
+    catch (Exception ex)
+    {
+        var logger = services.GetRequiredService<ILogger<Program>>();
+        logger.LogError(ex, "An error occurred seeding the DB.");
     }
 }
 
 app.Run();
-Log.CloseAndFlush();
-
-public partial class Program { }

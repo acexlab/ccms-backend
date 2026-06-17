@@ -14,13 +14,11 @@ public class CaseRepository : ICaseRepository
         _context = context;
     }
 
-    public async Task<IEnumerable<Case>> GetCasesForBankAsync(string? bankCode = null)
+    public async Task<IEnumerable<Case>> GetCasesForBankAsync()
     {
-        var query = _context.Cases
+        return await _context.Cases
             .Include(c => c.Defendant)
             .Include(c => c.Complainant)
-            .AsQueryable();
-
-        return await query.ToListAsync();
+            .ToListAsync();
     }
 }

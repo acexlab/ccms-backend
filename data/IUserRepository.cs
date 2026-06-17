@@ -1,12 +1,6 @@
-using System.Threading.Tasks;
-using ccms_backend.models;
-
-namespace ccms_backend.data;
-
-public interface IUserRepository
-{
-    Task<User?> GetByIdAsync(int id);
-    Task<User?> GetByUsernameAsync(string username);
-    Task AddAsync(User user);
-    Task SaveChangesAsync();
-}
+/*
+ * File: IUserRepository.cs
+ * Description: Interface defining data operations for querying User records.
+ * To Implement: Implement in Repository layer.
+ */
+// Note: Used heavily in login validation and token parsing pipelines.
