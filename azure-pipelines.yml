@@ -1,8 +1,6 @@
 # CCMS Backend CI/CD Pipeline
 trigger:
-- main
-- backend-main
-- deployment
+- version1.0
 
 resources:
 - repo: self
@@ -66,7 +64,6 @@ stages:
         kubernetesServiceConnection: '$(kubernetesServiceConnection)'
         namespace: '$(namespace)'
         manifests: |
-          $(System.DefaultWorkingDirectory)/k8s/secrets.yaml
           $(System.DefaultWorkingDirectory)/k8s/configmap.yaml
           $(System.DefaultWorkingDirectory)/k8s/backend-deployment.yaml
           $(System.DefaultWorkingDirectory)/k8s/ingress.yaml
