@@ -387,15 +387,16 @@ public class CaseService
 
         var stream = await _blobStorage.DownloadFileAsync(doc.FilePath);
         
+        if (stream == null)
+            throw new KeyNotFoundException("Document file not found in storage");
+
         string contentType = doc.FileName.EndsWith(".pdf", StringComparison.OrdinalIgnoreCase)
             ? "application/pdf"
+            : doc.FileName.EndsWith(".jpg", StringComparison.OrdinalIgnoreCase) || doc.FileName.EndsWith(".jpeg", StringComparison.OrdinalIgnoreCase)
+            ? "image/jpeg"
+            : doc.FileName.EndsWith(".png", StringComparison.OrdinalIgnoreCase)
+            ? "image/png"
             : "application/octet-stream";
-
-        if (stream == null)
-        {
-            var dummyBytes = System.Text.Encoding.UTF8.GetBytes("Simulated file content for " + doc.FileName);
-            return (new MemoryStream(dummyBytes), contentType, doc.FileName);
-        }
 
         return (stream, contentType, doc.FileName);
     }

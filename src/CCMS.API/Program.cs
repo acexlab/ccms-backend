@@ -38,8 +38,15 @@ builder.Services.AddSwaggerGen(c =>
 
 
 // Configure CORS
+var allowedOrigins = new[]
+{
+    "http://localhost:4200",
+    "http://localhost:4300",
+    "https://20.75.151.63",
+    "http://20.75.151.63",
+};
 builder.Services.AddCors(opts => opts.AddPolicy("CcmsPolicy",
-    p => p.WithOrigins("http://localhost:4200")
+    p => p.WithOrigins(allowedOrigins)
           .AllowAnyHeader()
           .AllowAnyMethod()
           .AllowCredentials()));
