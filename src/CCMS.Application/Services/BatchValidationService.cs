@@ -86,7 +86,7 @@ public class BatchValidationService
                 if (defendant == null)
                 {
                     // No defendant data at all — auto-close
-                    await MarkNotFoundAsync(courtCase, "No defendant information available for this case.");
+                    MarkNotFound(courtCase, "No defendant information available for this case.");
                     notFoundCount++;
                     continue;
                 }
@@ -119,7 +119,7 @@ public class BatchValidationService
                 else
                 {
                     // No match found — auto-close with AccountNotFound response
-                    await MarkNotFoundAsync(
+                    MarkNotFound(
                         courtCase,
                         "System Auto-Response: Defendant bank account could not be found matching the provided details.");
                     notFoundCount++;
@@ -221,7 +221,7 @@ public class BatchValidationService
     /// <summary>
     /// Marks a case as AccountNotFound and records an automatic system response.
     /// </summary>
-    private void MarkNotFoundAsync(Case courtCase, string remarks)
+    private void MarkNotFound(Case courtCase, string remarks)
     {
         courtCase.Status = CaseStatus.AccountNotFound;
         courtCase.UpdatedAt = DateTime.UtcNow;
