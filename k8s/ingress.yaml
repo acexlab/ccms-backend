@@ -13,8 +13,7 @@ spec:
     - myapp.company.com
     secretName: ccms-tls-secret
   rules:
-  - host: myapp.company.com
-    http:
+  - http:
       paths:
       - path: /api
         pathType: Prefix
