@@ -11,3 +11,5 @@ data:
   AllowedHosts: "*"
   FRONTEND_API_URL: "http://ccms-backend-service/api"
   AZURE_STORAGE_CONTAINER_NAME: "case-documents"
+  JwtSettings__Issuer: "CCMS.API"
+  JwtSettings__Audience: "CCMS.Client"

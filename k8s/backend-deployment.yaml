@@ -54,30 +54,15 @@ spec:
           valueFrom:
             secretKeyRef:
               name: ccms-secrets
-              key: DB_CONNECTION_STRING
-        - name: JWT_SECRET
+              key: db-connection-string
+        - name: JwtSettings__Secret
           valueFrom:
             secretKeyRef:
               name: ccms-secrets
-              key: JWT_SECRET
-        - name: JWT_ISSUER
-          valueFrom:
-            secretKeyRef:
-              name: ccms-secrets
-              key: JWT_ISSUER
-        - name: JWT_AUDIENCE
-          valueFrom:
-            secretKeyRef:
-              name: ccms-secrets
-              key: JWT_AUDIENCE
-        - name: AZURE_STORAGE_CONTAINER_NAME
-          valueFrom:
-            configMapKeyRef:
-              name: app-config
-              key: AZURE_STORAGE_CONTAINER_NAME
+              key: jwt-secret
         - name: AZURE_STORAGE_CONNECTION_STRING
           valueFrom:
             secretKeyRef:
               name: ccms-secrets
-              key: AZURE_STORAGE_CONNECTION_STRING
+              key: blob-connection-string
 
