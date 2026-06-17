@@ -78,9 +78,9 @@ public static class DatabaseSeeder
         }
 
         // 3. Seed BankCustomers (Bank Data)
-        if (!await context.BankCustomers.AnyAsync())
+        if (!await context.BankCustomers.AnyAsync(c => c.AccountNumber == "9876543210"))
         {
-            var sampleCustomer = new BankCustomer
+            await context.BankCustomers.AddAsync(new BankCustomer
             {
                 AccountNumber = "9876543210",
                 AadhaarNumber = "1234-5678-9012",
@@ -88,11 +88,36 @@ public static class DatabaseSeeder
                 AccountHolderName = "John Smith",
                 AccountStatus = AccountStatus.Active,
                 CurrentBalance = 25000.00m
-            };
-
-            await context.BankCustomers.AddAsync(sampleCustomer);
-            await context.SaveChangesAsync();
+            });
         }
+
+        if (!await context.BankCustomers.AnyAsync(c => c.AccountNumber == "111122223333"))
+        {
+            await context.BankCustomers.AddAsync(new BankCustomer
+            {
+                AccountNumber = "111122223333",
+                AadhaarNumber = "123456789012",
+                PANNumber = "ABCDE1234F",
+                AccountHolderName = "Rajesh Kumar",
+                AccountStatus = AccountStatus.Active,
+                CurrentBalance = 150000.00m
+            });
+        }
+
+        if (!await context.BankCustomers.AnyAsync(c => c.AccountNumber == "444455556666"))
+        {
+            await context.BankCustomers.AddAsync(new BankCustomer
+            {
+                AccountNumber = "444455556666",
+                AadhaarNumber = "987654321098",
+                PANNumber = "PQRSX5678Z",
+                AccountHolderName = "Priya Sharma",
+                AccountStatus = AccountStatus.Active,
+                CurrentBalance = 75000.00m
+            });
+        }
+
+        await context.SaveChangesAsync();
 
         // 4. Seed BatchJobLogs
         if (!await context.BatchJobLogs.AnyAsync())
