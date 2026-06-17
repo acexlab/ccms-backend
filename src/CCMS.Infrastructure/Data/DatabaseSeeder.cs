@@ -109,7 +109,7 @@ public static class DatabaseSeeder
             {
                 AccountNumber = "111122223333",
                 AadhaarNumber = "123456789012",
-                PANNumber = "ABCDE1234F",
+                PANNumber = "XYZAB9876K",
                 AccountHolderName = "Rajesh Kumar",
                 AccountStatus = AccountStatus.Active,
                 CurrentBalance = 150000.00m
