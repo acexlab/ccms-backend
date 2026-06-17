@@ -11,9 +11,9 @@ variables:
   kubernetesServiceConnection: 'ccms-aks-conn'
   
   # ACR Details
-  containerRegistry: 'ccmsregistry.azurecr.io'
+  containerRegistry: 'ccmsacr9596.azurecr.io'
   imageRepository: 'ccms-backend'
-  imagePullSecret: 'ccmsregistry-pull-secret'
+  imagePullSecret: 'ccmsacr9596-pull-secret'
   
   # Workspace paths
   dockerfilePath: '$(Build.SourcesDirectory)/Dockerfile'
@@ -64,6 +64,7 @@ stages:
         kubernetesServiceConnection: '$(kubernetesServiceConnection)'
         namespace: '$(namespace)'
         manifests: |
+          $(System.DefaultWorkingDirectory)/k8s/secrets.yaml
           $(System.DefaultWorkingDirectory)/k8s/configmap.yaml
           $(System.DefaultWorkingDirectory)/k8s/backend-deployment.yaml
           $(System.DefaultWorkingDirectory)/k8s/ingress.yaml
@@ -71,4 +72,3 @@ stages:
           $(imagePullSecret)
         containers: |
           $(containerRegistry)/$(imageRepository):$(tag)
-
