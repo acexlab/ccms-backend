@@ -3,3 +3,6 @@ obj/
 *.user
 *.suo
 *.sln.docstates
+.env
+appsettings.Development.json
+appsettings.Local.json
