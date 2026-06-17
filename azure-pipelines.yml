@@ -13,9 +13,9 @@ variables:
   kubernetesServiceConnection: 'ccms-aks-conn'
   
   # ACR Details
-  containerRegistry: 'ccmsacr9596.azurecr.io'
+  containerRegistry: 'ccmsregistry.azurecr.io'
   imageRepository: 'ccms-backend'
-  imagePullSecret: 'ccmsacr9596-pull-secret'
+  imagePullSecret: 'ccmsregistry-pull-secret'
   
   # Workspace paths
   dockerfilePath: '$(Build.SourcesDirectory)/Dockerfile'
@@ -49,7 +49,7 @@ stages:
     pool:
       vmImage: 'ubuntu-latest'
     steps:
-    - task: KubernetesManifest@0
+    - task: KubernetesManifest@1
       displayName: Create Image Pull Secrets in AKS
       inputs:
         action: 'createSecret'
@@ -59,7 +59,7 @@ stages:
         secretName: '$(imagePullSecret)'
         dockerRegistryEndpoint: '$(dockerRegistryServiceConnection)'
 
-    - task: KubernetesManifest@0
+    - task: KubernetesManifest@1
       displayName: Deploy to AKS Cluster
       inputs:
         action: 'deploy'
