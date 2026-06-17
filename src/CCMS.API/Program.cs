@@ -60,7 +60,6 @@ builder.Services.AddScoped<IUserRepository, UserRepository>();
 
 // Configure Services
 builder.Services.AddScoped<IJwtTokenService, JwtTokenService>();
-builder.Services.AddScoped<IPdfGenerator, PdfGenerator>();
 builder.Services.AddScoped<CaseService>();
 builder.Services.AddScoped<BatchValidationService>();
 builder.Services.AddHostedService<BatchSchedulerService>();

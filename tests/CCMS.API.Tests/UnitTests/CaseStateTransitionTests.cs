@@ -46,8 +46,7 @@ public class CaseStateTransitionTests
         };
 
         var mockBlobStorage = new Mock<IBlobStorageService>();
-        var mockPdfGenerator = new Mock<IPdfGenerator>();
-        var caseService = new CaseService(context, mockBlobStorage.Object, mockPdfGenerator.Object);
+        var caseService = new CaseService(context, mockBlobStorage.Object);
         var mockLogger = new Mock<ILogger<CasesController>>();
         return new CasesController(caseService, mockLogger.Object)
         {

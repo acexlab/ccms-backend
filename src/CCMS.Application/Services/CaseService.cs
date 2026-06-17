@@ -14,16 +14,13 @@ public class CaseService
 {
     private readonly IAppDbContext _context;
     private readonly IBlobStorageService _blobStorage;
-    private readonly IPdfGenerator _pdfGenerator;
 
     public CaseService(
         IAppDbContext context,
-        IBlobStorageService blobStorage,
-        IPdfGenerator pdfGenerator)
+        IBlobStorageService blobStorage)
     {
         _context = context;
         _blobStorage = blobStorage;
-        _pdfGenerator = pdfGenerator;
     }
 
     public async Task<(string CaseNumber, int Id)> CreateCaseAsync(
@@ -91,14 +88,9 @@ public class CaseService
             };
             _context.Defendants.Add(defendant);
 
-            // Generate realistic Court Order PDF based on case details
-            var courtOrderBytes = _pdfGenerator.GenerateCourtOrder(dto, caseNumber);
+            // Save Court Order Copy File
             var uniqueCourtOrderName = $"{Guid.NewGuid()}_{courtOrderFileName}";
-            
-            using (var ms = new MemoryStream(courtOrderBytes))
-            {
-                await _blobStorage.UploadFileAsync(ms, uniqueCourtOrderName, "application/pdf");
-            }
+            await _blobStorage.UploadFileAsync(courtOrderStream, uniqueCourtOrderName, "application/pdf");
 
             _context.CaseDocuments.Add(new CaseDocument
             {
@@ -106,7 +98,7 @@ public class CaseService
                 DocumentType = DocumentType.CourtOrder,
                 FileName = courtOrderFileName,
                 FilePath = uniqueCourtOrderName,
-                FileSize = courtOrderBytes.Length,
+                FileSize = (int)courtOrderStream.Length,
                 UploadedAt = DateTime.UtcNow
             });
 
@@ -401,12 +393,7 @@ public class CaseService
 
         if (stream == null)
         {
-            if (doc.FileName.EndsWith(".pdf", StringComparison.OrdinalIgnoreCase))
-            {
-                var pdfBytes = _pdfGenerator.GenerateSimulatedPdf(doc.FileName);
-                return (new MemoryStream(pdfBytes), contentType, doc.FileName);
-            }
-            var dummyBytes = System.Text.Encoding.UTF8.GetBytes("Dummy file content for " + doc.FileName);
+            var dummyBytes = System.Text.Encoding.UTF8.GetBytes("Simulated file content for " + doc.FileName);
             return (new MemoryStream(dummyBytes), contentType, doc.FileName);
         }
 
