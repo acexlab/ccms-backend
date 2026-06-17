@@ -262,6 +262,17 @@ public class CasesController : ControllerBase
             return NotFound(new { message = "Case not found" });
         }
 
+        var maskedIdentity = DataMaskingHelper.MaskIdentity(caseEntity.Defendant?.IdentityNumber) ?? "";
+        var aadhaarPart = maskedIdentity;
+        var panPart = "";
+        if (maskedIdentity.Contains("PAN:")) {
+            var parts = maskedIdentity.Split(new[] { ", PAN:" }, StringSplitOptions.None);
+            aadhaarPart = parts[0].Replace("Aadhaar:", "").Trim();
+            if (parts.Length > 1) panPart = parts[1].Trim();
+        } else {
+            aadhaarPart = aadhaarPart.Replace("Aadhaar:", "").Trim();
+        }
+
         var dto = new CaseDetailDto
         {
             CaseNumber = caseEntity.CaseNumber,
@@ -270,8 +281,8 @@ public class CasesController : ControllerBase
             ComplainantName = caseEntity.Complainant?.FullName ?? string.Empty,
             ComplainantIdentityNumber = caseEntity.Complainant?.IdentityNumber ?? string.Empty,
             DefendantName = caseEntity.Defendant?.FullName ?? string.Empty,
-            DefendantAadhaar = DataMaskingHelper.MaskIdentity(caseEntity.Defendant?.IdentityNumber),
-            DefendantPan = DataMaskingHelper.MaskIdentity(caseEntity.Defendant?.IdentityNumber),
+            DefendantAadhaar = aadhaarPart,
+            DefendantPan = panPart,
             DefendantAccountNumber = DataMaskingHelper.MaskAccount(caseEntity.Defendant?.BankAccountNumber),
 
             MatchedAccountNumber = caseEntity.ValidationResult?.MatchedAccountNumber,
