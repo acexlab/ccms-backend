@@ -75,7 +75,7 @@ public class BatchController : ControllerBase
         var lastRun = logs.OrderByDescending(l => l.StartTime).FirstOrDefault();
         string durationStr = lastRun != null && lastRun.DurationSeconds.HasValue
             ? FormatDuration(lastRun.DurationSeconds.Value)
-            : "00h 00m";
+            : "00h 00m 00s";
 
         // Compute average duration of all successful runs
         double avgSeconds = 0;
@@ -84,7 +84,7 @@ public class BatchController : ControllerBase
         {
             avgSeconds = successfulRunsWithDuration.Average(l => l.DurationSeconds.Value);
         }
-        string avgDurationStr = avgSeconds > 0 ? FormatDuration(avgSeconds) : "00h 00m";
+        string avgDurationStr = avgSeconds > 0 ? FormatDuration(avgSeconds) : "00h 00m 00s";
 
         // If no logs exist, return seeded prompt values as defaults
         if (logs.Count == 0)
@@ -94,9 +94,9 @@ public class BatchController : ControllerBase
                 casesProcessed = 12482,
                 accountsMatched = 11904,
                 accountsNotFound = 578,
-                duration = "02h 14m",
+                duration = "02h 14m 30s",
                 matchRate = 95.3,
-                avgDuration = "02h 05m"
+                avgDuration = "02h 05m 12s"
             });
         }
 
@@ -126,7 +126,7 @@ public class BatchController : ControllerBase
             runId = l.RunId,
             startTime = l.StartTime,
             endTime = l.EndTime,
-            duration = l.DurationSeconds.HasValue ? FormatDuration(l.DurationSeconds.Value) : "00h 00m",
+            duration = l.DurationSeconds.HasValue ? FormatDuration(l.DurationSeconds.Value) : "00h 00m 00s",
             status = GetMappedStatus(l)
         }).AsQueryable();
 
@@ -154,7 +154,7 @@ public class BatchController : ControllerBase
     private string FormatDuration(double totalSeconds)
     {
         var ts = TimeSpan.FromSeconds(totalSeconds);
-        return $"{(int)ts.TotalHours:D2}h {ts.Minutes:D2}m";
+        return $"{(int)ts.TotalHours:D2}h {ts.Minutes:D2}m {ts.Seconds:D2}s";
     }
 
     private string GetMappedStatus(BatchJobLog log)
