@@ -85,6 +85,7 @@ public class CaseService
                 CaseId = @case.Id,
                 FullName = dto.DefendantName,
                 IdentityNumber = dto.DefendantId,
+                PanNumber = dto.DefendantPan,
                 BankAccountNumber = dto.DefendantAccountNumber,
                 BankName = dto.DefendantBankName
             };
@@ -189,15 +190,25 @@ public class CaseService
             throw new KeyNotFoundException("Case not found");
         }
 
-        var maskedIdentity = DataMaskingHelper.MaskIdentity(caseEntity.Defendant?.IdentityNumber) ?? "";
-        var aadhaarPart = maskedIdentity;
+        var aadhaarPart = "";
         var panPart = "";
-        if (maskedIdentity.Contains("PAN:")) {
-            var parts = maskedIdentity.Split(new[] { ", PAN:" }, StringSplitOptions.None);
-            aadhaarPart = parts[0].Replace("Aadhaar:", "").Trim();
-            if (parts.Length > 1) panPart = parts[1].Trim();
-        } else {
-            aadhaarPart = aadhaarPart.Replace("Aadhaar:", "").Trim();
+
+        if (caseEntity.Defendant != null && !string.IsNullOrEmpty(caseEntity.Defendant.PanNumber))
+        {
+            aadhaarPart = DataMaskingHelper.MaskIdentity(caseEntity.Defendant.IdentityNumber);
+            panPart = DataMaskingHelper.MaskIdentity(caseEntity.Defendant.PanNumber);
+        }
+        else
+        {
+            var maskedIdentity = DataMaskingHelper.MaskIdentity(caseEntity.Defendant?.IdentityNumber) ?? "";
+            aadhaarPart = maskedIdentity;
+            if (maskedIdentity.Contains("PAN:")) {
+                var parts = maskedIdentity.Split(new[] { ", PAN:" }, StringSplitOptions.None);
+                aadhaarPart = parts[0].Replace("Aadhaar:", "").Trim();
+                if (parts.Length > 1) panPart = parts[1].Trim();
+            } else {
+                aadhaarPart = aadhaarPart.Replace("Aadhaar:", "").Trim();
+            }
         }
 
         var dto = new CaseDetailDto
@@ -364,6 +375,7 @@ public class CaseService
                 defendant.CaseId,
                 defendant.FullName,
                 IdentityNumber = DataMaskingHelper.MaskIdentity(defendant.IdentityNumber),
+                PanNumber = DataMaskingHelper.MaskIdentity(defendant.PanNumber),
                 BankAccountNumber = DataMaskingHelper.MaskAccount(defendant.BankAccountNumber)
             } : null,
             Documents = documents

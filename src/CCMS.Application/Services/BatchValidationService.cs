@@ -96,15 +96,27 @@ public class BatchValidationService
             }
 
             // 3. Match by PAN (if Aadhaar match failed)
-            if (matchedCustomer == null && !string.IsNullOrWhiteSpace(def.IdentityNumber))
+            if (matchedCustomer == null)
             {
-                // Regex matches standard Indian PAN format: 5 letters, 4 digits, 1 letter
-                var panMatch = Regex.Match(def.IdentityNumber, @"\b[A-Za-z]{5}\d{4}[A-Za-z]\b");
-                if (panMatch.Success)
+                string? panToMatch = null;
+                if (!string.IsNullOrWhiteSpace(def.PanNumber))
                 {
-                    var cleanedPan = panMatch.Value.ToUpper();
+                    panToMatch = def.PanNumber.Trim().ToUpper();
+                }
+                else if (!string.IsNullOrWhiteSpace(def.IdentityNumber))
+                {
+                    // Fallback for legacy combined format
+                    var panMatch = Regex.Match(def.IdentityNumber, @"\b[A-Za-z]{5}\d{4}[A-Za-z]\b");
+                    if (panMatch.Success)
+                    {
+                        panToMatch = panMatch.Value.ToUpper();
+                    }
+                }
+
+                if (!string.IsNullOrWhiteSpace(panToMatch))
+                {
                     matchedCustomer = await _context.BankCustomers
-                        .FirstOrDefaultAsync(bc => bc.PANNumber.ToUpper() == cleanedPan);
+                        .FirstOrDefaultAsync(bc => bc.PANNumber.ToUpper() == panToMatch);
                     
                     if (matchedCustomer != null)
                     {

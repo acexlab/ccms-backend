@@ -110,16 +110,8 @@ public class PdfGenerator : IPdfGenerator
         y += 4;
         DrawText($"Name             : {dto.DefendantName}", fontRegular, 10);
 
-        string aadhaarVal = "XXXX XXXX XXXX";
-        string panVal = "XXXXXXXXXX";
-        if (dto.DefendantId.Length == 12)
-        {
-            aadhaarVal = dto.DefendantId;
-        }
-        else if (dto.DefendantId.Length == 10)
-        {
-            panVal = dto.DefendantId;
-        }
+        string aadhaarVal = dto.DefendantId;
+        string panVal = dto.DefendantPan;
         DrawText($"Aadhaar Number   : {aadhaarVal}", fontRegular, 10);
         DrawText($"PAN Number       : {panVal}", fontRegular, 10);
         DrawText($"Bank Name        : {dto.DefendantBankName}", fontRegular, 10);

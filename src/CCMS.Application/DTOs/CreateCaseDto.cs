@@ -23,6 +23,9 @@ public class CreateCaseDto
     public string DefendantId { get; set; } = string.Empty;
 
     [Required]
+    public string DefendantPan { get; set; } = string.Empty;
+
+    [Required]
     public string DefendantAccountNumber { get; set; } = string.Empty;
 
     [Required]

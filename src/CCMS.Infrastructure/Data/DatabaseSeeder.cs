@@ -12,6 +12,16 @@ public static class DatabaseSeeder
         // Automatically create the database if it doesn't exist
         await context.Database.EnsureCreatedAsync();
 
+        // Dynamically add the PanNumber column to the Defendants table if it doesn't exist yet
+        try
+        {
+            await context.Database.ExecuteSqlRawAsync("ALTER TABLE `Defendants` ADD COLUMN `PanNumber` longtext NOT NULL;");
+        }
+        catch (Exception)
+        {
+            // Ignore if the column already exists
+        }
+
         // 1. Seed Users (Role matches ENUM('Court', 'Bank') in DDL)
         if (!await context.Users.AnyAsync())
         {
@@ -65,12 +75,12 @@ public static class DatabaseSeeder
             };
             await context.Complainants.AddAsync(complainant);
 
-            // Seed associated Defendant
             var defendant = new Defendant
             {
                 CaseId = sampleCase.Id,
                 FullName = "John Smith",
-                IdentityNumber = "Aadhaar: 1234-5678-9012, PAN: ABCDE1234F",
+                IdentityNumber = "1234-5678-9012",
+                PanNumber = "ABCDE1234F",
                 BankAccountNumber = "9876543210",
                 BankName = "WEST"
             };

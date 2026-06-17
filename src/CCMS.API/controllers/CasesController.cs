@@ -57,6 +57,8 @@ public class CasesController : ControllerBase
         // String validations (Regex patterns)
         var nameRegex = new Regex(@"^[a-zA-Z\s]{3,100}$");
         var idRegex = new Regex(@"^(?:\d{12}|[a-zA-Z]{5}[0-9]{4}[a-zA-Z]{1})$");
+        var aadhaarRegex = new Regex(@"^\d{12}$");
+        var panRegex = new Regex(@"^[a-zA-Z]{5}[0-9]{4}[a-zA-Z]{1}$");
         var accountRegex = new Regex(@"^\d{9,18}$");
 
         if (!nameRegex.IsMatch(dto.ComplainantName ?? ""))
@@ -71,9 +73,13 @@ public class CasesController : ControllerBase
         {
             return BadRequest(new { message = "Defendant Name must contain only letters and spaces, between 3 and 100 characters." });
         }
-        if (!idRegex.IsMatch(dto.DefendantId ?? ""))
+        if (!aadhaarRegex.IsMatch(dto.DefendantId ?? ""))
         {
-            return BadRequest(new { message = "Defendant Identity Number must be a valid 12-digit Aadhaar or 10-char PAN." });
+            return BadRequest(new { message = "Defendant Aadhaar Number must be a valid 12-digit number." });
+        }
+        if (!panRegex.IsMatch(dto.DefendantPan ?? ""))
+        {
+            return BadRequest(new { message = "Defendant PAN Card Number must be a valid 10-character alphanumeric string (e.g. ABCDE1234F)." });
         }
         if (!accountRegex.IsMatch(dto.DefendantAccountNumber ?? ""))
         {
