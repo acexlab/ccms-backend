@@ -1,106 +1,76 @@
+# CCMS Backend CI/CD Pipeline
 trigger:
-  branches:
-    include:
-      - main
+- main
+- backend-main
+- deployment
+
+resources:
+- repo: self
 
 variables:
-  # Reference Azure DevOps Variable Group containing secrets
-  - group: ccms-vg
-  - name: azureSubscription
-    value: 'ccms-azure-sc'
-  - name: containerRegistryConnection
-    value: 'ccms-acr-sc'
-  - name: aksConnection
-    value: 'ccms-aks-sc'
-  - name: acrHost
-    value: 'ccmsacr9596.azurecr.io'
-  - name: k8sNamespace
-    value: 'ccms'
+  # Service Connection Names inside Azure DevOps
+  dockerRegistryServiceConnection: 'ccms-acr-conn'
+  kubernetesServiceConnection: 'ccms-aks-conn'
+  
+  # ACR Details
+  containerRegistry: 'ccmsregistry.azurecr.io'
+  imageRepository: 'ccms-backend'
+  imagePullSecret: 'ccmsregistry-pull-secret'
+  
+  # Workspace paths
+  dockerfilePath: '$(Build.SourcesDirectory)/Dockerfile'
+  tag: '$(Build.BuildId)'
+  namespace: 'ccms'
 
 stages:
 - stage: Build
-  displayName: 'Build and Push Stage'
+  displayName: Build & Push Image
   jobs:
-  - job: BuildAndPush
-    displayName: 'Build & Push Docker Images'
+  - job: Build
     pool:
       vmImage: 'ubuntu-latest'
     steps:
-    # Build & Push Frontend Image
     - task: Docker@2
-      displayName: 'Build and Push Frontend to ACR'
+      displayName: Build and Push Docker Image
       inputs:
-        containerRegistry: '$(containerRegistryConnection)'
-        repository: 'ccms-frontend'
+        containerRegistry: '$(dockerRegistryServiceConnection)'
+        repository: '$(imageRepository)'
         command: 'buildAndPush'
-        Dockerfile: 'docker/frontend.Dockerfile'
-        buildContext: 'ccms-frontend'
+        Dockerfile: '$(dockerfilePath)'
         tags: |
-          $(Build.BuildId)
-
-    # Build & Push Backend Image
-    - task: Docker@2
-      displayName: 'Build and Push Backend to ACR'
-      inputs:
-        containerRegistry: '$(containerRegistryConnection)'
-        repository: 'ccms-backend'
-        command: 'buildAndPush'
-        Dockerfile: 'ccms-backend/Dockerfile'
-        buildContext: 'ccms-backend'
-        tags: |
-          $(Build.BuildId)
+          $(tag)
+          latest
 
 - stage: Deploy
-  displayName: 'Deploy Stage'
+  displayName: Deploy to AKS
   dependsOn: Build
-  condition: succeeded()
   jobs:
-  - job: DeployToAKS
-    displayName: 'Deploy to AKS'
+  - job: Deploy
     pool:
       vmImage: 'ubuntu-latest'
     steps:
-    # Authenticate to AKS and create/update Secrets dynamically
-    - task: AzureCLI@2
-      displayName: 'Configure AKS Secrets'
-      inputs:
-        azureSubscription: '$(azureSubscription)'
-        scriptType: 'bash'
-        scriptLocation: 'inlineScript'
-        inlineScript: |
-          az aks get-credentials --resource-group ccms-prod-rg --name ccms-prod-cluster --overwrite-existing
-          
-          # Create Namespace if not exists
-          kubectl create namespace $(k8sNamespace) --dry-run=client -o yaml | kubectl apply -f -
-          
-          # Create or Update Kubernetes Secrets using pipeline variables from the variable group
-          kubectl create secret generic ccms-secrets \
-            --namespace=$(k8sNamespace) \
-            --from-literal=DB_CONNECTION_STRING="$(DB_CONNECTION_STRING)" \
-            --from-literal=JWT_SECRET="$(JWT_SECRET)" \
-            --from-literal=JWT_ISSUER="$(JWT_ISSUER)" \
-            --from-literal=JWT_AUDIENCE="$(JWT_AUDIENCE)" \
-            --from-literal=API_KEYS="$(API_KEYS)" \
-            --from-literal=AZURE_STORAGE_CONNECTION_STRING="$(AZURE_STORAGE_CONNECTION_STRING)" \
-            --dry-run=client -o yaml | kubectl apply -f -
-
-    # Deploy all other manifests using KubernetesManifest task
     - task: KubernetesManifest@1
-      displayName: 'Deploy manifests to AKS'
+      displayName: Create Image Pull Secrets in AKS
       inputs:
-        connectionType: 'kubernetesServiceConnection'
-        kubernetesServiceConnection: '$(aksConnection)'
-        namespace: '$(k8sNamespace)'
-        manifests: |
-          k8s/configmap.yaml
-          k8s/frontend-deployment.yaml
-          k8s/frontend-service.yaml
-          k8s/backend-deployment.yaml
-          k8s/backend-service.yaml
-          k8s/ingress.yaml
-          k8s/frontend-hpa.yaml
-          k8s/backend-hpa.yaml
-        containers: |
-          $(acrHost)/ccms-frontend:$(Build.BuildId)
-          $(acrHost)/ccms-backend:$(Build.BuildId)
+        action: 'createSecret'
+        kubernetesServiceConnection: '$(kubernetesServiceConnection)'
+        namespace: '$(namespace)'
+        secretType: 'dockerRegistry'
+        secretName: '$(imagePullSecret)'
+        dockerRegistryEndpoint: '$(dockerRegistryServiceConnection)'
 
+    - task: KubernetesManifest@1
+      displayName: Deploy to AKS Cluster
+      inputs:
+        action: 'deploy'
+        kubernetesServiceConnection: '$(kubernetesServiceConnection)'
+        namespace: '$(namespace)'
+        manifests: |
+          $(System.DefaultWorkingDirectory)/k8s/secrets.yaml
+          $(System.DefaultWorkingDirectory)/k8s/configmap.yaml
+          $(System.DefaultWorkingDirectory)/k8s/backend-deployment.yaml
+          $(System.DefaultWorkingDirectory)/k8s/ingress.yaml
+        imagePullSecrets: |
+          $(imagePullSecret)
+        containers: |
+          $(containerRegistry)/$(imageRepository):$(tag)
