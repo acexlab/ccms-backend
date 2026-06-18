@@ -1,8 +1,6 @@
 # CCMS Backend CI/CD Pipeline
 trigger:
-- main
-- backend-main
-- deployment
+- version1.0
 
 resources:
 - repo: self
