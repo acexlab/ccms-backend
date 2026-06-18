@@ -1,3 +1,4 @@
+using CCMS.Domain.Enums;
 using System;
 
 namespace CCMS.Domain.Entities;

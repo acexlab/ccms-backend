@@ -4,6 +4,7 @@ using System.Security.Claims;
 using System.Text;
 using Microsoft.IdentityModel.Tokens;
 using CCMS.Domain.Entities;
+using CCMS.Domain.Enums;
 using Microsoft.Extensions.Configuration;
 
 namespace CCMS.Infrastructure.Services;

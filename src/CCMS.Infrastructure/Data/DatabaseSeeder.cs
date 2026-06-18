@@ -1,6 +1,7 @@
 using CCMS.Application.Interfaces;
 using Microsoft.EntityFrameworkCore;
 using CCMS.Domain.Entities;
+using CCMS.Domain.Enums;
 using BCrypt.Net;
 
 namespace CCMS.Infrastructure.Data;

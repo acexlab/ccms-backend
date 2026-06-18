@@ -2,6 +2,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using CCMS.Domain.Entities;
+using CCMS.Domain.Enums;
 
 namespace CCMS.Application.Interfaces;
 

@@ -10,6 +10,7 @@ using Xunit;
 using FluentAssertions;
 using CCMS.Infrastructure.Data;
 using CCMS.Domain.Entities;
+using CCMS.Domain.Enums;
 
 namespace CCMS.API.Tests.IntegrationTests;
 

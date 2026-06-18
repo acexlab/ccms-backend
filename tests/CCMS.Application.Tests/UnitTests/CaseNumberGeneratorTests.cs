@@ -5,6 +5,7 @@ using Xunit;
 using FluentAssertions;
 using CCMS.Infrastructure.Data;
 using CCMS.Domain.Entities;
+using CCMS.Domain.Enums;
 using CCMS.Application.Services;
 using CCMS.Application.Interfaces;
 using CCMS.Infrastructure.Services;

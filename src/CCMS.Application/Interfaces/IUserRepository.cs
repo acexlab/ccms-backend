@@ -1,5 +1,6 @@
 using System.Threading.Tasks;
 using CCMS.Domain.Entities;
+using CCMS.Domain.Enums;
 
 namespace CCMS.Application.Interfaces;
 

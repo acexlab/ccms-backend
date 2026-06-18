@@ -1,3 +1,4 @@
+using CCMS.Domain.Enums;
 /*
  * File: UnauthorisedActionException.cs
  * Description: Exception thrown when an unauthorized user or role attempts to access or modify resources.
