@@ -159,7 +159,7 @@ public class CaseService
 
         var inbox = new CaseInboxDto
         {
-            AwaitingAction = summaries.Where(c => c.Status == CaseStatus.AccountValidated.ToString()).ToList(),
+            AwaitingAction = summaries.Where(c => c.Status == CaseStatus.AccountValidated.ToString() || c.Status == CaseStatus.UnderReview.ToString()).ToList(),
             PendingBatch = summaries.Where(c => c.Status == CaseStatus.Pending.ToString()).ToList(),
             Completed = summaries.Where(c => c.Status == CaseStatus.FreezeApplied.ToString() || c.Status == CaseStatus.BalanceProvided.ToString()).ToList(),
             AutoResolved = summaries.Where(c => c.Status == CaseStatus.AccountNotFound.ToString()).ToList()
@@ -168,7 +168,7 @@ public class CaseService
         return inbox;
     }
 
-    public async Task<CaseDetailDto> GetCaseDetailAsync(string caseNumber)
+    public async Task<CaseDetailDto> GetCaseDetailAsync(string caseNumber, string userRole = "")
     {
         var caseEntity = await _context.Cases
             .Include(c => c.Complainant)
@@ -181,6 +181,13 @@ public class CaseService
         if (caseEntity == null)
         {
             throw new KeyNotFoundException("Case not found");
+        }
+
+        if (caseEntity.Status == CaseStatus.AccountValidated && userRole.Equals("Bank", StringComparison.OrdinalIgnoreCase))
+        {
+            caseEntity.Status = CaseStatus.UnderReview;
+            caseEntity.UpdatedAt = DateTime.UtcNow;
+            await _context.SaveChangesAsync();
         }
 
         var aadhaarPart = "";
@@ -258,8 +265,8 @@ public class CaseService
         if (caseEntity.Response != null)
             throw new InvalidOperationException("A response already exists for this case.");
 
-        if (caseEntity.Status != CaseStatus.AccountValidated)
-            throw new InvalidOperationException("Case is not in AccountValidated status.");
+        if (caseEntity.Status != CaseStatus.AccountValidated && caseEntity.Status != CaseStatus.UnderReview)
+            throw new InvalidOperationException("Case is not in a status that allows response submission.");
 
         await _context.BeginTransactionAsync();
         try

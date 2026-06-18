@@ -240,4 +240,33 @@ public class CaseStateTransitionTests
         // Assert
         result.Should().BeOfType<BadRequestObjectResult>();
     }
+
+    [Fact]
+    public async Task StateTransition_AccountValidatedToUnderReview_WhenBankOfficerOpensCase()
+    {
+        // Arrange
+        using var context = GetInMemoryDbContext();
+        var @case = new Case
+        {
+            Id = 1,
+            CaseNumber = "CCMS-20260616-0006",
+            Status = CaseStatus.AccountValidated,
+            OrderType = OrderType.FreezeAccount,
+            CreatedByUserId = 1
+        };
+        var officer = new User { Id = 2, Username = "bank_officer", Role = UserRole.Bank, PasswordHash = "" };
+        context.Cases.Add(@case);
+        context.Users.Add(officer);
+        await context.SaveChangesAsync();
+
+        var controller = CreateControllerWithUser(context, "bank_officer", "Bank");
+
+        // Act
+        var result = await controller.GetCaseDetail("CCMS-20260616-0006");
+
+        // Assert
+        result.Result.Should().BeOfType<OkObjectResult>();
+        var updatedCase = await context.Cases.FirstAsync();
+        updatedCase.Status.Should().Be(CaseStatus.UnderReview);
+    }
 }

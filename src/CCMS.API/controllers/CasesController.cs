@@ -140,7 +140,8 @@ public class CasesController : ControllerBase
     {
         try
         {
-            var dto = await _caseService.GetCaseDetailAsync(caseNumber);
+            var userRole = User.FindFirst(ClaimTypes.Role)?.Value ?? User.FindFirst("role")?.Value ?? string.Empty;
+            var dto = await _caseService.GetCaseDetailAsync(caseNumber, userRole);
             return Ok(dto);
         }
         catch (KeyNotFoundException ex)

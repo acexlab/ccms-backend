@@ -32,7 +32,7 @@ public class BankDashboardController : ControllerBase
         var lastRun = await _batchJobLogRepository.GetLastRunAsync();
 
         var pending = cases.Count(c => c.Status == CaseStatus.Pending);
-        var validated = cases.Count(c => c.Status == CaseStatus.AccountValidated);
+        var validated = cases.Count(c => c.Status == CaseStatus.AccountValidated || c.Status == CaseStatus.UnderReview);
         var notFound = cases.Count(c => c.Status == CaseStatus.AccountNotFound);
         var freezeApplied = cases.Count(c => c.Status == CaseStatus.FreezeApplied);
         var balanceProvided = cases.Count(c => c.Status == CaseStatus.BalanceProvided);
