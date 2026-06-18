@@ -179,7 +179,7 @@ public class BatchValidationService
                 .FirstOrDefaultAsync(bc => bc.AccountNumber == defendant.BankAccountNumber.Trim());
 
             if (customer != null)
-                return (customer, Domain.Entities.MatchedOn.AccountNumber);
+                return (customer, MatchedOn.AccountNumber);
         }
 
         // 2. Aadhaar (12-digit, normalised — remove spaces/hyphens)
@@ -193,7 +193,7 @@ public class BatchValidationService
                         bc.AadhaarNumber.Replace("-", "").Replace(" ", "") == cleanAadhaar);
 
                 if (customer != null)
-                    return (customer, Domain.Entities.MatchedOn.Aadhaar);
+                    return (customer, MatchedOn.Aadhaar);
             }
         }
 
@@ -205,7 +205,7 @@ public class BatchValidationService
                 .FirstOrDefaultAsync(bc => bc.PANNumber.ToUpper() == pan);
 
             if (customer != null)
-                return (customer, Domain.Entities.MatchedOn.PAN);
+                return (customer, MatchedOn.PAN);
         }
 
         return (null, null);
