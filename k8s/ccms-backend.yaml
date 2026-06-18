@@ -1,0 +1,201 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: ccms
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: mysql-pvc
+  namespace: ccms
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 5Gi
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mysql
+  namespace: ccms
+spec:
+  selector:
+    matchLabels:
+      app: mysql
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app: mysql
+    spec:
+      containers:
+      - image: mysql:8.0
+        name: mysql
+        env:
+        - name: MYSQL_ROOT_PASSWORD
+          value: CCmsAdminPass123!
+        - name: MYSQL_DATABASE
+          value: ccms
+        - name: MYSQL_USER
+          value: ccmsadmin
+        - name: MYSQL_PASSWORD
+          value: CCmsAdminPass123!
+        ports:
+        - containerPort: 3306
+          name: mysql
+        volumeMounts:
+        - name: mysql-persistent-storage
+          mountPath: /var/lib/mysql
+      volumes:
+      - name: mysql-persistent-storage
+        persistentVolumeClaim:
+          claimName: mysql-pvc
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: mysql-service
+  namespace: ccms
+spec:
+  ports:
+  - port: 3306
+  selector:
+    app: mysql
+  clusterIP: None
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: app-config
+  namespace: ccms
+data:
+  ASPNETCORE_ENVIRONMENT: "Production"
+  Logging__LogLevel__Default: "Information"
+  Logging__LogLevel__Microsoft.AspNetCore: "Warning"
+  BatchSettings__IntervalMinutes: "15"
+  AllowedHosts: "*"
+  FRONTEND_API_URL: "http://ccms-backend-service/api"
+  AZURE_STORAGE_CONTAINER_NAME: "case-documents"
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ccms-backend
+  namespace: ccms
+  labels:
+    app: ccms-backend
+spec:
+  replicas: 3
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 0
+  selector:
+    matchLabels:
+      app: ccms-backend
+  template:
+    metadata:
+      labels:
+        app: ccms-backend
+    spec:
+      containers:
+      - name: backend
+        image: ccmsacr9596.azurecr.io/ccms-backend:$(Build.BuildId)
+        imagePullPolicy: IfNotPresent
+        ports:
+        - containerPort: 80
+          name: http
+        resources:
+          requests:
+            cpu: 200m
+            memory: 256Mi
+          limits:
+            cpu: 500m
+            memory: 512Mi
+        livenessProbe:
+          httpGet:
+            path: /health
+            port: 80
+          initialDelaySeconds: 20
+          periodSeconds: 20
+        readinessProbe:
+          httpGet:
+            path: /health
+            port: 80
+          initialDelaySeconds: 10
+          periodSeconds: 10
+        envFrom:
+        - configMapRef:
+            name: app-config
+        env:
+        - name: DB_CONNECTION_STRING
+          valueFrom:
+            secretKeyRef:
+              name: ccms-secrets
+              key: DB_CONNECTION_STRING
+        - name: JWT_SECRET
+          valueFrom:
+            secretKeyRef:
+              name: ccms-secrets
+              key: JWT_SECRET
+        - name: JWT_ISSUER
+          valueFrom:
+            secretKeyRef:
+              name: ccms-secrets
+              key: JWT_ISSUER
+        - name: JWT_AUDIENCE
+          valueFrom:
+            secretKeyRef:
+              name: ccms-secrets
+              key: JWT_AUDIENCE
+        - name: AZURE_STORAGE_CONTAINER_NAME
+          valueFrom:
+            configMapKeyRef:
+              name: app-config
+              key: AZURE_STORAGE_CONTAINER_NAME
+        - name: AZURE_STORAGE_CONNECTION_STRING
+          valueFrom:
+            secretKeyRef:
+              name: ccms-secrets
+              key: AZURE_STORAGE_CONNECTION_STRING
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: ccms-backend-service
+  namespace: ccms
+  labels:
+    app: ccms-backend
+spec:
+  type: ClusterIP
+  ports:
+  - port: 80
+    targetPort: 80
+    protocol: TCP
+    name: http
+  selector:
+    app: ccms-backend
+---
+apiVersion: autoscaling/v2
+kind: HorizontalPodAutoscaler
+metadata:
+  name: ccms-backend-hpa
+  namespace: ccms
+spec:
+  scaleTargetRef:
+    apiVersion: apps/v1
+    kind: Deployment
+    name: ccms-backend
+  minReplicas: 3
+  maxReplicas: 10
+  metrics:
+  - type: Resource
+    resource:
+      name: cpu
+      target:
+        type: Utilization
+        averageUtilization: 70
