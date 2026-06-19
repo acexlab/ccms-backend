@@ -62,4 +62,23 @@ public class AuthApiTests : IClassFixture<CustomWebApplicationFactory>
         // Assert
         response.StatusCode.Should().Be(HttpStatusCode.Forbidden);
     }
+
+    [Fact]
+    public async Task SqlInjection_AttemptOnLogin_ShouldFailSafely()
+    {
+        // Arrange
+        var client = _factory.CreateClient();
+        var loginDto = new LoginDto 
+        { 
+            Username = "admin' OR '1'='1", 
+            Password = "password" 
+        };
+
+        // Act
+        var response = await client.PostAsJsonAsync("/api/auth/login", loginDto);
+
+        // Assert
+        // Application should use parameterized queries and gracefully return 401 Unauthorized, not 500 error or 200 OK.
+        response.StatusCode.Should().Be(HttpStatusCode.Unauthorized);
+    }
 }
