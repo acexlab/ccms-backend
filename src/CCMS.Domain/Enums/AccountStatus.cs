@@ -1,4 +1,4 @@
-namespace CCMS.Domain.Entities;
+namespace CCMS.Domain.Enums;
 
 public enum AccountStatus
 {

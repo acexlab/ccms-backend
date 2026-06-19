@@ -10,6 +10,7 @@ using Xunit;
 using FluentAssertions;
 using CCMS.Infrastructure.Data;
 using CCMS.Domain.Entities;
+using CCMS.Domain.Enums;
 
 namespace CCMS.API.Tests.IntegrationTests;
 
@@ -53,11 +54,11 @@ public class CasesApiTests : IClassFixture<CustomWebApplicationFactory>
         var boundary = Guid.NewGuid().ToString();
         using var content = new MultipartFormDataContent(boundary);
 
-        // Add form data
         content.Add(new StringContent("State Authority"), "ComplainantName");
         content.Add(new StringContent("123456789012"), "ComplainantId");
         content.Add(new StringContent("John Smith"), "DefendantName");
-        content.Add(new StringContent("ABCDE1234F"), "DefendantId");
+        content.Add(new StringContent("123456789012"), "DefendantId");
+        content.Add(new StringContent("ABCDE1234F"), "DefendantPan");
         content.Add(new StringContent("9876543210"), "DefendantAccountNumber");
         content.Add(new StringContent("WEST"), "DefendantBankName");
         content.Add(new StringContent("FreezeAccount"), "OrderType");
@@ -108,7 +109,8 @@ public class CasesApiTests : IClassFixture<CustomWebApplicationFactory>
         content.Add(new StringContent("State Authority"), "ComplainantName");
         content.Add(new StringContent("123456789012"), "ComplainantId");
         content.Add(new StringContent("John Smith"), "DefendantName");
-        content.Add(new StringContent("ABCDE1234F"), "DefendantId");
+        content.Add(new StringContent("123456789012"), "DefendantId");
+        content.Add(new StringContent("ABCDE1234F"), "DefendantPan");
         content.Add(new StringContent("9876543210"), "DefendantAccountNumber");
         content.Add(new StringContent("WEST"), "DefendantBankName");
 
@@ -149,7 +151,8 @@ public class CasesApiTests : IClassFixture<CustomWebApplicationFactory>
                 {
                     FullName = "Alexander Vance",
                     BankAccountNumber = "50200004558291",
-                    IdentityNumber = "Aadhaar: 1234-5678-9012"
+                    IdentityNumber = "1234-5678-9012",
+                    PanNumber = "ABCDE1234F"
                 }
             };
             context.Cases.Add(@case);
@@ -168,7 +171,8 @@ public class CasesApiTests : IClassFixture<CustomWebApplicationFactory>
         var defendant = json.RootElement.GetProperty("defendant");
         
         // Assert masked fields match expectations
-        defendant.GetProperty("identityNumber").GetString().Should().Be("Aadhaar: ****-****-9012");
+        defendant.GetProperty("identityNumber").GetString().Should().Be("****-****-9012");
+        defendant.GetProperty("panNumber").GetString().Should().Be("******234F");
         defendant.GetProperty("bankAccountNumber").GetString().Should().Be("**********8291");
     }
 }

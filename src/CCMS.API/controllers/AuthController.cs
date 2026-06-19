@@ -6,8 +6,8 @@ using Microsoft.EntityFrameworkCore;
 using CCMS.Infrastructure.Data;
 using CCMS.Application.DTOs;
 using CCMS.Domain.Entities;
+using CCMS.Domain.Enums;
 using CCMS.Application.Services;
-using CCMS.Application.Interfaces;
 using CCMS.Infrastructure.Services;
 
 namespace CCMS.API.Controllers;
@@ -29,30 +29,37 @@ public class AuthController : ControllerBase
     [AllowAnonymous]
     public async Task<IActionResult> Login([FromBody] LoginDto dto)
     {
-        var user = await _userRepository.GetByUsernameAsync(dto.Username);
-        if (user == null)
+        try
         {
-            return Unauthorized(new { message = "Invalid username or password." });
+            var user = await _userRepository.GetByUsernameAsync(dto.Username);
+            if (user == null)
+            {
+                return Unauthorized(new { message = "Invalid username or password." });
+            }
+
+            // Verify password using BCrypt
+            bool isPasswordValid = BCrypt.Net.BCrypt.Verify(dto.Password, user.PasswordHash);
+            if (!isPasswordValid)
+            {
+                return Unauthorized(new { message = "Invalid username or password." });
+            }
+
+            // Generate JWT Token
+            var token = _jwtTokenService.GenerateToken(user);
+
+            // Determine redirection URL based on Role
+            string redirectUrl = user.Role == UserRole.Court ? "/court/dashboard" : "/bank/dashboard";
+
+            return Ok(new AuthResultDto
+            {
+                Token = token,
+                Role = user.Role.ToString(),
+                RedirectUrl = redirectUrl
+            });
         }
-
-        // Verify password using BCrypt
-        bool isPasswordValid = BCrypt.Net.BCrypt.Verify(dto.Password, user.PasswordHash);
-        if (!isPasswordValid)
+        catch (Exception ex)
         {
-            return Unauthorized(new { message = "Invalid username or password." });
+            return StatusCode(500, new { message = "An error occurred during login.", error = ex.Message, detail = ex.ToString() });
         }
-
-        // Generate JWT Token
-        var token = _jwtTokenService.GenerateToken(user);
-
-        // Determine redirection URL based on Role
-        string redirectUrl = user.Role == UserRole.Court ? "/court/dashboard" : "/bank/dashboard";
-
-        return Ok(new AuthResultDto
-        {
-            Token = token,
-            Role = user.Role.ToString(),
-            RedirectUrl = redirectUrl
-        });
     }
 }

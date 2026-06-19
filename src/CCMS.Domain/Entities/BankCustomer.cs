@@ -1,3 +1,4 @@
+using CCMS.Domain.Enums;
 namespace CCMS.Domain.Entities;
 
 public class BankCustomer

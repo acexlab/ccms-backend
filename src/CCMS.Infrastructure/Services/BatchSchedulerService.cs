@@ -8,6 +8,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using CCMS.Domain.Entities;
+using CCMS.Domain.Enums;
 
 namespace CCMS.Infrastructure.Services;
 

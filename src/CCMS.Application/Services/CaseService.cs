@@ -7,6 +7,7 @@ using Microsoft.EntityFrameworkCore;
 using CCMS.Application.Interfaces;
 using CCMS.Application.DTOs;
 using CCMS.Domain.Entities;
+using CCMS.Domain.Enums;
 
 namespace CCMS.Application.Services;
 
@@ -14,16 +15,13 @@ public class CaseService
 {
     private readonly IAppDbContext _context;
     private readonly IBlobStorageService _blobStorage;
-    private readonly IPdfGenerator _pdfGenerator;
 
     public CaseService(
         IAppDbContext context,
-        IBlobStorageService blobStorage,
-        IPdfGenerator pdfGenerator)
+        IBlobStorageService blobStorage)
     {
         _context = context;
         _blobStorage = blobStorage;
-        _pdfGenerator = pdfGenerator;
     }
 
     public async Task<(string CaseNumber, int Id)> CreateCaseAsync(
@@ -85,19 +83,15 @@ public class CaseService
                 CaseId = @case.Id,
                 FullName = dto.DefendantName,
                 IdentityNumber = dto.DefendantId,
+                PanNumber = dto.DefendantPan,
                 BankAccountNumber = dto.DefendantAccountNumber,
                 BankName = dto.DefendantBankName
             };
             _context.Defendants.Add(defendant);
 
-            // Generate realistic Court Order PDF based on case details
-            var courtOrderBytes = _pdfGenerator.GenerateCourtOrder(dto, caseNumber);
+            // Save Court Order Copy File
             var uniqueCourtOrderName = $"{Guid.NewGuid()}_{courtOrderFileName}";
-            
-            using (var ms = new MemoryStream(courtOrderBytes))
-            {
-                await _blobStorage.UploadFileAsync(ms, uniqueCourtOrderName, "application/pdf");
-            }
+            await _blobStorage.UploadFileAsync(courtOrderStream, uniqueCourtOrderName, "application/pdf");
 
             _context.CaseDocuments.Add(new CaseDocument
             {
@@ -105,7 +99,7 @@ public class CaseService
                 DocumentType = DocumentType.CourtOrder,
                 FileName = courtOrderFileName,
                 FilePath = uniqueCourtOrderName,
-                FileSize = courtOrderBytes.Length,
+                FileSize = (int)courtOrderStream.Length,
                 UploadedAt = DateTime.UtcNow
             });
 
@@ -165,7 +159,7 @@ public class CaseService
 
         var inbox = new CaseInboxDto
         {
-            AwaitingAction = summaries.Where(c => c.Status == CaseStatus.AccountValidated.ToString()).ToList(),
+            AwaitingAction = summaries.Where(c => c.Status == CaseStatus.AccountValidated.ToString() || c.Status == CaseStatus.UnderReview.ToString()).ToList(),
             PendingBatch = summaries.Where(c => c.Status == CaseStatus.Pending.ToString()).ToList(),
             Completed = summaries.Where(c => c.Status == CaseStatus.FreezeApplied.ToString() || c.Status == CaseStatus.BalanceProvided.ToString()).ToList(),
             AutoResolved = summaries.Where(c => c.Status == CaseStatus.AccountNotFound.ToString()).ToList()
@@ -174,7 +168,7 @@ public class CaseService
         return inbox;
     }
 
-    public async Task<CaseDetailDto> GetCaseDetailAsync(string caseNumber)
+    public async Task<CaseDetailDto> GetCaseDetailAsync(string caseNumber, string userRole = "")
     {
         var caseEntity = await _context.Cases
             .Include(c => c.Complainant)
@@ -189,15 +183,32 @@ public class CaseService
             throw new KeyNotFoundException("Case not found");
         }
 
-        var maskedIdentity = DataMaskingHelper.MaskIdentity(caseEntity.Defendant?.IdentityNumber) ?? "";
-        var aadhaarPart = maskedIdentity;
+        if (caseEntity.Status == CaseStatus.AccountValidated && userRole.Equals("Bank", StringComparison.OrdinalIgnoreCase))
+        {
+            caseEntity.Status = CaseStatus.UnderReview;
+            caseEntity.UpdatedAt = DateTime.UtcNow;
+            await _context.SaveChangesAsync();
+        }
+
+        var aadhaarPart = "";
         var panPart = "";
-        if (maskedIdentity.Contains("PAN:")) {
-            var parts = maskedIdentity.Split(new[] { ", PAN:" }, StringSplitOptions.None);
-            aadhaarPart = parts[0].Replace("Aadhaar:", "").Trim();
-            if (parts.Length > 1) panPart = parts[1].Trim();
-        } else {
-            aadhaarPart = aadhaarPart.Replace("Aadhaar:", "").Trim();
+
+        if (caseEntity.Defendant != null && !string.IsNullOrEmpty(caseEntity.Defendant.PanNumber))
+        {
+            aadhaarPart = DataMaskingHelper.MaskIdentity(caseEntity.Defendant.IdentityNumber);
+            panPart = DataMaskingHelper.MaskIdentity(caseEntity.Defendant.PanNumber);
+        }
+        else
+        {
+            var maskedIdentity = DataMaskingHelper.MaskIdentity(caseEntity.Defendant?.IdentityNumber) ?? "";
+            aadhaarPart = maskedIdentity;
+            if (maskedIdentity.Contains("PAN:")) {
+                var parts = maskedIdentity.Split(new[] { ", PAN:" }, StringSplitOptions.None);
+                aadhaarPart = parts[0].Replace("Aadhaar:", "").Trim();
+                if (parts.Length > 1) panPart = parts[1].Trim();
+            } else {
+                aadhaarPart = aadhaarPart.Replace("Aadhaar:", "").Trim();
+            }
         }
 
         var dto = new CaseDetailDto
@@ -254,8 +265,8 @@ public class CaseService
         if (caseEntity.Response != null)
             throw new InvalidOperationException("A response already exists for this case.");
 
-        if (caseEntity.Status != CaseStatus.AccountValidated)
-            throw new InvalidOperationException("Case is not in AccountValidated status.");
+        if (caseEntity.Status != CaseStatus.AccountValidated && caseEntity.Status != CaseStatus.UnderReview)
+            throw new InvalidOperationException("Case is not in a status that allows response submission.");
 
         await _context.BeginTransactionAsync();
         try
@@ -364,6 +375,7 @@ public class CaseService
                 defendant.CaseId,
                 defendant.FullName,
                 IdentityNumber = DataMaskingHelper.MaskIdentity(defendant.IdentityNumber),
+                PanNumber = DataMaskingHelper.MaskIdentity(defendant.PanNumber),
                 BankAccountNumber = DataMaskingHelper.MaskAccount(defendant.BankAccountNumber)
             } : null,
             Documents = documents
@@ -383,20 +395,16 @@ public class CaseService
 
         var stream = await _blobStorage.DownloadFileAsync(doc.FilePath);
         
+        if (stream == null)
+            throw new KeyNotFoundException("Document file not found in storage");
+
         string contentType = doc.FileName.EndsWith(".pdf", StringComparison.OrdinalIgnoreCase)
             ? "application/pdf"
+            : doc.FileName.EndsWith(".jpg", StringComparison.OrdinalIgnoreCase) || doc.FileName.EndsWith(".jpeg", StringComparison.OrdinalIgnoreCase)
+            ? "image/jpeg"
+            : doc.FileName.EndsWith(".png", StringComparison.OrdinalIgnoreCase)
+            ? "image/png"
             : "application/octet-stream";
-
-        if (stream == null)
-        {
-            if (doc.FileName.EndsWith(".pdf", StringComparison.OrdinalIgnoreCase))
-            {
-                var pdfBytes = _pdfGenerator.GenerateSimulatedPdf(doc.FileName);
-                return (new MemoryStream(pdfBytes), contentType, doc.FileName);
-            }
-            var dummyBytes = System.Text.Encoding.UTF8.GetBytes("Dummy file content for " + doc.FileName);
-            return (new MemoryStream(dummyBytes), contentType, doc.FileName);
-        }
 
         return (stream, contentType, doc.FileName);
     }

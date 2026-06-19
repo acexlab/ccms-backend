@@ -67,9 +67,7 @@ stages:
         namespace: '$(namespace)'
         manifests: |
           $(System.DefaultWorkingDirectory)/k8s/secrets.yaml
-          $(System.DefaultWorkingDirectory)/k8s/configmap.yaml
-          $(System.DefaultWorkingDirectory)/k8s/backend-deployment.yaml
-          $(System.DefaultWorkingDirectory)/k8s/ingress.yaml
+          $(System.DefaultWorkingDirectory)/k8s/ccms-backend.yaml
         imagePullSecrets: |
           $(imagePullSecret)
         containers: |

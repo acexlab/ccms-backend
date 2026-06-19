@@ -1,6 +1,7 @@
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using CCMS.Domain.Entities;
+using CCMS.Domain.Enums;
 using CCMS.Application.Interfaces;
 
 namespace CCMS.Infrastructure.Data;

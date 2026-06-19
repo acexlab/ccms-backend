@@ -1,6 +1,7 @@
 using CCMS.Application.Interfaces;
 using Microsoft.EntityFrameworkCore;
 using CCMS.Domain.Entities;
+using CCMS.Domain.Enums;
 using BCrypt.Net;
 
 namespace CCMS.Infrastructure.Data;
@@ -11,6 +12,16 @@ public static class DatabaseSeeder
     {
         // Automatically create the database if it doesn't exist
         await context.Database.EnsureCreatedAsync();
+
+        // Dynamically add the PanNumber column to the Defendants table if it doesn't exist yet
+        try
+        {
+            await context.Database.ExecuteSqlRawAsync("ALTER TABLE `Defendants` ADD COLUMN `PanNumber` longtext NOT NULL;");
+        }
+        catch (Exception)
+        {
+            // Ignore if the column already exists
+        }
 
         // 1. Seed Users (Role matches ENUM('Court', 'Bank') in DDL)
         if (!await context.Users.AnyAsync())
@@ -65,12 +76,12 @@ public static class DatabaseSeeder
             };
             await context.Complainants.AddAsync(complainant);
 
-            // Seed associated Defendant
             var defendant = new Defendant
             {
                 CaseId = sampleCase.Id,
                 FullName = "John Smith",
-                IdentityNumber = "Aadhaar: 1234-5678-9012, PAN: ABCDE1234F",
+                IdentityNumber = "1234-5678-9012",
+                PanNumber = "ABCDE1234F",
                 BankAccountNumber = "9876543210",
                 BankName = "WEST"
             };
@@ -99,7 +110,7 @@ public static class DatabaseSeeder
             {
                 AccountNumber = "111122223333",
                 AadhaarNumber = "123456789012",
-                PANNumber = "ABCDE1234F",
+                PANNumber = "XYZAB9876K",
                 AccountHolderName = "Rajesh Kumar",
                 AccountStatus = AccountStatus.Active,
                 CurrentBalance = 150000.00m
