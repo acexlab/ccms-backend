@@ -1,0 +1,586 @@
+2026-06-19 01:19:24.947 +05:30 [INF] Triggering scheduled batch run...
+2026-06-19 01:19:25.026 +05:30 [INF] Executed DbCommand (2ms) [Parameters=[@p0='?' (DbType = Int32), @p1='?' (DbType = Int32), @p2='?' (DbType = Int32), @p3='?' (DbType = Int32), @p4='?' (DbType = DateTime), @p5='?' (Size = 4000), @p6='?' (DbType = DateTime), @p7='?' (Size = 4000), @p8='?' (Size = 4000), @p9='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO `BatchJobLogs` (`AccountsMatched`, `AccountsNotFound`, `CasesProcessed`, `DurationSeconds`, `EndTime`, `RunId`, `StartTime`, `Status`, `TriggeredBy`, `TriggeredByUserId`)
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5, @p6, @p7, @p8, @p9);
+SELECT `Id`
+FROM `BatchJobLogs`
+WHERE ROW_COUNT() = 1 AND `Id` = LAST_INSERT_ID();
+2026-06-19 01:19:25.032 +05:30 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT `c`.`Id`, `c`.`CaseNumber`, `c`.`CreatedAt`, `c`.`CreatedByUserId`, `c`.`FreezeAmount`, `c`.`OrderType`, `c`.`Status`, `c`.`UpdatedAt`, `d`.`Id`, `d`.`BankAccountNumber`, `d`.`BankName`, `d`.`CaseId`, `d`.`FullName`, `d`.`IdentityNumber`
+FROM `Cases` AS `c`
+LEFT JOIN `Defendants` AS `d` ON `c`.`Id` = `d`.`CaseId`
+WHERE `c`.`Status` = 'Pending'
+2026-06-19 01:19:25.036 +05:30 [INF] Executed DbCommand (3ms) [Parameters=[@p3='?' (DbType = Int32), @p0='?' (DbType = Int32), @p1='?' (DbType = DateTime), @p2='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SET AUTOCOMMIT = 1;
+UPDATE `BatchJobLogs` SET `DurationSeconds` = @p0, `EndTime` = @p1, `Status` = @p2
+WHERE `Id` = @p3;
+SELECT ROW_COUNT();
+2026-06-19 01:19:25.036 +05:30 [INF] Scheduled batch run BATCH-20260618-12DF completed successfully. Cases processed: 0, Matched: 0, Not Found: 0.
+2026-06-19 06:55:37.701 +05:30 [INF] Triggering scheduled batch run...
+2026-06-19 06:55:37.759 +05:30 [INF] Executed DbCommand (1ms) [Parameters=[@p0='?' (DbType = Int32), @p1='?' (DbType = Int32), @p2='?' (DbType = Int32), @p3='?' (DbType = Int32), @p4='?' (DbType = DateTime), @p5='?' (Size = 4000), @p6='?' (DbType = DateTime), @p7='?' (Size = 4000), @p8='?' (Size = 4000), @p9='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO `BatchJobLogs` (`AccountsMatched`, `AccountsNotFound`, `CasesProcessed`, `DurationSeconds`, `EndTime`, `RunId`, `StartTime`, `Status`, `TriggeredBy`, `TriggeredByUserId`)
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5, @p6, @p7, @p8, @p9);
+SELECT `Id`
+FROM `BatchJobLogs`
+WHERE ROW_COUNT() = 1 AND `Id` = LAST_INSERT_ID();
+2026-06-19 06:55:37.765 +05:30 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT `c`.`Id`, `c`.`CaseNumber`, `c`.`CreatedAt`, `c`.`CreatedByUserId`, `c`.`FreezeAmount`, `c`.`OrderType`, `c`.`Status`, `c`.`UpdatedAt`, `d`.`Id`, `d`.`BankAccountNumber`, `d`.`BankName`, `d`.`CaseId`, `d`.`FullName`, `d`.`IdentityNumber`
+FROM `Cases` AS `c`
+LEFT JOIN `Defendants` AS `d` ON `c`.`Id` = `d`.`CaseId`
+WHERE `c`.`Status` = 'Pending'
+2026-06-19 06:55:37.769 +05:30 [INF] Executed DbCommand (3ms) [Parameters=[@p3='?' (DbType = Int32), @p0='?' (DbType = Int32), @p1='?' (DbType = DateTime), @p2='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SET AUTOCOMMIT = 1;
+UPDATE `BatchJobLogs` SET `DurationSeconds` = @p0, `EndTime` = @p1, `Status` = @p2
+WHERE `Id` = @p3;
+SELECT ROW_COUNT();
+2026-06-19 06:55:37.769 +05:30 [INF] Scheduled batch run BATCH-20260619-52D6 completed successfully. Cases processed: 0, Matched: 0, Not Found: 0.
+2026-06-19 07:10:37.703 +05:30 [INF] Triggering scheduled batch run...
+2026-06-19 07:10:37.736 +05:30 [INF] Executed DbCommand (2ms) [Parameters=[@p0='?' (DbType = Int32), @p1='?' (DbType = Int32), @p2='?' (DbType = Int32), @p3='?' (DbType = Int32), @p4='?' (DbType = DateTime), @p5='?' (Size = 4000), @p6='?' (DbType = DateTime), @p7='?' (Size = 4000), @p8='?' (Size = 4000), @p9='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO `BatchJobLogs` (`AccountsMatched`, `AccountsNotFound`, `CasesProcessed`, `DurationSeconds`, `EndTime`, `RunId`, `StartTime`, `Status`, `TriggeredBy`, `TriggeredByUserId`)
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5, @p6, @p7, @p8, @p9);
+SELECT `Id`
+FROM `BatchJobLogs`
+WHERE ROW_COUNT() = 1 AND `Id` = LAST_INSERT_ID();
+2026-06-19 07:10:37.740 +05:30 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT `c`.`Id`, `c`.`CaseNumber`, `c`.`CreatedAt`, `c`.`CreatedByUserId`, `c`.`FreezeAmount`, `c`.`OrderType`, `c`.`Status`, `c`.`UpdatedAt`, `d`.`Id`, `d`.`BankAccountNumber`, `d`.`BankName`, `d`.`CaseId`, `d`.`FullName`, `d`.`IdentityNumber`
+FROM `Cases` AS `c`
+LEFT JOIN `Defendants` AS `d` ON `c`.`Id` = `d`.`CaseId`
+WHERE `c`.`Status` = 'Pending'
+2026-06-19 07:10:37.744 +05:30 [INF] Executed DbCommand (3ms) [Parameters=[@p3='?' (DbType = Int32), @p0='?' (DbType = Int32), @p1='?' (DbType = DateTime), @p2='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SET AUTOCOMMIT = 1;
+UPDATE `BatchJobLogs` SET `DurationSeconds` = @p0, `EndTime` = @p1, `Status` = @p2
+WHERE `Id` = @p3;
+SELECT ROW_COUNT();
+2026-06-19 07:10:37.744 +05:30 [INF] Scheduled batch run BATCH-20260619-F68D completed successfully. Cases processed: 0, Matched: 0, Not Found: 0.
+2026-06-19 07:25:37.713 +05:30 [INF] Triggering scheduled batch run...
+2026-06-19 07:25:37.753 +05:30 [INF] Executed DbCommand (3ms) [Parameters=[@p0='?' (DbType = Int32), @p1='?' (DbType = Int32), @p2='?' (DbType = Int32), @p3='?' (DbType = Int32), @p4='?' (DbType = DateTime), @p5='?' (Size = 4000), @p6='?' (DbType = DateTime), @p7='?' (Size = 4000), @p8='?' (Size = 4000), @p9='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO `BatchJobLogs` (`AccountsMatched`, `AccountsNotFound`, `CasesProcessed`, `DurationSeconds`, `EndTime`, `RunId`, `StartTime`, `Status`, `TriggeredBy`, `TriggeredByUserId`)
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5, @p6, @p7, @p8, @p9);
+SELECT `Id`
+FROM `BatchJobLogs`
+WHERE ROW_COUNT() = 1 AND `Id` = LAST_INSERT_ID();
+2026-06-19 07:25:37.759 +05:30 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT `c`.`Id`, `c`.`CaseNumber`, `c`.`CreatedAt`, `c`.`CreatedByUserId`, `c`.`FreezeAmount`, `c`.`OrderType`, `c`.`Status`, `c`.`UpdatedAt`, `d`.`Id`, `d`.`BankAccountNumber`, `d`.`BankName`, `d`.`CaseId`, `d`.`FullName`, `d`.`IdentityNumber`
+FROM `Cases` AS `c`
+LEFT JOIN `Defendants` AS `d` ON `c`.`Id` = `d`.`CaseId`
+WHERE `c`.`Status` = 'Pending'
+2026-06-19 07:25:37.762 +05:30 [INF] Executed DbCommand (3ms) [Parameters=[@p3='?' (DbType = Int32), @p0='?' (DbType = Int32), @p1='?' (DbType = DateTime), @p2='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SET AUTOCOMMIT = 1;
+UPDATE `BatchJobLogs` SET `DurationSeconds` = @p0, `EndTime` = @p1, `Status` = @p2
+WHERE `Id` = @p3;
+SELECT ROW_COUNT();
+2026-06-19 07:25:37.763 +05:30 [INF] Scheduled batch run BATCH-20260619-C04A completed successfully. Cases processed: 0, Matched: 0, Not Found: 0.
+2026-06-19 07:40:37.703 +05:30 [INF] Triggering scheduled batch run...
+2026-06-19 07:40:37.728 +05:30 [INF] Executed DbCommand (1ms) [Parameters=[@p0='?' (DbType = Int32), @p1='?' (DbType = Int32), @p2='?' (DbType = Int32), @p3='?' (DbType = Int32), @p4='?' (DbType = DateTime), @p5='?' (Size = 4000), @p6='?' (DbType = DateTime), @p7='?' (Size = 4000), @p8='?' (Size = 4000), @p9='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO `BatchJobLogs` (`AccountsMatched`, `AccountsNotFound`, `CasesProcessed`, `DurationSeconds`, `EndTime`, `RunId`, `StartTime`, `Status`, `TriggeredBy`, `TriggeredByUserId`)
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5, @p6, @p7, @p8, @p9);
+SELECT `Id`
+FROM `BatchJobLogs`
+WHERE ROW_COUNT() = 1 AND `Id` = LAST_INSERT_ID();
+2026-06-19 07:40:37.732 +05:30 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT `c`.`Id`, `c`.`CaseNumber`, `c`.`CreatedAt`, `c`.`CreatedByUserId`, `c`.`FreezeAmount`, `c`.`OrderType`, `c`.`Status`, `c`.`UpdatedAt`, `d`.`Id`, `d`.`BankAccountNumber`, `d`.`BankName`, `d`.`CaseId`, `d`.`FullName`, `d`.`IdentityNumber`
+FROM `Cases` AS `c`
+LEFT JOIN `Defendants` AS `d` ON `c`.`Id` = `d`.`CaseId`
+WHERE `c`.`Status` = 'Pending'
+2026-06-19 07:40:37.737 +05:30 [INF] Executed DbCommand (4ms) [Parameters=[@p3='?' (DbType = Int32), @p0='?' (DbType = Int32), @p1='?' (DbType = DateTime), @p2='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SET AUTOCOMMIT = 1;
+UPDATE `BatchJobLogs` SET `DurationSeconds` = @p0, `EndTime` = @p1, `Status` = @p2
+WHERE `Id` = @p3;
+SELECT ROW_COUNT();
+2026-06-19 07:40:37.737 +05:30 [INF] Scheduled batch run BATCH-20260619-ECA3 completed successfully. Cases processed: 0, Matched: 0, Not Found: 0.
+2026-06-19 07:55:37.699 +05:30 [INF] Triggering scheduled batch run...
+2026-06-19 07:55:37.728 +05:30 [INF] Executed DbCommand (1ms) [Parameters=[@p0='?' (DbType = Int32), @p1='?' (DbType = Int32), @p2='?' (DbType = Int32), @p3='?' (DbType = Int32), @p4='?' (DbType = DateTime), @p5='?' (Size = 4000), @p6='?' (DbType = DateTime), @p7='?' (Size = 4000), @p8='?' (Size = 4000), @p9='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO `BatchJobLogs` (`AccountsMatched`, `AccountsNotFound`, `CasesProcessed`, `DurationSeconds`, `EndTime`, `RunId`, `StartTime`, `Status`, `TriggeredBy`, `TriggeredByUserId`)
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5, @p6, @p7, @p8, @p9);
+SELECT `Id`
+FROM `BatchJobLogs`
+WHERE ROW_COUNT() = 1 AND `Id` = LAST_INSERT_ID();
+2026-06-19 07:55:37.733 +05:30 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT `c`.`Id`, `c`.`CaseNumber`, `c`.`CreatedAt`, `c`.`CreatedByUserId`, `c`.`FreezeAmount`, `c`.`OrderType`, `c`.`Status`, `c`.`UpdatedAt`, `d`.`Id`, `d`.`BankAccountNumber`, `d`.`BankName`, `d`.`CaseId`, `d`.`FullName`, `d`.`IdentityNumber`
+FROM `Cases` AS `c`
+LEFT JOIN `Defendants` AS `d` ON `c`.`Id` = `d`.`CaseId`
+WHERE `c`.`Status` = 'Pending'
+2026-06-19 07:55:37.737 +05:30 [INF] Executed DbCommand (3ms) [Parameters=[@p3='?' (DbType = Int32), @p0='?' (DbType = Int32), @p1='?' (DbType = DateTime), @p2='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SET AUTOCOMMIT = 1;
+UPDATE `BatchJobLogs` SET `DurationSeconds` = @p0, `EndTime` = @p1, `Status` = @p2
+WHERE `Id` = @p3;
+SELECT ROW_COUNT();
+2026-06-19 07:55:37.737 +05:30 [INF] Scheduled batch run BATCH-20260619-B6B5 completed successfully. Cases processed: 0, Matched: 0, Not Found: 0.
+2026-06-19 09:44:52.703 +05:30 [INF] Triggering scheduled batch run...
+2026-06-19 09:44:52.771 +05:30 [INF] Executed DbCommand (4ms) [Parameters=[@p0='?' (DbType = Int32), @p1='?' (DbType = Int32), @p2='?' (DbType = Int32), @p3='?' (DbType = Int32), @p4='?' (DbType = DateTime), @p5='?' (Size = 4000), @p6='?' (DbType = DateTime), @p7='?' (Size = 4000), @p8='?' (Size = 4000), @p9='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO `BatchJobLogs` (`AccountsMatched`, `AccountsNotFound`, `CasesProcessed`, `DurationSeconds`, `EndTime`, `RunId`, `StartTime`, `Status`, `TriggeredBy`, `TriggeredByUserId`)
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5, @p6, @p7, @p8, @p9);
+SELECT `Id`
+FROM `BatchJobLogs`
+WHERE ROW_COUNT() = 1 AND `Id` = LAST_INSERT_ID();
+2026-06-19 09:44:52.779 +05:30 [INF] Executed DbCommand (4ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT `c`.`Id`, `c`.`CaseNumber`, `c`.`CreatedAt`, `c`.`CreatedByUserId`, `c`.`FreezeAmount`, `c`.`OrderType`, `c`.`Status`, `c`.`UpdatedAt`, `d`.`Id`, `d`.`BankAccountNumber`, `d`.`BankName`, `d`.`CaseId`, `d`.`FullName`, `d`.`IdentityNumber`
+FROM `Cases` AS `c`
+LEFT JOIN `Defendants` AS `d` ON `c`.`Id` = `d`.`CaseId`
+WHERE `c`.`Status` = 'Pending'
+2026-06-19 09:44:52.789 +05:30 [INF] Executed DbCommand (9ms) [Parameters=[@p3='?' (DbType = Int32), @p0='?' (DbType = Int32), @p1='?' (DbType = DateTime), @p2='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SET AUTOCOMMIT = 1;
+UPDATE `BatchJobLogs` SET `DurationSeconds` = @p0, `EndTime` = @p1, `Status` = @p2
+WHERE `Id` = @p3;
+SELECT ROW_COUNT();
+2026-06-19 09:44:52.790 +05:30 [INF] Scheduled batch run BATCH-20260619-46DB completed successfully. Cases processed: 0, Matched: 0, Not Found: 0.
+2026-06-19 09:59:52.737 +05:30 [INF] Triggering scheduled batch run...
+2026-06-19 09:59:52.782 +05:30 [INF] Executed DbCommand (3ms) [Parameters=[@p0='?' (DbType = Int32), @p1='?' (DbType = Int32), @p2='?' (DbType = Int32), @p3='?' (DbType = Int32), @p4='?' (DbType = DateTime), @p5='?' (Size = 4000), @p6='?' (DbType = DateTime), @p7='?' (Size = 4000), @p8='?' (Size = 4000), @p9='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO `BatchJobLogs` (`AccountsMatched`, `AccountsNotFound`, `CasesProcessed`, `DurationSeconds`, `EndTime`, `RunId`, `StartTime`, `Status`, `TriggeredBy`, `TriggeredByUserId`)
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5, @p6, @p7, @p8, @p9);
+SELECT `Id`
+FROM `BatchJobLogs`
+WHERE ROW_COUNT() = 1 AND `Id` = LAST_INSERT_ID();
+2026-06-19 09:59:52.789 +05:30 [INF] Executed DbCommand (3ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT `c`.`Id`, `c`.`CaseNumber`, `c`.`CreatedAt`, `c`.`CreatedByUserId`, `c`.`FreezeAmount`, `c`.`OrderType`, `c`.`Status`, `c`.`UpdatedAt`, `d`.`Id`, `d`.`BankAccountNumber`, `d`.`BankName`, `d`.`CaseId`, `d`.`FullName`, `d`.`IdentityNumber`
+FROM `Cases` AS `c`
+LEFT JOIN `Defendants` AS `d` ON `c`.`Id` = `d`.`CaseId`
+WHERE `c`.`Status` = 'Pending'
+2026-06-19 09:59:52.793 +05:30 [INF] Executed DbCommand (4ms) [Parameters=[@p3='?' (DbType = Int32), @p0='?' (DbType = Int32), @p1='?' (DbType = DateTime), @p2='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SET AUTOCOMMIT = 1;
+UPDATE `BatchJobLogs` SET `DurationSeconds` = @p0, `EndTime` = @p1, `Status` = @p2
+WHERE `Id` = @p3;
+SELECT ROW_COUNT();
+2026-06-19 09:59:52.794 +05:30 [INF] Scheduled batch run BATCH-20260619-37BF completed successfully. Cases processed: 0, Matched: 0, Not Found: 0.
+2026-06-19 10:14:52.729 +05:30 [INF] Triggering scheduled batch run...
+2026-06-19 10:14:52.772 +05:30 [INF] Executed DbCommand (3ms) [Parameters=[@p0='?' (DbType = Int32), @p1='?' (DbType = Int32), @p2='?' (DbType = Int32), @p3='?' (DbType = Int32), @p4='?' (DbType = DateTime), @p5='?' (Size = 4000), @p6='?' (DbType = DateTime), @p7='?' (Size = 4000), @p8='?' (Size = 4000), @p9='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO `BatchJobLogs` (`AccountsMatched`, `AccountsNotFound`, `CasesProcessed`, `DurationSeconds`, `EndTime`, `RunId`, `StartTime`, `Status`, `TriggeredBy`, `TriggeredByUserId`)
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5, @p6, @p7, @p8, @p9);
+SELECT `Id`
+FROM `BatchJobLogs`
+WHERE ROW_COUNT() = 1 AND `Id` = LAST_INSERT_ID();
+2026-06-19 10:14:52.777 +05:30 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT `c`.`Id`, `c`.`CaseNumber`, `c`.`CreatedAt`, `c`.`CreatedByUserId`, `c`.`FreezeAmount`, `c`.`OrderType`, `c`.`Status`, `c`.`UpdatedAt`, `d`.`Id`, `d`.`BankAccountNumber`, `d`.`BankName`, `d`.`CaseId`, `d`.`FullName`, `d`.`IdentityNumber`
+FROM `Cases` AS `c`
+LEFT JOIN `Defendants` AS `d` ON `c`.`Id` = `d`.`CaseId`
+WHERE `c`.`Status` = 'Pending'
+2026-06-19 10:14:52.785 +05:30 [INF] Executed DbCommand (6ms) [Parameters=[@p3='?' (DbType = Int32), @p0='?' (DbType = Int32), @p1='?' (DbType = DateTime), @p2='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SET AUTOCOMMIT = 1;
+UPDATE `BatchJobLogs` SET `DurationSeconds` = @p0, `EndTime` = @p1, `Status` = @p2
+WHERE `Id` = @p3;
+SELECT ROW_COUNT();
+2026-06-19 10:14:52.785 +05:30 [INF] Scheduled batch run BATCH-20260619-3EF4 completed successfully. Cases processed: 0, Matched: 0, Not Found: 0.
+2026-06-19 10:29:52.733 +05:30 [INF] Triggering scheduled batch run...
+2026-06-19 10:29:52.781 +05:30 [INF] Executed DbCommand (1ms) [Parameters=[@p0='?' (DbType = Int32), @p1='?' (DbType = Int32), @p2='?' (DbType = Int32), @p3='?' (DbType = Int32), @p4='?' (DbType = DateTime), @p5='?' (Size = 4000), @p6='?' (DbType = DateTime), @p7='?' (Size = 4000), @p8='?' (Size = 4000), @p9='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO `BatchJobLogs` (`AccountsMatched`, `AccountsNotFound`, `CasesProcessed`, `DurationSeconds`, `EndTime`, `RunId`, `StartTime`, `Status`, `TriggeredBy`, `TriggeredByUserId`)
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5, @p6, @p7, @p8, @p9);
+SELECT `Id`
+FROM `BatchJobLogs`
+WHERE ROW_COUNT() = 1 AND `Id` = LAST_INSERT_ID();
+2026-06-19 10:29:52.788 +05:30 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT `c`.`Id`, `c`.`CaseNumber`, `c`.`CreatedAt`, `c`.`CreatedByUserId`, `c`.`FreezeAmount`, `c`.`OrderType`, `c`.`Status`, `c`.`UpdatedAt`, `d`.`Id`, `d`.`BankAccountNumber`, `d`.`BankName`, `d`.`CaseId`, `d`.`FullName`, `d`.`IdentityNumber`
+FROM `Cases` AS `c`
+LEFT JOIN `Defendants` AS `d` ON `c`.`Id` = `d`.`CaseId`
+WHERE `c`.`Status` = 'Pending'
+2026-06-19 10:29:52.794 +05:30 [INF] Executed DbCommand (5ms) [Parameters=[@p3='?' (DbType = Int32), @p0='?' (DbType = Int32), @p1='?' (DbType = DateTime), @p2='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SET AUTOCOMMIT = 1;
+UPDATE `BatchJobLogs` SET `DurationSeconds` = @p0, `EndTime` = @p1, `Status` = @p2
+WHERE `Id` = @p3;
+SELECT ROW_COUNT();
+2026-06-19 10:29:52.794 +05:30 [INF] Scheduled batch run BATCH-20260619-A485 completed successfully. Cases processed: 0, Matched: 0, Not Found: 0.
+2026-06-19 10:44:52.721 +05:30 [INF] Triggering scheduled batch run...
+2026-06-19 10:44:52.776 +05:30 [INF] Executed DbCommand (5ms) [Parameters=[@p0='?' (DbType = Int32), @p1='?' (DbType = Int32), @p2='?' (DbType = Int32), @p3='?' (DbType = Int32), @p4='?' (DbType = DateTime), @p5='?' (Size = 4000), @p6='?' (DbType = DateTime), @p7='?' (Size = 4000), @p8='?' (Size = 4000), @p9='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO `BatchJobLogs` (`AccountsMatched`, `AccountsNotFound`, `CasesProcessed`, `DurationSeconds`, `EndTime`, `RunId`, `StartTime`, `Status`, `TriggeredBy`, `TriggeredByUserId`)
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5, @p6, @p7, @p8, @p9);
+SELECT `Id`
+FROM `BatchJobLogs`
+WHERE ROW_COUNT() = 1 AND `Id` = LAST_INSERT_ID();
+2026-06-19 10:44:52.781 +05:30 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT `c`.`Id`, `c`.`CaseNumber`, `c`.`CreatedAt`, `c`.`CreatedByUserId`, `c`.`FreezeAmount`, `c`.`OrderType`, `c`.`Status`, `c`.`UpdatedAt`, `d`.`Id`, `d`.`BankAccountNumber`, `d`.`BankName`, `d`.`CaseId`, `d`.`FullName`, `d`.`IdentityNumber`
+FROM `Cases` AS `c`
+LEFT JOIN `Defendants` AS `d` ON `c`.`Id` = `d`.`CaseId`
+WHERE `c`.`Status` = 'Pending'
+2026-06-19 10:44:52.785 +05:30 [INF] Executed DbCommand (3ms) [Parameters=[@p3='?' (DbType = Int32), @p0='?' (DbType = Int32), @p1='?' (DbType = DateTime), @p2='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SET AUTOCOMMIT = 1;
+UPDATE `BatchJobLogs` SET `DurationSeconds` = @p0, `EndTime` = @p1, `Status` = @p2
+WHERE `Id` = @p3;
+SELECT ROW_COUNT();
+2026-06-19 10:44:52.785 +05:30 [INF] Scheduled batch run BATCH-20260619-4E0A completed successfully. Cases processed: 0, Matched: 0, Not Found: 0.
+2026-06-19 10:59:52.730 +05:30 [INF] Triggering scheduled batch run...
+2026-06-19 10:59:52.762 +05:30 [INF] Executed DbCommand (1ms) [Parameters=[@p0='?' (DbType = Int32), @p1='?' (DbType = Int32), @p2='?' (DbType = Int32), @p3='?' (DbType = Int32), @p4='?' (DbType = DateTime), @p5='?' (Size = 4000), @p6='?' (DbType = DateTime), @p7='?' (Size = 4000), @p8='?' (Size = 4000), @p9='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO `BatchJobLogs` (`AccountsMatched`, `AccountsNotFound`, `CasesProcessed`, `DurationSeconds`, `EndTime`, `RunId`, `StartTime`, `Status`, `TriggeredBy`, `TriggeredByUserId`)
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5, @p6, @p7, @p8, @p9);
+SELECT `Id`
+FROM `BatchJobLogs`
+WHERE ROW_COUNT() = 1 AND `Id` = LAST_INSERT_ID();
+2026-06-19 10:59:52.766 +05:30 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT `c`.`Id`, `c`.`CaseNumber`, `c`.`CreatedAt`, `c`.`CreatedByUserId`, `c`.`FreezeAmount`, `c`.`OrderType`, `c`.`Status`, `c`.`UpdatedAt`, `d`.`Id`, `d`.`BankAccountNumber`, `d`.`BankName`, `d`.`CaseId`, `d`.`FullName`, `d`.`IdentityNumber`
+FROM `Cases` AS `c`
+LEFT JOIN `Defendants` AS `d` ON `c`.`Id` = `d`.`CaseId`
+WHERE `c`.`Status` = 'Pending'
+2026-06-19 10:59:52.769 +05:30 [INF] Executed DbCommand (3ms) [Parameters=[@p3='?' (DbType = Int32), @p0='?' (DbType = Int32), @p1='?' (DbType = DateTime), @p2='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SET AUTOCOMMIT = 1;
+UPDATE `BatchJobLogs` SET `DurationSeconds` = @p0, `EndTime` = @p1, `Status` = @p2
+WHERE `Id` = @p3;
+SELECT ROW_COUNT();
+2026-06-19 10:59:52.769 +05:30 [INF] Scheduled batch run BATCH-20260619-F73B completed successfully. Cases processed: 0, Matched: 0, Not Found: 0.
+2026-06-19 11:14:52.714 +05:30 [INF] Triggering scheduled batch run...
+2026-06-19 11:14:52.742 +05:30 [INF] Executed DbCommand (2ms) [Parameters=[@p0='?' (DbType = Int32), @p1='?' (DbType = Int32), @p2='?' (DbType = Int32), @p3='?' (DbType = Int32), @p4='?' (DbType = DateTime), @p5='?' (Size = 4000), @p6='?' (DbType = DateTime), @p7='?' (Size = 4000), @p8='?' (Size = 4000), @p9='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO `BatchJobLogs` (`AccountsMatched`, `AccountsNotFound`, `CasesProcessed`, `DurationSeconds`, `EndTime`, `RunId`, `StartTime`, `Status`, `TriggeredBy`, `TriggeredByUserId`)
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5, @p6, @p7, @p8, @p9);
+SELECT `Id`
+FROM `BatchJobLogs`
+WHERE ROW_COUNT() = 1 AND `Id` = LAST_INSERT_ID();
+2026-06-19 11:14:52.746 +05:30 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT `c`.`Id`, `c`.`CaseNumber`, `c`.`CreatedAt`, `c`.`CreatedByUserId`, `c`.`FreezeAmount`, `c`.`OrderType`, `c`.`Status`, `c`.`UpdatedAt`, `d`.`Id`, `d`.`BankAccountNumber`, `d`.`BankName`, `d`.`CaseId`, `d`.`FullName`, `d`.`IdentityNumber`
+FROM `Cases` AS `c`
+LEFT JOIN `Defendants` AS `d` ON `c`.`Id` = `d`.`CaseId`
+WHERE `c`.`Status` = 'Pending'
+2026-06-19 11:14:52.752 +05:30 [INF] Executed DbCommand (5ms) [Parameters=[@p3='?' (DbType = Int32), @p0='?' (DbType = Int32), @p1='?' (DbType = DateTime), @p2='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SET AUTOCOMMIT = 1;
+UPDATE `BatchJobLogs` SET `DurationSeconds` = @p0, `EndTime` = @p1, `Status` = @p2
+WHERE `Id` = @p3;
+SELECT ROW_COUNT();
+2026-06-19 11:14:52.752 +05:30 [INF] Scheduled batch run BATCH-20260619-DF28 completed successfully. Cases processed: 0, Matched: 0, Not Found: 0.
+2026-06-19 11:29:52.719 +05:30 [INF] Triggering scheduled batch run...
+2026-06-19 11:29:52.752 +05:30 [INF] Executed DbCommand (1ms) [Parameters=[@p0='?' (DbType = Int32), @p1='?' (DbType = Int32), @p2='?' (DbType = Int32), @p3='?' (DbType = Int32), @p4='?' (DbType = DateTime), @p5='?' (Size = 4000), @p6='?' (DbType = DateTime), @p7='?' (Size = 4000), @p8='?' (Size = 4000), @p9='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO `BatchJobLogs` (`AccountsMatched`, `AccountsNotFound`, `CasesProcessed`, `DurationSeconds`, `EndTime`, `RunId`, `StartTime`, `Status`, `TriggeredBy`, `TriggeredByUserId`)
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5, @p6, @p7, @p8, @p9);
+SELECT `Id`
+FROM `BatchJobLogs`
+WHERE ROW_COUNT() = 1 AND `Id` = LAST_INSERT_ID();
+2026-06-19 11:29:52.758 +05:30 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT `c`.`Id`, `c`.`CaseNumber`, `c`.`CreatedAt`, `c`.`CreatedByUserId`, `c`.`FreezeAmount`, `c`.`OrderType`, `c`.`Status`, `c`.`UpdatedAt`, `d`.`Id`, `d`.`BankAccountNumber`, `d`.`BankName`, `d`.`CaseId`, `d`.`FullName`, `d`.`IdentityNumber`
+FROM `Cases` AS `c`
+LEFT JOIN `Defendants` AS `d` ON `c`.`Id` = `d`.`CaseId`
+WHERE `c`.`Status` = 'Pending'
+2026-06-19 11:29:52.762 +05:30 [INF] Executed DbCommand (3ms) [Parameters=[@p3='?' (DbType = Int32), @p0='?' (DbType = Int32), @p1='?' (DbType = DateTime), @p2='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SET AUTOCOMMIT = 1;
+UPDATE `BatchJobLogs` SET `DurationSeconds` = @p0, `EndTime` = @p1, `Status` = @p2
+WHERE `Id` = @p3;
+SELECT ROW_COUNT();
+2026-06-19 11:29:52.762 +05:30 [INF] Scheduled batch run BATCH-20260619-FC3D completed successfully. Cases processed: 0, Matched: 0, Not Found: 0.
+2026-06-19 11:44:52.720 +05:30 [INF] Triggering scheduled batch run...
+2026-06-19 11:44:52.762 +05:30 [INF] Executed DbCommand (2ms) [Parameters=[@p0='?' (DbType = Int32), @p1='?' (DbType = Int32), @p2='?' (DbType = Int32), @p3='?' (DbType = Int32), @p4='?' (DbType = DateTime), @p5='?' (Size = 4000), @p6='?' (DbType = DateTime), @p7='?' (Size = 4000), @p8='?' (Size = 4000), @p9='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO `BatchJobLogs` (`AccountsMatched`, `AccountsNotFound`, `CasesProcessed`, `DurationSeconds`, `EndTime`, `RunId`, `StartTime`, `Status`, `TriggeredBy`, `TriggeredByUserId`)
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5, @p6, @p7, @p8, @p9);
+SELECT `Id`
+FROM `BatchJobLogs`
+WHERE ROW_COUNT() = 1 AND `Id` = LAST_INSERT_ID();
+2026-06-19 11:44:52.766 +05:30 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT `c`.`Id`, `c`.`CaseNumber`, `c`.`CreatedAt`, `c`.`CreatedByUserId`, `c`.`FreezeAmount`, `c`.`OrderType`, `c`.`Status`, `c`.`UpdatedAt`, `d`.`Id`, `d`.`BankAccountNumber`, `d`.`BankName`, `d`.`CaseId`, `d`.`FullName`, `d`.`IdentityNumber`
+FROM `Cases` AS `c`
+LEFT JOIN `Defendants` AS `d` ON `c`.`Id` = `d`.`CaseId`
+WHERE `c`.`Status` = 'Pending'
+2026-06-19 11:44:52.769 +05:30 [INF] Executed DbCommand (3ms) [Parameters=[@p3='?' (DbType = Int32), @p0='?' (DbType = Int32), @p1='?' (DbType = DateTime), @p2='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SET AUTOCOMMIT = 1;
+UPDATE `BatchJobLogs` SET `DurationSeconds` = @p0, `EndTime` = @p1, `Status` = @p2
+WHERE `Id` = @p3;
+SELECT ROW_COUNT();
+2026-06-19 11:44:52.770 +05:30 [INF] Scheduled batch run BATCH-20260619-186A completed successfully. Cases processed: 0, Matched: 0, Not Found: 0.
+2026-06-19 11:59:52.709 +05:30 [INF] Triggering scheduled batch run...
+2026-06-19 11:59:52.738 +05:30 [INF] Executed DbCommand (1ms) [Parameters=[@p0='?' (DbType = Int32), @p1='?' (DbType = Int32), @p2='?' (DbType = Int32), @p3='?' (DbType = Int32), @p4='?' (DbType = DateTime), @p5='?' (Size = 4000), @p6='?' (DbType = DateTime), @p7='?' (Size = 4000), @p8='?' (Size = 4000), @p9='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO `BatchJobLogs` (`AccountsMatched`, `AccountsNotFound`, `CasesProcessed`, `DurationSeconds`, `EndTime`, `RunId`, `StartTime`, `Status`, `TriggeredBy`, `TriggeredByUserId`)
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5, @p6, @p7, @p8, @p9);
+SELECT `Id`
+FROM `BatchJobLogs`
+WHERE ROW_COUNT() = 1 AND `Id` = LAST_INSERT_ID();
+2026-06-19 11:59:52.742 +05:30 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT `c`.`Id`, `c`.`CaseNumber`, `c`.`CreatedAt`, `c`.`CreatedByUserId`, `c`.`FreezeAmount`, `c`.`OrderType`, `c`.`Status`, `c`.`UpdatedAt`, `d`.`Id`, `d`.`BankAccountNumber`, `d`.`BankName`, `d`.`CaseId`, `d`.`FullName`, `d`.`IdentityNumber`
+FROM `Cases` AS `c`
+LEFT JOIN `Defendants` AS `d` ON `c`.`Id` = `d`.`CaseId`
+WHERE `c`.`Status` = 'Pending'
+2026-06-19 11:59:52.746 +05:30 [INF] Executed DbCommand (3ms) [Parameters=[@p3='?' (DbType = Int32), @p0='?' (DbType = Int32), @p1='?' (DbType = DateTime), @p2='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SET AUTOCOMMIT = 1;
+UPDATE `BatchJobLogs` SET `DurationSeconds` = @p0, `EndTime` = @p1, `Status` = @p2
+WHERE `Id` = @p3;
+SELECT ROW_COUNT();
+2026-06-19 11:59:52.746 +05:30 [INF] Scheduled batch run BATCH-20260619-DDFB completed successfully. Cases processed: 0, Matched: 0, Not Found: 0.
+2026-06-19 12:14:52.703 +05:30 [INF] Triggering scheduled batch run...
+2026-06-19 12:14:52.743 +05:30 [INF] Executed DbCommand (1ms) [Parameters=[@p0='?' (DbType = Int32), @p1='?' (DbType = Int32), @p2='?' (DbType = Int32), @p3='?' (DbType = Int32), @p4='?' (DbType = DateTime), @p5='?' (Size = 4000), @p6='?' (DbType = DateTime), @p7='?' (Size = 4000), @p8='?' (Size = 4000), @p9='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO `BatchJobLogs` (`AccountsMatched`, `AccountsNotFound`, `CasesProcessed`, `DurationSeconds`, `EndTime`, `RunId`, `StartTime`, `Status`, `TriggeredBy`, `TriggeredByUserId`)
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5, @p6, @p7, @p8, @p9);
+SELECT `Id`
+FROM `BatchJobLogs`
+WHERE ROW_COUNT() = 1 AND `Id` = LAST_INSERT_ID();
+2026-06-19 12:14:52.747 +05:30 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT `c`.`Id`, `c`.`CaseNumber`, `c`.`CreatedAt`, `c`.`CreatedByUserId`, `c`.`FreezeAmount`, `c`.`OrderType`, `c`.`Status`, `c`.`UpdatedAt`, `d`.`Id`, `d`.`BankAccountNumber`, `d`.`BankName`, `d`.`CaseId`, `d`.`FullName`, `d`.`IdentityNumber`
+FROM `Cases` AS `c`
+LEFT JOIN `Defendants` AS `d` ON `c`.`Id` = `d`.`CaseId`
+WHERE `c`.`Status` = 'Pending'
+2026-06-19 12:14:52.750 +05:30 [INF] Executed DbCommand (3ms) [Parameters=[@p3='?' (DbType = Int32), @p0='?' (DbType = Int32), @p1='?' (DbType = DateTime), @p2='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SET AUTOCOMMIT = 1;
+UPDATE `BatchJobLogs` SET `DurationSeconds` = @p0, `EndTime` = @p1, `Status` = @p2
+WHERE `Id` = @p3;
+SELECT ROW_COUNT();
+2026-06-19 12:14:52.751 +05:30 [INF] Scheduled batch run BATCH-20260619-F06E completed successfully. Cases processed: 0, Matched: 0, Not Found: 0.
+2026-06-19 12:29:52.703 +05:30 [INF] Triggering scheduled batch run...
+2026-06-19 12:29:52.735 +05:30 [INF] Executed DbCommand (1ms) [Parameters=[@p0='?' (DbType = Int32), @p1='?' (DbType = Int32), @p2='?' (DbType = Int32), @p3='?' (DbType = Int32), @p4='?' (DbType = DateTime), @p5='?' (Size = 4000), @p6='?' (DbType = DateTime), @p7='?' (Size = 4000), @p8='?' (Size = 4000), @p9='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO `BatchJobLogs` (`AccountsMatched`, `AccountsNotFound`, `CasesProcessed`, `DurationSeconds`, `EndTime`, `RunId`, `StartTime`, `Status`, `TriggeredBy`, `TriggeredByUserId`)
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5, @p6, @p7, @p8, @p9);
+SELECT `Id`
+FROM `BatchJobLogs`
+WHERE ROW_COUNT() = 1 AND `Id` = LAST_INSERT_ID();
+2026-06-19 12:29:52.739 +05:30 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT `c`.`Id`, `c`.`CaseNumber`, `c`.`CreatedAt`, `c`.`CreatedByUserId`, `c`.`FreezeAmount`, `c`.`OrderType`, `c`.`Status`, `c`.`UpdatedAt`, `d`.`Id`, `d`.`BankAccountNumber`, `d`.`BankName`, `d`.`CaseId`, `d`.`FullName`, `d`.`IdentityNumber`
+FROM `Cases` AS `c`
+LEFT JOIN `Defendants` AS `d` ON `c`.`Id` = `d`.`CaseId`
+WHERE `c`.`Status` = 'Pending'
+2026-06-19 12:29:52.743 +05:30 [INF] Executed DbCommand (3ms) [Parameters=[@p3='?' (DbType = Int32), @p0='?' (DbType = Int32), @p1='?' (DbType = DateTime), @p2='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SET AUTOCOMMIT = 1;
+UPDATE `BatchJobLogs` SET `DurationSeconds` = @p0, `EndTime` = @p1, `Status` = @p2
+WHERE `Id` = @p3;
+SELECT ROW_COUNT();
+2026-06-19 12:29:52.743 +05:30 [INF] Scheduled batch run BATCH-20260619-38CE completed successfully. Cases processed: 0, Matched: 0, Not Found: 0.
+2026-06-19 12:44:52.711 +05:30 [INF] Triggering scheduled batch run...
+2026-06-19 12:44:52.750 +05:30 [INF] Executed DbCommand (1ms) [Parameters=[@p0='?' (DbType = Int32), @p1='?' (DbType = Int32), @p2='?' (DbType = Int32), @p3='?' (DbType = Int32), @p4='?' (DbType = DateTime), @p5='?' (Size = 4000), @p6='?' (DbType = DateTime), @p7='?' (Size = 4000), @p8='?' (Size = 4000), @p9='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO `BatchJobLogs` (`AccountsMatched`, `AccountsNotFound`, `CasesProcessed`, `DurationSeconds`, `EndTime`, `RunId`, `StartTime`, `Status`, `TriggeredBy`, `TriggeredByUserId`)
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5, @p6, @p7, @p8, @p9);
+SELECT `Id`
+FROM `BatchJobLogs`
+WHERE ROW_COUNT() = 1 AND `Id` = LAST_INSERT_ID();
+2026-06-19 12:44:52.754 +05:30 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT `c`.`Id`, `c`.`CaseNumber`, `c`.`CreatedAt`, `c`.`CreatedByUserId`, `c`.`FreezeAmount`, `c`.`OrderType`, `c`.`Status`, `c`.`UpdatedAt`, `d`.`Id`, `d`.`BankAccountNumber`, `d`.`BankName`, `d`.`CaseId`, `d`.`FullName`, `d`.`IdentityNumber`
+FROM `Cases` AS `c`
+LEFT JOIN `Defendants` AS `d` ON `c`.`Id` = `d`.`CaseId`
+WHERE `c`.`Status` = 'Pending'
+2026-06-19 12:44:52.758 +05:30 [INF] Executed DbCommand (3ms) [Parameters=[@p3='?' (DbType = Int32), @p0='?' (DbType = Int32), @p1='?' (DbType = DateTime), @p2='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SET AUTOCOMMIT = 1;
+UPDATE `BatchJobLogs` SET `DurationSeconds` = @p0, `EndTime` = @p1, `Status` = @p2
+WHERE `Id` = @p3;
+SELECT ROW_COUNT();
+2026-06-19 12:44:52.758 +05:30 [INF] Scheduled batch run BATCH-20260619-3B36 completed successfully. Cases processed: 0, Matched: 0, Not Found: 0.
+2026-06-19 13:48:53.156 +05:30 [INF] Triggering scheduled batch run...
+2026-06-19 13:48:53.198 +05:30 [INF] Executed DbCommand (2ms) [Parameters=[@p0='?' (DbType = Int32), @p1='?' (DbType = Int32), @p2='?' (DbType = Int32), @p3='?' (DbType = Int32), @p4='?' (DbType = DateTime), @p5='?' (Size = 4000), @p6='?' (DbType = DateTime), @p7='?' (Size = 4000), @p8='?' (Size = 4000), @p9='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO `BatchJobLogs` (`AccountsMatched`, `AccountsNotFound`, `CasesProcessed`, `DurationSeconds`, `EndTime`, `RunId`, `StartTime`, `Status`, `TriggeredBy`, `TriggeredByUserId`)
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5, @p6, @p7, @p8, @p9);
+SELECT `Id`
+FROM `BatchJobLogs`
+WHERE ROW_COUNT() = 1 AND `Id` = LAST_INSERT_ID();
+2026-06-19 13:48:53.203 +05:30 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT `c`.`Id`, `c`.`CaseNumber`, `c`.`CreatedAt`, `c`.`CreatedByUserId`, `c`.`FreezeAmount`, `c`.`OrderType`, `c`.`Status`, `c`.`UpdatedAt`, `d`.`Id`, `d`.`BankAccountNumber`, `d`.`BankName`, `d`.`CaseId`, `d`.`FullName`, `d`.`IdentityNumber`
+FROM `Cases` AS `c`
+LEFT JOIN `Defendants` AS `d` ON `c`.`Id` = `d`.`CaseId`
+WHERE `c`.`Status` = 'Pending'
+2026-06-19 13:48:53.207 +05:30 [INF] Executed DbCommand (3ms) [Parameters=[@p3='?' (DbType = Int32), @p0='?' (DbType = Int32), @p1='?' (DbType = DateTime), @p2='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SET AUTOCOMMIT = 1;
+UPDATE `BatchJobLogs` SET `DurationSeconds` = @p0, `EndTime` = @p1, `Status` = @p2
+WHERE `Id` = @p3;
+SELECT ROW_COUNT();
+2026-06-19 13:48:53.207 +05:30 [INF] Scheduled batch run BATCH-20260619-0D19 completed successfully. Cases processed: 0, Matched: 0, Not Found: 0.
+2026-06-19 14:11:08.442 +05:30 [INF] Triggering scheduled batch run...
+2026-06-19 14:11:08.479 +05:30 [INF] Executed DbCommand (2ms) [Parameters=[@p0='?' (DbType = Int32), @p1='?' (DbType = Int32), @p2='?' (DbType = Int32), @p3='?' (DbType = Int32), @p4='?' (DbType = DateTime), @p5='?' (Size = 4000), @p6='?' (DbType = DateTime), @p7='?' (Size = 4000), @p8='?' (Size = 4000), @p9='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO `BatchJobLogs` (`AccountsMatched`, `AccountsNotFound`, `CasesProcessed`, `DurationSeconds`, `EndTime`, `RunId`, `StartTime`, `Status`, `TriggeredBy`, `TriggeredByUserId`)
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5, @p6, @p7, @p8, @p9);
+SELECT `Id`
+FROM `BatchJobLogs`
+WHERE ROW_COUNT() = 1 AND `Id` = LAST_INSERT_ID();
+2026-06-19 14:11:08.484 +05:30 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT `c`.`Id`, `c`.`CaseNumber`, `c`.`CreatedAt`, `c`.`CreatedByUserId`, `c`.`FreezeAmount`, `c`.`OrderType`, `c`.`Status`, `c`.`UpdatedAt`, `d`.`Id`, `d`.`BankAccountNumber`, `d`.`BankName`, `d`.`CaseId`, `d`.`FullName`, `d`.`IdentityNumber`
+FROM `Cases` AS `c`
+LEFT JOIN `Defendants` AS `d` ON `c`.`Id` = `d`.`CaseId`
+WHERE `c`.`Status` = 'Pending'
+2026-06-19 14:11:08.488 +05:30 [INF] Executed DbCommand (3ms) [Parameters=[@p3='?' (DbType = Int32), @p0='?' (DbType = Int32), @p1='?' (DbType = DateTime), @p2='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SET AUTOCOMMIT = 1;
+UPDATE `BatchJobLogs` SET `DurationSeconds` = @p0, `EndTime` = @p1, `Status` = @p2
+WHERE `Id` = @p3;
+SELECT ROW_COUNT();
+2026-06-19 14:11:08.488 +05:30 [INF] Scheduled batch run BATCH-20260619-DD01 completed successfully. Cases processed: 0, Matched: 0, Not Found: 0.
+2026-06-19 14:26:08.449 +05:30 [INF] Triggering scheduled batch run...
+2026-06-19 14:26:08.482 +05:30 [INF] Executed DbCommand (3ms) [Parameters=[@p0='?' (DbType = Int32), @p1='?' (DbType = Int32), @p2='?' (DbType = Int32), @p3='?' (DbType = Int32), @p4='?' (DbType = DateTime), @p5='?' (Size = 4000), @p6='?' (DbType = DateTime), @p7='?' (Size = 4000), @p8='?' (Size = 4000), @p9='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO `BatchJobLogs` (`AccountsMatched`, `AccountsNotFound`, `CasesProcessed`, `DurationSeconds`, `EndTime`, `RunId`, `StartTime`, `Status`, `TriggeredBy`, `TriggeredByUserId`)
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5, @p6, @p7, @p8, @p9);
+SELECT `Id`
+FROM `BatchJobLogs`
+WHERE ROW_COUNT() = 1 AND `Id` = LAST_INSERT_ID();
+2026-06-19 14:26:08.487 +05:30 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT `c`.`Id`, `c`.`CaseNumber`, `c`.`CreatedAt`, `c`.`CreatedByUserId`, `c`.`FreezeAmount`, `c`.`OrderType`, `c`.`Status`, `c`.`UpdatedAt`, `d`.`Id`, `d`.`BankAccountNumber`, `d`.`BankName`, `d`.`CaseId`, `d`.`FullName`, `d`.`IdentityNumber`
+FROM `Cases` AS `c`
+LEFT JOIN `Defendants` AS `d` ON `c`.`Id` = `d`.`CaseId`
+WHERE `c`.`Status` = 'Pending'
+2026-06-19 14:26:08.491 +05:30 [INF] Executed DbCommand (3ms) [Parameters=[@p3='?' (DbType = Int32), @p0='?' (DbType = Int32), @p1='?' (DbType = DateTime), @p2='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SET AUTOCOMMIT = 1;
+UPDATE `BatchJobLogs` SET `DurationSeconds` = @p0, `EndTime` = @p1, `Status` = @p2
+WHERE `Id` = @p3;
+SELECT ROW_COUNT();
+2026-06-19 14:26:08.492 +05:30 [INF] Scheduled batch run BATCH-20260619-4714 completed successfully. Cases processed: 0, Matched: 0, Not Found: 0.
+2026-06-19 14:53:55.078 +05:30 [INF] Triggering scheduled batch run...
+2026-06-19 14:53:55.125 +05:30 [INF] Executed DbCommand (3ms) [Parameters=[@p0='?' (DbType = Int32), @p1='?' (DbType = Int32), @p2='?' (DbType = Int32), @p3='?' (DbType = Int32), @p4='?' (DbType = DateTime), @p5='?' (Size = 4000), @p6='?' (DbType = DateTime), @p7='?' (Size = 4000), @p8='?' (Size = 4000), @p9='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO `BatchJobLogs` (`AccountsMatched`, `AccountsNotFound`, `CasesProcessed`, `DurationSeconds`, `EndTime`, `RunId`, `StartTime`, `Status`, `TriggeredBy`, `TriggeredByUserId`)
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5, @p6, @p7, @p8, @p9);
+SELECT `Id`
+FROM `BatchJobLogs`
+WHERE ROW_COUNT() = 1 AND `Id` = LAST_INSERT_ID();
+2026-06-19 14:53:55.131 +05:30 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT `c`.`Id`, `c`.`CaseNumber`, `c`.`CreatedAt`, `c`.`CreatedByUserId`, `c`.`FreezeAmount`, `c`.`OrderType`, `c`.`Status`, `c`.`UpdatedAt`, `d`.`Id`, `d`.`BankAccountNumber`, `d`.`BankName`, `d`.`CaseId`, `d`.`FullName`, `d`.`IdentityNumber`
+FROM `Cases` AS `c`
+LEFT JOIN `Defendants` AS `d` ON `c`.`Id` = `d`.`CaseId`
+WHERE `c`.`Status` = 'Pending'
+2026-06-19 14:53:55.135 +05:30 [INF] Executed DbCommand (4ms) [Parameters=[@p3='?' (DbType = Int32), @p0='?' (DbType = Int32), @p1='?' (DbType = DateTime), @p2='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SET AUTOCOMMIT = 1;
+UPDATE `BatchJobLogs` SET `DurationSeconds` = @p0, `EndTime` = @p1, `Status` = @p2
+WHERE `Id` = @p3;
+SELECT ROW_COUNT();
+2026-06-19 14:53:55.136 +05:30 [INF] Scheduled batch run BATCH-20260619-D97E completed successfully. Cases processed: 0, Matched: 0, Not Found: 0.
+2026-06-19 15:03:31.564 +05:30 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:5000/api/auth/login - null null
+2026-06-19 15:03:31.575 +05:30 [INF] CORS policy execution successful.
+2026-06-19 15:03:31.577 +05:30 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:5000/api/auth/login - 204 null null 15.859ms
+2026-06-19 15:03:31.589 +05:30 [INF] Request starting HTTP/1.1 POST http://localhost:5000/api/auth/login - application/json 57
+2026-06-19 15:03:31.590 +05:30 [INF] CORS policy execution successful.
+2026-06-19 15:03:31.603 +05:30 [INF] Executing endpoint 'ccms_backend.controllers.AuthController.Login (ccms-backend)'
+2026-06-19 15:03:31.609 +05:30 [INF] Route matched with {action = "Login", controller = "Auth"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Login(ccms_backend.dtos.LoginDto) on controller ccms_backend.controllers.AuthController (ccms-backend).
+2026-06-19 15:03:31.726 +05:30 [INF] Executed DbCommand (5ms) [Parameters=[@__username_0='?' (Size = 255)], CommandType='"Text"', CommandTimeout='30']
+SELECT `u`.`Id`, `u`.`BankCode`, `u`.`CreatedAt`, `u`.`PasswordHash`, `u`.`Role`, `u`.`Username`
+FROM `Users` AS `u`
+WHERE `u`.`Username` = @__username_0
+LIMIT 1
+2026-06-19 15:03:32.395 +05:30 [INF] Executing OkObjectResult, writing value of type 'ccms_backend.dtos.AuthResultDto'.
+2026-06-19 15:03:32.402 +05:30 [INF] Executed action ccms_backend.controllers.AuthController.Login (ccms-backend) in 789.5215ms
+2026-06-19 15:03:32.402 +05:30 [INF] Executed endpoint 'ccms_backend.controllers.AuthController.Login (ccms-backend)'
+2026-06-19 15:03:32.403 +05:30 [INF] Request finished HTTP/1.1 POST http://localhost:5000/api/auth/login - 200 null application/json; charset=utf-8 813.9713ms
+2026-06-19 15:03:33.065 +05:30 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:5000/api/bank/dashboard - null null
+2026-06-19 15:03:33.065 +05:30 [INF] CORS policy execution successful.
+2026-06-19 15:03:33.065 +05:30 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:5000/api/bank/dashboard - 204 null null 0.3181ms
+2026-06-19 15:03:33.102 +05:30 [INF] Request starting HTTP/1.1 GET http://localhost:5000/api/bank/dashboard - null null
+2026-06-19 15:03:33.108 +05:30 [INF] CORS policy execution successful.
+2026-06-19 15:03:33.127 +05:30 [INF] Executing endpoint 'ccms_backend.controllers.BankDashboardController.GetDashboard (ccms-backend)'
+2026-06-19 15:03:33.127 +05:30 [INF] Route matched with {action = "GetDashboard", controller = "BankDashboard"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[ccms_backend.dtos.BankDashboardResponseDto]] GetDashboard() on controller ccms_backend.controllers.BankDashboardController (ccms-backend).
+2026-06-19 15:03:33.172 +05:30 [INF] Executed DbCommand (10ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT `c`.`Id`, `c`.`CaseNumber`, `c`.`CreatedAt`, `c`.`CreatedByUserId`, `c`.`FreezeAmount`, `c`.`OrderType`, `c`.`Status`, `c`.`UpdatedAt`, `d`.`Id`, `d`.`BankAccountNumber`, `d`.`BankName`, `d`.`CaseId`, `d`.`FullName`, `d`.`IdentityNumber`, `c0`.`Id`, `c0`.`CaseId`, `c0`.`FullName`, `c0`.`IdentityNumber`
+FROM `Cases` AS `c`
+LEFT JOIN `Defendants` AS `d` ON `c`.`Id` = `d`.`CaseId`
+LEFT JOIN `Complainants` AS `c0` ON `c`.`Id` = `c0`.`CaseId`
+2026-06-19 15:03:33.216 +05:30 [INF] Executed DbCommand (6ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT `b`.`Id`, `b`.`AccountsMatched`, `b`.`AccountsNotFound`, `b`.`CasesProcessed`, `b`.`DurationSeconds`, `b`.`EndTime`, `b`.`RunId`, `b`.`StartTime`, `b`.`Status`, `b`.`TriggeredBy`, `b`.`TriggeredByUserId`
+FROM `BatchJobLogs` AS `b`
+ORDER BY `b`.`StartTime` DESC
+LIMIT 1
+2026-06-19 15:03:33.226 +05:30 [INF] Executing OkObjectResult, writing value of type 'ccms_backend.dtos.BankDashboardResponseDto'.
+2026-06-19 15:03:33.235 +05:30 [INF] Executed action ccms_backend.controllers.BankDashboardController.GetDashboard (ccms-backend) in 107.3113ms
+2026-06-19 15:03:33.235 +05:30 [INF] Executed endpoint 'ccms_backend.controllers.BankDashboardController.GetDashboard (ccms-backend)'
+2026-06-19 15:03:33.235 +05:30 [INF] Request finished HTTP/1.1 GET http://localhost:5000/api/bank/dashboard - 200 null application/json; charset=utf-8 132.9547ms
+2026-06-19 15:03:35.508 +05:30 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:5000/api/cases/inbox - null null
+2026-06-19 15:03:35.508 +05:30 [INF] CORS policy execution successful.
+2026-06-19 15:03:35.508 +05:30 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:5000/api/cases/inbox - 204 null null 0.945ms
+2026-06-19 15:03:35.521 +05:30 [INF] Request starting HTTP/1.1 GET http://localhost:5000/api/cases/inbox - null null
+2026-06-19 15:03:35.522 +05:30 [INF] CORS policy execution successful.
+2026-06-19 15:03:35.523 +05:30 [INF] Executing endpoint 'ccms_backend.controllers.CasesController.GetInbox (ccms-backend)'
+2026-06-19 15:03:35.525 +05:30 [INF] Route matched with {action = "GetInbox", controller = "Cases"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[ccms_backend.dtos.CaseInboxDto]] GetInbox() on controller ccms_backend.controllers.CasesController (ccms-backend).
+2026-06-19 15:03:35.576 +05:30 [INF] Executed DbCommand (4ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT `c`.`Id`, `c`.`CaseNumber`, `c`.`CreatedAt`, `c`.`CreatedByUserId`, `c`.`FreezeAmount`, `c`.`OrderType`, `c`.`Status`, `c`.`UpdatedAt`, `d`.`Id`, `d`.`BankAccountNumber`, `d`.`BankName`, `d`.`CaseId`, `d`.`FullName`, `d`.`IdentityNumber`, `c0`.`Id`, `c0`.`AccountHolderName`, `c0`.`AccountStatus`, `c0`.`CaseId`, `c0`.`CurrentBalance`, `c0`.`MatchedAccountNumber`, `c0`.`MatchedOn`, `c0`.`ValidatedAt`
+FROM `Cases` AS `c`
+LEFT JOIN `Defendants` AS `d` ON `c`.`Id` = `d`.`CaseId`
+LEFT JOIN `CaseValidationResults` AS `c0` ON `c`.`Id` = `c0`.`CaseId`
+ORDER BY `c`.`CreatedAt` DESC
+2026-06-19 15:03:35.587 +05:30 [INF] Executing OkObjectResult, writing value of type 'ccms_backend.dtos.CaseInboxDto'.
+2026-06-19 15:03:35.588 +05:30 [INF] Executed action ccms_backend.controllers.CasesController.GetInbox (ccms-backend) in 61.9222ms
+2026-06-19 15:03:35.588 +05:30 [INF] Executed endpoint 'ccms_backend.controllers.CasesController.GetInbox (ccms-backend)'
+2026-06-19 15:03:35.588 +05:30 [INF] Request finished HTTP/1.1 GET http://localhost:5000/api/cases/inbox - 200 null application/json; charset=utf-8 66.6417ms
+2026-06-19 15:03:37.423 +05:30 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:5000/api/cases/CCMS-TEST-0009 - null null
+2026-06-19 15:03:37.424 +05:30 [INF] CORS policy execution successful.
+2026-06-19 15:03:37.424 +05:30 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:5000/api/cases/CCMS-TEST-0009 - 204 null null 0.7098ms
+2026-06-19 15:03:37.440 +05:30 [INF] Request starting HTTP/1.1 GET http://localhost:5000/api/cases/CCMS-TEST-0009 - null null
+2026-06-19 15:03:37.441 +05:30 [INF] CORS policy execution successful.
+2026-06-19 15:03:37.448 +05:30 [INF] Executing endpoint 'ccms_backend.controllers.CasesController.GetCaseDetail (ccms-backend)'
+2026-06-19 15:03:37.448 +05:30 [INF] Route matched with {action = "GetCaseDetail", controller = "Cases"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[ccms_backend.dtos.CaseDetailDto]] GetCaseDetail(System.String) on controller ccms_backend.controllers.CasesController (ccms-backend).
+2026-06-19 15:03:37.476 +05:30 [INF] Executed DbCommand (0ms) [Parameters=[@__username_0='?' (Size = 255)], CommandType='"Text"', CommandTimeout='30']
+SELECT `u`.`Id`, `u`.`BankCode`, `u`.`CreatedAt`, `u`.`PasswordHash`, `u`.`Role`, `u`.`Username`
+FROM `Users` AS `u`
+WHERE `u`.`Username` = @__username_0
+LIMIT 1
+2026-06-19 15:03:37.506 +05:30 [INF] Executed DbCommand (24ms) [Parameters=[@__caseNumber_0='?' (Size = 255)], CommandType='"Text"', CommandTimeout='30']
+SELECT `s`.`Id`, `s`.`CaseNumber`, `s`.`CreatedAt`, `s`.`CreatedByUserId`, `s`.`FreezeAmount`, `s`.`OrderType`, `s`.`Status`, `s`.`UpdatedAt`, `s`.`Id0`, `s`.`CaseId`, `s`.`FullName`, `s`.`IdentityNumber`, `s`.`Id1`, `s`.`BankAccountNumber`, `s`.`BankName`, `s`.`CaseId0`, `s`.`FullName0`, `s`.`IdentityNumber0`, `s`.`Id2`, `s`.`AccountHolderName`, `s`.`AccountStatus`, `s`.`CaseId1`, `s`.`CurrentBalance`, `s`.`MatchedAccountNumber`, `s`.`MatchedOn`, `s`.`ValidatedAt`, `s`.`Id3`, `s`.`Id4`, `c3`.`Id`, `c3`.`CaseId`, `c3`.`DocumentType`, `c3`.`FileName`, `c3`.`FilePath`, `c3`.`FileSize`, `c3`.`UploadedAt`, `s`.`BalanceReported`, `s`.`CaseId2`, `s`.`FreezeAmountApplied`, `s`.`Remarks`, `s`.`RespondedByUserId`, `s`.`ResponseType`, `s`.`SubmittedAt`, `s`.`BankCode`, `s`.`CreatedAt0`, `s`.`PasswordHash`, `s`.`Role`, `s`.`Username`
+FROM (
+    SELECT `c`.`Id`, `c`.`CaseNumber`, `c`.`CreatedAt`, `c`.`CreatedByUserId`, `c`.`FreezeAmount`, `c`.`OrderType`, `c`.`Status`, `c`.`UpdatedAt`, `c0`.`Id` AS `Id0`, `c0`.`CaseId`, `c0`.`FullName`, `c0`.`IdentityNumber`, `d`.`Id` AS `Id1`, `d`.`BankAccountNumber`, `d`.`BankName`, `d`.`CaseId` AS `CaseId0`, `d`.`FullName` AS `FullName0`, `d`.`IdentityNumber` AS `IdentityNumber0`, `c1`.`Id` AS `Id2`, `c1`.`AccountHolderName`, `c1`.`AccountStatus`, `c1`.`CaseId` AS `CaseId1`, `c1`.`CurrentBalance`, `c1`.`MatchedAccountNumber`, `c1`.`MatchedOn`, `c1`.`ValidatedAt`, `c2`.`Id` AS `Id3`, `c2`.`BalanceReported`, `c2`.`CaseId` AS `CaseId2`, `c2`.`FreezeAmountApplied`, `c2`.`Remarks`, `c2`.`RespondedByUserId`, `c2`.`ResponseType`, `c2`.`SubmittedAt`, `u`.`Id` AS `Id4`, `u`.`BankCode`, `u`.`CreatedAt` AS `CreatedAt0`, `u`.`PasswordHash`, `u`.`Role`, `u`.`Username`
+    FROM `Cases` AS `c`
+    LEFT JOIN `Complainants` AS `c0` ON `c`.`Id` = `c0`.`CaseId`
+    LEFT JOIN `Defendants` AS `d` ON `c`.`Id` = `d`.`CaseId`
+    LEFT JOIN `CaseValidationResults` AS `c1` ON `c`.`Id` = `c1`.`CaseId`
+    LEFT JOIN `CaseResponses` AS `c2` ON `c`.`Id` = `c2`.`CaseId`
+    LEFT JOIN `Users` AS `u` ON `c2`.`RespondedByUserId` = `u`.`Id`
+    WHERE `c`.`CaseNumber` = @__caseNumber_0
+    LIMIT 1
+) AS `s`
+LEFT JOIN `CaseDocuments` AS `c3` ON `s`.`Id` = `c3`.`CaseId`
+ORDER BY `s`.`Id`, `s`.`Id0`, `s`.`Id1`, `s`.`Id2`, `s`.`Id3`, `s`.`Id4`
+2026-06-19 15:03:37.514 +05:30 [INF] Executing OkObjectResult, writing value of type 'ccms_backend.dtos.CaseDetailDto'.
+2026-06-19 15:03:37.519 +05:30 [INF] Executed action ccms_backend.controllers.CasesController.GetCaseDetail (ccms-backend) in 70.4343ms
+2026-06-19 15:03:37.519 +05:30 [INF] Executed endpoint 'ccms_backend.controllers.CasesController.GetCaseDetail (ccms-backend)'
+2026-06-19 15:03:37.519 +05:30 [INF] Request finished HTTP/1.1 GET http://localhost:5000/api/cases/CCMS-TEST-0009 - 200 null application/json; charset=utf-8 78.5689ms
+2026-06-19 15:03:39.661 +05:30 [INF] Request starting HTTP/1.1 GET http://localhost:5000/api/cases/CCMS-TEST-0009 - null null
+2026-06-19 15:03:39.661 +05:30 [INF] CORS policy execution successful.
+2026-06-19 15:03:39.665 +05:30 [INF] Executing endpoint 'ccms_backend.controllers.CasesController.GetCaseDetail (ccms-backend)'
+2026-06-19 15:03:39.673 +05:30 [INF] Route matched with {action = "GetCaseDetail", controller = "Cases"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[ccms_backend.dtos.CaseDetailDto]] GetCaseDetail(System.String) on controller ccms_backend.controllers.CasesController (ccms-backend).
+2026-06-19 15:03:39.712 +05:30 [INF] Executed DbCommand (1ms) [Parameters=[@__username_0='?' (Size = 255)], CommandType='"Text"', CommandTimeout='30']
+SELECT `u`.`Id`, `u`.`BankCode`, `u`.`CreatedAt`, `u`.`PasswordHash`, `u`.`Role`, `u`.`Username`
+FROM `Users` AS `u`
+WHERE `u`.`Username` = @__username_0
+LIMIT 1
+2026-06-19 15:03:39.718 +05:30 [INF] Executed DbCommand (4ms) [Parameters=[@__caseNumber_0='?' (Size = 255)], CommandType='"Text"', CommandTimeout='30']
+SELECT `s`.`Id`, `s`.`CaseNumber`, `s`.`CreatedAt`, `s`.`CreatedByUserId`, `s`.`FreezeAmount`, `s`.`OrderType`, `s`.`Status`, `s`.`UpdatedAt`, `s`.`Id0`, `s`.`CaseId`, `s`.`FullName`, `s`.`IdentityNumber`, `s`.`Id1`, `s`.`BankAccountNumber`, `s`.`BankName`, `s`.`CaseId0`, `s`.`FullName0`, `s`.`IdentityNumber0`, `s`.`Id2`, `s`.`AccountHolderName`, `s`.`AccountStatus`, `s`.`CaseId1`, `s`.`CurrentBalance`, `s`.`MatchedAccountNumber`, `s`.`MatchedOn`, `s`.`ValidatedAt`, `s`.`Id3`, `s`.`Id4`, `c3`.`Id`, `c3`.`CaseId`, `c3`.`DocumentType`, `c3`.`FileName`, `c3`.`FilePath`, `c3`.`FileSize`, `c3`.`UploadedAt`, `s`.`BalanceReported`, `s`.`CaseId2`, `s`.`FreezeAmountApplied`, `s`.`Remarks`, `s`.`RespondedByUserId`, `s`.`ResponseType`, `s`.`SubmittedAt`, `s`.`BankCode`, `s`.`CreatedAt0`, `s`.`PasswordHash`, `s`.`Role`, `s`.`Username`
+FROM (
+    SELECT `c`.`Id`, `c`.`CaseNumber`, `c`.`CreatedAt`, `c`.`CreatedByUserId`, `c`.`FreezeAmount`, `c`.`OrderType`, `c`.`Status`, `c`.`UpdatedAt`, `c0`.`Id` AS `Id0`, `c0`.`CaseId`, `c0`.`FullName`, `c0`.`IdentityNumber`, `d`.`Id` AS `Id1`, `d`.`BankAccountNumber`, `d`.`BankName`, `d`.`CaseId` AS `CaseId0`, `d`.`FullName` AS `FullName0`, `d`.`IdentityNumber` AS `IdentityNumber0`, `c1`.`Id` AS `Id2`, `c1`.`AccountHolderName`, `c1`.`AccountStatus`, `c1`.`CaseId` AS `CaseId1`, `c1`.`CurrentBalance`, `c1`.`MatchedAccountNumber`, `c1`.`MatchedOn`, `c1`.`ValidatedAt`, `c2`.`Id` AS `Id3`, `c2`.`BalanceReported`, `c2`.`CaseId` AS `CaseId2`, `c2`.`FreezeAmountApplied`, `c2`.`Remarks`, `c2`.`RespondedByUserId`, `c2`.`ResponseType`, `c2`.`SubmittedAt`, `u`.`Id` AS `Id4`, `u`.`BankCode`, `u`.`CreatedAt` AS `CreatedAt0`, `u`.`PasswordHash`, `u`.`Role`, `u`.`Username`
+    FROM `Cases` AS `c`
+    LEFT JOIN `Complainants` AS `c0` ON `c`.`Id` = `c0`.`CaseId`
+    LEFT JOIN `Defendants` AS `d` ON `c`.`Id` = `d`.`CaseId`
+    LEFT JOIN `CaseValidationResults` AS `c1` ON `c`.`Id` = `c1`.`CaseId`
+    LEFT JOIN `CaseResponses` AS `c2` ON `c`.`Id` = `c2`.`CaseId`
+    LEFT JOIN `Users` AS `u` ON `c2`.`RespondedByUserId` = `u`.`Id`
+    WHERE `c`.`CaseNumber` = @__caseNumber_0
+    LIMIT 1
+) AS `s`
+LEFT JOIN `CaseDocuments` AS `c3` ON `s`.`Id` = `c3`.`CaseId`
+ORDER BY `s`.`Id`, `s`.`Id0`, `s`.`Id1`, `s`.`Id2`, `s`.`Id3`, `s`.`Id4`
+2026-06-19 15:03:39.719 +05:30 [INF] Executing OkObjectResult, writing value of type 'ccms_backend.dtos.CaseDetailDto'.
+2026-06-19 15:03:39.719 +05:30 [INF] Executed action ccms_backend.controllers.CasesController.GetCaseDetail (ccms-backend) in 46.28ms
+2026-06-19 15:03:39.719 +05:30 [INF] Executed endpoint 'ccms_backend.controllers.CasesController.GetCaseDetail (ccms-backend)'
+2026-06-19 15:03:39.720 +05:30 [INF] Request finished HTTP/1.1 GET http://localhost:5000/api/cases/CCMS-TEST-0009 - 200 null application/json; charset=utf-8 58.7735ms
+2026-06-19 15:03:55.528 +05:30 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:5000/api/auth/login - null null
+2026-06-19 15:03:55.528 +05:30 [INF] CORS policy execution successful.
+2026-06-19 15:03:55.528 +05:30 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:5000/api/auth/login - 204 null null 0.3479ms
+2026-06-19 15:03:55.554 +05:30 [INF] Request starting HTTP/1.1 POST http://localhost:5000/api/auth/login - application/json 59
+2026-06-19 15:03:55.554 +05:30 [INF] CORS policy execution successful.
+2026-06-19 15:03:55.554 +05:30 [INF] Executing endpoint 'ccms_backend.controllers.AuthController.Login (ccms-backend)'
+2026-06-19 15:03:55.554 +05:30 [INF] Route matched with {action = "Login", controller = "Auth"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Login(ccms_backend.dtos.LoginDto) on controller ccms_backend.controllers.AuthController (ccms-backend).
+2026-06-19 15:03:55.611 +05:30 [INF] Executed DbCommand (3ms) [Parameters=[@__username_0='?' (Size = 255)], CommandType='"Text"', CommandTimeout='30']
+SELECT `u`.`Id`, `u`.`BankCode`, `u`.`CreatedAt`, `u`.`PasswordHash`, `u`.`Role`, `u`.`Username`
+FROM `Users` AS `u`
+WHERE `u`.`Username` = @__username_0
+LIMIT 1
+2026-06-19 15:03:56.262 +05:30 [INF] Executing OkObjectResult, writing value of type 'ccms_backend.dtos.AuthResultDto'.
+2026-06-19 15:03:56.262 +05:30 [INF] Executed action ccms_backend.controllers.AuthController.Login (ccms-backend) in 707.5736ms
+2026-06-19 15:03:56.266 +05:30 [INF] Executed endpoint 'ccms_backend.controllers.AuthController.Login (ccms-backend)'
+2026-06-19 15:03:56.266 +05:30 [INF] Request finished HTTP/1.1 POST http://localhost:5000/api/auth/login - 200 null application/json; charset=utf-8 712.4869ms
+2026-06-19 15:03:56.774 +05:30 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:5000/api/cases - null null
+2026-06-19 15:03:56.775 +05:30 [INF] CORS policy execution successful.
+2026-06-19 15:03:56.775 +05:30 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:5000/api/cases - 204 null null 1.7322ms
+2026-06-19 15:03:56.793 +05:30 [INF] Request starting HTTP/1.1 GET http://localhost:5000/api/cases - null null
+2026-06-19 15:03:56.793 +05:30 [INF] CORS policy execution successful.
+2026-06-19 15:03:56.798 +05:30 [INF] Executing endpoint 'ccms_backend.controllers.CasesController.GetCases (ccms-backend)'
+2026-06-19 15:03:56.800 +05:30 [INF] Route matched with {action = "GetCases", controller = "Cases"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetCases() on controller ccms_backend.controllers.CasesController (ccms-backend).
+2026-06-19 15:03:56.839 +05:30 [INF] Executed DbCommand (2ms) [Parameters=[@__username_0='?' (Size = 255)], CommandType='"Text"', CommandTimeout='30']
+SELECT `u`.`Id`, `u`.`BankCode`, `u`.`CreatedAt`, `u`.`PasswordHash`, `u`.`Role`, `u`.`Username`
+FROM `Users` AS `u`
+WHERE `u`.`Username` = @__username_0
+LIMIT 1
+2026-06-19 15:03:56.862 +05:30 [INF] Executed DbCommand (4ms) [Parameters=[@__user_Id_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT `c`.`Id`, `c`.`CaseNumber`, `c`.`CreatedAt`, `c`.`CreatedByUserId`, `c`.`FreezeAmount`, `c`.`OrderType`, `c`.`Status`, `c`.`UpdatedAt`, `d`.`Id`, `d`.`BankAccountNumber`, `d`.`BankName`, `d`.`CaseId`, `d`.`FullName`, `d`.`IdentityNumber`, `c0`.`Id`, `c0`.`AccountHolderName`, `c0`.`AccountStatus`, `c0`.`CaseId`, `c0`.`CurrentBalance`, `c0`.`MatchedAccountNumber`, `c0`.`MatchedOn`, `c0`.`ValidatedAt`
+FROM `Cases` AS `c`
+LEFT JOIN `Defendants` AS `d` ON `c`.`Id` = `d`.`CaseId`
+LEFT JOIN `CaseValidationResults` AS `c0` ON `c`.`Id` = `c0`.`CaseId`
+WHERE `c`.`CreatedByUserId` = @__user_Id_0
+ORDER BY `c`.`CreatedAt` DESC
+2026-06-19 15:03:56.867 +05:30 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[ccms_backend.dtos.CaseSummaryDto, ccms-backend, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2026-06-19 15:03:56.867 +05:30 [INF] Executed action ccms_backend.controllers.CasesController.GetCases (ccms-backend) in 67.3598ms
+2026-06-19 15:03:56.867 +05:30 [INF] Executed endpoint 'ccms_backend.controllers.CasesController.GetCases (ccms-backend)'
+2026-06-19 15:03:56.867 +05:30 [INF] Request finished HTTP/1.1 GET http://localhost:5000/api/cases - 200 null application/json; charset=utf-8 74.6716ms
+2026-06-19 15:03:58.395 +05:30 [INF] Request starting HTTP/1.1 GET http://localhost:5000/api/cases - null null
+2026-06-19 15:03:58.395 +05:30 [INF] CORS policy execution successful.
+2026-06-19 15:03:58.399 +05:30 [INF] Executing endpoint 'ccms_backend.controllers.CasesController.GetCases (ccms-backend)'
+2026-06-19 15:03:58.400 +05:30 [INF] Route matched with {action = "GetCases", controller = "Cases"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetCases() on controller ccms_backend.controllers.CasesController (ccms-backend).
+2026-06-19 15:03:58.424 +05:30 [INF] Executed DbCommand (1ms) [Parameters=[@__username_0='?' (Size = 255)], CommandType='"Text"', CommandTimeout='30']
+SELECT `u`.`Id`, `u`.`BankCode`, `u`.`CreatedAt`, `u`.`PasswordHash`, `u`.`Role`, `u`.`Username`
+FROM `Users` AS `u`
+WHERE `u`.`Username` = @__username_0
+LIMIT 1
+2026-06-19 15:03:58.428 +05:30 [INF] Executed DbCommand (2ms) [Parameters=[@__user_Id_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT `c`.`Id`, `c`.`CaseNumber`, `c`.`CreatedAt`, `c`.`CreatedByUserId`, `c`.`FreezeAmount`, `c`.`OrderType`, `c`.`Status`, `c`.`UpdatedAt`, `d`.`Id`, `d`.`BankAccountNumber`, `d`.`BankName`, `d`.`CaseId`, `d`.`FullName`, `d`.`IdentityNumber`, `c0`.`Id`, `c0`.`AccountHolderName`, `c0`.`AccountStatus`, `c0`.`CaseId`, `c0`.`CurrentBalance`, `c0`.`MatchedAccountNumber`, `c0`.`MatchedOn`, `c0`.`ValidatedAt`
+FROM `Cases` AS `c`
+LEFT JOIN `Defendants` AS `d` ON `c`.`Id` = `d`.`CaseId`
+LEFT JOIN `CaseValidationResults` AS `c0` ON `c`.`Id` = `c0`.`CaseId`
+WHERE `c`.`CreatedByUserId` = @__user_Id_0
+ORDER BY `c`.`CreatedAt` DESC
+2026-06-19 15:03:58.428 +05:30 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[ccms_backend.dtos.CaseSummaryDto, ccms-backend, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2026-06-19 15:03:58.431 +05:30 [INF] Executed action ccms_backend.controllers.CasesController.GetCases (ccms-backend) in 31.444ms
+2026-06-19 15:03:58.432 +05:30 [INF] Executed endpoint 'ccms_backend.controllers.CasesController.GetCases (ccms-backend)'
+2026-06-19 15:03:58.434 +05:30 [INF] Request finished HTTP/1.1 GET http://localhost:5000/api/cases - 200 null application/json; charset=utf-8 38.9542ms

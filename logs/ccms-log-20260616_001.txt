@@ -1,0 +1,1741 @@
+2026-06-16 17:26:25.700 +05:30 [INF] Starting web application
+2026-06-16 17:26:27.451 +05:30 [INF] Executed DbCommand (13ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT CASE WHEN COUNT(*) = 0 THEN FALSE ELSE TRUE END
+FROM information_schema.tables
+WHERE table_type = 'BASE TABLE' AND table_schema = 'ccms'
+2026-06-16 17:26:27.682 +05:30 [ERR] Failed executing DbCommand (5ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT EXISTS (
+    SELECT 1
+    FROM `Banks` AS `b`)
+2026-06-16 17:26:27.709 +05:30 [ERR] An exception occurred while iterating over the results of a query for context type 'ccms_backend.data.AppDbContext'.
+MySqlConnector.MySqlException (0x80004005): Table 'ccms.banks' doesn't exist
+   at MySqlConnector.Core.ServerSession.ReceiveReplyAsync(IOBehavior ioBehavior, CancellationToken cancellationToken) in /_/src/MySqlConnector/Core/ServerSession.cs:line 1081
+   at MySqlConnector.Core.ResultSet.ReadResultSetHeaderAsync(IOBehavior ioBehavior) in /_/src/MySqlConnector/Core/ResultSet.cs:line 37
+   at MySqlConnector.MySqlDataReader.ActivateResultSet(CancellationToken cancellationToken) in /_/src/MySqlConnector/MySqlDataReader.cs:line 131
+   at MySqlConnector.MySqlDataReader.InitAsync(CommandListPosition commandListPosition, ICommandPayloadCreator payloadCreator, IDictionary`2 cachedProcedures, IMySqlCommand command, CommandBehavior behavior, Activity activity, IOBehavior ioBehavior, CancellationToken cancellationToken) in /_/src/MySqlConnector/MySqlDataReader.cs:line 487
+   at MySqlConnector.Core.CommandExecutor.ExecuteReaderAsync(CommandListPosition commandListPosition, ICommandPayloadCreator payloadCreator, CommandBehavior behavior, Activity activity, IOBehavior ioBehavior, CancellationToken cancellationToken) in /_/src/MySqlConnector/Core/CommandExecutor.cs:line 56
+   at MySqlConnector.MySqlCommand.ExecuteReaderAsync(CommandBehavior behavior, IOBehavior ioBehavior, CancellationToken cancellationToken) in /_/src/MySqlConnector/MySqlCommand.cs:line 357
+   at MySqlConnector.MySqlCommand.ExecuteDbDataReaderAsync(CommandBehavior behavior, CancellationToken cancellationToken) in /_/src/MySqlConnector/MySqlCommand.cs:line 350
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.InitializeReaderAsync(AsyncEnumerator enumerator, CancellationToken cancellationToken)
+   at Pomelo.EntityFrameworkCore.MySql.Storage.Internal.MySqlExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.MoveNextAsync()
+MySqlConnector.MySqlException (0x80004005): Table 'ccms.banks' doesn't exist
+   at MySqlConnector.Core.ServerSession.ReceiveReplyAsync(IOBehavior ioBehavior, CancellationToken cancellationToken) in /_/src/MySqlConnector/Core/ServerSession.cs:line 1081
+   at MySqlConnector.Core.ResultSet.ReadResultSetHeaderAsync(IOBehavior ioBehavior) in /_/src/MySqlConnector/Core/ResultSet.cs:line 37
+   at MySqlConnector.MySqlDataReader.ActivateResultSet(CancellationToken cancellationToken) in /_/src/MySqlConnector/MySqlDataReader.cs:line 131
+   at MySqlConnector.MySqlDataReader.InitAsync(CommandListPosition commandListPosition, ICommandPayloadCreator payloadCreator, IDictionary`2 cachedProcedures, IMySqlCommand command, CommandBehavior behavior, Activity activity, IOBehavior ioBehavior, CancellationToken cancellationToken) in /_/src/MySqlConnector/MySqlDataReader.cs:line 487
+   at MySqlConnector.Core.CommandExecutor.ExecuteReaderAsync(CommandListPosition commandListPosition, ICommandPayloadCreator payloadCreator, CommandBehavior behavior, Activity activity, IOBehavior ioBehavior, CancellationToken cancellationToken) in /_/src/MySqlConnector/Core/CommandExecutor.cs:line 56
+   at MySqlConnector.MySqlCommand.ExecuteReaderAsync(CommandBehavior behavior, IOBehavior ioBehavior, CancellationToken cancellationToken) in /_/src/MySqlConnector/MySqlCommand.cs:line 357
+   at MySqlConnector.MySqlCommand.ExecuteDbDataReaderAsync(CommandBehavior behavior, CancellationToken cancellationToken) in /_/src/MySqlConnector/MySqlCommand.cs:line 350
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.InitializeReaderAsync(AsyncEnumerator enumerator, CancellationToken cancellationToken)
+   at Pomelo.EntityFrameworkCore.MySql.Storage.Internal.MySqlExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.MoveNextAsync()
+2026-06-16 17:26:27.716 +05:30 [ERR] An error occurred seeding the DB.
+MySqlConnector.MySqlException (0x80004005): Table 'ccms.banks' doesn't exist
+   at MySqlConnector.Core.ServerSession.ReceiveReplyAsync(IOBehavior ioBehavior, CancellationToken cancellationToken) in /_/src/MySqlConnector/Core/ServerSession.cs:line 1081
+   at MySqlConnector.Core.ResultSet.ReadResultSetHeaderAsync(IOBehavior ioBehavior) in /_/src/MySqlConnector/Core/ResultSet.cs:line 37
+   at MySqlConnector.MySqlDataReader.ActivateResultSet(CancellationToken cancellationToken) in /_/src/MySqlConnector/MySqlDataReader.cs:line 131
+   at MySqlConnector.MySqlDataReader.InitAsync(CommandListPosition commandListPosition, ICommandPayloadCreator payloadCreator, IDictionary`2 cachedProcedures, IMySqlCommand command, CommandBehavior behavior, Activity activity, IOBehavior ioBehavior, CancellationToken cancellationToken) in /_/src/MySqlConnector/MySqlDataReader.cs:line 487
+   at MySqlConnector.Core.CommandExecutor.ExecuteReaderAsync(CommandListPosition commandListPosition, ICommandPayloadCreator payloadCreator, CommandBehavior behavior, Activity activity, IOBehavior ioBehavior, CancellationToken cancellationToken) in /_/src/MySqlConnector/Core/CommandExecutor.cs:line 56
+   at MySqlConnector.MySqlCommand.ExecuteReaderAsync(CommandBehavior behavior, IOBehavior ioBehavior, CancellationToken cancellationToken) in /_/src/MySqlConnector/MySqlCommand.cs:line 357
+   at MySqlConnector.MySqlCommand.ExecuteDbDataReaderAsync(CommandBehavior behavior, CancellationToken cancellationToken) in /_/src/MySqlConnector/MySqlCommand.cs:line 350
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.InitializeReaderAsync(AsyncEnumerator enumerator, CancellationToken cancellationToken)
+   at Pomelo.EntityFrameworkCore.MySql.Storage.Internal.MySqlExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.MoveNextAsync()
+   at Microsoft.EntityFrameworkCore.Query.ShapedQueryCompilingExpressionVisitor.SingleAsync[TSource](IAsyncEnumerable`1 asyncEnumerable, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.ShapedQueryCompilingExpressionVisitor.SingleAsync[TSource](IAsyncEnumerable`1 asyncEnumerable, CancellationToken cancellationToken)
+   at ccms_backend.data.DatabaseSeeder.SeedAsync(AppDbContext context) in C:\CCMS\ccms-backend\data\DatabaseSeeder.cs:line 14
+   at Program.<Main>$(String[] args) in C:\CCMS\ccms-backend\Program.cs:line 145
+2026-06-16 17:26:27.748 +05:30 [INF] User profile is available. Using 'C:\Users\isha.harish\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2026-06-16 17:26:27.757 +05:30 [INF] BatchSchedulerService started with run interval: "00:15:00".
+2026-06-16 17:26:27.758 +05:30 [INF] Triggering initial startup scheduled batch run...
+2026-06-16 17:26:27.822 +05:30 [ERR] Hosting failed to start
+System.IO.IOException: Failed to bind to address http://127.0.0.1:5000: address already in use.
+ ---> Microsoft.AspNetCore.Connections.AddressInUseException: Only one usage of each socket address (protocol/network address/port) is normally permitted.
+ ---> System.Net.Sockets.SocketException (10048): Only one usage of each socket address (protocol/network address/port) is normally permitted.
+   at System.Net.Sockets.Socket.UpdateStatusAfterSocketErrorAndThrowException(SocketError error, Boolean disconnectOnFailure, String callerName)
+   at System.Net.Sockets.Socket.DoBind(EndPoint endPointSnapshot, SocketAddress socketAddress)
+   at System.Net.Sockets.Socket.Bind(EndPoint localEP)
+   at Microsoft.AspNetCore.Server.Kestrel.Transport.Sockets.SocketTransportOptions.CreateDefaultBoundListenSocket(EndPoint endpoint)
+   at Microsoft.AspNetCore.Server.Kestrel.Transport.Sockets.SocketConnectionListener.Bind()
+   --- End of inner exception stack trace ---
+   at Microsoft.AspNetCore.Server.Kestrel.Transport.Sockets.SocketConnectionListener.Bind()
+   at Microsoft.AspNetCore.Server.Kestrel.Transport.Sockets.SocketTransportFactory.BindAsync(EndPoint endpoint, CancellationToken cancellationToken)
+   at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.Infrastructure.TransportManager.BindAsync(EndPoint endPoint, ConnectionDelegate connectionDelegate, EndpointConfig endpointConfig, CancellationToken cancellationToken)
+   at Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerImpl.<>c__DisplayClass28_0`1.<<StartAsync>g__OnBind|0>d.MoveNext()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.AddressBinder.BindEndpointAsync(ListenOptions endpoint, AddressBindContext context, CancellationToken cancellationToken)
+   --- End of inner exception stack trace ---
+   at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.AddressBinder.BindEndpointAsync(ListenOptions endpoint, AddressBindContext context, CancellationToken cancellationToken)
+   at Microsoft.AspNetCore.Server.Kestrel.Core.LocalhostListenOptions.BindAsync(AddressBindContext context, CancellationToken cancellationToken)
+   at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.AddressBinder.AddressesStrategy.BindAsync(AddressBindContext context, CancellationToken cancellationToken)
+   at Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerImpl.BindAsync(CancellationToken cancellationToken)
+   at Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerImpl.StartAsync[TContext](IHttpApplication`1 application, CancellationToken cancellationToken)
+   at Microsoft.AspNetCore.Hosting.GenericWebHostService.StartAsync(CancellationToken cancellationToken)
+   at Microsoft.Extensions.Hosting.Internal.Host.<StartAsync>b__14_1(IHostedService service, CancellationToken token)
+   at Microsoft.Extensions.Hosting.Internal.Host.ForeachService[T](IEnumerable`1 services, CancellationToken token, Boolean concurrent, Boolean abortOnFirstException, List`1 exceptions, Func`3 operation)
+2026-06-16 17:26:27.999 +05:30 [INF] Executed DbCommand (21ms) [Parameters=[@p0='?' (DbType = Int32), @p1='?' (DbType = Int32), @p2='?' (DbType = Int32), @p3='?' (DbType = Int32), @p4='?' (DbType = DateTime), @p5='?' (Size = 4000), @p6='?' (DbType = DateTime), @p7='?' (Size = 4000), @p8='?' (Size = 4000), @p9='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO `BatchJobLogs` (`AccountsMatched`, `AccountsNotFound`, `CasesProcessed`, `DurationSeconds`, `EndTime`, `RunId`, `StartTime`, `Status`, `TriggeredBy`, `TriggeredByUserId`)
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5, @p6, @p7, @p8, @p9);
+SELECT `Id`
+FROM `BatchJobLogs`
+WHERE ROW_COUNT() = 1 AND `Id` = LAST_INSERT_ID();
+2026-06-16 17:26:28.148 +05:30 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT `c`.`Id`, `c`.`CaseNumber`, `c`.`CreatedAt`, `c`.`CreatedByUserId`, `c`.`FreezeAmount`, `c`.`OrderType`, `c`.`Status`, `c`.`UpdatedAt`, `d`.`Id`, `d`.`BankAccountNumber`, `d`.`BankName`, `d`.`CaseId`, `d`.`FullName`, `d`.`IdentityNumber`
+FROM `Cases` AS `c`
+LEFT JOIN `Defendants` AS `d` ON `c`.`Id` = `d`.`CaseId`
+WHERE `c`.`Status` = 'Pending'
+2026-06-16 17:26:28.160 +05:30 [INF] Executed DbCommand (3ms) [Parameters=[@p3='?' (DbType = Int32), @p0='?' (DbType = Int32), @p1='?' (DbType = DateTime), @p2='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SET AUTOCOMMIT = 1;
+UPDATE `BatchJobLogs` SET `DurationSeconds` = @p0, `EndTime` = @p1, `Status` = @p2
+WHERE `Id` = @p3;
+SELECT ROW_COUNT();
+2026-06-16 17:26:28.166 +05:30 [INF] Scheduled batch run BATCH-20260616-50F1 completed successfully. Cases processed: 0, Matched: 0, Not Found: 0.
+2026-06-16 17:29:11.426 +05:30 [INF] Starting web application
+2026-06-16 17:29:12.812 +05:30 [INF] Executed DbCommand (10ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT CASE WHEN COUNT(*) = 0 THEN FALSE ELSE TRUE END
+FROM information_schema.tables
+WHERE table_type = 'BASE TABLE' AND table_schema = 'ccms'
+2026-06-16 17:29:13.028 +05:30 [ERR] Failed executing DbCommand (5ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT EXISTS (
+    SELECT 1
+    FROM `Banks` AS `b`)
+2026-06-16 17:29:13.061 +05:30 [ERR] An exception occurred while iterating over the results of a query for context type 'ccms_backend.data.AppDbContext'.
+MySqlConnector.MySqlException (0x80004005): Table 'ccms.banks' doesn't exist
+   at MySqlConnector.Core.ServerSession.ReceiveReplyAsync(IOBehavior ioBehavior, CancellationToken cancellationToken) in /_/src/MySqlConnector/Core/ServerSession.cs:line 1081
+   at MySqlConnector.Core.ResultSet.ReadResultSetHeaderAsync(IOBehavior ioBehavior) in /_/src/MySqlConnector/Core/ResultSet.cs:line 37
+   at MySqlConnector.MySqlDataReader.ActivateResultSet(CancellationToken cancellationToken) in /_/src/MySqlConnector/MySqlDataReader.cs:line 131
+   at MySqlConnector.MySqlDataReader.InitAsync(CommandListPosition commandListPosition, ICommandPayloadCreator payloadCreator, IDictionary`2 cachedProcedures, IMySqlCommand command, CommandBehavior behavior, Activity activity, IOBehavior ioBehavior, CancellationToken cancellationToken) in /_/src/MySqlConnector/MySqlDataReader.cs:line 487
+   at MySqlConnector.Core.CommandExecutor.ExecuteReaderAsync(CommandListPosition commandListPosition, ICommandPayloadCreator payloadCreator, CommandBehavior behavior, Activity activity, IOBehavior ioBehavior, CancellationToken cancellationToken) in /_/src/MySqlConnector/Core/CommandExecutor.cs:line 56
+   at MySqlConnector.MySqlCommand.ExecuteReaderAsync(CommandBehavior behavior, IOBehavior ioBehavior, CancellationToken cancellationToken) in /_/src/MySqlConnector/MySqlCommand.cs:line 357
+   at MySqlConnector.MySqlCommand.ExecuteDbDataReaderAsync(CommandBehavior behavior, CancellationToken cancellationToken) in /_/src/MySqlConnector/MySqlCommand.cs:line 350
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.InitializeReaderAsync(AsyncEnumerator enumerator, CancellationToken cancellationToken)
+   at Pomelo.EntityFrameworkCore.MySql.Storage.Internal.MySqlExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.MoveNextAsync()
+MySqlConnector.MySqlException (0x80004005): Table 'ccms.banks' doesn't exist
+   at MySqlConnector.Core.ServerSession.ReceiveReplyAsync(IOBehavior ioBehavior, CancellationToken cancellationToken) in /_/src/MySqlConnector/Core/ServerSession.cs:line 1081
+   at MySqlConnector.Core.ResultSet.ReadResultSetHeaderAsync(IOBehavior ioBehavior) in /_/src/MySqlConnector/Core/ResultSet.cs:line 37
+   at MySqlConnector.MySqlDataReader.ActivateResultSet(CancellationToken cancellationToken) in /_/src/MySqlConnector/MySqlDataReader.cs:line 131
+   at MySqlConnector.MySqlDataReader.InitAsync(CommandListPosition commandListPosition, ICommandPayloadCreator payloadCreator, IDictionary`2 cachedProcedures, IMySqlCommand command, CommandBehavior behavior, Activity activity, IOBehavior ioBehavior, CancellationToken cancellationToken) in /_/src/MySqlConnector/MySqlDataReader.cs:line 487
+   at MySqlConnector.Core.CommandExecutor.ExecuteReaderAsync(CommandListPosition commandListPosition, ICommandPayloadCreator payloadCreator, CommandBehavior behavior, Activity activity, IOBehavior ioBehavior, CancellationToken cancellationToken) in /_/src/MySqlConnector/Core/CommandExecutor.cs:line 56
+   at MySqlConnector.MySqlCommand.ExecuteReaderAsync(CommandBehavior behavior, IOBehavior ioBehavior, CancellationToken cancellationToken) in /_/src/MySqlConnector/MySqlCommand.cs:line 357
+   at MySqlConnector.MySqlCommand.ExecuteDbDataReaderAsync(CommandBehavior behavior, CancellationToken cancellationToken) in /_/src/MySqlConnector/MySqlCommand.cs:line 350
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.InitializeReaderAsync(AsyncEnumerator enumerator, CancellationToken cancellationToken)
+   at Pomelo.EntityFrameworkCore.MySql.Storage.Internal.MySqlExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.MoveNextAsync()
+2026-06-16 17:29:13.072 +05:30 [ERR] An error occurred seeding the DB.
+MySqlConnector.MySqlException (0x80004005): Table 'ccms.banks' doesn't exist
+   at MySqlConnector.Core.ServerSession.ReceiveReplyAsync(IOBehavior ioBehavior, CancellationToken cancellationToken) in /_/src/MySqlConnector/Core/ServerSession.cs:line 1081
+   at MySqlConnector.Core.ResultSet.ReadResultSetHeaderAsync(IOBehavior ioBehavior) in /_/src/MySqlConnector/Core/ResultSet.cs:line 37
+   at MySqlConnector.MySqlDataReader.ActivateResultSet(CancellationToken cancellationToken) in /_/src/MySqlConnector/MySqlDataReader.cs:line 131
+   at MySqlConnector.MySqlDataReader.InitAsync(CommandListPosition commandListPosition, ICommandPayloadCreator payloadCreator, IDictionary`2 cachedProcedures, IMySqlCommand command, CommandBehavior behavior, Activity activity, IOBehavior ioBehavior, CancellationToken cancellationToken) in /_/src/MySqlConnector/MySqlDataReader.cs:line 487
+   at MySqlConnector.Core.CommandExecutor.ExecuteReaderAsync(CommandListPosition commandListPosition, ICommandPayloadCreator payloadCreator, CommandBehavior behavior, Activity activity, IOBehavior ioBehavior, CancellationToken cancellationToken) in /_/src/MySqlConnector/Core/CommandExecutor.cs:line 56
+   at MySqlConnector.MySqlCommand.ExecuteReaderAsync(CommandBehavior behavior, IOBehavior ioBehavior, CancellationToken cancellationToken) in /_/src/MySqlConnector/MySqlCommand.cs:line 357
+   at MySqlConnector.MySqlCommand.ExecuteDbDataReaderAsync(CommandBehavior behavior, CancellationToken cancellationToken) in /_/src/MySqlConnector/MySqlCommand.cs:line 350
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.InitializeReaderAsync(AsyncEnumerator enumerator, CancellationToken cancellationToken)
+   at Pomelo.EntityFrameworkCore.MySql.Storage.Internal.MySqlExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.MoveNextAsync()
+   at Microsoft.EntityFrameworkCore.Query.ShapedQueryCompilingExpressionVisitor.SingleAsync[TSource](IAsyncEnumerable`1 asyncEnumerable, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.ShapedQueryCompilingExpressionVisitor.SingleAsync[TSource](IAsyncEnumerable`1 asyncEnumerable, CancellationToken cancellationToken)
+   at ccms_backend.data.DatabaseSeeder.SeedAsync(AppDbContext context) in C:\CCMS\ccms-backend\data\DatabaseSeeder.cs:line 14
+   at Program.<Main>$(String[] args) in C:\CCMS\ccms-backend\Program.cs:line 145
+2026-06-16 17:29:13.119 +05:30 [INF] User profile is available. Using 'C:\Users\isha.harish\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2026-06-16 17:29:13.128 +05:30 [INF] BatchSchedulerService started with run interval: "00:15:00".
+2026-06-16 17:29:13.130 +05:30 [INF] Triggering initial startup scheduled batch run...
+2026-06-16 17:29:13.205 +05:30 [ERR] Hosting failed to start
+System.IO.IOException: Failed to bind to address http://127.0.0.1:5000: address already in use.
+ ---> Microsoft.AspNetCore.Connections.AddressInUseException: Only one usage of each socket address (protocol/network address/port) is normally permitted.
+ ---> System.Net.Sockets.SocketException (10048): Only one usage of each socket address (protocol/network address/port) is normally permitted.
+   at System.Net.Sockets.Socket.UpdateStatusAfterSocketErrorAndThrowException(SocketError error, Boolean disconnectOnFailure, String callerName)
+   at System.Net.Sockets.Socket.DoBind(EndPoint endPointSnapshot, SocketAddress socketAddress)
+   at System.Net.Sockets.Socket.Bind(EndPoint localEP)
+   at Microsoft.AspNetCore.Server.Kestrel.Transport.Sockets.SocketTransportOptions.CreateDefaultBoundListenSocket(EndPoint endpoint)
+   at Microsoft.AspNetCore.Server.Kestrel.Transport.Sockets.SocketConnectionListener.Bind()
+   --- End of inner exception stack trace ---
+   at Microsoft.AspNetCore.Server.Kestrel.Transport.Sockets.SocketConnectionListener.Bind()
+   at Microsoft.AspNetCore.Server.Kestrel.Transport.Sockets.SocketTransportFactory.BindAsync(EndPoint endpoint, CancellationToken cancellationToken)
+   at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.Infrastructure.TransportManager.BindAsync(EndPoint endPoint, ConnectionDelegate connectionDelegate, EndpointConfig endpointConfig, CancellationToken cancellationToken)
+   at Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerImpl.<>c__DisplayClass28_0`1.<<StartAsync>g__OnBind|0>d.MoveNext()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.AddressBinder.BindEndpointAsync(ListenOptions endpoint, AddressBindContext context, CancellationToken cancellationToken)
+   --- End of inner exception stack trace ---
+   at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.AddressBinder.BindEndpointAsync(ListenOptions endpoint, AddressBindContext context, CancellationToken cancellationToken)
+   at Microsoft.AspNetCore.Server.Kestrel.Core.LocalhostListenOptions.BindAsync(AddressBindContext context, CancellationToken cancellationToken)
+   at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.AddressBinder.AddressesStrategy.BindAsync(AddressBindContext context, CancellationToken cancellationToken)
+   at Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerImpl.BindAsync(CancellationToken cancellationToken)
+   at Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerImpl.StartAsync[TContext](IHttpApplication`1 application, CancellationToken cancellationToken)
+   at Microsoft.AspNetCore.Hosting.GenericWebHostService.StartAsync(CancellationToken cancellationToken)
+   at Microsoft.Extensions.Hosting.Internal.Host.<StartAsync>b__14_1(IHostedService service, CancellationToken token)
+   at Microsoft.Extensions.Hosting.Internal.Host.ForeachService[T](IEnumerable`1 services, CancellationToken token, Boolean concurrent, Boolean abortOnFirstException, List`1 exceptions, Func`3 operation)
+2026-06-16 17:29:13.416 +05:30 [INF] Executed DbCommand (24ms) [Parameters=[@p0='?' (DbType = Int32), @p1='?' (DbType = Int32), @p2='?' (DbType = Int32), @p3='?' (DbType = Int32), @p4='?' (DbType = DateTime), @p5='?' (Size = 4000), @p6='?' (DbType = DateTime), @p7='?' (Size = 4000), @p8='?' (Size = 4000), @p9='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO `BatchJobLogs` (`AccountsMatched`, `AccountsNotFound`, `CasesProcessed`, `DurationSeconds`, `EndTime`, `RunId`, `StartTime`, `Status`, `TriggeredBy`, `TriggeredByUserId`)
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5, @p6, @p7, @p8, @p9);
+SELECT `Id`
+FROM `BatchJobLogs`
+WHERE ROW_COUNT() = 1 AND `Id` = LAST_INSERT_ID();
+2026-06-16 17:29:13.581 +05:30 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT `c`.`Id`, `c`.`CaseNumber`, `c`.`CreatedAt`, `c`.`CreatedByUserId`, `c`.`FreezeAmount`, `c`.`OrderType`, `c`.`Status`, `c`.`UpdatedAt`, `d`.`Id`, `d`.`BankAccountNumber`, `d`.`BankName`, `d`.`CaseId`, `d`.`FullName`, `d`.`IdentityNumber`
+FROM `Cases` AS `c`
+LEFT JOIN `Defendants` AS `d` ON `c`.`Id` = `d`.`CaseId`
+WHERE `c`.`Status` = 'Pending'
+2026-06-16 17:29:13.593 +05:30 [INF] Executed DbCommand (3ms) [Parameters=[@p3='?' (DbType = Int32), @p0='?' (DbType = Int32), @p1='?' (DbType = DateTime), @p2='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SET AUTOCOMMIT = 1;
+UPDATE `BatchJobLogs` SET `DurationSeconds` = @p0, `EndTime` = @p1, `Status` = @p2
+WHERE `Id` = @p3;
+SELECT ROW_COUNT();
+2026-06-16 17:29:13.600 +05:30 [INF] Scheduled batch run BATCH-20260616-208C completed successfully. Cases processed: 0, Matched: 0, Not Found: 0.
+2026-06-16 17:32:42.428 +05:30 [INF] Starting web application
+2026-06-16 17:32:43.811 +05:30 [INF] Executed DbCommand (115ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+DROP DATABASE `ccms`;
+2026-06-16 17:32:50.993 +05:30 [INF] Starting web application
+2026-06-16 17:32:52.309 +05:30 [INF] Executed DbCommand (7ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE DATABASE `ccms`;
+2026-06-16 17:32:52.345 +05:30 [INF] Acquiring an exclusive lock for migration application. See https://aka.ms/efcore-docs-migrations-lock for more information if this takes too long.
+2026-06-16 17:32:52.349 +05:30 [INF] Executed DbCommand (4ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT GET_LOCK('__ccms_EFMigrationsLock', 259200)
+2026-06-16 17:32:52.420 +05:30 [INF] Executed DbCommand (19ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE IF NOT EXISTS `__EFMigrationsHistory` (
+    `MigrationId` varchar(150) CHARACTER SET utf8mb4 NOT NULL,
+    `ProductVersion` varchar(32) CHARACTER SET utf8mb4 NOT NULL,
+    CONSTRAINT `PK___EFMigrationsHistory` PRIMARY KEY (`MigrationId`)
+) CHARACTER SET=utf8mb4;
+2026-06-16 17:32:52.437 +05:30 [INF] Executed DbCommand (4ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT 1 FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_SCHEMA='ccms' AND TABLE_NAME='__EFMigrationsHistory';
+2026-06-16 17:32:52.442 +05:30 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT `MigrationId`, `ProductVersion`
+FROM `__EFMigrationsHistory`
+ORDER BY `MigrationId`;
+2026-06-16 17:32:52.452 +05:30 [INF] Applying migration '20260616115214_InitialCreate'.
+2026-06-16 17:32:52.497 +05:30 [INF] Executed DbCommand (4ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+ALTER DATABASE CHARACTER SET utf8mb4;
+2026-06-16 17:32:52.514 +05:30 [INF] Executed DbCommand (17ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE `BankCustomers` (
+    `Id` int NOT NULL AUTO_INCREMENT,
+    `AccountNumber` varchar(255) CHARACTER SET utf8mb4 NOT NULL,
+    `AadhaarNumber` varchar(255) CHARACTER SET utf8mb4 NOT NULL,
+    `PANNumber` varchar(255) CHARACTER SET utf8mb4 NOT NULL,
+    `AccountHolderName` longtext CHARACTER SET utf8mb4 NOT NULL,
+    `AccountStatus` longtext CHARACTER SET utf8mb4 NOT NULL,
+    `TotalBalance` decimal(18,2) NOT NULL,
+    `AvailableBalance` decimal(18,2) NOT NULL,
+    `FrozenAmount` decimal(18,2) NOT NULL,
+    `BankCode` varchar(255) CHARACTER SET utf8mb4 NULL,
+    CONSTRAINT `PK_BankCustomers` PRIMARY KEY (`Id`)
+) CHARACTER SET=utf8mb4;
+2026-06-16 17:32:52.528 +05:30 [INF] Executed DbCommand (14ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE `Banks` (
+    `Id` int NOT NULL AUTO_INCREMENT,
+    `Name` longtext CHARACTER SET utf8mb4 NOT NULL,
+    `Code` longtext CHARACTER SET utf8mb4 NOT NULL,
+    CONSTRAINT `PK_Banks` PRIMARY KEY (`Id`)
+) CHARACTER SET=utf8mb4;
+2026-06-16 17:32:52.542 +05:30 [INF] Executed DbCommand (13ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE `BatchJobLogs` (
+    `Id` int NOT NULL AUTO_INCREMENT,
+    `RunId` longtext CHARACTER SET utf8mb4 NOT NULL,
+    `TriggeredBy` longtext CHARACTER SET utf8mb4 NOT NULL,
+    `TriggeredByUserId` int NULL,
+    `StartTime` datetime(6) NOT NULL,
+    `EndTime` datetime(6) NULL,
+    `CasesProcessed` int NOT NULL,
+    `AccountsMatched` int NOT NULL,
+    `AccountsNotFound` int NOT NULL,
+    `DurationSeconds` int NULL,
+    `Status` longtext CHARACTER SET utf8mb4 NOT NULL,
+    CONSTRAINT `PK_BatchJobLogs` PRIMARY KEY (`Id`)
+) CHARACTER SET=utf8mb4;
+2026-06-16 17:32:52.555 +05:30 [INF] Executed DbCommand (13ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE `Cases` (
+    `Id` int NOT NULL AUTO_INCREMENT,
+    `CaseNumber` varchar(255) CHARACTER SET utf8mb4 NOT NULL,
+    `CreatedByUserId` int NOT NULL,
+    `OrderType` longtext CHARACTER SET utf8mb4 NOT NULL,
+    `FreezeAmount` decimal(18,2) NULL,
+    `Status` longtext CHARACTER SET utf8mb4 NOT NULL,
+    `CreatedAt` datetime(6) NOT NULL,
+    `UpdatedAt` datetime(6) NOT NULL,
+    CONSTRAINT `PK_Cases` PRIMARY KEY (`Id`)
+) CHARACTER SET=utf8mb4;
+2026-06-16 17:32:52.568 +05:30 [INF] Executed DbCommand (13ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE `Users` (
+    `Id` int NOT NULL AUTO_INCREMENT,
+    `Username` varchar(255) CHARACTER SET utf8mb4 NOT NULL,
+    `PasswordHash` longtext CHARACTER SET utf8mb4 NOT NULL,
+    `Role` longtext CHARACTER SET utf8mb4 NOT NULL,
+    `BankCode` longtext CHARACTER SET utf8mb4 NULL,
+    `CreatedAt` datetime(6) NOT NULL,
+    CONSTRAINT `PK_Users` PRIMARY KEY (`Id`)
+) CHARACTER SET=utf8mb4;
+2026-06-16 17:32:52.591 +05:30 [INF] Executed DbCommand (23ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE `CaseDocuments` (
+    `Id` int NOT NULL AUTO_INCREMENT,
+    `CaseId` int NOT NULL,
+    `DocumentType` longtext CHARACTER SET utf8mb4 NOT NULL,
+    `FileName` longtext CHARACTER SET utf8mb4 NOT NULL,
+    `FilePath` varchar(500) CHARACTER SET utf8mb4 NOT NULL,
+    `FileSize` int NOT NULL,
+    `UploadedAt` datetime(6) NOT NULL,
+    CONSTRAINT `PK_CaseDocuments` PRIMARY KEY (`Id`),
+    CONSTRAINT `FK_CaseDocuments_Cases_CaseId` FOREIGN KEY (`CaseId`) REFERENCES `Cases` (`Id`) ON DELETE CASCADE
+) CHARACTER SET=utf8mb4;
+2026-06-16 17:32:52.612 +05:30 [INF] Executed DbCommand (20ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE `CaseValidationResults` (
+    `Id` int NOT NULL AUTO_INCREMENT,
+    `CaseId` int NOT NULL,
+    `MatchedAccountNumber` longtext CHARACTER SET utf8mb4 NOT NULL,
+    `AccountHolderName` longtext CHARACTER SET utf8mb4 NOT NULL,
+    `AccountStatus` longtext CHARACTER SET utf8mb4 NOT NULL,
+    `CurrentBalance` decimal(65,30) NOT NULL,
+    `MatchedOn` longtext CHARACTER SET utf8mb4 NOT NULL,
+    `ValidatedAt` datetime(6) NOT NULL,
+    CONSTRAINT `PK_CaseValidationResults` PRIMARY KEY (`Id`),
+    CONSTRAINT `FK_CaseValidationResults_Cases_CaseId` FOREIGN KEY (`CaseId`) REFERENCES `Cases` (`Id`) ON DELETE CASCADE
+) CHARACTER SET=utf8mb4;
+2026-06-16 17:32:52.633 +05:30 [INF] Executed DbCommand (21ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE `Complainants` (
+    `Id` int NOT NULL AUTO_INCREMENT,
+    `CaseId` int NOT NULL,
+    `FullName` longtext CHARACTER SET utf8mb4 NOT NULL,
+    `IdentityNumber` longtext CHARACTER SET utf8mb4 NOT NULL,
+    CONSTRAINT `PK_Complainants` PRIMARY KEY (`Id`),
+    CONSTRAINT `FK_Complainants_Cases_CaseId` FOREIGN KEY (`CaseId`) REFERENCES `Cases` (`Id`) ON DELETE CASCADE
+) CHARACTER SET=utf8mb4;
+2026-06-16 17:32:52.654 +05:30 [INF] Executed DbCommand (21ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE `Defendants` (
+    `Id` int NOT NULL AUTO_INCREMENT,
+    `CaseId` int NOT NULL,
+    `FullName` longtext CHARACTER SET utf8mb4 NOT NULL,
+    `IdentityNumber` longtext CHARACTER SET utf8mb4 NOT NULL,
+    `BankAccountNumber` longtext CHARACTER SET utf8mb4 NOT NULL,
+    `BankName` longtext CHARACTER SET utf8mb4 NOT NULL,
+    CONSTRAINT `PK_Defendants` PRIMARY KEY (`Id`),
+    CONSTRAINT `FK_Defendants_Cases_CaseId` FOREIGN KEY (`CaseId`) REFERENCES `Cases` (`Id`) ON DELETE CASCADE
+) CHARACTER SET=utf8mb4;
+2026-06-16 17:32:52.678 +05:30 [INF] Executed DbCommand (24ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE `CaseResponses` (
+    `Id` int NOT NULL AUTO_INCREMENT,
+    `CaseId` int NOT NULL,
+    `RespondedByUserId` int NULL,
+    `ResponseType` longtext CHARACTER SET utf8mb4 NOT NULL,
+    `FreezeAmountApplied` decimal(18,2) NULL,
+    `BalanceReported` decimal(18,2) NULL,
+    `Remarks` longtext CHARACTER SET utf8mb4 NULL,
+    `SubmittedAt` datetime(6) NOT NULL,
+    CONSTRAINT `PK_CaseResponses` PRIMARY KEY (`Id`),
+    CONSTRAINT `FK_CaseResponses_Cases_CaseId` FOREIGN KEY (`CaseId`) REFERENCES `Cases` (`Id`) ON DELETE CASCADE,
+    CONSTRAINT `FK_CaseResponses_Users_RespondedByUserId` FOREIGN KEY (`RespondedByUserId`) REFERENCES `Users` (`Id`) ON DELETE RESTRICT
+) CHARACTER SET=utf8mb4;
+2026-06-16 17:32:52.703 +05:30 [INF] Executed DbCommand (24ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE INDEX `IX_BankCustomers_AadhaarNumber` ON `BankCustomers` (`AadhaarNumber`);
+2026-06-16 17:32:52.713 +05:30 [INF] Executed DbCommand (10ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE INDEX `IX_BankCustomers_AccountNumber` ON `BankCustomers` (`AccountNumber`);
+2026-06-16 17:32:52.724 +05:30 [INF] Executed DbCommand (11ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE INDEX `IX_BankCustomers_BankCode` ON `BankCustomers` (`BankCode`);
+2026-06-16 17:32:52.736 +05:30 [INF] Executed DbCommand (11ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE INDEX `IX_BankCustomers_PANNumber` ON `BankCustomers` (`PANNumber`);
+2026-06-16 17:32:52.757 +05:30 [INF] Executed DbCommand (16ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE INDEX `IX_CaseDocuments_CaseId` ON `CaseDocuments` (`CaseId`);
+2026-06-16 17:32:52.773 +05:30 [INF] Executed DbCommand (16ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE UNIQUE INDEX `IX_CaseResponses_CaseId` ON `CaseResponses` (`CaseId`);
+2026-06-16 17:32:52.787 +05:30 [INF] Executed DbCommand (14ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE INDEX `IX_CaseResponses_RespondedByUserId` ON `CaseResponses` (`RespondedByUserId`);
+2026-06-16 17:32:52.816 +05:30 [INF] Executed DbCommand (28ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE UNIQUE INDEX `IX_Cases_CaseNumber` ON `Cases` (`CaseNumber`);
+2026-06-16 17:32:52.832 +05:30 [INF] Executed DbCommand (15ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE UNIQUE INDEX `IX_CaseValidationResults_CaseId` ON `CaseValidationResults` (`CaseId`);
+2026-06-16 17:32:52.847 +05:30 [INF] Executed DbCommand (15ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE UNIQUE INDEX `IX_Complainants_CaseId` ON `Complainants` (`CaseId`);
+2026-06-16 17:32:52.860 +05:30 [INF] Executed DbCommand (13ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE UNIQUE INDEX `IX_Defendants_CaseId` ON `Defendants` (`CaseId`);
+2026-06-16 17:32:52.901 +05:30 [INF] Executed DbCommand (40ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE UNIQUE INDEX `IX_Users_Username` ON `Users` (`Username`);
+2026-06-16 17:32:52.903 +05:30 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO `__EFMigrationsHistory` (`MigrationId`, `ProductVersion`)
+VALUES ('20260616115214_InitialCreate', '9.0.0');
+2026-06-16 17:32:52.906 +05:30 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT RELEASE_LOCK('__ccms_EFMigrationsLock')
+2026-06-16 17:33:15.844 +05:30 [INF] Starting web application
+2026-06-16 17:33:17.667 +05:30 [INF] Executed DbCommand (11ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT CASE WHEN COUNT(*) = 0 THEN FALSE ELSE TRUE END
+FROM information_schema.tables
+WHERE table_type = 'BASE TABLE' AND table_schema = 'ccms'
+2026-06-16 17:33:17.904 +05:30 [INF] Executed DbCommand (4ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT EXISTS (
+    SELECT 1
+    FROM `Banks` AS `b`)
+2026-06-16 17:33:18.089 +05:30 [INF] Executed DbCommand (21ms) [Parameters=[@p0='?' (Size = 4000), @p1='?' (Size = 4000), @p2='?' (Size = 4000), @p3='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO `Banks` (`Code`, `Name`)
+VALUES (@p0, @p1);
+SELECT `Id`
+FROM `Banks`
+WHERE ROW_COUNT() = 1 AND `Id` = LAST_INSERT_ID();
+
+INSERT INTO `Banks` (`Code`, `Name`)
+VALUES (@p2, @p3);
+SELECT `Id`
+FROM `Banks`
+WHERE ROW_COUNT() = 1 AND `Id` = LAST_INSERT_ID();
+2026-06-16 17:33:18.122 +05:30 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT EXISTS (
+    SELECT 1
+    FROM `Users` AS `u`)
+2026-06-16 17:33:18.962 +05:30 [INF] Executed DbCommand (1ms) [Parameters=[@p0='?' (Size = 4000), @p1='?' (DbType = DateTime), @p2='?' (Size = 4000), @p3='?' (Size = 4000), @p4='?' (Size = 255), @p5='?' (Size = 4000), @p6='?' (DbType = DateTime), @p7='?' (Size = 4000), @p8='?' (Size = 4000), @p9='?' (Size = 255), @p10='?' (Size = 4000), @p11='?' (DbType = DateTime), @p12='?' (Size = 4000), @p13='?' (Size = 4000), @p14='?' (Size = 255), @p15='?' (Size = 4000), @p16='?' (DbType = DateTime), @p17='?' (Size = 4000), @p18='?' (Size = 4000), @p19='?' (Size = 255), @p20='?' (Size = 4000), @p21='?' (DbType = DateTime), @p22='?' (Size = 4000), @p23='?' (Size = 4000), @p24='?' (Size = 255)], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO `Users` (`BankCode`, `CreatedAt`, `PasswordHash`, `Role`, `Username`)
+VALUES (@p0, @p1, @p2, @p3, @p4);
+SELECT `Id`
+FROM `Users`
+WHERE ROW_COUNT() = 1 AND `Id` = LAST_INSERT_ID();
+
+INSERT INTO `Users` (`BankCode`, `CreatedAt`, `PasswordHash`, `Role`, `Username`)
+VALUES (@p5, @p6, @p7, @p8, @p9);
+SELECT `Id`
+FROM `Users`
+WHERE ROW_COUNT() = 1 AND `Id` = LAST_INSERT_ID();
+
+INSERT INTO `Users` (`BankCode`, `CreatedAt`, `PasswordHash`, `Role`, `Username`)
+VALUES (@p10, @p11, @p12, @p13, @p14);
+SELECT `Id`
+FROM `Users`
+WHERE ROW_COUNT() = 1 AND `Id` = LAST_INSERT_ID();
+
+INSERT INTO `Users` (`BankCode`, `CreatedAt`, `PasswordHash`, `Role`, `Username`)
+VALUES (@p15, @p16, @p17, @p18, @p19);
+SELECT `Id`
+FROM `Users`
+WHERE ROW_COUNT() = 1 AND `Id` = LAST_INSERT_ID();
+
+INSERT INTO `Users` (`BankCode`, `CreatedAt`, `PasswordHash`, `Role`, `Username`)
+VALUES (@p20, @p21, @p22, @p23, @p24);
+SELECT `Id`
+FROM `Users`
+WHERE ROW_COUNT() = 1 AND `Id` = LAST_INSERT_ID();
+2026-06-16 17:33:19.024 +05:30 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT `u`.`Id`, `u`.`BankCode`, `u`.`CreatedAt`, `u`.`PasswordHash`, `u`.`Role`, `u`.`Username`
+FROM `Users` AS `u`
+WHERE `u`.`Username` = 'court.user'
+LIMIT 1
+2026-06-16 17:33:19.032 +05:30 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT `u`.`Id`, `u`.`BankCode`, `u`.`CreatedAt`, `u`.`PasswordHash`, `u`.`Role`, `u`.`Username`
+FROM `Users` AS `u`
+WHERE `u`.`Username` = 'bank.user'
+LIMIT 1
+2026-06-16 17:33:19.038 +05:30 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT `u`.`Id`, `u`.`BankCode`, `u`.`CreatedAt`, `u`.`PasswordHash`, `u`.`Role`, `u`.`Username`
+FROM `Users` AS `u`
+WHERE `u`.`Username` = 'hdfc.user'
+LIMIT 1
+2026-06-16 17:33:19.042 +05:30 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT EXISTS (
+    SELECT 1
+    FROM `BankCustomers` AS `b`)
+2026-06-16 17:33:19.079 +05:30 [INF] Executed DbCommand (1ms) [Parameters=[@p0='?' (Size = 255), @p1='?' (Size = 4000), @p2='?' (Size = 255), @p3='?' (Size = 4000), @p4='?' (DbType = Decimal), @p5='?' (Size = 255), @p6='?' (DbType = Decimal), @p7='?' (Size = 255), @p8='?' (DbType = Decimal), @p9='?' (Size = 255), @p10='?' (Size = 4000), @p11='?' (Size = 255), @p12='?' (Size = 4000), @p13='?' (DbType = Decimal), @p14='?' (Size = 255), @p15='?' (DbType = Decimal), @p16='?' (Size = 255), @p17='?' (DbType = Decimal), @p18='?' (Size = 255), @p19='?' (Size = 4000), @p20='?' (Size = 255), @p21='?' (Size = 4000), @p22='?' (DbType = Decimal), @p23='?' (Size = 255), @p24='?' (DbType = Decimal), @p25='?' (Size = 255), @p26='?' (DbType = Decimal), @p27='?' (Size = 255), @p28='?' (Size = 4000), @p29='?' (Size = 255), @p30='?' (Size = 4000), @p31='?' (DbType = Decimal), @p32='?' (Size = 255), @p33='?' (DbType = Decimal), @p34='?' (Size = 255), @p35='?' (DbType = Decimal)], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO `BankCustomers` (`AadhaarNumber`, `AccountHolderName`, `AccountNumber`, `AccountStatus`, `AvailableBalance`, `BankCode`, `FrozenAmount`, `PANNumber`, `TotalBalance`)
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5, @p6, @p7, @p8);
+SELECT `Id`
+FROM `BankCustomers`
+WHERE ROW_COUNT() = 1 AND `Id` = LAST_INSERT_ID();
+
+INSERT INTO `BankCustomers` (`AadhaarNumber`, `AccountHolderName`, `AccountNumber`, `AccountStatus`, `AvailableBalance`, `BankCode`, `FrozenAmount`, `PANNumber`, `TotalBalance`)
+VALUES (@p9, @p10, @p11, @p12, @p13, @p14, @p15, @p16, @p17);
+SELECT `Id`
+FROM `BankCustomers`
+WHERE ROW_COUNT() = 1 AND `Id` = LAST_INSERT_ID();
+
+INSERT INTO `BankCustomers` (`AadhaarNumber`, `AccountHolderName`, `AccountNumber`, `AccountStatus`, `AvailableBalance`, `BankCode`, `FrozenAmount`, `PANNumber`, `TotalBalance`)
+VALUES (@p18, @p19, @p20, @p21, @p22, @p23, @p24, @p25, @p26);
+SELECT `Id`
+FROM `BankCustomers`
+WHERE ROW_COUNT() = 1 AND `Id` = LAST_INSERT_ID();
+
+INSERT INTO `BankCustomers` (`AadhaarNumber`, `AccountHolderName`, `AccountNumber`, `AccountStatus`, `AvailableBalance`, `BankCode`, `FrozenAmount`, `PANNumber`, `TotalBalance`)
+VALUES (@p27, @p28, @p29, @p30, @p31, @p32, @p33, @p34, @p35);
+SELECT `Id`
+FROM `BankCustomers`
+WHERE ROW_COUNT() = 1 AND `Id` = LAST_INSERT_ID();
+2026-06-16 17:33:19.089 +05:30 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT EXISTS (
+    SELECT 1
+    FROM `Cases` AS `c`)
+2026-06-16 17:33:19.138 +05:30 [INF] Executed DbCommand (1ms) [Parameters=[@p0='?' (Size = 255), @p1='?' (DbType = DateTime), @p2='?' (DbType = Int32), @p3='?' (DbType = Decimal), @p4='?' (Size = 4000), @p5='?' (Size = 4000), @p6='?' (DbType = DateTime)], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO `Cases` (`CaseNumber`, `CreatedAt`, `CreatedByUserId`, `FreezeAmount`, `OrderType`, `Status`, `UpdatedAt`)
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5, @p6);
+SELECT `Id`
+FROM `Cases`
+WHERE ROW_COUNT() = 1 AND `Id` = LAST_INSERT_ID();
+2026-06-16 17:33:19.176 +05:30 [INF] Executed DbCommand (1ms) [Parameters=[@p0='?' (DbType = Int32), @p1='?' (Size = 4000), @p2='?' (Size = 4000), @p3='?' (Size = 4000), @p4='?' (Size = 4000), @p5='?' (DbType = Int32), @p6='?' (Size = 4000), @p7='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO `Complainants` (`CaseId`, `FullName`, `IdentityNumber`)
+VALUES (@p0, @p1, @p2);
+SELECT `Id`
+FROM `Complainants`
+WHERE ROW_COUNT() = 1 AND `Id` = LAST_INSERT_ID();
+
+INSERT INTO `Defendants` (`BankAccountNumber`, `BankName`, `CaseId`, `FullName`, `IdentityNumber`)
+VALUES (@p3, @p4, @p5, @p6, @p7);
+SELECT `Id`
+FROM `Defendants`
+WHERE ROW_COUNT() = 1 AND `Id` = LAST_INSERT_ID();
+2026-06-16 17:33:19.185 +05:30 [INF] Executed DbCommand (1ms) [Parameters=[@p0='?' (Size = 255), @p1='?' (DbType = DateTime), @p2='?' (DbType = Int32), @p3='?' (DbType = Decimal), @p4='?' (Size = 4000), @p5='?' (Size = 4000), @p6='?' (DbType = DateTime)], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO `Cases` (`CaseNumber`, `CreatedAt`, `CreatedByUserId`, `FreezeAmount`, `OrderType`, `Status`, `UpdatedAt`)
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5, @p6);
+SELECT `Id`
+FROM `Cases`
+WHERE ROW_COUNT() = 1 AND `Id` = LAST_INSERT_ID();
+2026-06-16 17:33:19.190 +05:30 [INF] Executed DbCommand (1ms) [Parameters=[@p0='?' (DbType = Int32), @p1='?' (Size = 4000), @p2='?' (Size = 4000), @p3='?' (Size = 4000), @p4='?' (Size = 4000), @p5='?' (DbType = Int32), @p6='?' (Size = 4000), @p7='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO `Complainants` (`CaseId`, `FullName`, `IdentityNumber`)
+VALUES (@p0, @p1, @p2);
+SELECT `Id`
+FROM `Complainants`
+WHERE ROW_COUNT() = 1 AND `Id` = LAST_INSERT_ID();
+
+INSERT INTO `Defendants` (`BankAccountNumber`, `BankName`, `CaseId`, `FullName`, `IdentityNumber`)
+VALUES (@p3, @p4, @p5, @p6, @p7);
+SELECT `Id`
+FROM `Defendants`
+WHERE ROW_COUNT() = 1 AND `Id` = LAST_INSERT_ID();
+2026-06-16 17:33:19.196 +05:30 [INF] Executed DbCommand (1ms) [Parameters=[@p0='?' (Size = 255), @p1='?' (DbType = DateTime), @p2='?' (DbType = Int32), @p3='?', @p4='?' (Size = 4000), @p5='?' (Size = 4000), @p6='?' (DbType = DateTime)], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO `Cases` (`CaseNumber`, `CreatedAt`, `CreatedByUserId`, `FreezeAmount`, `OrderType`, `Status`, `UpdatedAt`)
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5, @p6);
+SELECT `Id`
+FROM `Cases`
+WHERE ROW_COUNT() = 1 AND `Id` = LAST_INSERT_ID();
+2026-06-16 17:33:19.201 +05:30 [INF] Executed DbCommand (1ms) [Parameters=[@p0='?' (DbType = Int32), @p1='?' (Size = 4000), @p2='?' (Size = 4000), @p3='?' (Size = 4000), @p4='?' (Size = 4000), @p5='?' (DbType = Int32), @p6='?' (Size = 4000), @p7='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO `Complainants` (`CaseId`, `FullName`, `IdentityNumber`)
+VALUES (@p0, @p1, @p2);
+SELECT `Id`
+FROM `Complainants`
+WHERE ROW_COUNT() = 1 AND `Id` = LAST_INSERT_ID();
+
+INSERT INTO `Defendants` (`BankAccountNumber`, `BankName`, `CaseId`, `FullName`, `IdentityNumber`)
+VALUES (@p3, @p4, @p5, @p6, @p7);
+SELECT `Id`
+FROM `Defendants`
+WHERE ROW_COUNT() = 1 AND `Id` = LAST_INSERT_ID();
+2026-06-16 17:33:19.206 +05:30 [INF] Executed DbCommand (1ms) [Parameters=[@p0='?' (Size = 255), @p1='?' (DbType = DateTime), @p2='?' (DbType = Int32), @p3='?' (DbType = Decimal), @p4='?' (Size = 4000), @p5='?' (Size = 4000), @p6='?' (DbType = DateTime)], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO `Cases` (`CaseNumber`, `CreatedAt`, `CreatedByUserId`, `FreezeAmount`, `OrderType`, `Status`, `UpdatedAt`)
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5, @p6);
+SELECT `Id`
+FROM `Cases`
+WHERE ROW_COUNT() = 1 AND `Id` = LAST_INSERT_ID();
+2026-06-16 17:33:19.211 +05:30 [INF] Executed DbCommand (1ms) [Parameters=[@p0='?' (DbType = Int32), @p1='?' (Size = 4000), @p2='?' (Size = 4000), @p3='?' (Size = 4000), @p4='?' (Size = 4000), @p5='?' (DbType = Int32), @p6='?' (Size = 4000), @p7='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO `Complainants` (`CaseId`, `FullName`, `IdentityNumber`)
+VALUES (@p0, @p1, @p2);
+SELECT `Id`
+FROM `Complainants`
+WHERE ROW_COUNT() = 1 AND `Id` = LAST_INSERT_ID();
+
+INSERT INTO `Defendants` (`BankAccountNumber`, `BankName`, `CaseId`, `FullName`, `IdentityNumber`)
+VALUES (@p3, @p4, @p5, @p6, @p7);
+SELECT `Id`
+FROM `Defendants`
+WHERE ROW_COUNT() = 1 AND `Id` = LAST_INSERT_ID();
+2026-06-16 17:33:19.216 +05:30 [INF] Executed DbCommand (1ms) [Parameters=[@p0='?' (Size = 255), @p1='?' (DbType = DateTime), @p2='?' (DbType = Int32), @p3='?', @p4='?' (Size = 4000), @p5='?' (Size = 4000), @p6='?' (DbType = DateTime)], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO `Cases` (`CaseNumber`, `CreatedAt`, `CreatedByUserId`, `FreezeAmount`, `OrderType`, `Status`, `UpdatedAt`)
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5, @p6);
+SELECT `Id`
+FROM `Cases`
+WHERE ROW_COUNT() = 1 AND `Id` = LAST_INSERT_ID();
+2026-06-16 17:33:19.221 +05:30 [INF] Executed DbCommand (1ms) [Parameters=[@p0='?' (DbType = Int32), @p1='?' (Size = 4000), @p2='?' (Size = 4000), @p3='?' (Size = 4000), @p4='?' (Size = 4000), @p5='?' (DbType = Int32), @p6='?' (Size = 4000), @p7='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO `Complainants` (`CaseId`, `FullName`, `IdentityNumber`)
+VALUES (@p0, @p1, @p2);
+SELECT `Id`
+FROM `Complainants`
+WHERE ROW_COUNT() = 1 AND `Id` = LAST_INSERT_ID();
+
+INSERT INTO `Defendants` (`BankAccountNumber`, `BankName`, `CaseId`, `FullName`, `IdentityNumber`)
+VALUES (@p3, @p4, @p5, @p6, @p7);
+SELECT `Id`
+FROM `Defendants`
+WHERE ROW_COUNT() = 1 AND `Id` = LAST_INSERT_ID();
+2026-06-16 17:33:19.226 +05:30 [INF] Executed DbCommand (1ms) [Parameters=[@p0='?' (Size = 255), @p1='?' (DbType = DateTime), @p2='?' (DbType = Int32), @p3='?' (DbType = Decimal), @p4='?' (Size = 4000), @p5='?' (Size = 4000), @p6='?' (DbType = DateTime)], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO `Cases` (`CaseNumber`, `CreatedAt`, `CreatedByUserId`, `FreezeAmount`, `OrderType`, `Status`, `UpdatedAt`)
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5, @p6);
+SELECT `Id`
+FROM `Cases`
+WHERE ROW_COUNT() = 1 AND `Id` = LAST_INSERT_ID();
+2026-06-16 17:33:19.231 +05:30 [INF] Executed DbCommand (1ms) [Parameters=[@p0='?' (DbType = Int32), @p1='?' (Size = 4000), @p2='?' (Size = 4000), @p3='?' (Size = 4000), @p4='?' (Size = 4000), @p5='?' (DbType = Int32), @p6='?' (Size = 4000), @p7='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO `Complainants` (`CaseId`, `FullName`, `IdentityNumber`)
+VALUES (@p0, @p1, @p2);
+SELECT `Id`
+FROM `Complainants`
+WHERE ROW_COUNT() = 1 AND `Id` = LAST_INSERT_ID();
+
+INSERT INTO `Defendants` (`BankAccountNumber`, `BankName`, `CaseId`, `FullName`, `IdentityNumber`)
+VALUES (@p3, @p4, @p5, @p6, @p7);
+SELECT `Id`
+FROM `Defendants`
+WHERE ROW_COUNT() = 1 AND `Id` = LAST_INSERT_ID();
+2026-06-16 17:33:19.262 +05:30 [INF] Executed DbCommand (1ms) [Parameters=[@p0='?' (Size = 4000), @p1='?' (Size = 4000), @p2='?' (DbType = Int32), @p3='?' (DbType = Decimal), @p4='?' (Size = 4000), @p5='?' (Size = 4000), @p6='?' (DbType = DateTime), @p7='?' (Size = 255), @p8='?' (DbType = DateTime), @p9='?' (DbType = Int32), @p10='?' (DbType = Decimal), @p11='?' (Size = 4000), @p12='?' (Size = 4000), @p13='?' (DbType = DateTime)], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO `CaseValidationResults` (`AccountHolderName`, `AccountStatus`, `CaseId`, `CurrentBalance`, `MatchedAccountNumber`, `MatchedOn`, `ValidatedAt`)
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5, @p6);
+SELECT `Id`
+FROM `CaseValidationResults`
+WHERE ROW_COUNT() = 1 AND `Id` = LAST_INSERT_ID();
+
+INSERT INTO `Cases` (`CaseNumber`, `CreatedAt`, `CreatedByUserId`, `FreezeAmount`, `OrderType`, `Status`, `UpdatedAt`)
+VALUES (@p7, @p8, @p9, @p10, @p11, @p12, @p13);
+SELECT `Id`
+FROM `Cases`
+WHERE ROW_COUNT() = 1 AND `Id` = LAST_INSERT_ID();
+2026-06-16 17:33:19.271 +05:30 [INF] Executed DbCommand (1ms) [Parameters=[@p0='?' (DbType = Int32), @p1='?' (Size = 4000), @p2='?' (Size = 4000), @p3='?' (Size = 4000), @p4='?' (Size = 4000), @p5='?' (DbType = Int32), @p6='?' (Size = 4000), @p7='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO `Complainants` (`CaseId`, `FullName`, `IdentityNumber`)
+VALUES (@p0, @p1, @p2);
+SELECT `Id`
+FROM `Complainants`
+WHERE ROW_COUNT() = 1 AND `Id` = LAST_INSERT_ID();
+
+INSERT INTO `Defendants` (`BankAccountNumber`, `BankName`, `CaseId`, `FullName`, `IdentityNumber`)
+VALUES (@p3, @p4, @p5, @p6, @p7);
+SELECT `Id`
+FROM `Defendants`
+WHERE ROW_COUNT() = 1 AND `Id` = LAST_INSERT_ID();
+2026-06-16 17:33:19.309 +05:30 [INF] Executed DbCommand (2ms) [Parameters=[@p0='?', @p1='?' (DbType = Int32), @p2='?' (DbType = Decimal), @p3='?' (Size = 4000), @p4='?' (DbType = Int32), @p5='?' (Size = 4000), @p6='?' (DbType = DateTime), @p7='?' (Size = 4000), @p8='?' (Size = 4000), @p9='?' (DbType = Int32), @p10='?' (DbType = Decimal), @p11='?' (Size = 4000), @p12='?' (Size = 4000), @p13='?' (DbType = DateTime), @p14='?' (Size = 255), @p15='?' (DbType = DateTime), @p16='?' (DbType = Int32), @p17='?', @p18='?' (Size = 4000), @p19='?' (Size = 4000), @p20='?' (DbType = DateTime)], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO `CaseResponses` (`BalanceReported`, `CaseId`, `FreezeAmountApplied`, `Remarks`, `RespondedByUserId`, `ResponseType`, `SubmittedAt`)
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5, @p6);
+SELECT `Id`
+FROM `CaseResponses`
+WHERE ROW_COUNT() = 1 AND `Id` = LAST_INSERT_ID();
+
+INSERT INTO `CaseValidationResults` (`AccountHolderName`, `AccountStatus`, `CaseId`, `CurrentBalance`, `MatchedAccountNumber`, `MatchedOn`, `ValidatedAt`)
+VALUES (@p7, @p8, @p9, @p10, @p11, @p12, @p13);
+SELECT `Id`
+FROM `CaseValidationResults`
+WHERE ROW_COUNT() = 1 AND `Id` = LAST_INSERT_ID();
+
+INSERT INTO `Cases` (`CaseNumber`, `CreatedAt`, `CreatedByUserId`, `FreezeAmount`, `OrderType`, `Status`, `UpdatedAt`)
+VALUES (@p14, @p15, @p16, @p17, @p18, @p19, @p20);
+SELECT `Id`
+FROM `Cases`
+WHERE ROW_COUNT() = 1 AND `Id` = LAST_INSERT_ID();
+2026-06-16 17:33:19.318 +05:30 [INF] Executed DbCommand (1ms) [Parameters=[@p0='?' (DbType = Int32), @p1='?' (Size = 4000), @p2='?' (Size = 4000), @p3='?' (Size = 4000), @p4='?' (Size = 4000), @p5='?' (DbType = Int32), @p6='?' (Size = 4000), @p7='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO `Complainants` (`CaseId`, `FullName`, `IdentityNumber`)
+VALUES (@p0, @p1, @p2);
+SELECT `Id`
+FROM `Complainants`
+WHERE ROW_COUNT() = 1 AND `Id` = LAST_INSERT_ID();
+
+INSERT INTO `Defendants` (`BankAccountNumber`, `BankName`, `CaseId`, `FullName`, `IdentityNumber`)
+VALUES (@p3, @p4, @p5, @p6, @p7);
+SELECT `Id`
+FROM `Defendants`
+WHERE ROW_COUNT() = 1 AND `Id` = LAST_INSERT_ID();
+2026-06-16 17:33:19.326 +05:30 [INF] Executed DbCommand (1ms) [Parameters=[@p0='?' (DbType = Decimal), @p1='?' (DbType = Int32), @p2='?', @p3='?' (Size = 4000), @p4='?' (DbType = Int32), @p5='?' (Size = 4000), @p6='?' (DbType = DateTime), @p7='?' (Size = 4000), @p8='?' (Size = 4000), @p9='?' (DbType = Int32), @p10='?' (DbType = Decimal), @p11='?' (Size = 4000), @p12='?' (Size = 4000), @p13='?' (DbType = DateTime), @p14='?' (Size = 255), @p15='?' (DbType = DateTime), @p16='?' (DbType = Int32), @p17='?', @p18='?' (Size = 4000), @p19='?' (Size = 4000), @p20='?' (DbType = DateTime)], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO `CaseResponses` (`BalanceReported`, `CaseId`, `FreezeAmountApplied`, `Remarks`, `RespondedByUserId`, `ResponseType`, `SubmittedAt`)
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5, @p6);
+SELECT `Id`
+FROM `CaseResponses`
+WHERE ROW_COUNT() = 1 AND `Id` = LAST_INSERT_ID();
+
+INSERT INTO `CaseValidationResults` (`AccountHolderName`, `AccountStatus`, `CaseId`, `CurrentBalance`, `MatchedAccountNumber`, `MatchedOn`, `ValidatedAt`)
+VALUES (@p7, @p8, @p9, @p10, @p11, @p12, @p13);
+SELECT `Id`
+FROM `CaseValidationResults`
+WHERE ROW_COUNT() = 1 AND `Id` = LAST_INSERT_ID();
+
+INSERT INTO `Cases` (`CaseNumber`, `CreatedAt`, `CreatedByUserId`, `FreezeAmount`, `OrderType`, `Status`, `UpdatedAt`)
+VALUES (@p14, @p15, @p16, @p17, @p18, @p19, @p20);
+SELECT `Id`
+FROM `Cases`
+WHERE ROW_COUNT() = 1 AND `Id` = LAST_INSERT_ID();
+2026-06-16 17:33:19.332 +05:30 [INF] Executed DbCommand (1ms) [Parameters=[@p0='?' (DbType = Int32), @p1='?' (Size = 4000), @p2='?' (Size = 4000), @p3='?' (Size = 4000), @p4='?' (Size = 4000), @p5='?' (DbType = Int32), @p6='?' (Size = 4000), @p7='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO `Complainants` (`CaseId`, `FullName`, `IdentityNumber`)
+VALUES (@p0, @p1, @p2);
+SELECT `Id`
+FROM `Complainants`
+WHERE ROW_COUNT() = 1 AND `Id` = LAST_INSERT_ID();
+
+INSERT INTO `Defendants` (`BankAccountNumber`, `BankName`, `CaseId`, `FullName`, `IdentityNumber`)
+VALUES (@p3, @p4, @p5, @p6, @p7);
+SELECT `Id`
+FROM `Defendants`
+WHERE ROW_COUNT() = 1 AND `Id` = LAST_INSERT_ID();
+2026-06-16 17:33:19.339 +05:30 [INF] Executed DbCommand (1ms) [Parameters=[@p0='?', @p1='?' (DbType = Int32), @p2='?', @p3='?' (Size = 4000), @p4='?' (DbType = Int32), @p5='?' (Size = 4000), @p6='?' (DbType = DateTime), @p7='?' (Size = 255), @p8='?' (DbType = DateTime), @p9='?' (DbType = Int32), @p10='?', @p11='?' (Size = 4000), @p12='?' (Size = 4000), @p13='?' (DbType = DateTime)], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO `CaseResponses` (`BalanceReported`, `CaseId`, `FreezeAmountApplied`, `Remarks`, `RespondedByUserId`, `ResponseType`, `SubmittedAt`)
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5, @p6);
+SELECT `Id`
+FROM `CaseResponses`
+WHERE ROW_COUNT() = 1 AND `Id` = LAST_INSERT_ID();
+
+INSERT INTO `Cases` (`CaseNumber`, `CreatedAt`, `CreatedByUserId`, `FreezeAmount`, `OrderType`, `Status`, `UpdatedAt`)
+VALUES (@p7, @p8, @p9, @p10, @p11, @p12, @p13);
+SELECT `Id`
+FROM `Cases`
+WHERE ROW_COUNT() = 1 AND `Id` = LAST_INSERT_ID();
+2026-06-16 17:33:19.345 +05:30 [INF] Executed DbCommand (1ms) [Parameters=[@p0='?' (DbType = Int32), @p1='?' (Size = 4000), @p2='?' (Size = 4000), @p3='?' (Size = 4000), @p4='?' (Size = 4000), @p5='?' (DbType = Int32), @p6='?' (Size = 4000), @p7='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO `Complainants` (`CaseId`, `FullName`, `IdentityNumber`)
+VALUES (@p0, @p1, @p2);
+SELECT `Id`
+FROM `Complainants`
+WHERE ROW_COUNT() = 1 AND `Id` = LAST_INSERT_ID();
+
+INSERT INTO `Defendants` (`BankAccountNumber`, `BankName`, `CaseId`, `FullName`, `IdentityNumber`)
+VALUES (@p3, @p4, @p5, @p6, @p7);
+SELECT `Id`
+FROM `Defendants`
+WHERE ROW_COUNT() = 1 AND `Id` = LAST_INSERT_ID();
+2026-06-16 17:33:19.351 +05:30 [INF] Executed DbCommand (1ms) [Parameters=[@p0='?' (Size = 4000), @p1='?' (Size = 4000), @p2='?' (DbType = Int32), @p3='?' (DbType = Decimal), @p4='?' (Size = 4000), @p5='?' (Size = 4000), @p6='?' (DbType = DateTime)], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO `CaseValidationResults` (`AccountHolderName`, `AccountStatus`, `CaseId`, `CurrentBalance`, `MatchedAccountNumber`, `MatchedOn`, `ValidatedAt`)
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5, @p6);
+SELECT `Id`
+FROM `CaseValidationResults`
+WHERE ROW_COUNT() = 1 AND `Id` = LAST_INSERT_ID();
+2026-06-16 17:33:19.359 +05:30 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT EXISTS (
+    SELECT 1
+    FROM `BatchJobLogs` AS `b`)
+2026-06-16 17:33:19.404 +05:30 [INF] Executed DbCommand (2ms) [Parameters=[@p0='?' (DbType = Int32), @p1='?' (DbType = Int32), @p2='?' (DbType = Int32), @p3='?' (DbType = Int32), @p4='?' (DbType = DateTime), @p5='?' (Size = 4000), @p6='?' (DbType = DateTime), @p7='?' (Size = 4000), @p8='?' (Size = 4000), @p9='?' (DbType = Int32), @p10='?' (DbType = Int32), @p11='?' (DbType = Int32), @p12='?' (DbType = Int32), @p13='?' (DbType = Int32), @p14='?' (DbType = DateTime), @p15='?' (Size = 4000), @p16='?' (DbType = DateTime), @p17='?' (Size = 4000), @p18='?' (Size = 4000), @p19='?' (DbType = Int32), @p20='?' (DbType = Int32), @p21='?' (DbType = Int32), @p22='?' (DbType = Int32), @p23='?' (DbType = Int32), @p24='?' (DbType = DateTime), @p25='?' (Size = 4000), @p26='?' (DbType = DateTime), @p27='?' (Size = 4000), @p28='?' (Size = 4000), @p29='?' (DbType = Int32), @p30='?' (DbType = Int32), @p31='?' (DbType = Int32), @p32='?' (DbType = Int32), @p33='?' (DbType = Int32), @p34='?' (DbType = DateTime), @p35='?' (Size = 4000), @p36='?' (DbType = DateTime), @p37='?' (Size = 4000), @p38='?' (Size = 4000), @p39='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO `BatchJobLogs` (`AccountsMatched`, `AccountsNotFound`, `CasesProcessed`, `DurationSeconds`, `EndTime`, `RunId`, `StartTime`, `Status`, `TriggeredBy`, `TriggeredByUserId`)
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5, @p6, @p7, @p8, @p9);
+SELECT `Id`
+FROM `BatchJobLogs`
+WHERE ROW_COUNT() = 1 AND `Id` = LAST_INSERT_ID();
+
+INSERT INTO `BatchJobLogs` (`AccountsMatched`, `AccountsNotFound`, `CasesProcessed`, `DurationSeconds`, `EndTime`, `RunId`, `StartTime`, `Status`, `TriggeredBy`, `TriggeredByUserId`)
+VALUES (@p10, @p11, @p12, @p13, @p14, @p15, @p16, @p17, @p18, @p19);
+SELECT `Id`
+FROM `BatchJobLogs`
+WHERE ROW_COUNT() = 1 AND `Id` = LAST_INSERT_ID();
+
+INSERT INTO `BatchJobLogs` (`AccountsMatched`, `AccountsNotFound`, `CasesProcessed`, `DurationSeconds`, `EndTime`, `RunId`, `StartTime`, `Status`, `TriggeredBy`, `TriggeredByUserId`)
+VALUES (@p20, @p21, @p22, @p23, @p24, @p25, @p26, @p27, @p28, @p29);
+SELECT `Id`
+FROM `BatchJobLogs`
+WHERE ROW_COUNT() = 1 AND `Id` = LAST_INSERT_ID();
+
+INSERT INTO `BatchJobLogs` (`AccountsMatched`, `AccountsNotFound`, `CasesProcessed`, `DurationSeconds`, `EndTime`, `RunId`, `StartTime`, `Status`, `TriggeredBy`, `TriggeredByUserId`)
+VALUES (@p30, @p31, @p32, @p33, @p34, @p35, @p36, @p37, @p38, @p39);
+SELECT `Id`
+FROM `BatchJobLogs`
+WHERE ROW_COUNT() = 1 AND `Id` = LAST_INSERT_ID();
+2026-06-16 17:33:19.457 +05:30 [INF] User profile is available. Using 'C:\Users\isha.harish\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2026-06-16 17:33:19.465 +05:30 [INF] BatchSchedulerService started with run interval: "00:15:00".
+2026-06-16 17:33:19.465 +05:30 [INF] Triggering initial startup scheduled batch run...
+2026-06-16 17:33:19.515 +05:30 [INF] Executed DbCommand (1ms) [Parameters=[@p0='?' (DbType = Int32), @p1='?' (DbType = Int32), @p2='?' (DbType = Int32), @p3='?' (DbType = Int32), @p4='?' (DbType = DateTime), @p5='?' (Size = 4000), @p6='?' (DbType = DateTime), @p7='?' (Size = 4000), @p8='?' (Size = 4000), @p9='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO `BatchJobLogs` (`AccountsMatched`, `AccountsNotFound`, `CasesProcessed`, `DurationSeconds`, `EndTime`, `RunId`, `StartTime`, `Status`, `TriggeredBy`, `TriggeredByUserId`)
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5, @p6, @p7, @p8, @p9);
+SELECT `Id`
+FROM `BatchJobLogs`
+WHERE ROW_COUNT() = 1 AND `Id` = LAST_INSERT_ID();
+2026-06-16 17:33:19.561 +05:30 [INF] Now listening on: http://localhost:5000
+2026-06-16 17:33:19.562 +05:30 [INF] Application started. Press Ctrl+C to shut down.
+2026-06-16 17:33:19.562 +05:30 [INF] Hosting environment: Development
+2026-06-16 17:33:19.562 +05:30 [INF] Content root path: C:\CCMS\ccms-backend
+2026-06-16 17:33:19.582 +05:30 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT `c`.`Id`, `c`.`CaseNumber`, `c`.`CreatedAt`, `c`.`CreatedByUserId`, `c`.`FreezeAmount`, `c`.`OrderType`, `c`.`Status`, `c`.`UpdatedAt`, `d`.`Id`, `d`.`BankAccountNumber`, `d`.`BankName`, `d`.`CaseId`, `d`.`FullName`, `d`.`IdentityNumber`
+FROM `Cases` AS `c`
+LEFT JOIN `Defendants` AS `d` ON `c`.`Id` = `d`.`CaseId`
+WHERE `c`.`Status` = 'Pending'
+2026-06-16 17:33:19.607 +05:30 [INF] Executed DbCommand (1ms) [Parameters=[@__accountNumber_0='?' (Size = 255)], CommandType='"Text"', CommandTimeout='30']
+SELECT `b`.`Id`, `b`.`AadhaarNumber`, `b`.`AccountHolderName`, `b`.`AccountNumber`, `b`.`AccountStatus`, `b`.`AvailableBalance`, `b`.`BankCode`, `b`.`FrozenAmount`, `b`.`PANNumber`, `b`.`TotalBalance`
+FROM `BankCustomers` AS `b`
+WHERE `b`.`AccountNumber` = @__accountNumber_0
+LIMIT 1
+2026-06-16 17:33:19.615 +05:30 [INF] Executed DbCommand (1ms) [Parameters=[@__accountNumber_0='?' (Size = 255)], CommandType='"Text"', CommandTimeout='30']
+SELECT `b`.`Id`, `b`.`AadhaarNumber`, `b`.`AccountHolderName`, `b`.`AccountNumber`, `b`.`AccountStatus`, `b`.`AvailableBalance`, `b`.`BankCode`, `b`.`FrozenAmount`, `b`.`PANNumber`, `b`.`TotalBalance`
+FROM `BankCustomers` AS `b`
+WHERE `b`.`AccountNumber` = @__accountNumber_0
+LIMIT 1
+2026-06-16 17:33:19.617 +05:30 [INF] Executed DbCommand (1ms) [Parameters=[@__accountNumber_0='?' (Size = 255)], CommandType='"Text"', CommandTimeout='30']
+SELECT `b`.`Id`, `b`.`AadhaarNumber`, `b`.`AccountHolderName`, `b`.`AccountNumber`, `b`.`AccountStatus`, `b`.`AvailableBalance`, `b`.`BankCode`, `b`.`FrozenAmount`, `b`.`PANNumber`, `b`.`TotalBalance`
+FROM `BankCustomers` AS `b`
+WHERE `b`.`AccountNumber` = @__accountNumber_0
+LIMIT 1
+2026-06-16 17:33:19.645 +05:30 [INF] Executed DbCommand (1ms) [Parameters=[@__cleaned_0='?' (Size = 255)], CommandType='"Text"', CommandTimeout='30']
+SELECT `b`.`Id`, `b`.`AadhaarNumber`, `b`.`AccountHolderName`, `b`.`AccountNumber`, `b`.`AccountStatus`, `b`.`AvailableBalance`, `b`.`BankCode`, `b`.`FrozenAmount`, `b`.`PANNumber`, `b`.`TotalBalance`
+FROM `BankCustomers` AS `b`
+WHERE REPLACE(REPLACE(`b`.`AadhaarNumber`, '-', ''), ' ', '') = @__cleaned_0
+LIMIT 1
+2026-06-16 17:33:19.647 +05:30 [INF] Executed DbCommand (1ms) [Parameters=[@__accountNumber_0='?' (Size = 255)], CommandType='"Text"', CommandTimeout='30']
+SELECT `b`.`Id`, `b`.`AadhaarNumber`, `b`.`AccountHolderName`, `b`.`AccountNumber`, `b`.`AccountStatus`, `b`.`AvailableBalance`, `b`.`BankCode`, `b`.`FrozenAmount`, `b`.`PANNumber`, `b`.`TotalBalance`
+FROM `BankCustomers` AS `b`
+WHERE `b`.`AccountNumber` = @__accountNumber_0
+LIMIT 1
+2026-06-16 17:33:19.656 +05:30 [INF] Executed DbCommand (2ms) [Parameters=[@__cleaned_0='?' (Size = 255)], CommandType='"Text"', CommandTimeout='30']
+SELECT `b`.`Id`, `b`.`AadhaarNumber`, `b`.`AccountHolderName`, `b`.`AccountNumber`, `b`.`AccountStatus`, `b`.`AvailableBalance`, `b`.`BankCode`, `b`.`FrozenAmount`, `b`.`PANNumber`, `b`.`TotalBalance`
+FROM `BankCustomers` AS `b`
+WHERE UPPER(`b`.`PANNumber`) = @__cleaned_0
+LIMIT 1
+2026-06-16 17:33:19.659 +05:30 [INF] Executed DbCommand (1ms) [Parameters=[@__accountNumber_0='?' (Size = 255)], CommandType='"Text"', CommandTimeout='30']
+SELECT `b`.`Id`, `b`.`AadhaarNumber`, `b`.`AccountHolderName`, `b`.`AccountNumber`, `b`.`AccountStatus`, `b`.`AvailableBalance`, `b`.`BankCode`, `b`.`FrozenAmount`, `b`.`PANNumber`, `b`.`TotalBalance`
+FROM `BankCustomers` AS `b`
+WHERE `b`.`AccountNumber` = @__accountNumber_0
+LIMIT 1
+2026-06-16 17:33:19.662 +05:30 [INF] Executed DbCommand (1ms) [Parameters=[@__cleaned_0='?' (Size = 255)], CommandType='"Text"', CommandTimeout='30']
+SELECT `b`.`Id`, `b`.`AadhaarNumber`, `b`.`AccountHolderName`, `b`.`AccountNumber`, `b`.`AccountStatus`, `b`.`AvailableBalance`, `b`.`BankCode`, `b`.`FrozenAmount`, `b`.`PANNumber`, `b`.`TotalBalance`
+FROM `BankCustomers` AS `b`
+WHERE REPLACE(REPLACE(`b`.`AadhaarNumber`, '-', ''), ' ', '') = @__cleaned_0
+LIMIT 1
+2026-06-16 17:33:19.673 +05:30 [INF] Executed DbCommand (1ms) [Parameters=[@p0='?', @p1='?' (DbType = Int32), @p2='?', @p3='?' (Size = 4000), @p4='?' (DbType = Int32), @p5='?' (Size = 4000), @p6='?' (DbType = DateTime), @p7='?' (Size = 4000), @p8='?' (Size = 4000), @p9='?' (DbType = Int32), @p10='?' (DbType = Decimal), @p11='?' (Size = 4000), @p12='?' (Size = 4000), @p13='?' (DbType = DateTime), @p14='?' (Size = 4000), @p15='?' (Size = 4000), @p16='?' (DbType = Int32), @p17='?' (DbType = Decimal), @p18='?' (Size = 4000), @p19='?' (Size = 4000), @p20='?' (DbType = DateTime), @p21='?' (Size = 4000), @p22='?' (Size = 4000), @p23='?' (DbType = Int32), @p24='?' (DbType = Decimal), @p25='?' (Size = 4000), @p26='?' (Size = 4000), @p27='?' (DbType = DateTime), @p28='?' (Size = 4000), @p29='?' (Size = 4000), @p30='?' (DbType = Int32), @p31='?' (DbType = Decimal), @p32='?' (Size = 4000), @p33='?' (Size = 4000), @p34='?' (DbType = DateTime), @p37='?' (DbType = Int32), @p35='?' (Size = 4000), @p36='?' (DbType = DateTime), @p40='?' (DbType = Int32), @p38='?' (Size = 4000), @p39='?' (DbType = DateTime), @p43='?' (DbType = Int32), @p41='?' (Size = 4000), @p42='?' (DbType = DateTime), @p46='?' (DbType = Int32), @p44='?' (Size = 4000), @p45='?' (DbType = DateTime), @p49='?' (DbType = Int32), @p47='?' (Size = 4000), @p48='?' (DbType = DateTime)], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO `CaseResponses` (`BalanceReported`, `CaseId`, `FreezeAmountApplied`, `Remarks`, `RespondedByUserId`, `ResponseType`, `SubmittedAt`)
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5, @p6);
+SELECT `Id`
+FROM `CaseResponses`
+WHERE ROW_COUNT() = 1 AND `Id` = LAST_INSERT_ID();
+
+INSERT INTO `CaseValidationResults` (`AccountHolderName`, `AccountStatus`, `CaseId`, `CurrentBalance`, `MatchedAccountNumber`, `MatchedOn`, `ValidatedAt`)
+VALUES (@p7, @p8, @p9, @p10, @p11, @p12, @p13);
+SELECT `Id`
+FROM `CaseValidationResults`
+WHERE ROW_COUNT() = 1 AND `Id` = LAST_INSERT_ID();
+
+INSERT INTO `CaseValidationResults` (`AccountHolderName`, `AccountStatus`, `CaseId`, `CurrentBalance`, `MatchedAccountNumber`, `MatchedOn`, `ValidatedAt`)
+VALUES (@p14, @p15, @p16, @p17, @p18, @p19, @p20);
+SELECT `Id`
+FROM `CaseValidationResults`
+WHERE ROW_COUNT() = 1 AND `Id` = LAST_INSERT_ID();
+
+INSERT INTO `CaseValidationResults` (`AccountHolderName`, `AccountStatus`, `CaseId`, `CurrentBalance`, `MatchedAccountNumber`, `MatchedOn`, `ValidatedAt`)
+VALUES (@p21, @p22, @p23, @p24, @p25, @p26, @p27);
+SELECT `Id`
+FROM `CaseValidationResults`
+WHERE ROW_COUNT() = 1 AND `Id` = LAST_INSERT_ID();
+
+INSERT INTO `CaseValidationResults` (`AccountHolderName`, `AccountStatus`, `CaseId`, `CurrentBalance`, `MatchedAccountNumber`, `MatchedOn`, `ValidatedAt`)
+VALUES (@p28, @p29, @p30, @p31, @p32, @p33, @p34);
+SELECT `Id`
+FROM `CaseValidationResults`
+WHERE ROW_COUNT() = 1 AND `Id` = LAST_INSERT_ID();
+
+UPDATE `Cases` SET `Status` = @p35, `UpdatedAt` = @p36
+WHERE `Id` = @p37;
+SELECT ROW_COUNT();
+
+UPDATE `Cases` SET `Status` = @p38, `UpdatedAt` = @p39
+WHERE `Id` = @p40;
+SELECT ROW_COUNT();
+
+UPDATE `Cases` SET `Status` = @p41, `UpdatedAt` = @p42
+WHERE `Id` = @p43;
+SELECT ROW_COUNT();
+
+UPDATE `Cases` SET `Status` = @p44, `UpdatedAt` = @p45
+WHERE `Id` = @p46;
+SELECT ROW_COUNT();
+
+UPDATE `Cases` SET `Status` = @p47, `UpdatedAt` = @p48
+WHERE `Id` = @p49;
+SELECT ROW_COUNT();
+2026-06-16 17:33:19.685 +05:30 [INF] Executed DbCommand (3ms) [Parameters=[@p6='?' (DbType = Int32), @p0='?' (DbType = Int32), @p1='?' (DbType = Int32), @p2='?' (DbType = Int32), @p3='?' (DbType = Int32), @p4='?' (DbType = DateTime), @p5='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SET AUTOCOMMIT = 1;
+UPDATE `BatchJobLogs` SET `AccountsMatched` = @p0, `AccountsNotFound` = @p1, `CasesProcessed` = @p2, `DurationSeconds` = @p3, `EndTime` = @p4, `Status` = @p5
+WHERE `Id` = @p6;
+SELECT ROW_COUNT();
+2026-06-16 17:33:19.686 +05:30 [INF] Scheduled batch run BATCH-20260616-E4E8 completed successfully. Cases processed: 5, Matched: 4, Not Found: 1.
+2026-06-16 17:34:07.942 +05:30 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:5000/api/auth/login - null null
+2026-06-16 17:34:07.998 +05:30 [INF] CORS policy execution successful.
+2026-06-16 17:34:08.007 +05:30 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:5000/api/auth/login - 204 null null 65.6255ms
+2026-06-16 17:34:08.016 +05:30 [INF] Request starting HTTP/1.1 POST http://localhost:5000/api/auth/login - application/json 59
+2026-06-16 17:34:08.022 +05:30 [INF] CORS policy execution successful.
+2026-06-16 17:34:08.093 +05:30 [INF] Executing endpoint 'ccms_backend.controllers.AuthController.Login (ccms-backend)'
+2026-06-16 17:34:08.118 +05:30 [INF] Route matched with {action = "Login", controller = "Auth"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Login(ccms_backend.dtos.LoginDto) on controller ccms_backend.controllers.AuthController (ccms-backend).
+2026-06-16 17:34:08.278 +05:30 [INF] Executed DbCommand (1ms) [Parameters=[@__username_0='?' (Size = 255)], CommandType='"Text"', CommandTimeout='30']
+SELECT `u`.`Id`, `u`.`BankCode`, `u`.`CreatedAt`, `u`.`PasswordHash`, `u`.`Role`, `u`.`Username`
+FROM `Users` AS `u`
+WHERE `u`.`Username` = @__username_0
+LIMIT 1
+2026-06-16 17:34:08.578 +05:30 [INF] Executing OkObjectResult, writing value of type 'ccms_backend.dtos.AuthResultDto'.
+2026-06-16 17:34:08.588 +05:30 [INF] Executed action ccms_backend.controllers.AuthController.Login (ccms-backend) in 465.1635ms
+2026-06-16 17:34:08.589 +05:30 [INF] Executed endpoint 'ccms_backend.controllers.AuthController.Login (ccms-backend)'
+2026-06-16 17:34:08.595 +05:30 [INF] Request finished HTTP/1.1 POST http://localhost:5000/api/auth/login - 200 null application/json; charset=utf-8 579.0108ms
+2026-06-16 17:34:09.086 +05:30 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:5000/api/cases - null null
+2026-06-16 17:34:09.088 +05:30 [INF] CORS policy execution successful.
+2026-06-16 17:34:09.089 +05:30 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:5000/api/cases - 204 null null 2.6611ms
+2026-06-16 17:34:09.092 +05:30 [INF] Request starting HTTP/1.1 GET http://localhost:5000/api/cases - null null
+2026-06-16 17:34:09.094 +05:30 [INF] CORS policy execution successful.
+2026-06-16 17:34:09.161 +05:30 [INF] Executing endpoint 'ccms_backend.controllers.CasesController.GetCases (ccms-backend)'
+2026-06-16 17:34:09.176 +05:30 [INF] Route matched with {action = "GetCases", controller = "Cases"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetCases() on controller ccms_backend.controllers.CasesController (ccms-backend).
+2026-06-16 17:34:09.363 +05:30 [INF] Executed DbCommand (0ms) [Parameters=[@__username_0='?' (Size = 255)], CommandType='"Text"', CommandTimeout='30']
+SELECT `u`.`Id`, `u`.`BankCode`, `u`.`CreatedAt`, `u`.`PasswordHash`, `u`.`Role`, `u`.`Username`
+FROM `Users` AS `u`
+WHERE `u`.`Username` = @__username_0
+LIMIT 1
+2026-06-16 17:34:09.392 +05:30 [INF] Executed DbCommand (1ms) [Parameters=[@__user_Id_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT `c`.`Id`, `c`.`CaseNumber`, `c`.`CreatedAt`, `c`.`CreatedByUserId`, `c`.`FreezeAmount`, `c`.`OrderType`, `c`.`Status`, `c`.`UpdatedAt`, `d`.`Id`, `d`.`BankAccountNumber`, `d`.`BankName`, `d`.`CaseId`, `d`.`FullName`, `d`.`IdentityNumber`, `c0`.`Id`, `c0`.`AccountHolderName`, `c0`.`AccountStatus`, `c0`.`CaseId`, `c0`.`CurrentBalance`, `c0`.`MatchedAccountNumber`, `c0`.`MatchedOn`, `c0`.`ValidatedAt`
+FROM `Cases` AS `c`
+LEFT JOIN `Defendants` AS `d` ON `c`.`Id` = `d`.`CaseId`
+LEFT JOIN `CaseValidationResults` AS `c0` ON `c`.`Id` = `c0`.`CaseId`
+WHERE `c`.`CreatedByUserId` = @__user_Id_0
+ORDER BY `c`.`CreatedAt` DESC
+2026-06-16 17:34:09.408 +05:30 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[ccms_backend.dtos.CaseSummaryDto, ccms-backend, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2026-06-16 17:34:09.430 +05:30 [INF] Executed action ccms_backend.controllers.CasesController.GetCases (ccms-backend) in 253.8511ms
+2026-06-16 17:34:09.430 +05:30 [INF] Executed endpoint 'ccms_backend.controllers.CasesController.GetCases (ccms-backend)'
+2026-06-16 17:34:09.431 +05:30 [INF] Request finished HTTP/1.1 GET http://localhost:5000/api/cases - 200 null application/json; charset=utf-8 338.1051ms
+2026-06-16 17:34:25.339 +05:30 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:5000/api/cases - null null
+2026-06-16 17:34:25.339 +05:30 [INF] CORS policy execution successful.
+2026-06-16 17:34:25.339 +05:30 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:5000/api/cases - 204 null null 0.9014ms
+2026-06-16 17:34:25.350 +05:30 [INF] Request starting HTTP/1.1 GET http://localhost:5000/api/cases - null null
+2026-06-16 17:34:25.350 +05:30 [INF] CORS policy execution successful.
+2026-06-16 17:34:25.361 +05:30 [INF] Executing endpoint 'ccms_backend.controllers.CasesController.GetCases (ccms-backend)'
+2026-06-16 17:34:25.361 +05:30 [INF] Route matched with {action = "GetCases", controller = "Cases"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetCases() on controller ccms_backend.controllers.CasesController (ccms-backend).
+2026-06-16 17:34:25.380 +05:30 [INF] Executed DbCommand (1ms) [Parameters=[@__username_0='?' (Size = 255)], CommandType='"Text"', CommandTimeout='30']
+SELECT `u`.`Id`, `u`.`BankCode`, `u`.`CreatedAt`, `u`.`PasswordHash`, `u`.`Role`, `u`.`Username`
+FROM `Users` AS `u`
+WHERE `u`.`Username` = @__username_0
+LIMIT 1
+2026-06-16 17:34:25.384 +05:30 [INF] Executed DbCommand (1ms) [Parameters=[@__user_Id_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT `c`.`Id`, `c`.`CaseNumber`, `c`.`CreatedAt`, `c`.`CreatedByUserId`, `c`.`FreezeAmount`, `c`.`OrderType`, `c`.`Status`, `c`.`UpdatedAt`, `d`.`Id`, `d`.`BankAccountNumber`, `d`.`BankName`, `d`.`CaseId`, `d`.`FullName`, `d`.`IdentityNumber`, `c0`.`Id`, `c0`.`AccountHolderName`, `c0`.`AccountStatus`, `c0`.`CaseId`, `c0`.`CurrentBalance`, `c0`.`MatchedAccountNumber`, `c0`.`MatchedOn`, `c0`.`ValidatedAt`
+FROM `Cases` AS `c`
+LEFT JOIN `Defendants` AS `d` ON `c`.`Id` = `d`.`CaseId`
+LEFT JOIN `CaseValidationResults` AS `c0` ON `c`.`Id` = `c0`.`CaseId`
+WHERE `c`.`CreatedByUserId` = @__user_Id_0
+ORDER BY `c`.`CreatedAt` DESC
+2026-06-16 17:34:25.386 +05:30 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[ccms_backend.dtos.CaseSummaryDto, ccms-backend, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2026-06-16 17:34:25.387 +05:30 [INF] Executed action ccms_backend.controllers.CasesController.GetCases (ccms-backend) in 26.1337ms
+2026-06-16 17:34:25.387 +05:30 [INF] Executed endpoint 'ccms_backend.controllers.CasesController.GetCases (ccms-backend)'
+2026-06-16 17:34:25.388 +05:30 [INF] Request finished HTTP/1.1 GET http://localhost:5000/api/cases - 200 null application/json; charset=utf-8 38.0171ms
+2026-06-16 17:34:26.390 +05:30 [INF] Request starting HTTP/1.1 GET http://localhost:5000/api/cases - null null
+2026-06-16 17:34:26.391 +05:30 [INF] CORS policy execution successful.
+2026-06-16 17:34:26.393 +05:30 [INF] Executing endpoint 'ccms_backend.controllers.CasesController.GetCases (ccms-backend)'
+2026-06-16 17:34:26.393 +05:30 [INF] Route matched with {action = "GetCases", controller = "Cases"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetCases() on controller ccms_backend.controllers.CasesController (ccms-backend).
+2026-06-16 17:34:26.412 +05:30 [INF] Executed DbCommand (1ms) [Parameters=[@__username_0='?' (Size = 255)], CommandType='"Text"', CommandTimeout='30']
+SELECT `u`.`Id`, `u`.`BankCode`, `u`.`CreatedAt`, `u`.`PasswordHash`, `u`.`Role`, `u`.`Username`
+FROM `Users` AS `u`
+WHERE `u`.`Username` = @__username_0
+LIMIT 1
+2026-06-16 17:34:26.414 +05:30 [INF] Executed DbCommand (1ms) [Parameters=[@__user_Id_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT `c`.`Id`, `c`.`CaseNumber`, `c`.`CreatedAt`, `c`.`CreatedByUserId`, `c`.`FreezeAmount`, `c`.`OrderType`, `c`.`Status`, `c`.`UpdatedAt`, `d`.`Id`, `d`.`BankAccountNumber`, `d`.`BankName`, `d`.`CaseId`, `d`.`FullName`, `d`.`IdentityNumber`, `c0`.`Id`, `c0`.`AccountHolderName`, `c0`.`AccountStatus`, `c0`.`CaseId`, `c0`.`CurrentBalance`, `c0`.`MatchedAccountNumber`, `c0`.`MatchedOn`, `c0`.`ValidatedAt`
+FROM `Cases` AS `c`
+LEFT JOIN `Defendants` AS `d` ON `c`.`Id` = `d`.`CaseId`
+LEFT JOIN `CaseValidationResults` AS `c0` ON `c`.`Id` = `c0`.`CaseId`
+WHERE `c`.`CreatedByUserId` = @__user_Id_0
+ORDER BY `c`.`CreatedAt` DESC
+2026-06-16 17:34:26.415 +05:30 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[ccms_backend.dtos.CaseSummaryDto, ccms-backend, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2026-06-16 17:34:26.415 +05:30 [INF] Executed action ccms_backend.controllers.CasesController.GetCases (ccms-backend) in 22.2449ms
+2026-06-16 17:34:26.415 +05:30 [INF] Executed endpoint 'ccms_backend.controllers.CasesController.GetCases (ccms-backend)'
+2026-06-16 17:34:26.416 +05:30 [INF] Request finished HTTP/1.1 GET http://localhost:5000/api/cases - 200 null application/json; charset=utf-8 25.203ms
+2026-06-16 17:34:29.290 +05:30 [INF] Request starting HTTP/1.1 GET http://localhost:5000/api/cases - null null
+2026-06-16 17:34:29.290 +05:30 [INF] CORS policy execution successful.
+2026-06-16 17:34:29.291 +05:30 [INF] Executing endpoint 'ccms_backend.controllers.CasesController.GetCases (ccms-backend)'
+2026-06-16 17:34:29.291 +05:30 [INF] Route matched with {action = "GetCases", controller = "Cases"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetCases() on controller ccms_backend.controllers.CasesController (ccms-backend).
+2026-06-16 17:34:29.307 +05:30 [INF] Executed DbCommand (0ms) [Parameters=[@__username_0='?' (Size = 255)], CommandType='"Text"', CommandTimeout='30']
+SELECT `u`.`Id`, `u`.`BankCode`, `u`.`CreatedAt`, `u`.`PasswordHash`, `u`.`Role`, `u`.`Username`
+FROM `Users` AS `u`
+WHERE `u`.`Username` = @__username_0
+LIMIT 1
+2026-06-16 17:34:29.309 +05:30 [INF] Executed DbCommand (1ms) [Parameters=[@__user_Id_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT `c`.`Id`, `c`.`CaseNumber`, `c`.`CreatedAt`, `c`.`CreatedByUserId`, `c`.`FreezeAmount`, `c`.`OrderType`, `c`.`Status`, `c`.`UpdatedAt`, `d`.`Id`, `d`.`BankAccountNumber`, `d`.`BankName`, `d`.`CaseId`, `d`.`FullName`, `d`.`IdentityNumber`, `c0`.`Id`, `c0`.`AccountHolderName`, `c0`.`AccountStatus`, `c0`.`CaseId`, `c0`.`CurrentBalance`, `c0`.`MatchedAccountNumber`, `c0`.`MatchedOn`, `c0`.`ValidatedAt`
+FROM `Cases` AS `c`
+LEFT JOIN `Defendants` AS `d` ON `c`.`Id` = `d`.`CaseId`
+LEFT JOIN `CaseValidationResults` AS `c0` ON `c`.`Id` = `c0`.`CaseId`
+WHERE `c`.`CreatedByUserId` = @__user_Id_0
+ORDER BY `c`.`CreatedAt` DESC
+2026-06-16 17:34:29.309 +05:30 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[ccms_backend.dtos.CaseSummaryDto, ccms-backend, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2026-06-16 17:34:29.309 +05:30 [INF] Executed action ccms_backend.controllers.CasesController.GetCases (ccms-backend) in 18.6103ms
+2026-06-16 17:34:29.309 +05:30 [INF] Executed endpoint 'ccms_backend.controllers.CasesController.GetCases (ccms-backend)'
+2026-06-16 17:34:29.310 +05:30 [INF] Request finished HTTP/1.1 GET http://localhost:5000/api/cases - 200 null application/json; charset=utf-8 19.7341ms
+2026-06-16 17:34:30.824 +05:30 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:5000/api/cases - null null
+2026-06-16 17:34:30.825 +05:30 [INF] CORS policy execution successful.
+2026-06-16 17:34:30.825 +05:30 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:5000/api/cases - 204 null null 0.5246ms
+2026-06-16 17:34:30.829 +05:30 [INF] Request starting HTTP/1.1 GET http://localhost:5000/api/cases - null null
+2026-06-16 17:34:30.829 +05:30 [INF] CORS policy execution successful.
+2026-06-16 17:34:30.829 +05:30 [INF] Executing endpoint 'ccms_backend.controllers.CasesController.GetCases (ccms-backend)'
+2026-06-16 17:34:30.830 +05:30 [INF] Route matched with {action = "GetCases", controller = "Cases"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetCases() on controller ccms_backend.controllers.CasesController (ccms-backend).
+2026-06-16 17:34:30.844 +05:30 [INF] Executed DbCommand (0ms) [Parameters=[@__username_0='?' (Size = 255)], CommandType='"Text"', CommandTimeout='30']
+SELECT `u`.`Id`, `u`.`BankCode`, `u`.`CreatedAt`, `u`.`PasswordHash`, `u`.`Role`, `u`.`Username`
+FROM `Users` AS `u`
+WHERE `u`.`Username` = @__username_0
+LIMIT 1
+2026-06-16 17:34:30.846 +05:30 [INF] Executed DbCommand (1ms) [Parameters=[@__user_Id_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT `c`.`Id`, `c`.`CaseNumber`, `c`.`CreatedAt`, `c`.`CreatedByUserId`, `c`.`FreezeAmount`, `c`.`OrderType`, `c`.`Status`, `c`.`UpdatedAt`, `d`.`Id`, `d`.`BankAccountNumber`, `d`.`BankName`, `d`.`CaseId`, `d`.`FullName`, `d`.`IdentityNumber`, `c0`.`Id`, `c0`.`AccountHolderName`, `c0`.`AccountStatus`, `c0`.`CaseId`, `c0`.`CurrentBalance`, `c0`.`MatchedAccountNumber`, `c0`.`MatchedOn`, `c0`.`ValidatedAt`
+FROM `Cases` AS `c`
+LEFT JOIN `Defendants` AS `d` ON `c`.`Id` = `d`.`CaseId`
+LEFT JOIN `CaseValidationResults` AS `c0` ON `c`.`Id` = `c0`.`CaseId`
+WHERE `c`.`CreatedByUserId` = @__user_Id_0
+ORDER BY `c`.`CreatedAt` DESC
+2026-06-16 17:34:30.847 +05:30 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[ccms_backend.dtos.CaseSummaryDto, ccms-backend, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2026-06-16 17:34:30.847 +05:30 [INF] Executed action ccms_backend.controllers.CasesController.GetCases (ccms-backend) in 17.5534ms
+2026-06-16 17:34:30.847 +05:30 [INF] Executed endpoint 'ccms_backend.controllers.CasesController.GetCases (ccms-backend)'
+2026-06-16 17:34:30.847 +05:30 [INF] Request finished HTTP/1.1 GET http://localhost:5000/api/cases - 200 null application/json; charset=utf-8 18.6156ms
+2026-06-16 17:34:58.790 +05:30 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:5000/api/auth/login - null null
+2026-06-16 17:34:58.790 +05:30 [INF] CORS policy execution successful.
+2026-06-16 17:34:58.790 +05:30 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:5000/api/auth/login - 204 null null 0.4267ms
+2026-06-16 17:34:58.794 +05:30 [INF] Request starting HTTP/1.1 POST http://localhost:5000/api/auth/login - application/json 57
+2026-06-16 17:34:58.795 +05:30 [INF] CORS policy execution successful.
+2026-06-16 17:34:58.795 +05:30 [INF] Executing endpoint 'ccms_backend.controllers.AuthController.Login (ccms-backend)'
+2026-06-16 17:34:58.795 +05:30 [INF] Route matched with {action = "Login", controller = "Auth"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Login(ccms_backend.dtos.LoginDto) on controller ccms_backend.controllers.AuthController (ccms-backend).
+2026-06-16 17:34:58.810 +05:30 [INF] Executed DbCommand (0ms) [Parameters=[@__username_0='?' (Size = 255)], CommandType='"Text"', CommandTimeout='30']
+SELECT `u`.`Id`, `u`.`BankCode`, `u`.`CreatedAt`, `u`.`PasswordHash`, `u`.`Role`, `u`.`Username`
+FROM `Users` AS `u`
+WHERE `u`.`Username` = @__username_0
+LIMIT 1
+2026-06-16 17:34:59.054 +05:30 [INF] Executing OkObjectResult, writing value of type 'ccms_backend.dtos.AuthResultDto'.
+2026-06-16 17:34:59.054 +05:30 [INF] Executed action ccms_backend.controllers.AuthController.Login (ccms-backend) in 258.8117ms
+2026-06-16 17:34:59.054 +05:30 [INF] Executed endpoint 'ccms_backend.controllers.AuthController.Login (ccms-backend)'
+2026-06-16 17:34:59.054 +05:30 [INF] Request finished HTTP/1.1 POST http://localhost:5000/api/auth/login - 200 null application/json; charset=utf-8 259.8642ms
+2026-06-16 17:34:59.585 +05:30 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:5000/api/bank/dashboard - null null
+2026-06-16 17:34:59.586 +05:30 [INF] CORS policy execution successful.
+2026-06-16 17:34:59.587 +05:30 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:5000/api/bank/dashboard - 204 null null 1.7776ms
+2026-06-16 17:34:59.597 +05:30 [INF] Request starting HTTP/1.1 GET http://localhost:5000/api/bank/dashboard - null null
+2026-06-16 17:34:59.597 +05:30 [INF] CORS policy execution successful.
+2026-06-16 17:34:59.600 +05:30 [INF] Executing endpoint 'ccms_backend.controllers.BankDashboardController.GetDashboard (ccms-backend)'
+2026-06-16 17:34:59.609 +05:30 [INF] Route matched with {action = "GetDashboard", controller = "BankDashboard"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[ccms_backend.dtos.BankDashboardResponseDto]] GetDashboard() on controller ccms_backend.controllers.BankDashboardController (ccms-backend).
+2026-06-16 17:34:59.639 +05:30 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT `c`.`Id`, `c`.`CaseNumber`, `c`.`CreatedAt`, `c`.`CreatedByUserId`, `c`.`FreezeAmount`, `c`.`OrderType`, `c`.`Status`, `c`.`UpdatedAt`, `d`.`Id`, `d`.`BankAccountNumber`, `d`.`BankName`, `d`.`CaseId`, `d`.`FullName`, `d`.`IdentityNumber`, `c0`.`Id`, `c0`.`CaseId`, `c0`.`FullName`, `c0`.`IdentityNumber`
+FROM `Cases` AS `c`
+LEFT JOIN `Defendants` AS `d` ON `c`.`Id` = `d`.`CaseId`
+LEFT JOIN `Complainants` AS `c0` ON `c`.`Id` = `c0`.`CaseId`
+2026-06-16 17:34:59.658 +05:30 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT `b`.`Id`, `b`.`AccountsMatched`, `b`.`AccountsNotFound`, `b`.`CasesProcessed`, `b`.`DurationSeconds`, `b`.`EndTime`, `b`.`RunId`, `b`.`StartTime`, `b`.`Status`, `b`.`TriggeredBy`, `b`.`TriggeredByUserId`
+FROM `BatchJobLogs` AS `b`
+ORDER BY `b`.`StartTime` DESC
+LIMIT 1
+2026-06-16 17:34:59.671 +05:30 [INF] Executing OkObjectResult, writing value of type 'ccms_backend.dtos.BankDashboardResponseDto'.
+2026-06-16 17:34:59.681 +05:30 [INF] Executed action ccms_backend.controllers.BankDashboardController.GetDashboard (ccms-backend) in 71.4565ms
+2026-06-16 17:34:59.681 +05:30 [INF] Executed endpoint 'ccms_backend.controllers.BankDashboardController.GetDashboard (ccms-backend)'
+2026-06-16 17:34:59.681 +05:30 [INF] Request finished HTTP/1.1 GET http://localhost:5000/api/bank/dashboard - 200 null application/json; charset=utf-8 84.6486ms
+2026-06-16 17:35:11.862 +05:30 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:5000/api/cases/inbox - null null
+2026-06-16 17:35:11.863 +05:30 [INF] CORS policy execution successful.
+2026-06-16 17:35:11.863 +05:30 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:5000/api/cases/inbox - 204 null null 0.411ms
+2026-06-16 17:35:11.869 +05:30 [INF] Request starting HTTP/1.1 GET http://localhost:5000/api/cases/inbox - null null
+2026-06-16 17:35:11.869 +05:30 [INF] CORS policy execution successful.
+2026-06-16 17:35:11.870 +05:30 [INF] Executing endpoint 'ccms_backend.controllers.CasesController.GetInbox (ccms-backend)'
+2026-06-16 17:35:11.878 +05:30 [INF] Route matched with {action = "GetInbox", controller = "Cases"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[ccms_backend.dtos.CaseInboxDto]] GetInbox() on controller ccms_backend.controllers.CasesController (ccms-backend).
+2026-06-16 17:35:11.910 +05:30 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT `c`.`Id`, `c`.`CaseNumber`, `c`.`CreatedAt`, `c`.`CreatedByUserId`, `c`.`FreezeAmount`, `c`.`OrderType`, `c`.`Status`, `c`.`UpdatedAt`, `d`.`Id`, `d`.`BankAccountNumber`, `d`.`BankName`, `d`.`CaseId`, `d`.`FullName`, `d`.`IdentityNumber`, `c0`.`Id`, `c0`.`AccountHolderName`, `c0`.`AccountStatus`, `c0`.`CaseId`, `c0`.`CurrentBalance`, `c0`.`MatchedAccountNumber`, `c0`.`MatchedOn`, `c0`.`ValidatedAt`
+FROM `Cases` AS `c`
+LEFT JOIN `Defendants` AS `d` ON `c`.`Id` = `d`.`CaseId`
+LEFT JOIN `CaseValidationResults` AS `c0` ON `c`.`Id` = `c0`.`CaseId`
+ORDER BY `c`.`CreatedAt` DESC
+2026-06-16 17:35:11.920 +05:30 [INF] Executing OkObjectResult, writing value of type 'ccms_backend.dtos.CaseInboxDto'.
+2026-06-16 17:35:11.926 +05:30 [INF] Executed action ccms_backend.controllers.CasesController.GetInbox (ccms-backend) in 48.0109ms
+2026-06-16 17:35:11.926 +05:30 [INF] Executed endpoint 'ccms_backend.controllers.CasesController.GetInbox (ccms-backend)'
+2026-06-16 17:35:11.927 +05:30 [INF] Request finished HTTP/1.1 GET http://localhost:5000/api/cases/inbox - 200 null application/json; charset=utf-8 57.9408ms
+2026-06-16 17:35:23.889 +05:30 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:5000/api/cases/CCMS-TEST-0007 - null null
+2026-06-16 17:35:23.890 +05:30 [INF] CORS policy execution successful.
+2026-06-16 17:35:23.890 +05:30 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:5000/api/cases/CCMS-TEST-0007 - 204 null null 0.7937ms
+2026-06-16 17:35:23.894 +05:30 [INF] Request starting HTTP/1.1 GET http://localhost:5000/api/cases/CCMS-TEST-0007 - null null
+2026-06-16 17:35:23.895 +05:30 [INF] CORS policy execution successful.
+2026-06-16 17:35:23.895 +05:30 [INF] Executing endpoint 'ccms_backend.controllers.CasesController.GetCaseDetail (ccms-backend)'
+2026-06-16 17:35:23.903 +05:30 [INF] Route matched with {action = "GetCaseDetail", controller = "Cases"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[ccms_backend.dtos.CaseDetailDto]] GetCaseDetail(System.String) on controller ccms_backend.controllers.CasesController (ccms-backend).
+2026-06-16 17:35:23.917 +05:30 [INF] Executed DbCommand (1ms) [Parameters=[@__username_0='?' (Size = 255)], CommandType='"Text"', CommandTimeout='30']
+SELECT `u`.`Id`, `u`.`BankCode`, `u`.`CreatedAt`, `u`.`PasswordHash`, `u`.`Role`, `u`.`Username`
+FROM `Users` AS `u`
+WHERE `u`.`Username` = @__username_0
+LIMIT 1
+2026-06-16 17:35:23.996 +05:30 [INF] Executed DbCommand (4ms) [Parameters=[@__caseNumber_0='?' (Size = 255)], CommandType='"Text"', CommandTimeout='30']
+SELECT `s`.`Id`, `s`.`CaseNumber`, `s`.`CreatedAt`, `s`.`CreatedByUserId`, `s`.`FreezeAmount`, `s`.`OrderType`, `s`.`Status`, `s`.`UpdatedAt`, `s`.`Id0`, `s`.`CaseId`, `s`.`FullName`, `s`.`IdentityNumber`, `s`.`Id1`, `s`.`BankAccountNumber`, `s`.`BankName`, `s`.`CaseId0`, `s`.`FullName0`, `s`.`IdentityNumber0`, `s`.`Id2`, `s`.`AccountHolderName`, `s`.`AccountStatus`, `s`.`CaseId1`, `s`.`CurrentBalance`, `s`.`MatchedAccountNumber`, `s`.`MatchedOn`, `s`.`ValidatedAt`, `s`.`Id3`, `s`.`Id4`, `c3`.`Id`, `c3`.`CaseId`, `c3`.`DocumentType`, `c3`.`FileName`, `c3`.`FilePath`, `c3`.`FileSize`, `c3`.`UploadedAt`, `s`.`BalanceReported`, `s`.`CaseId2`, `s`.`FreezeAmountApplied`, `s`.`Remarks`, `s`.`RespondedByUserId`, `s`.`ResponseType`, `s`.`SubmittedAt`, `s`.`BankCode`, `s`.`CreatedAt0`, `s`.`PasswordHash`, `s`.`Role`, `s`.`Username`
+FROM (
+    SELECT `c`.`Id`, `c`.`CaseNumber`, `c`.`CreatedAt`, `c`.`CreatedByUserId`, `c`.`FreezeAmount`, `c`.`OrderType`, `c`.`Status`, `c`.`UpdatedAt`, `c0`.`Id` AS `Id0`, `c0`.`CaseId`, `c0`.`FullName`, `c0`.`IdentityNumber`, `d`.`Id` AS `Id1`, `d`.`BankAccountNumber`, `d`.`BankName`, `d`.`CaseId` AS `CaseId0`, `d`.`FullName` AS `FullName0`, `d`.`IdentityNumber` AS `IdentityNumber0`, `c1`.`Id` AS `Id2`, `c1`.`AccountHolderName`, `c1`.`AccountStatus`, `c1`.`CaseId` AS `CaseId1`, `c1`.`CurrentBalance`, `c1`.`MatchedAccountNumber`, `c1`.`MatchedOn`, `c1`.`ValidatedAt`, `c2`.`Id` AS `Id3`, `c2`.`BalanceReported`, `c2`.`CaseId` AS `CaseId2`, `c2`.`FreezeAmountApplied`, `c2`.`Remarks`, `c2`.`RespondedByUserId`, `c2`.`ResponseType`, `c2`.`SubmittedAt`, `u`.`Id` AS `Id4`, `u`.`BankCode`, `u`.`CreatedAt` AS `CreatedAt0`, `u`.`PasswordHash`, `u`.`Role`, `u`.`Username`
+    FROM `Cases` AS `c`
+    LEFT JOIN `Complainants` AS `c0` ON `c`.`Id` = `c0`.`CaseId`
+    LEFT JOIN `Defendants` AS `d` ON `c`.`Id` = `d`.`CaseId`
+    LEFT JOIN `CaseValidationResults` AS `c1` ON `c`.`Id` = `c1`.`CaseId`
+    LEFT JOIN `CaseResponses` AS `c2` ON `c`.`Id` = `c2`.`CaseId`
+    LEFT JOIN `Users` AS `u` ON `c2`.`RespondedByUserId` = `u`.`Id`
+    WHERE `c`.`CaseNumber` = @__caseNumber_0
+    LIMIT 1
+) AS `s`
+LEFT JOIN `CaseDocuments` AS `c3` ON `s`.`Id` = `c3`.`CaseId`
+ORDER BY `s`.`Id`, `s`.`Id0`, `s`.`Id1`, `s`.`Id2`, `s`.`Id3`, `s`.`Id4`
+2026-06-16 17:35:24.045 +05:30 [INF] Executing OkObjectResult, writing value of type 'ccms_backend.dtos.CaseDetailDto'.
+2026-06-16 17:35:24.073 +05:30 [INF] Executed action ccms_backend.controllers.CasesController.GetCaseDetail (ccms-backend) in 169.9585ms
+2026-06-16 17:35:24.075 +05:30 [INF] Executed endpoint 'ccms_backend.controllers.CasesController.GetCaseDetail (ccms-backend)'
+2026-06-16 17:35:24.076 +05:30 [INF] Request finished HTTP/1.1 GET http://localhost:5000/api/cases/CCMS-TEST-0007 - 200 null application/json; charset=utf-8 181.6098ms
+2026-06-16 17:35:26.318 +05:30 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:5000/api/batch/statistics - null null
+2026-06-16 17:35:26.319 +05:30 [INF] CORS policy execution successful.
+2026-06-16 17:35:26.319 +05:30 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:5000/api/batch/statistics - 204 null null 0.8451ms
+2026-06-16 17:35:26.320 +05:30 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:5000/api/batch/history?page=1&pageSize=10 - null null
+2026-06-16 17:35:26.321 +05:30 [INF] CORS policy execution successful.
+2026-06-16 17:35:26.321 +05:30 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:5000/api/batch/history?page=1&pageSize=10 - 204 null null 0.3611ms
+2026-06-16 17:35:26.323 +05:30 [INF] Request starting HTTP/1.1 GET http://localhost:5000/api/batch/statistics - null null
+2026-06-16 17:35:26.325 +05:30 [INF] Request starting HTTP/1.1 GET http://localhost:5000/api/batch/history?page=1&pageSize=10 - null null
+2026-06-16 17:35:26.325 +05:30 [INF] CORS policy execution successful.
+2026-06-16 17:35:26.325 +05:30 [INF] CORS policy execution successful.
+2026-06-16 17:35:26.326 +05:30 [INF] Executing endpoint 'ccms_backend.controllers.BatchController.GetHistory (ccms-backend)'
+2026-06-16 17:35:26.326 +05:30 [INF] Executing endpoint 'ccms_backend.controllers.BatchController.GetStatistics (ccms-backend)'
+2026-06-16 17:35:26.331 +05:30 [INF] Route matched with {action = "GetStatistics", controller = "Batch"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetStatistics() on controller ccms_backend.controllers.BatchController (ccms-backend).
+2026-06-16 17:35:26.332 +05:30 [INF] Route matched with {action = "GetHistory", controller = "Batch"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetHistory(Int32, Int32, System.String) on controller ccms_backend.controllers.BatchController (ccms-backend).
+2026-06-16 17:35:26.362 +05:30 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT `b`.`Id`, `b`.`AccountsMatched`, `b`.`AccountsNotFound`, `b`.`CasesProcessed`, `b`.`DurationSeconds`, `b`.`EndTime`, `b`.`RunId`, `b`.`StartTime`, `b`.`Status`, `b`.`TriggeredBy`, `b`.`TriggeredByUserId`
+FROM `BatchJobLogs` AS `b`
+WHERE `b`.`Status` = 'Success'
+2026-06-16 17:35:26.366 +05:30 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT `b`.`Id`, `b`.`AccountsMatched`, `b`.`AccountsNotFound`, `b`.`CasesProcessed`, `b`.`DurationSeconds`, `b`.`EndTime`, `b`.`RunId`, `b`.`StartTime`, `b`.`Status`, `b`.`TriggeredBy`, `b`.`TriggeredByUserId`
+FROM `BatchJobLogs` AS `b`
+ORDER BY `b`.`StartTime` DESC
+2026-06-16 17:35:26.372 +05:30 [INF] Executing OkObjectResult, writing value of type '<>f__AnonymousType4`8[[System.Int32, System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.Int32, System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.Int32, System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.Double, System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.Double, System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.Double, System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2026-06-16 17:35:26.375 +05:30 [INF] Executing OkObjectResult, writing value of type '<>f__AnonymousType6`2[[System.Collections.Generic.List`1[[<>f__AnonymousType5`5[[System.String, System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.DateTime, System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.Nullable`1[[System.DateTime, System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]], System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]], ccms-backend, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.Int32, System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2026-06-16 17:35:26.381 +05:30 [INF] Executed action ccms_backend.controllers.BatchController.GetHistory (ccms-backend) in 49.594ms
+2026-06-16 17:35:26.382 +05:30 [INF] Executed endpoint 'ccms_backend.controllers.BatchController.GetHistory (ccms-backend)'
+2026-06-16 17:35:26.382 +05:30 [INF] Request finished HTTP/1.1 GET http://localhost:5000/api/batch/history?page=1&pageSize=10 - 200 null application/json; charset=utf-8 57.0325ms
+2026-06-16 17:35:26.382 +05:30 [INF] Executed action ccms_backend.controllers.BatchController.GetStatistics (ccms-backend) in 50.2606ms
+2026-06-16 17:35:26.382 +05:30 [INF] Executed endpoint 'ccms_backend.controllers.BatchController.GetStatistics (ccms-backend)'
+2026-06-16 17:35:26.382 +05:30 [INF] Request finished HTTP/1.1 GET http://localhost:5000/api/batch/statistics - 200 null application/json; charset=utf-8 58.6779ms
+2026-06-16 17:36:41.978 +05:30 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:5000/api/bank/dashboard - null null
+2026-06-16 17:36:41.979 +05:30 [INF] CORS policy execution successful.
+2026-06-16 17:36:41.979 +05:30 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:5000/api/bank/dashboard - 204 null null 0.564ms
+2026-06-16 17:36:41.985 +05:30 [INF] Request starting HTTP/1.1 GET http://localhost:5000/api/bank/dashboard - null null
+2026-06-16 17:36:41.985 +05:30 [INF] CORS policy execution successful.
+2026-06-16 17:36:41.986 +05:30 [INF] Executing endpoint 'ccms_backend.controllers.BankDashboardController.GetDashboard (ccms-backend)'
+2026-06-16 17:36:41.986 +05:30 [INF] Route matched with {action = "GetDashboard", controller = "BankDashboard"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[ccms_backend.dtos.BankDashboardResponseDto]] GetDashboard() on controller ccms_backend.controllers.BankDashboardController (ccms-backend).
+2026-06-16 17:36:42.004 +05:30 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT `c`.`Id`, `c`.`CaseNumber`, `c`.`CreatedAt`, `c`.`CreatedByUserId`, `c`.`FreezeAmount`, `c`.`OrderType`, `c`.`Status`, `c`.`UpdatedAt`, `d`.`Id`, `d`.`BankAccountNumber`, `d`.`BankName`, `d`.`CaseId`, `d`.`FullName`, `d`.`IdentityNumber`, `c0`.`Id`, `c0`.`CaseId`, `c0`.`FullName`, `c0`.`IdentityNumber`
+FROM `Cases` AS `c`
+LEFT JOIN `Defendants` AS `d` ON `c`.`Id` = `d`.`CaseId`
+LEFT JOIN `Complainants` AS `c0` ON `c`.`Id` = `c0`.`CaseId`
+2026-06-16 17:36:42.007 +05:30 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT `b`.`Id`, `b`.`AccountsMatched`, `b`.`AccountsNotFound`, `b`.`CasesProcessed`, `b`.`DurationSeconds`, `b`.`EndTime`, `b`.`RunId`, `b`.`StartTime`, `b`.`Status`, `b`.`TriggeredBy`, `b`.`TriggeredByUserId`
+FROM `BatchJobLogs` AS `b`
+ORDER BY `b`.`StartTime` DESC
+LIMIT 1
+2026-06-16 17:36:42.007 +05:30 [INF] Executing OkObjectResult, writing value of type 'ccms_backend.dtos.BankDashboardResponseDto'.
+2026-06-16 17:36:42.008 +05:30 [INF] Executed action ccms_backend.controllers.BankDashboardController.GetDashboard (ccms-backend) in 21.5348ms
+2026-06-16 17:36:42.008 +05:30 [INF] Executed endpoint 'ccms_backend.controllers.BankDashboardController.GetDashboard (ccms-backend)'
+2026-06-16 17:36:42.008 +05:30 [INF] Request finished HTTP/1.1 GET http://localhost:5000/api/bank/dashboard - 200 null application/json; charset=utf-8 22.9762ms
+2026-06-16 17:36:49.857 +05:30 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:5000/api/cases/inbox - null null
+2026-06-16 17:36:49.858 +05:30 [INF] CORS policy execution successful.
+2026-06-16 17:36:49.858 +05:30 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:5000/api/cases/inbox - 204 null null 0.388ms
+2026-06-16 17:36:49.863 +05:30 [INF] Request starting HTTP/1.1 GET http://localhost:5000/api/cases/inbox - null null
+2026-06-16 17:36:49.863 +05:30 [INF] CORS policy execution successful.
+2026-06-16 17:36:49.864 +05:30 [INF] Executing endpoint 'ccms_backend.controllers.CasesController.GetInbox (ccms-backend)'
+2026-06-16 17:36:49.864 +05:30 [INF] Route matched with {action = "GetInbox", controller = "Cases"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[ccms_backend.dtos.CaseInboxDto]] GetInbox() on controller ccms_backend.controllers.CasesController (ccms-backend).
+2026-06-16 17:36:49.878 +05:30 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT `c`.`Id`, `c`.`CaseNumber`, `c`.`CreatedAt`, `c`.`CreatedByUserId`, `c`.`FreezeAmount`, `c`.`OrderType`, `c`.`Status`, `c`.`UpdatedAt`, `d`.`Id`, `d`.`BankAccountNumber`, `d`.`BankName`, `d`.`CaseId`, `d`.`FullName`, `d`.`IdentityNumber`, `c0`.`Id`, `c0`.`AccountHolderName`, `c0`.`AccountStatus`, `c0`.`CaseId`, `c0`.`CurrentBalance`, `c0`.`MatchedAccountNumber`, `c0`.`MatchedOn`, `c0`.`ValidatedAt`
+FROM `Cases` AS `c`
+LEFT JOIN `Defendants` AS `d` ON `c`.`Id` = `d`.`CaseId`
+LEFT JOIN `CaseValidationResults` AS `c0` ON `c`.`Id` = `c0`.`CaseId`
+ORDER BY `c`.`CreatedAt` DESC
+2026-06-16 17:36:49.880 +05:30 [INF] Executing OkObjectResult, writing value of type 'ccms_backend.dtos.CaseInboxDto'.
+2026-06-16 17:36:49.880 +05:30 [INF] Executed action ccms_backend.controllers.CasesController.GetInbox (ccms-backend) in 15.7975ms
+2026-06-16 17:36:49.880 +05:30 [INF] Executed endpoint 'ccms_backend.controllers.CasesController.GetInbox (ccms-backend)'
+2026-06-16 17:36:49.880 +05:30 [INF] Request finished HTTP/1.1 GET http://localhost:5000/api/cases/inbox - 200 null application/json; charset=utf-8 17.879ms
+2026-06-16 17:36:54.810 +05:30 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:5000/api/cases/CCMS-TEST-0009 - null null
+2026-06-16 17:36:54.811 +05:30 [INF] CORS policy execution successful.
+2026-06-16 17:36:54.811 +05:30 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:5000/api/cases/CCMS-TEST-0009 - 204 null null 0.6635ms
+2026-06-16 17:36:54.815 +05:30 [INF] Request starting HTTP/1.1 GET http://localhost:5000/api/cases/CCMS-TEST-0009 - null null
+2026-06-16 17:36:54.815 +05:30 [INF] CORS policy execution successful.
+2026-06-16 17:36:54.816 +05:30 [INF] Executing endpoint 'ccms_backend.controllers.CasesController.GetCaseDetail (ccms-backend)'
+2026-06-16 17:36:54.816 +05:30 [INF] Route matched with {action = "GetCaseDetail", controller = "Cases"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[ccms_backend.dtos.CaseDetailDto]] GetCaseDetail(System.String) on controller ccms_backend.controllers.CasesController (ccms-backend).
+2026-06-16 17:36:54.831 +05:30 [INF] Executed DbCommand (0ms) [Parameters=[@__username_0='?' (Size = 255)], CommandType='"Text"', CommandTimeout='30']
+SELECT `u`.`Id`, `u`.`BankCode`, `u`.`CreatedAt`, `u`.`PasswordHash`, `u`.`Role`, `u`.`Username`
+FROM `Users` AS `u`
+WHERE `u`.`Username` = @__username_0
+LIMIT 1
+2026-06-16 17:36:54.833 +05:30 [INF] Executed DbCommand (1ms) [Parameters=[@__caseNumber_0='?' (Size = 255)], CommandType='"Text"', CommandTimeout='30']
+SELECT `s`.`Id`, `s`.`CaseNumber`, `s`.`CreatedAt`, `s`.`CreatedByUserId`, `s`.`FreezeAmount`, `s`.`OrderType`, `s`.`Status`, `s`.`UpdatedAt`, `s`.`Id0`, `s`.`CaseId`, `s`.`FullName`, `s`.`IdentityNumber`, `s`.`Id1`, `s`.`BankAccountNumber`, `s`.`BankName`, `s`.`CaseId0`, `s`.`FullName0`, `s`.`IdentityNumber0`, `s`.`Id2`, `s`.`AccountHolderName`, `s`.`AccountStatus`, `s`.`CaseId1`, `s`.`CurrentBalance`, `s`.`MatchedAccountNumber`, `s`.`MatchedOn`, `s`.`ValidatedAt`, `s`.`Id3`, `s`.`Id4`, `c3`.`Id`, `c3`.`CaseId`, `c3`.`DocumentType`, `c3`.`FileName`, `c3`.`FilePath`, `c3`.`FileSize`, `c3`.`UploadedAt`, `s`.`BalanceReported`, `s`.`CaseId2`, `s`.`FreezeAmountApplied`, `s`.`Remarks`, `s`.`RespondedByUserId`, `s`.`ResponseType`, `s`.`SubmittedAt`, `s`.`BankCode`, `s`.`CreatedAt0`, `s`.`PasswordHash`, `s`.`Role`, `s`.`Username`
+FROM (
+    SELECT `c`.`Id`, `c`.`CaseNumber`, `c`.`CreatedAt`, `c`.`CreatedByUserId`, `c`.`FreezeAmount`, `c`.`OrderType`, `c`.`Status`, `c`.`UpdatedAt`, `c0`.`Id` AS `Id0`, `c0`.`CaseId`, `c0`.`FullName`, `c0`.`IdentityNumber`, `d`.`Id` AS `Id1`, `d`.`BankAccountNumber`, `d`.`BankName`, `d`.`CaseId` AS `CaseId0`, `d`.`FullName` AS `FullName0`, `d`.`IdentityNumber` AS `IdentityNumber0`, `c1`.`Id` AS `Id2`, `c1`.`AccountHolderName`, `c1`.`AccountStatus`, `c1`.`CaseId` AS `CaseId1`, `c1`.`CurrentBalance`, `c1`.`MatchedAccountNumber`, `c1`.`MatchedOn`, `c1`.`ValidatedAt`, `c2`.`Id` AS `Id3`, `c2`.`BalanceReported`, `c2`.`CaseId` AS `CaseId2`, `c2`.`FreezeAmountApplied`, `c2`.`Remarks`, `c2`.`RespondedByUserId`, `c2`.`ResponseType`, `c2`.`SubmittedAt`, `u`.`Id` AS `Id4`, `u`.`BankCode`, `u`.`CreatedAt` AS `CreatedAt0`, `u`.`PasswordHash`, `u`.`Role`, `u`.`Username`
+    FROM `Cases` AS `c`
+    LEFT JOIN `Complainants` AS `c0` ON `c`.`Id` = `c0`.`CaseId`
+    LEFT JOIN `Defendants` AS `d` ON `c`.`Id` = `d`.`CaseId`
+    LEFT JOIN `CaseValidationResults` AS `c1` ON `c`.`Id` = `c1`.`CaseId`
+    LEFT JOIN `CaseResponses` AS `c2` ON `c`.`Id` = `c2`.`CaseId`
+    LEFT JOIN `Users` AS `u` ON `c2`.`RespondedByUserId` = `u`.`Id`
+    WHERE `c`.`CaseNumber` = @__caseNumber_0
+    LIMIT 1
+) AS `s`
+LEFT JOIN `CaseDocuments` AS `c3` ON `s`.`Id` = `c3`.`CaseId`
+ORDER BY `s`.`Id`, `s`.`Id0`, `s`.`Id1`, `s`.`Id2`, `s`.`Id3`, `s`.`Id4`
+2026-06-16 17:36:54.834 +05:30 [INF] Executing OkObjectResult, writing value of type 'ccms_backend.dtos.CaseDetailDto'.
+2026-06-16 17:36:54.834 +05:30 [INF] Executed action ccms_backend.controllers.CasesController.GetCaseDetail (ccms-backend) in 18.1295ms
+2026-06-16 17:36:54.834 +05:30 [INF] Executed endpoint 'ccms_backend.controllers.CasesController.GetCaseDetail (ccms-backend)'
+2026-06-16 17:36:54.834 +05:30 [INF] Request finished HTTP/1.1 GET http://localhost:5000/api/cases/CCMS-TEST-0009 - 200 null application/json; charset=utf-8 19.7154ms
+2026-06-16 17:37:04.590 +05:30 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:5000/api/batch/statistics - null null
+2026-06-16 17:37:04.591 +05:30 [INF] CORS policy execution successful.
+2026-06-16 17:37:04.591 +05:30 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:5000/api/batch/statistics - 204 null null 0.3855ms
+2026-06-16 17:37:04.593 +05:30 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:5000/api/batch/history?page=1&pageSize=10 - null null
+2026-06-16 17:37:04.593 +05:30 [INF] CORS policy execution successful.
+2026-06-16 17:37:04.593 +05:30 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:5000/api/batch/history?page=1&pageSize=10 - 204 null null 0.4737ms
+2026-06-16 17:37:04.597 +05:30 [INF] Request starting HTTP/1.1 GET http://localhost:5000/api/batch/statistics - null null
+2026-06-16 17:37:04.597 +05:30 [INF] CORS policy execution successful.
+2026-06-16 17:37:04.598 +05:30 [INF] Request starting HTTP/1.1 GET http://localhost:5000/api/batch/history?page=1&pageSize=10 - null null
+2026-06-16 17:37:04.598 +05:30 [INF] CORS policy execution successful.
+2026-06-16 17:37:04.598 +05:30 [INF] Executing endpoint 'ccms_backend.controllers.BatchController.GetStatistics (ccms-backend)'
+2026-06-16 17:37:04.599 +05:30 [INF] Route matched with {action = "GetStatistics", controller = "Batch"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetStatistics() on controller ccms_backend.controllers.BatchController (ccms-backend).
+2026-06-16 17:37:04.599 +05:30 [INF] Executing endpoint 'ccms_backend.controllers.BatchController.GetHistory (ccms-backend)'
+2026-06-16 17:37:04.599 +05:30 [INF] Route matched with {action = "GetHistory", controller = "Batch"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetHistory(Int32, Int32, System.String) on controller ccms_backend.controllers.BatchController (ccms-backend).
+2026-06-16 17:37:04.615 +05:30 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT `b`.`Id`, `b`.`AccountsMatched`, `b`.`AccountsNotFound`, `b`.`CasesProcessed`, `b`.`DurationSeconds`, `b`.`EndTime`, `b`.`RunId`, `b`.`StartTime`, `b`.`Status`, `b`.`TriggeredBy`, `b`.`TriggeredByUserId`
+FROM `BatchJobLogs` AS `b`
+ORDER BY `b`.`StartTime` DESC
+2026-06-16 17:37:04.622 +05:30 [INF] Executing OkObjectResult, writing value of type '<>f__AnonymousType6`2[[System.Collections.Generic.List`1[[<>f__AnonymousType5`5[[System.String, System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.DateTime, System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.Nullable`1[[System.DateTime, System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]], System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]], ccms-backend, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.Int32, System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2026-06-16 17:37:04.623 +05:30 [INF] Executed action ccms_backend.controllers.BatchController.GetHistory (ccms-backend) in 23.964ms
+2026-06-16 17:37:04.623 +05:30 [INF] Executed endpoint 'ccms_backend.controllers.BatchController.GetHistory (ccms-backend)'
+2026-06-16 17:37:04.623 +05:30 [INF] Request finished HTTP/1.1 GET http://localhost:5000/api/batch/history?page=1&pageSize=10 - 200 null application/json; charset=utf-8 25.4349ms
+2026-06-16 17:37:04.628 +05:30 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT `b`.`Id`, `b`.`AccountsMatched`, `b`.`AccountsNotFound`, `b`.`CasesProcessed`, `b`.`DurationSeconds`, `b`.`EndTime`, `b`.`RunId`, `b`.`StartTime`, `b`.`Status`, `b`.`TriggeredBy`, `b`.`TriggeredByUserId`
+FROM `BatchJobLogs` AS `b`
+WHERE `b`.`Status` = 'Success'
+2026-06-16 17:37:04.628 +05:30 [INF] Executing OkObjectResult, writing value of type '<>f__AnonymousType4`8[[System.Int32, System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.Int32, System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.Int32, System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.Double, System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.Double, System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.Double, System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2026-06-16 17:37:04.629 +05:30 [INF] Executed action ccms_backend.controllers.BatchController.GetStatistics (ccms-backend) in 29.9425ms
+2026-06-16 17:37:04.629 +05:30 [INF] Executed endpoint 'ccms_backend.controllers.BatchController.GetStatistics (ccms-backend)'
+2026-06-16 17:37:04.629 +05:30 [INF] Request finished HTTP/1.1 GET http://localhost:5000/api/batch/statistics - 200 null application/json; charset=utf-8 32.0089ms
+2026-06-16 17:37:07.677 +05:30 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:5000/api/bank/dashboard - null null
+2026-06-16 17:37:07.677 +05:30 [INF] CORS policy execution successful.
+2026-06-16 17:37:07.678 +05:30 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:5000/api/bank/dashboard - 204 null null 0.573ms
+2026-06-16 17:37:07.682 +05:30 [INF] Request starting HTTP/1.1 GET http://localhost:5000/api/bank/dashboard - null null
+2026-06-16 17:37:07.682 +05:30 [INF] CORS policy execution successful.
+2026-06-16 17:37:07.683 +05:30 [INF] Executing endpoint 'ccms_backend.controllers.BankDashboardController.GetDashboard (ccms-backend)'
+2026-06-16 17:37:07.683 +05:30 [INF] Route matched with {action = "GetDashboard", controller = "BankDashboard"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[ccms_backend.dtos.BankDashboardResponseDto]] GetDashboard() on controller ccms_backend.controllers.BankDashboardController (ccms-backend).
+2026-06-16 17:37:07.696 +05:30 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT `c`.`Id`, `c`.`CaseNumber`, `c`.`CreatedAt`, `c`.`CreatedByUserId`, `c`.`FreezeAmount`, `c`.`OrderType`, `c`.`Status`, `c`.`UpdatedAt`, `d`.`Id`, `d`.`BankAccountNumber`, `d`.`BankName`, `d`.`CaseId`, `d`.`FullName`, `d`.`IdentityNumber`, `c0`.`Id`, `c0`.`CaseId`, `c0`.`FullName`, `c0`.`IdentityNumber`
+FROM `Cases` AS `c`
+LEFT JOIN `Defendants` AS `d` ON `c`.`Id` = `d`.`CaseId`
+LEFT JOIN `Complainants` AS `c0` ON `c`.`Id` = `c0`.`CaseId`
+2026-06-16 17:37:07.697 +05:30 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT `b`.`Id`, `b`.`AccountsMatched`, `b`.`AccountsNotFound`, `b`.`CasesProcessed`, `b`.`DurationSeconds`, `b`.`EndTime`, `b`.`RunId`, `b`.`StartTime`, `b`.`Status`, `b`.`TriggeredBy`, `b`.`TriggeredByUserId`
+FROM `BatchJobLogs` AS `b`
+ORDER BY `b`.`StartTime` DESC
+LIMIT 1
+2026-06-16 17:37:07.698 +05:30 [INF] Executing OkObjectResult, writing value of type 'ccms_backend.dtos.BankDashboardResponseDto'.
+2026-06-16 17:37:07.698 +05:30 [INF] Executed action ccms_backend.controllers.BankDashboardController.GetDashboard (ccms-backend) in 14.4956ms
+2026-06-16 17:37:07.698 +05:30 [INF] Executed endpoint 'ccms_backend.controllers.BankDashboardController.GetDashboard (ccms-backend)'
+2026-06-16 17:37:07.698 +05:30 [INF] Request finished HTTP/1.1 GET http://localhost:5000/api/bank/dashboard - 200 null application/json; charset=utf-8 16.4485ms
+2026-06-16 17:37:33.094 +05:30 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:5000/api/batch/statistics - null null
+2026-06-16 17:37:33.095 +05:30 [INF] CORS policy execution successful.
+2026-06-16 17:37:33.095 +05:30 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:5000/api/batch/statistics - 204 null null 0.3521ms
+2026-06-16 17:37:33.095 +05:30 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:5000/api/batch/history?page=1&pageSize=10 - null null
+2026-06-16 17:37:33.095 +05:30 [INF] CORS policy execution successful.
+2026-06-16 17:37:33.095 +05:30 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:5000/api/batch/history?page=1&pageSize=10 - 204 null null 0.3193ms
+2026-06-16 17:37:33.099 +05:30 [INF] Request starting HTTP/1.1 GET http://localhost:5000/api/batch/statistics - null null
+2026-06-16 17:37:33.099 +05:30 [INF] Request starting HTTP/1.1 GET http://localhost:5000/api/batch/history?page=1&pageSize=10 - null null
+2026-06-16 17:37:33.099 +05:30 [INF] CORS policy execution successful.
+2026-06-16 17:37:33.099 +05:30 [INF] CORS policy execution successful.
+2026-06-16 17:37:33.100 +05:30 [INF] Executing endpoint 'ccms_backend.controllers.BatchController.GetHistory (ccms-backend)'
+2026-06-16 17:37:33.100 +05:30 [INF] Route matched with {action = "GetHistory", controller = "Batch"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetHistory(Int32, Int32, System.String) on controller ccms_backend.controllers.BatchController (ccms-backend).
+2026-06-16 17:37:33.100 +05:30 [INF] Executing endpoint 'ccms_backend.controllers.BatchController.GetStatistics (ccms-backend)'
+2026-06-16 17:37:33.100 +05:30 [INF] Route matched with {action = "GetStatistics", controller = "Batch"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetStatistics() on controller ccms_backend.controllers.BatchController (ccms-backend).
+2026-06-16 17:37:33.115 +05:30 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT `b`.`Id`, `b`.`AccountsMatched`, `b`.`AccountsNotFound`, `b`.`CasesProcessed`, `b`.`DurationSeconds`, `b`.`EndTime`, `b`.`RunId`, `b`.`StartTime`, `b`.`Status`, `b`.`TriggeredBy`, `b`.`TriggeredByUserId`
+FROM `BatchJobLogs` AS `b`
+ORDER BY `b`.`StartTime` DESC
+2026-06-16 17:37:33.116 +05:30 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT `b`.`Id`, `b`.`AccountsMatched`, `b`.`AccountsNotFound`, `b`.`CasesProcessed`, `b`.`DurationSeconds`, `b`.`EndTime`, `b`.`RunId`, `b`.`StartTime`, `b`.`Status`, `b`.`TriggeredBy`, `b`.`TriggeredByUserId`
+FROM `BatchJobLogs` AS `b`
+WHERE `b`.`Status` = 'Success'
+2026-06-16 17:37:33.117 +05:30 [INF] Executing OkObjectResult, writing value of type '<>f__AnonymousType4`8[[System.Int32, System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.Int32, System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.Int32, System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.Double, System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.Double, System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.Double, System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2026-06-16 17:37:33.119 +05:30 [INF] Executed action ccms_backend.controllers.BatchController.GetStatistics (ccms-backend) in 18.1804ms
+2026-06-16 17:37:33.119 +05:30 [INF] Executed endpoint 'ccms_backend.controllers.BatchController.GetStatistics (ccms-backend)'
+2026-06-16 17:37:33.119 +05:30 [INF] Request finished HTTP/1.1 GET http://localhost:5000/api/batch/statistics - 200 null application/json; charset=utf-8 19.8408ms
+2026-06-16 17:37:33.119 +05:30 [INF] Executing OkObjectResult, writing value of type '<>f__AnonymousType6`2[[System.Collections.Generic.List`1[[<>f__AnonymousType5`5[[System.String, System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.DateTime, System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.Nullable`1[[System.DateTime, System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]], System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]], ccms-backend, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.Int32, System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2026-06-16 17:37:33.120 +05:30 [INF] Executed action ccms_backend.controllers.BatchController.GetHistory (ccms-backend) in 19.3886ms
+2026-06-16 17:37:33.120 +05:30 [INF] Executed endpoint 'ccms_backend.controllers.BatchController.GetHistory (ccms-backend)'
+2026-06-16 17:37:33.120 +05:30 [INF] Request finished HTTP/1.1 GET http://localhost:5000/api/batch/history?page=1&pageSize=10 - 200 null application/json; charset=utf-8 20.8042ms
+2026-06-16 17:37:53.724 +05:30 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:5000/api/cases/inbox - null null
+2026-06-16 17:37:53.724 +05:30 [INF] CORS policy execution successful.
+2026-06-16 17:37:53.724 +05:30 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:5000/api/cases/inbox - 204 null null 0.3204ms
+2026-06-16 17:37:53.728 +05:30 [INF] Request starting HTTP/1.1 GET http://localhost:5000/api/cases/inbox - null null
+2026-06-16 17:37:53.728 +05:30 [INF] CORS policy execution successful.
+2026-06-16 17:37:53.728 +05:30 [INF] Executing endpoint 'ccms_backend.controllers.CasesController.GetInbox (ccms-backend)'
+2026-06-16 17:37:53.728 +05:30 [INF] Route matched with {action = "GetInbox", controller = "Cases"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[ccms_backend.dtos.CaseInboxDto]] GetInbox() on controller ccms_backend.controllers.CasesController (ccms-backend).
+2026-06-16 17:37:53.744 +05:30 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT `c`.`Id`, `c`.`CaseNumber`, `c`.`CreatedAt`, `c`.`CreatedByUserId`, `c`.`FreezeAmount`, `c`.`OrderType`, `c`.`Status`, `c`.`UpdatedAt`, `d`.`Id`, `d`.`BankAccountNumber`, `d`.`BankName`, `d`.`CaseId`, `d`.`FullName`, `d`.`IdentityNumber`, `c0`.`Id`, `c0`.`AccountHolderName`, `c0`.`AccountStatus`, `c0`.`CaseId`, `c0`.`CurrentBalance`, `c0`.`MatchedAccountNumber`, `c0`.`MatchedOn`, `c0`.`ValidatedAt`
+FROM `Cases` AS `c`
+LEFT JOIN `Defendants` AS `d` ON `c`.`Id` = `d`.`CaseId`
+LEFT JOIN `CaseValidationResults` AS `c0` ON `c`.`Id` = `c0`.`CaseId`
+ORDER BY `c`.`CreatedAt` DESC
+2026-06-16 17:37:53.745 +05:30 [INF] Executing OkObjectResult, writing value of type 'ccms_backend.dtos.CaseInboxDto'.
+2026-06-16 17:37:53.746 +05:30 [INF] Executed action ccms_backend.controllers.CasesController.GetInbox (ccms-backend) in 17.2061ms
+2026-06-16 17:37:53.746 +05:30 [INF] Executed endpoint 'ccms_backend.controllers.CasesController.GetInbox (ccms-backend)'
+2026-06-16 17:37:53.746 +05:30 [INF] Request finished HTTP/1.1 GET http://localhost:5000/api/cases/inbox - 200 null application/json; charset=utf-8 18.5519ms
+2026-06-16 17:38:18.292 +05:30 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:5000/api/cases/CCMS-TEST-0007 - null null
+2026-06-16 17:38:18.292 +05:30 [INF] CORS policy execution successful.
+2026-06-16 17:38:18.293 +05:30 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:5000/api/cases/CCMS-TEST-0007 - 204 null null 0.3125ms
+2026-06-16 17:38:18.296 +05:30 [INF] Request starting HTTP/1.1 GET http://localhost:5000/api/cases/CCMS-TEST-0007 - null null
+2026-06-16 17:38:18.296 +05:30 [INF] CORS policy execution successful.
+2026-06-16 17:38:18.297 +05:30 [INF] Executing endpoint 'ccms_backend.controllers.CasesController.GetCaseDetail (ccms-backend)'
+2026-06-16 17:38:18.297 +05:30 [INF] Route matched with {action = "GetCaseDetail", controller = "Cases"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[ccms_backend.dtos.CaseDetailDto]] GetCaseDetail(System.String) on controller ccms_backend.controllers.CasesController (ccms-backend).
+2026-06-16 17:38:18.312 +05:30 [INF] Executed DbCommand (1ms) [Parameters=[@__username_0='?' (Size = 255)], CommandType='"Text"', CommandTimeout='30']
+SELECT `u`.`Id`, `u`.`BankCode`, `u`.`CreatedAt`, `u`.`PasswordHash`, `u`.`Role`, `u`.`Username`
+FROM `Users` AS `u`
+WHERE `u`.`Username` = @__username_0
+LIMIT 1
+2026-06-16 17:38:18.314 +05:30 [INF] Executed DbCommand (1ms) [Parameters=[@__caseNumber_0='?' (Size = 255)], CommandType='"Text"', CommandTimeout='30']
+SELECT `s`.`Id`, `s`.`CaseNumber`, `s`.`CreatedAt`, `s`.`CreatedByUserId`, `s`.`FreezeAmount`, `s`.`OrderType`, `s`.`Status`, `s`.`UpdatedAt`, `s`.`Id0`, `s`.`CaseId`, `s`.`FullName`, `s`.`IdentityNumber`, `s`.`Id1`, `s`.`BankAccountNumber`, `s`.`BankName`, `s`.`CaseId0`, `s`.`FullName0`, `s`.`IdentityNumber0`, `s`.`Id2`, `s`.`AccountHolderName`, `s`.`AccountStatus`, `s`.`CaseId1`, `s`.`CurrentBalance`, `s`.`MatchedAccountNumber`, `s`.`MatchedOn`, `s`.`ValidatedAt`, `s`.`Id3`, `s`.`Id4`, `c3`.`Id`, `c3`.`CaseId`, `c3`.`DocumentType`, `c3`.`FileName`, `c3`.`FilePath`, `c3`.`FileSize`, `c3`.`UploadedAt`, `s`.`BalanceReported`, `s`.`CaseId2`, `s`.`FreezeAmountApplied`, `s`.`Remarks`, `s`.`RespondedByUserId`, `s`.`ResponseType`, `s`.`SubmittedAt`, `s`.`BankCode`, `s`.`CreatedAt0`, `s`.`PasswordHash`, `s`.`Role`, `s`.`Username`
+FROM (
+    SELECT `c`.`Id`, `c`.`CaseNumber`, `c`.`CreatedAt`, `c`.`CreatedByUserId`, `c`.`FreezeAmount`, `c`.`OrderType`, `c`.`Status`, `c`.`UpdatedAt`, `c0`.`Id` AS `Id0`, `c0`.`CaseId`, `c0`.`FullName`, `c0`.`IdentityNumber`, `d`.`Id` AS `Id1`, `d`.`BankAccountNumber`, `d`.`BankName`, `d`.`CaseId` AS `CaseId0`, `d`.`FullName` AS `FullName0`, `d`.`IdentityNumber` AS `IdentityNumber0`, `c1`.`Id` AS `Id2`, `c1`.`AccountHolderName`, `c1`.`AccountStatus`, `c1`.`CaseId` AS `CaseId1`, `c1`.`CurrentBalance`, `c1`.`MatchedAccountNumber`, `c1`.`MatchedOn`, `c1`.`ValidatedAt`, `c2`.`Id` AS `Id3`, `c2`.`BalanceReported`, `c2`.`CaseId` AS `CaseId2`, `c2`.`FreezeAmountApplied`, `c2`.`Remarks`, `c2`.`RespondedByUserId`, `c2`.`ResponseType`, `c2`.`SubmittedAt`, `u`.`Id` AS `Id4`, `u`.`BankCode`, `u`.`CreatedAt` AS `CreatedAt0`, `u`.`PasswordHash`, `u`.`Role`, `u`.`Username`
+    FROM `Cases` AS `c`
+    LEFT JOIN `Complainants` AS `c0` ON `c`.`Id` = `c0`.`CaseId`
+    LEFT JOIN `Defendants` AS `d` ON `c`.`Id` = `d`.`CaseId`
+    LEFT JOIN `CaseValidationResults` AS `c1` ON `c`.`Id` = `c1`.`CaseId`
+    LEFT JOIN `CaseResponses` AS `c2` ON `c`.`Id` = `c2`.`CaseId`
+    LEFT JOIN `Users` AS `u` ON `c2`.`RespondedByUserId` = `u`.`Id`
+    WHERE `c`.`CaseNumber` = @__caseNumber_0
+    LIMIT 1
+) AS `s`
+LEFT JOIN `CaseDocuments` AS `c3` ON `s`.`Id` = `c3`.`CaseId`
+ORDER BY `s`.`Id`, `s`.`Id0`, `s`.`Id1`, `s`.`Id2`, `s`.`Id3`, `s`.`Id4`
+2026-06-16 17:38:18.315 +05:30 [INF] Executing OkObjectResult, writing value of type 'ccms_backend.dtos.CaseDetailDto'.
+2026-06-16 17:38:18.315 +05:30 [INF] Executed action ccms_backend.controllers.CasesController.GetCaseDetail (ccms-backend) in 17.9092ms
+2026-06-16 17:38:18.315 +05:30 [INF] Executed endpoint 'ccms_backend.controllers.CasesController.GetCaseDetail (ccms-backend)'
+2026-06-16 17:38:18.315 +05:30 [INF] Request finished HTTP/1.1 GET http://localhost:5000/api/cases/CCMS-TEST-0007 - 200 null application/json; charset=utf-8 18.8394ms
+2026-06-16 17:38:26.679 +05:30 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:5000/api/batch/statistics - null null
+2026-06-16 17:38:26.679 +05:30 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:5000/api/batch/history?page=1&pageSize=10 - null null
+2026-06-16 17:38:26.680 +05:30 [INF] CORS policy execution successful.
+2026-06-16 17:38:26.679 +05:30 [INF] CORS policy execution successful.
+2026-06-16 17:38:26.680 +05:30 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:5000/api/batch/statistics - 204 null null 0.7101ms
+2026-06-16 17:38:26.680 +05:30 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:5000/api/batch/history?page=1&pageSize=10 - 204 null null 0.6924ms
+2026-06-16 17:38:26.687 +05:30 [INF] Request starting HTTP/1.1 GET http://localhost:5000/api/batch/history?page=1&pageSize=10 - null null
+2026-06-16 17:38:26.687 +05:30 [INF] Request starting HTTP/1.1 GET http://localhost:5000/api/batch/statistics - null null
+2026-06-16 17:38:26.687 +05:30 [INF] CORS policy execution successful.
+2026-06-16 17:38:26.687 +05:30 [INF] CORS policy execution successful.
+2026-06-16 17:38:26.688 +05:30 [INF] Executing endpoint 'ccms_backend.controllers.BatchController.GetStatistics (ccms-backend)'
+2026-06-16 17:38:26.688 +05:30 [INF] Executing endpoint 'ccms_backend.controllers.BatchController.GetHistory (ccms-backend)'
+2026-06-16 17:38:26.688 +05:30 [INF] Route matched with {action = "GetStatistics", controller = "Batch"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetStatistics() on controller ccms_backend.controllers.BatchController (ccms-backend).
+2026-06-16 17:38:26.688 +05:30 [INF] Route matched with {action = "GetHistory", controller = "Batch"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetHistory(Int32, Int32, System.String) on controller ccms_backend.controllers.BatchController (ccms-backend).
+2026-06-16 17:38:26.702 +05:30 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT `b`.`Id`, `b`.`AccountsMatched`, `b`.`AccountsNotFound`, `b`.`CasesProcessed`, `b`.`DurationSeconds`, `b`.`EndTime`, `b`.`RunId`, `b`.`StartTime`, `b`.`Status`, `b`.`TriggeredBy`, `b`.`TriggeredByUserId`
+FROM `BatchJobLogs` AS `b`
+WHERE `b`.`Status` = 'Success'
+2026-06-16 17:38:26.703 +05:30 [INF] Executing OkObjectResult, writing value of type '<>f__AnonymousType4`8[[System.Int32, System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.Int32, System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.Int32, System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.Double, System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.Double, System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.Double, System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2026-06-16 17:38:26.704 +05:30 [INF] Executed action ccms_backend.controllers.BatchController.GetStatistics (ccms-backend) in 16.325ms
+2026-06-16 17:38:26.705 +05:30 [INF] Executed endpoint 'ccms_backend.controllers.BatchController.GetStatistics (ccms-backend)'
+2026-06-16 17:38:26.705 +05:30 [INF] Request finished HTTP/1.1 GET http://localhost:5000/api/batch/statistics - 200 null application/json; charset=utf-8 18.4066ms
+2026-06-16 17:38:26.705 +05:30 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT `b`.`Id`, `b`.`AccountsMatched`, `b`.`AccountsNotFound`, `b`.`CasesProcessed`, `b`.`DurationSeconds`, `b`.`EndTime`, `b`.`RunId`, `b`.`StartTime`, `b`.`Status`, `b`.`TriggeredBy`, `b`.`TriggeredByUserId`
+FROM `BatchJobLogs` AS `b`
+ORDER BY `b`.`StartTime` DESC
+2026-06-16 17:38:26.711 +05:30 [INF] Executing OkObjectResult, writing value of type '<>f__AnonymousType6`2[[System.Collections.Generic.List`1[[<>f__AnonymousType5`5[[System.String, System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.DateTime, System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.Nullable`1[[System.DateTime, System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]], System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]], ccms-backend, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.Int32, System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2026-06-16 17:38:26.711 +05:30 [INF] Executed action ccms_backend.controllers.BatchController.GetHistory (ccms-backend) in 23.2425ms
+2026-06-16 17:38:26.711 +05:30 [INF] Executed endpoint 'ccms_backend.controllers.BatchController.GetHistory (ccms-backend)'
+2026-06-16 17:38:26.712 +05:30 [INF] Request finished HTTP/1.1 GET http://localhost:5000/api/batch/history?page=1&pageSize=10 - 200 null application/json; charset=utf-8 24.8334ms
+2026-06-16 17:46:32.942 +05:30 [INF] Request starting HTTP/1.1 GET http://localhost:5000/swagger/index.html - null null
+2026-06-16 17:46:33.030 +05:30 [INF] Request finished HTTP/1.1 GET http://localhost:5000/swagger/index.html - 304 null null 88.0016ms
+2026-06-16 17:46:33.056 +05:30 [INF] Request starting HTTP/1.1 GET http://localhost:5000/swagger/swagger-ui.css - null null
+2026-06-16 17:46:33.058 +05:30 [INF] Request starting HTTP/1.1 GET http://localhost:5000/swagger/index.css - null null
+2026-06-16 17:46:33.060 +05:30 [INF] Request starting HTTP/1.1 GET http://localhost:5000/swagger/swagger-ui-bundle.js - null null
+2026-06-16 17:46:33.062 +05:30 [INF] Request starting HTTP/1.1 GET http://localhost:5000/swagger/swagger-ui-standalone-preset.js - null null
+2026-06-16 17:46:33.064 +05:30 [INF] Request starting HTTP/1.1 GET http://localhost:5000/swagger/index.js - null null
+2026-06-16 17:46:33.064 +05:30 [INF] Request finished HTTP/1.1 GET http://localhost:5000/swagger/index.js - 304 null null 0.7392ms
+2026-06-16 17:46:33.065 +05:30 [INF] Request finished HTTP/1.1 GET http://localhost:5000/swagger/swagger-ui.css - 304 null null 9.2212ms
+2026-06-16 17:46:33.065 +05:30 [INF] Request finished HTTP/1.1 GET http://localhost:5000/swagger/index.css - 304 null null 7.6711ms
+2026-06-16 17:46:33.066 +05:30 [INF] Request finished HTTP/1.1 GET http://localhost:5000/swagger/swagger-ui-standalone-preset.js - 304 null null 4.5473ms
+2026-06-16 17:46:33.077 +05:30 [INF] Request finished HTTP/1.1 GET http://localhost:5000/swagger/swagger-ui-bundle.js - 304 null null 17.056ms
+2026-06-16 17:46:33.273 +05:30 [INF] Request starting HTTP/1.1 GET http://localhost:5000/swagger/v1/swagger.json - null null
+2026-06-16 17:46:33.278 +05:30 [INF] Request starting HTTP/1.1 GET http://localhost:5000/swagger/favicon-32x32.png - null null
+2026-06-16 17:46:33.278 +05:30 [INF] Request finished HTTP/1.1 GET http://localhost:5000/swagger/favicon-32x32.png - 304 null null 0.4085ms
+2026-06-16 17:46:33.448 +05:30 [INF] Request finished HTTP/1.1 GET http://localhost:5000/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 175.0241ms
+2026-06-16 17:48:19.691 +05:30 [INF] Triggering scheduled batch run...
+2026-06-16 17:48:19.729 +05:30 [INF] Executed DbCommand (1ms) [Parameters=[@p0='?' (DbType = Int32), @p1='?' (DbType = Int32), @p2='?' (DbType = Int32), @p3='?' (DbType = Int32), @p4='?' (DbType = DateTime), @p5='?' (Size = 4000), @p6='?' (DbType = DateTime), @p7='?' (Size = 4000), @p8='?' (Size = 4000), @p9='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO `BatchJobLogs` (`AccountsMatched`, `AccountsNotFound`, `CasesProcessed`, `DurationSeconds`, `EndTime`, `RunId`, `StartTime`, `Status`, `TriggeredBy`, `TriggeredByUserId`)
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5, @p6, @p7, @p8, @p9);
+SELECT `Id`
+FROM `BatchJobLogs`
+WHERE ROW_COUNT() = 1 AND `Id` = LAST_INSERT_ID();
+2026-06-16 17:48:19.733 +05:30 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT `c`.`Id`, `c`.`CaseNumber`, `c`.`CreatedAt`, `c`.`CreatedByUserId`, `c`.`FreezeAmount`, `c`.`OrderType`, `c`.`Status`, `c`.`UpdatedAt`, `d`.`Id`, `d`.`BankAccountNumber`, `d`.`BankName`, `d`.`CaseId`, `d`.`FullName`, `d`.`IdentityNumber`
+FROM `Cases` AS `c`
+LEFT JOIN `Defendants` AS `d` ON `c`.`Id` = `d`.`CaseId`
+WHERE `c`.`Status` = 'Pending'
+2026-06-16 17:48:19.738 +05:30 [INF] Executed DbCommand (3ms) [Parameters=[@p3='?' (DbType = Int32), @p0='?' (DbType = Int32), @p1='?' (DbType = DateTime), @p2='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SET AUTOCOMMIT = 1;
+UPDATE `BatchJobLogs` SET `DurationSeconds` = @p0, `EndTime` = @p1, `Status` = @p2
+WHERE `Id` = @p3;
+SELECT ROW_COUNT();
+2026-06-16 17:48:19.738 +05:30 [INF] Scheduled batch run BATCH-20260616-E773 completed successfully. Cases processed: 0, Matched: 0, Not Found: 0.
+2026-06-16 18:03:19.691 +05:30 [INF] Triggering scheduled batch run...
+2026-06-16 18:03:19.752 +05:30 [INF] Executed DbCommand (7ms) [Parameters=[@p0='?' (DbType = Int32), @p1='?' (DbType = Int32), @p2='?' (DbType = Int32), @p3='?' (DbType = Int32), @p4='?' (DbType = DateTime), @p5='?' (Size = 4000), @p6='?' (DbType = DateTime), @p7='?' (Size = 4000), @p8='?' (Size = 4000), @p9='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO `BatchJobLogs` (`AccountsMatched`, `AccountsNotFound`, `CasesProcessed`, `DurationSeconds`, `EndTime`, `RunId`, `StartTime`, `Status`, `TriggeredBy`, `TriggeredByUserId`)
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5, @p6, @p7, @p8, @p9);
+SELECT `Id`
+FROM `BatchJobLogs`
+WHERE ROW_COUNT() = 1 AND `Id` = LAST_INSERT_ID();
+2026-06-16 18:03:19.761 +05:30 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT `c`.`Id`, `c`.`CaseNumber`, `c`.`CreatedAt`, `c`.`CreatedByUserId`, `c`.`FreezeAmount`, `c`.`OrderType`, `c`.`Status`, `c`.`UpdatedAt`, `d`.`Id`, `d`.`BankAccountNumber`, `d`.`BankName`, `d`.`CaseId`, `d`.`FullName`, `d`.`IdentityNumber`
+FROM `Cases` AS `c`
+LEFT JOIN `Defendants` AS `d` ON `c`.`Id` = `d`.`CaseId`
+WHERE `c`.`Status` = 'Pending'
+2026-06-16 18:03:19.767 +05:30 [INF] Executed DbCommand (5ms) [Parameters=[@p3='?' (DbType = Int32), @p0='?' (DbType = Int32), @p1='?' (DbType = DateTime), @p2='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SET AUTOCOMMIT = 1;
+UPDATE `BatchJobLogs` SET `DurationSeconds` = @p0, `EndTime` = @p1, `Status` = @p2
+WHERE `Id` = @p3;
+SELECT ROW_COUNT();
+2026-06-16 18:03:19.767 +05:30 [INF] Scheduled batch run BATCH-20260616-D44E completed successfully. Cases processed: 0, Matched: 0, Not Found: 0.
+2026-06-16 18:12:42.732 +05:30 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:5000/api/cases/inbox - null null
+2026-06-16 18:12:42.732 +05:30 [INF] CORS policy execution successful.
+2026-06-16 18:12:42.732 +05:30 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:5000/api/cases/inbox - 204 null null 0.4075ms
+2026-06-16 18:12:42.737 +05:30 [INF] Request starting HTTP/1.1 GET http://localhost:5000/api/cases/inbox - null null
+2026-06-16 18:12:42.738 +05:30 [INF] CORS policy execution successful.
+2026-06-16 18:12:42.739 +05:30 [INF] Executing endpoint 'ccms_backend.controllers.CasesController.GetInbox (ccms-backend)'
+2026-06-16 18:12:42.739 +05:30 [INF] Route matched with {action = "GetInbox", controller = "Cases"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[ccms_backend.dtos.CaseInboxDto]] GetInbox() on controller ccms_backend.controllers.CasesController (ccms-backend).
+2026-06-16 18:12:42.773 +05:30 [INF] Executed DbCommand (4ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT `c`.`Id`, `c`.`CaseNumber`, `c`.`CreatedAt`, `c`.`CreatedByUserId`, `c`.`FreezeAmount`, `c`.`OrderType`, `c`.`Status`, `c`.`UpdatedAt`, `d`.`Id`, `d`.`BankAccountNumber`, `d`.`BankName`, `d`.`CaseId`, `d`.`FullName`, `d`.`IdentityNumber`, `c0`.`Id`, `c0`.`AccountHolderName`, `c0`.`AccountStatus`, `c0`.`CaseId`, `c0`.`CurrentBalance`, `c0`.`MatchedAccountNumber`, `c0`.`MatchedOn`, `c0`.`ValidatedAt`
+FROM `Cases` AS `c`
+LEFT JOIN `Defendants` AS `d` ON `c`.`Id` = `d`.`CaseId`
+LEFT JOIN `CaseValidationResults` AS `c0` ON `c`.`Id` = `c0`.`CaseId`
+ORDER BY `c`.`CreatedAt` DESC
+2026-06-16 18:12:42.774 +05:30 [INF] Executing OkObjectResult, writing value of type 'ccms_backend.dtos.CaseInboxDto'.
+2026-06-16 18:12:42.775 +05:30 [INF] Executed action ccms_backend.controllers.CasesController.GetInbox (ccms-backend) in 35.6724ms
+2026-06-16 18:12:42.775 +05:30 [INF] Executed endpoint 'ccms_backend.controllers.CasesController.GetInbox (ccms-backend)'
+2026-06-16 18:12:42.775 +05:30 [INF] Request finished HTTP/1.1 GET http://localhost:5000/api/cases/inbox - 200 null application/json; charset=utf-8 38.4004ms
+2026-06-16 18:12:44.695 +05:30 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:5000/api/batch/statistics - null null
+2026-06-16 18:12:44.695 +05:30 [INF] CORS policy execution successful.
+2026-06-16 18:12:44.695 +05:30 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:5000/api/batch/statistics - 204 null null 0.4313ms
+2026-06-16 18:12:44.698 +05:30 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:5000/api/batch/history?page=1&pageSize=10 - null null
+2026-06-16 18:12:44.698 +05:30 [INF] CORS policy execution successful.
+2026-06-16 18:12:44.698 +05:30 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:5000/api/batch/history?page=1&pageSize=10 - 204 null null 0.5463ms
+2026-06-16 18:12:44.701 +05:30 [INF] Request starting HTTP/1.1 GET http://localhost:5000/api/batch/statistics - null null
+2026-06-16 18:12:44.701 +05:30 [INF] CORS policy execution successful.
+2026-06-16 18:12:44.702 +05:30 [INF] Executing endpoint 'ccms_backend.controllers.BatchController.GetStatistics (ccms-backend)'
+2026-06-16 18:12:44.703 +05:30 [INF] Route matched with {action = "GetStatistics", controller = "Batch"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetStatistics() on controller ccms_backend.controllers.BatchController (ccms-backend).
+2026-06-16 18:12:44.705 +05:30 [INF] Request starting HTTP/1.1 GET http://localhost:5000/api/batch/history?page=1&pageSize=10 - null null
+2026-06-16 18:12:44.705 +05:30 [INF] CORS policy execution successful.
+2026-06-16 18:12:44.706 +05:30 [INF] Executing endpoint 'ccms_backend.controllers.BatchController.GetHistory (ccms-backend)'
+2026-06-16 18:12:44.706 +05:30 [INF] Route matched with {action = "GetHistory", controller = "Batch"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetHistory(Int32, Int32, System.String) on controller ccms_backend.controllers.BatchController (ccms-backend).
+2026-06-16 18:12:44.720 +05:30 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT `b`.`Id`, `b`.`AccountsMatched`, `b`.`AccountsNotFound`, `b`.`CasesProcessed`, `b`.`DurationSeconds`, `b`.`EndTime`, `b`.`RunId`, `b`.`StartTime`, `b`.`Status`, `b`.`TriggeredBy`, `b`.`TriggeredByUserId`
+FROM `BatchJobLogs` AS `b`
+WHERE `b`.`Status` = 'Success'
+2026-06-16 18:12:44.722 +05:30 [INF] Executing OkObjectResult, writing value of type '<>f__AnonymousType4`8[[System.Int32, System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.Int32, System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.Int32, System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.Double, System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.Double, System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.Double, System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2026-06-16 18:12:44.726 +05:30 [INF] Executed action ccms_backend.controllers.BatchController.GetStatistics (ccms-backend) in 23.3905ms
+2026-06-16 18:12:44.726 +05:30 [INF] Executed endpoint 'ccms_backend.controllers.BatchController.GetStatistics (ccms-backend)'
+2026-06-16 18:12:44.727 +05:30 [INF] Request finished HTTP/1.1 GET http://localhost:5000/api/batch/statistics - 200 null application/json; charset=utf-8 25.7489ms
+2026-06-16 18:12:44.735 +05:30 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT `b`.`Id`, `b`.`AccountsMatched`, `b`.`AccountsNotFound`, `b`.`CasesProcessed`, `b`.`DurationSeconds`, `b`.`EndTime`, `b`.`RunId`, `b`.`StartTime`, `b`.`Status`, `b`.`TriggeredBy`, `b`.`TriggeredByUserId`
+FROM `BatchJobLogs` AS `b`
+ORDER BY `b`.`StartTime` DESC
+2026-06-16 18:12:44.739 +05:30 [INF] Executing OkObjectResult, writing value of type '<>f__AnonymousType6`2[[System.Collections.Generic.List`1[[<>f__AnonymousType5`5[[System.String, System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.DateTime, System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.Nullable`1[[System.DateTime, System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]], System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]], ccms-backend, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.Int32, System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2026-06-16 18:12:44.740 +05:30 [INF] Executed action ccms_backend.controllers.BatchController.GetHistory (ccms-backend) in 33.8796ms
+2026-06-16 18:12:44.740 +05:30 [INF] Executed endpoint 'ccms_backend.controllers.BatchController.GetHistory (ccms-backend)'
+2026-06-16 18:12:44.740 +05:30 [INF] Request finished HTTP/1.1 GET http://localhost:5000/api/batch/history?page=1&pageSize=10 - 200 null application/json; charset=utf-8 35.4836ms
+2026-06-16 18:12:56.461 +05:30 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:5000/api/cases/inbox - null null
+2026-06-16 18:12:56.462 +05:30 [INF] CORS policy execution successful.
+2026-06-16 18:12:56.462 +05:30 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:5000/api/cases/inbox - 204 null null 0.4753ms
+2026-06-16 18:12:56.470 +05:30 [INF] Request starting HTTP/1.1 GET http://localhost:5000/api/cases/inbox - null null
+2026-06-16 18:12:56.470 +05:30 [INF] CORS policy execution successful.
+2026-06-16 18:12:56.473 +05:30 [INF] Executing endpoint 'ccms_backend.controllers.CasesController.GetInbox (ccms-backend)'
+2026-06-16 18:12:56.473 +05:30 [INF] Route matched with {action = "GetInbox", controller = "Cases"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[ccms_backend.dtos.CaseInboxDto]] GetInbox() on controller ccms_backend.controllers.CasesController (ccms-backend).
+2026-06-16 18:12:56.490 +05:30 [INF] Executed DbCommand (3ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT `c`.`Id`, `c`.`CaseNumber`, `c`.`CreatedAt`, `c`.`CreatedByUserId`, `c`.`FreezeAmount`, `c`.`OrderType`, `c`.`Status`, `c`.`UpdatedAt`, `d`.`Id`, `d`.`BankAccountNumber`, `d`.`BankName`, `d`.`CaseId`, `d`.`FullName`, `d`.`IdentityNumber`, `c0`.`Id`, `c0`.`AccountHolderName`, `c0`.`AccountStatus`, `c0`.`CaseId`, `c0`.`CurrentBalance`, `c0`.`MatchedAccountNumber`, `c0`.`MatchedOn`, `c0`.`ValidatedAt`
+FROM `Cases` AS `c`
+LEFT JOIN `Defendants` AS `d` ON `c`.`Id` = `d`.`CaseId`
+LEFT JOIN `CaseValidationResults` AS `c0` ON `c`.`Id` = `c0`.`CaseId`
+ORDER BY `c`.`CreatedAt` DESC
+2026-06-16 18:12:56.491 +05:30 [INF] Executing OkObjectResult, writing value of type 'ccms_backend.dtos.CaseInboxDto'.
+2026-06-16 18:12:56.491 +05:30 [INF] Executed action ccms_backend.controllers.CasesController.GetInbox (ccms-backend) in 18.0311ms
+2026-06-16 18:12:56.491 +05:30 [INF] Executed endpoint 'ccms_backend.controllers.CasesController.GetInbox (ccms-backend)'
+2026-06-16 18:12:56.492 +05:30 [INF] Request finished HTTP/1.1 GET http://localhost:5000/api/cases/inbox - 200 null application/json; charset=utf-8 21.4625ms
+2026-06-16 18:13:07.428 +05:30 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:5000/api/bank/dashboard - null null
+2026-06-16 18:13:07.429 +05:30 [INF] CORS policy execution successful.
+2026-06-16 18:13:07.429 +05:30 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:5000/api/bank/dashboard - 204 null null 0.5355ms
+2026-06-16 18:13:07.433 +05:30 [INF] Request starting HTTP/1.1 GET http://localhost:5000/api/bank/dashboard - null null
+2026-06-16 18:13:07.433 +05:30 [INF] CORS policy execution successful.
+2026-06-16 18:13:07.434 +05:30 [INF] Executing endpoint 'ccms_backend.controllers.BankDashboardController.GetDashboard (ccms-backend)'
+2026-06-16 18:13:07.434 +05:30 [INF] Route matched with {action = "GetDashboard", controller = "BankDashboard"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[ccms_backend.dtos.BankDashboardResponseDto]] GetDashboard() on controller ccms_backend.controllers.BankDashboardController (ccms-backend).
+2026-06-16 18:13:07.449 +05:30 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT `c`.`Id`, `c`.`CaseNumber`, `c`.`CreatedAt`, `c`.`CreatedByUserId`, `c`.`FreezeAmount`, `c`.`OrderType`, `c`.`Status`, `c`.`UpdatedAt`, `d`.`Id`, `d`.`BankAccountNumber`, `d`.`BankName`, `d`.`CaseId`, `d`.`FullName`, `d`.`IdentityNumber`, `c0`.`Id`, `c0`.`CaseId`, `c0`.`FullName`, `c0`.`IdentityNumber`
+FROM `Cases` AS `c`
+LEFT JOIN `Defendants` AS `d` ON `c`.`Id` = `d`.`CaseId`
+LEFT JOIN `Complainants` AS `c0` ON `c`.`Id` = `c0`.`CaseId`
+2026-06-16 18:13:07.451 +05:30 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT `b`.`Id`, `b`.`AccountsMatched`, `b`.`AccountsNotFound`, `b`.`CasesProcessed`, `b`.`DurationSeconds`, `b`.`EndTime`, `b`.`RunId`, `b`.`StartTime`, `b`.`Status`, `b`.`TriggeredBy`, `b`.`TriggeredByUserId`
+FROM `BatchJobLogs` AS `b`
+ORDER BY `b`.`StartTime` DESC
+LIMIT 1
+2026-06-16 18:13:07.451 +05:30 [INF] Executing OkObjectResult, writing value of type 'ccms_backend.dtos.BankDashboardResponseDto'.
+2026-06-16 18:13:07.452 +05:30 [INF] Executed action ccms_backend.controllers.BankDashboardController.GetDashboard (ccms-backend) in 17.5186ms
+2026-06-16 18:13:07.452 +05:30 [INF] Executed endpoint 'ccms_backend.controllers.BankDashboardController.GetDashboard (ccms-backend)'
+2026-06-16 18:13:07.452 +05:30 [INF] Request finished HTTP/1.1 GET http://localhost:5000/api/bank/dashboard - 200 null application/json; charset=utf-8 18.519ms
+2026-06-16 18:13:15.666 +05:30 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:5000/api/cases/inbox - null null
+2026-06-16 18:13:15.666 +05:30 [INF] CORS policy execution successful.
+2026-06-16 18:13:15.666 +05:30 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:5000/api/cases/inbox - 204 null null 0.5052ms
+2026-06-16 18:13:15.671 +05:30 [INF] Request starting HTTP/1.1 GET http://localhost:5000/api/cases/inbox - null null
+2026-06-16 18:13:15.671 +05:30 [INF] CORS policy execution successful.
+2026-06-16 18:13:15.672 +05:30 [INF] Executing endpoint 'ccms_backend.controllers.CasesController.GetInbox (ccms-backend)'
+2026-06-16 18:13:15.672 +05:30 [INF] Route matched with {action = "GetInbox", controller = "Cases"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[ccms_backend.dtos.CaseInboxDto]] GetInbox() on controller ccms_backend.controllers.CasesController (ccms-backend).
+2026-06-16 18:13:15.689 +05:30 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT `c`.`Id`, `c`.`CaseNumber`, `c`.`CreatedAt`, `c`.`CreatedByUserId`, `c`.`FreezeAmount`, `c`.`OrderType`, `c`.`Status`, `c`.`UpdatedAt`, `d`.`Id`, `d`.`BankAccountNumber`, `d`.`BankName`, `d`.`CaseId`, `d`.`FullName`, `d`.`IdentityNumber`, `c0`.`Id`, `c0`.`AccountHolderName`, `c0`.`AccountStatus`, `c0`.`CaseId`, `c0`.`CurrentBalance`, `c0`.`MatchedAccountNumber`, `c0`.`MatchedOn`, `c0`.`ValidatedAt`
+FROM `Cases` AS `c`
+LEFT JOIN `Defendants` AS `d` ON `c`.`Id` = `d`.`CaseId`
+LEFT JOIN `CaseValidationResults` AS `c0` ON `c`.`Id` = `c0`.`CaseId`
+ORDER BY `c`.`CreatedAt` DESC
+2026-06-16 18:13:15.690 +05:30 [INF] Executing OkObjectResult, writing value of type 'ccms_backend.dtos.CaseInboxDto'.
+2026-06-16 18:13:15.691 +05:30 [INF] Executed action ccms_backend.controllers.CasesController.GetInbox (ccms-backend) in 18.5839ms
+2026-06-16 18:13:15.691 +05:30 [INF] Executed endpoint 'ccms_backend.controllers.CasesController.GetInbox (ccms-backend)'
+2026-06-16 18:13:15.691 +05:30 [INF] Request finished HTTP/1.1 GET http://localhost:5000/api/cases/inbox - 200 null application/json; charset=utf-8 19.9316ms
+2026-06-16 18:13:18.580 +05:30 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:5000/api/batch/statistics - null null
+2026-06-16 18:13:18.581 +05:30 [INF] CORS policy execution successful.
+2026-06-16 18:13:18.581 +05:30 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:5000/api/batch/statistics - 204 null null 0.3022ms
+2026-06-16 18:13:18.581 +05:30 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:5000/api/batch/history?page=1&pageSize=10 - null null
+2026-06-16 18:13:18.581 +05:30 [INF] CORS policy execution successful.
+2026-06-16 18:13:18.581 +05:30 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:5000/api/batch/history?page=1&pageSize=10 - 204 null null 0.2097ms
+2026-06-16 18:13:18.586 +05:30 [INF] Request starting HTTP/1.1 GET http://localhost:5000/api/batch/statistics - null null
+2026-06-16 18:13:18.586 +05:30 [INF] Request starting HTTP/1.1 GET http://localhost:5000/api/batch/history?page=1&pageSize=10 - null null
+2026-06-16 18:13:18.586 +05:30 [INF] CORS policy execution successful.
+2026-06-16 18:13:18.586 +05:30 [INF] CORS policy execution successful.
+2026-06-16 18:13:18.587 +05:30 [INF] Executing endpoint 'ccms_backend.controllers.BatchController.GetStatistics (ccms-backend)'
+2026-06-16 18:13:18.587 +05:30 [INF] Executing endpoint 'ccms_backend.controllers.BatchController.GetHistory (ccms-backend)'
+2026-06-16 18:13:18.587 +05:30 [INF] Route matched with {action = "GetStatistics", controller = "Batch"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetStatistics() on controller ccms_backend.controllers.BatchController (ccms-backend).
+2026-06-16 18:13:18.587 +05:30 [INF] Route matched with {action = "GetHistory", controller = "Batch"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetHistory(Int32, Int32, System.String) on controller ccms_backend.controllers.BatchController (ccms-backend).
+2026-06-16 18:13:18.616 +05:30 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT `b`.`Id`, `b`.`AccountsMatched`, `b`.`AccountsNotFound`, `b`.`CasesProcessed`, `b`.`DurationSeconds`, `b`.`EndTime`, `b`.`RunId`, `b`.`StartTime`, `b`.`Status`, `b`.`TriggeredBy`, `b`.`TriggeredByUserId`
+FROM `BatchJobLogs` AS `b`
+WHERE `b`.`Status` = 'Success'
+2026-06-16 18:13:18.616 +05:30 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT `b`.`Id`, `b`.`AccountsMatched`, `b`.`AccountsNotFound`, `b`.`CasesProcessed`, `b`.`DurationSeconds`, `b`.`EndTime`, `b`.`RunId`, `b`.`StartTime`, `b`.`Status`, `b`.`TriggeredBy`, `b`.`TriggeredByUserId`
+FROM `BatchJobLogs` AS `b`
+ORDER BY `b`.`StartTime` DESC
+2026-06-16 18:13:18.616 +05:30 [INF] Executing OkObjectResult, writing value of type '<>f__AnonymousType4`8[[System.Int32, System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.Int32, System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.Int32, System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.Double, System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.Double, System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.Double, System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2026-06-16 18:13:18.616 +05:30 [INF] Executed action ccms_backend.controllers.BatchController.GetStatistics (ccms-backend) in 29.5221ms
+2026-06-16 18:13:18.617 +05:30 [INF] Executed endpoint 'ccms_backend.controllers.BatchController.GetStatistics (ccms-backend)'
+2026-06-16 18:13:18.617 +05:30 [INF] Request finished HTTP/1.1 GET http://localhost:5000/api/batch/statistics - 200 null application/json; charset=utf-8 30.9739ms
+2026-06-16 18:13:18.619 +05:30 [INF] Executing OkObjectResult, writing value of type '<>f__AnonymousType6`2[[System.Collections.Generic.List`1[[<>f__AnonymousType5`5[[System.String, System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.DateTime, System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.Nullable`1[[System.DateTime, System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]], System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]], ccms-backend, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.Int32, System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2026-06-16 18:13:18.619 +05:30 [INF] Executed action ccms_backend.controllers.BatchController.GetHistory (ccms-backend) in 32.1436ms
+2026-06-16 18:13:18.619 +05:30 [INF] Executed endpoint 'ccms_backend.controllers.BatchController.GetHistory (ccms-backend)'
+2026-06-16 18:13:18.619 +05:30 [INF] Request finished HTTP/1.1 GET http://localhost:5000/api/batch/history?page=1&pageSize=10 - 200 null application/json; charset=utf-8 33.6029ms
+2026-06-16 18:13:30.028 +05:30 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:5000/api/cases/inbox - null null
+2026-06-16 18:13:30.028 +05:30 [INF] CORS policy execution successful.
+2026-06-16 18:13:30.028 +05:30 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:5000/api/cases/inbox - 204 null null 0.6029ms
+2026-06-16 18:13:30.033 +05:30 [INF] Request starting HTTP/1.1 GET http://localhost:5000/api/cases/inbox - null null
+2026-06-16 18:13:30.033 +05:30 [INF] CORS policy execution successful.
+2026-06-16 18:13:30.034 +05:30 [INF] Executing endpoint 'ccms_backend.controllers.CasesController.GetInbox (ccms-backend)'
+2026-06-16 18:13:30.034 +05:30 [INF] Route matched with {action = "GetInbox", controller = "Cases"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[ccms_backend.dtos.CaseInboxDto]] GetInbox() on controller ccms_backend.controllers.CasesController (ccms-backend).
+2026-06-16 18:13:30.048 +05:30 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT `c`.`Id`, `c`.`CaseNumber`, `c`.`CreatedAt`, `c`.`CreatedByUserId`, `c`.`FreezeAmount`, `c`.`OrderType`, `c`.`Status`, `c`.`UpdatedAt`, `d`.`Id`, `d`.`BankAccountNumber`, `d`.`BankName`, `d`.`CaseId`, `d`.`FullName`, `d`.`IdentityNumber`, `c0`.`Id`, `c0`.`AccountHolderName`, `c0`.`AccountStatus`, `c0`.`CaseId`, `c0`.`CurrentBalance`, `c0`.`MatchedAccountNumber`, `c0`.`MatchedOn`, `c0`.`ValidatedAt`
+FROM `Cases` AS `c`
+LEFT JOIN `Defendants` AS `d` ON `c`.`Id` = `d`.`CaseId`
+LEFT JOIN `CaseValidationResults` AS `c0` ON `c`.`Id` = `c0`.`CaseId`
+ORDER BY `c`.`CreatedAt` DESC
+2026-06-16 18:13:30.049 +05:30 [INF] Executing OkObjectResult, writing value of type 'ccms_backend.dtos.CaseInboxDto'.
+2026-06-16 18:13:30.049 +05:30 [INF] Executed action ccms_backend.controllers.CasesController.GetInbox (ccms-backend) in 14.4973ms
+2026-06-16 18:13:30.049 +05:30 [INF] Executed endpoint 'ccms_backend.controllers.CasesController.GetInbox (ccms-backend)'
+2026-06-16 18:13:30.049 +05:30 [INF] Request finished HTTP/1.1 GET http://localhost:5000/api/cases/inbox - 200 null application/json; charset=utf-8 15.9367ms
+2026-06-16 18:13:31.560 +05:30 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:5000/api/bank/dashboard - null null
+2026-06-16 18:13:31.560 +05:30 [INF] CORS policy execution successful.
+2026-06-16 18:13:31.560 +05:30 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:5000/api/bank/dashboard - 204 null null 0.3815ms
+2026-06-16 18:13:31.564 +05:30 [INF] Request starting HTTP/1.1 GET http://localhost:5000/api/bank/dashboard - null null
+2026-06-16 18:13:31.565 +05:30 [INF] CORS policy execution successful.
+2026-06-16 18:13:31.565 +05:30 [INF] Executing endpoint 'ccms_backend.controllers.BankDashboardController.GetDashboard (ccms-backend)'
+2026-06-16 18:13:31.565 +05:30 [INF] Route matched with {action = "GetDashboard", controller = "BankDashboard"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[ccms_backend.dtos.BankDashboardResponseDto]] GetDashboard() on controller ccms_backend.controllers.BankDashboardController (ccms-backend).
+2026-06-16 18:13:31.582 +05:30 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT `c`.`Id`, `c`.`CaseNumber`, `c`.`CreatedAt`, `c`.`CreatedByUserId`, `c`.`FreezeAmount`, `c`.`OrderType`, `c`.`Status`, `c`.`UpdatedAt`, `d`.`Id`, `d`.`BankAccountNumber`, `d`.`BankName`, `d`.`CaseId`, `d`.`FullName`, `d`.`IdentityNumber`, `c0`.`Id`, `c0`.`CaseId`, `c0`.`FullName`, `c0`.`IdentityNumber`
+FROM `Cases` AS `c`
+LEFT JOIN `Defendants` AS `d` ON `c`.`Id` = `d`.`CaseId`
+LEFT JOIN `Complainants` AS `c0` ON `c`.`Id` = `c0`.`CaseId`
+2026-06-16 18:13:31.584 +05:30 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT `b`.`Id`, `b`.`AccountsMatched`, `b`.`AccountsNotFound`, `b`.`CasesProcessed`, `b`.`DurationSeconds`, `b`.`EndTime`, `b`.`RunId`, `b`.`StartTime`, `b`.`Status`, `b`.`TriggeredBy`, `b`.`TriggeredByUserId`
+FROM `BatchJobLogs` AS `b`
+ORDER BY `b`.`StartTime` DESC
+LIMIT 1
+2026-06-16 18:13:31.584 +05:30 [INF] Executing OkObjectResult, writing value of type 'ccms_backend.dtos.BankDashboardResponseDto'.
+2026-06-16 18:13:31.584 +05:30 [INF] Executed action ccms_backend.controllers.BankDashboardController.GetDashboard (ccms-backend) in 18.8158ms
+2026-06-16 18:13:31.584 +05:30 [INF] Executed endpoint 'ccms_backend.controllers.BankDashboardController.GetDashboard (ccms-backend)'
+2026-06-16 18:13:31.584 +05:30 [INF] Request finished HTTP/1.1 GET http://localhost:5000/api/bank/dashboard - 200 null application/json; charset=utf-8 19.8225ms
+2026-06-16 18:13:36.111 +05:30 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:5000/api/cases/inbox - null null
+2026-06-16 18:13:36.112 +05:30 [INF] CORS policy execution successful.
+2026-06-16 18:13:36.112 +05:30 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:5000/api/cases/inbox - 204 null null 0.4928ms
+2026-06-16 18:13:36.116 +05:30 [INF] Request starting HTTP/1.1 GET http://localhost:5000/api/cases/inbox - null null
+2026-06-16 18:13:36.116 +05:30 [INF] CORS policy execution successful.
+2026-06-16 18:13:36.117 +05:30 [INF] Executing endpoint 'ccms_backend.controllers.CasesController.GetInbox (ccms-backend)'
+2026-06-16 18:13:36.117 +05:30 [INF] Route matched with {action = "GetInbox", controller = "Cases"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[ccms_backend.dtos.CaseInboxDto]] GetInbox() on controller ccms_backend.controllers.CasesController (ccms-backend).
+2026-06-16 18:13:36.131 +05:30 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT `c`.`Id`, `c`.`CaseNumber`, `c`.`CreatedAt`, `c`.`CreatedByUserId`, `c`.`FreezeAmount`, `c`.`OrderType`, `c`.`Status`, `c`.`UpdatedAt`, `d`.`Id`, `d`.`BankAccountNumber`, `d`.`BankName`, `d`.`CaseId`, `d`.`FullName`, `d`.`IdentityNumber`, `c0`.`Id`, `c0`.`AccountHolderName`, `c0`.`AccountStatus`, `c0`.`CaseId`, `c0`.`CurrentBalance`, `c0`.`MatchedAccountNumber`, `c0`.`MatchedOn`, `c0`.`ValidatedAt`
+FROM `Cases` AS `c`
+LEFT JOIN `Defendants` AS `d` ON `c`.`Id` = `d`.`CaseId`
+LEFT JOIN `CaseValidationResults` AS `c0` ON `c`.`Id` = `c0`.`CaseId`
+ORDER BY `c`.`CreatedAt` DESC
+2026-06-16 18:13:36.131 +05:30 [INF] Executing OkObjectResult, writing value of type 'ccms_backend.dtos.CaseInboxDto'.
+2026-06-16 18:13:36.132 +05:30 [INF] Executed action ccms_backend.controllers.CasesController.GetInbox (ccms-backend) in 14.7025ms
+2026-06-16 18:13:36.132 +05:30 [INF] Executed endpoint 'ccms_backend.controllers.CasesController.GetInbox (ccms-backend)'
+2026-06-16 18:13:36.132 +05:30 [INF] Request finished HTTP/1.1 GET http://localhost:5000/api/cases/inbox - 200 null application/json; charset=utf-8 15.6907ms
+2026-06-16 18:13:37.962 +05:30 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:5000/api/batch/statistics - null null
+2026-06-16 18:13:37.962 +05:30 [INF] CORS policy execution successful.
+2026-06-16 18:13:37.963 +05:30 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:5000/api/batch/statistics - 204 null null 0.2854ms
+2026-06-16 18:13:37.963 +05:30 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:5000/api/batch/history?page=1&pageSize=10 - null null
+2026-06-16 18:13:37.963 +05:30 [INF] CORS policy execution successful.
+2026-06-16 18:13:37.963 +05:30 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:5000/api/batch/history?page=1&pageSize=10 - 204 null null 0.1232ms
+2026-06-16 18:13:37.967 +05:30 [INF] Request starting HTTP/1.1 GET http://localhost:5000/api/batch/history?page=1&pageSize=10 - null null
+2026-06-16 18:13:37.967 +05:30 [INF] Request starting HTTP/1.1 GET http://localhost:5000/api/batch/statistics - null null
+2026-06-16 18:13:37.967 +05:30 [INF] CORS policy execution successful.
+2026-06-16 18:13:37.968 +05:30 [INF] CORS policy execution successful.
+2026-06-16 18:13:37.968 +05:30 [INF] Executing endpoint 'ccms_backend.controllers.BatchController.GetHistory (ccms-backend)'
+2026-06-16 18:13:37.968 +05:30 [INF] Executing endpoint 'ccms_backend.controllers.BatchController.GetStatistics (ccms-backend)'
+2026-06-16 18:13:37.968 +05:30 [INF] Route matched with {action = "GetHistory", controller = "Batch"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetHistory(Int32, Int32, System.String) on controller ccms_backend.controllers.BatchController (ccms-backend).
+2026-06-16 18:13:37.968 +05:30 [INF] Route matched with {action = "GetStatistics", controller = "Batch"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetStatistics() on controller ccms_backend.controllers.BatchController (ccms-backend).
+2026-06-16 18:13:37.980 +05:30 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT `b`.`Id`, `b`.`AccountsMatched`, `b`.`AccountsNotFound`, `b`.`CasesProcessed`, `b`.`DurationSeconds`, `b`.`EndTime`, `b`.`RunId`, `b`.`StartTime`, `b`.`Status`, `b`.`TriggeredBy`, `b`.`TriggeredByUserId`
+FROM `BatchJobLogs` AS `b`
+ORDER BY `b`.`StartTime` DESC
+2026-06-16 18:13:37.981 +05:30 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT `b`.`Id`, `b`.`AccountsMatched`, `b`.`AccountsNotFound`, `b`.`CasesProcessed`, `b`.`DurationSeconds`, `b`.`EndTime`, `b`.`RunId`, `b`.`StartTime`, `b`.`Status`, `b`.`TriggeredBy`, `b`.`TriggeredByUserId`
+FROM `BatchJobLogs` AS `b`
+WHERE `b`.`Status` = 'Success'
+2026-06-16 18:13:37.982 +05:30 [INF] Executing OkObjectResult, writing value of type '<>f__AnonymousType4`8[[System.Int32, System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.Int32, System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.Int32, System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.Double, System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.Double, System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.Double, System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2026-06-16 18:13:37.982 +05:30 [INF] Executed action ccms_backend.controllers.BatchController.GetStatistics (ccms-backend) in 13.4984ms
+2026-06-16 18:13:37.982 +05:30 [INF] Executed endpoint 'ccms_backend.controllers.BatchController.GetStatistics (ccms-backend)'
+2026-06-16 18:13:37.982 +05:30 [INF] Request finished HTTP/1.1 GET http://localhost:5000/api/batch/statistics - 200 null application/json; charset=utf-8 14.8465ms
+2026-06-16 18:13:37.984 +05:30 [INF] Executing OkObjectResult, writing value of type '<>f__AnonymousType6`2[[System.Collections.Generic.List`1[[<>f__AnonymousType5`5[[System.String, System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.DateTime, System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.Nullable`1[[System.DateTime, System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]], System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]], ccms-backend, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.Int32, System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2026-06-16 18:13:37.984 +05:30 [INF] Executed action ccms_backend.controllers.BatchController.GetHistory (ccms-backend) in 15.8644ms
+2026-06-16 18:13:37.985 +05:30 [INF] Executed endpoint 'ccms_backend.controllers.BatchController.GetHistory (ccms-backend)'
+2026-06-16 18:13:37.985 +05:30 [INF] Request finished HTTP/1.1 GET http://localhost:5000/api/batch/history?page=1&pageSize=10 - 200 null application/json; charset=utf-8 17.7284ms
+2026-06-16 18:15:20.096 +05:30 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:5000/api/auth/login - null null
+2026-06-16 18:15:20.096 +05:30 [INF] CORS policy execution successful.
+2026-06-16 18:15:20.096 +05:30 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:5000/api/auth/login - 204 null null 0.4116ms
+2026-06-16 18:15:20.100 +05:30 [INF] Request starting HTTP/1.1 POST http://localhost:5000/api/auth/login - application/json 59
+2026-06-16 18:15:20.100 +05:30 [INF] CORS policy execution successful.
+2026-06-16 18:15:20.101 +05:30 [INF] Executing endpoint 'ccms_backend.controllers.AuthController.Login (ccms-backend)'
+2026-06-16 18:15:20.101 +05:30 [INF] Route matched with {action = "Login", controller = "Auth"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Login(ccms_backend.dtos.LoginDto) on controller ccms_backend.controllers.AuthController (ccms-backend).
+2026-06-16 18:15:20.123 +05:30 [INF] Executed DbCommand (2ms) [Parameters=[@__username_0='?' (Size = 255)], CommandType='"Text"', CommandTimeout='30']
+SELECT `u`.`Id`, `u`.`BankCode`, `u`.`CreatedAt`, `u`.`PasswordHash`, `u`.`Role`, `u`.`Username`
+FROM `Users` AS `u`
+WHERE `u`.`Username` = @__username_0
+LIMIT 1
+2026-06-16 18:15:20.350 +05:30 [INF] Executing OkObjectResult, writing value of type 'ccms_backend.dtos.AuthResultDto'.
+2026-06-16 18:15:20.350 +05:30 [INF] Executed action ccms_backend.controllers.AuthController.Login (ccms-backend) in 248.9074ms
+2026-06-16 18:15:20.350 +05:30 [INF] Executed endpoint 'ccms_backend.controllers.AuthController.Login (ccms-backend)'
+2026-06-16 18:15:20.350 +05:30 [INF] Request finished HTTP/1.1 POST http://localhost:5000/api/auth/login - 200 null application/json; charset=utf-8 249.7313ms
+2026-06-16 18:15:20.785 +05:30 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:5000/api/cases - null null
+2026-06-16 18:15:20.786 +05:30 [INF] CORS policy execution successful.
+2026-06-16 18:15:20.786 +05:30 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:5000/api/cases - 204 null null 0.2733ms
+2026-06-16 18:15:20.791 +05:30 [INF] Request starting HTTP/1.1 GET http://localhost:5000/api/cases - null null
+2026-06-16 18:15:20.791 +05:30 [INF] CORS policy execution successful.
+2026-06-16 18:15:20.791 +05:30 [INF] Executing endpoint 'ccms_backend.controllers.CasesController.GetCases (ccms-backend)'
+2026-06-16 18:15:20.791 +05:30 [INF] Route matched with {action = "GetCases", controller = "Cases"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetCases() on controller ccms_backend.controllers.CasesController (ccms-backend).
+2026-06-16 18:15:20.805 +05:30 [INF] Executed DbCommand (0ms) [Parameters=[@__username_0='?' (Size = 255)], CommandType='"Text"', CommandTimeout='30']
+SELECT `u`.`Id`, `u`.`BankCode`, `u`.`CreatedAt`, `u`.`PasswordHash`, `u`.`Role`, `u`.`Username`
+FROM `Users` AS `u`
+WHERE `u`.`Username` = @__username_0
+LIMIT 1
+2026-06-16 18:15:20.807 +05:30 [INF] Executed DbCommand (1ms) [Parameters=[@__user_Id_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT `c`.`Id`, `c`.`CaseNumber`, `c`.`CreatedAt`, `c`.`CreatedByUserId`, `c`.`FreezeAmount`, `c`.`OrderType`, `c`.`Status`, `c`.`UpdatedAt`, `d`.`Id`, `d`.`BankAccountNumber`, `d`.`BankName`, `d`.`CaseId`, `d`.`FullName`, `d`.`IdentityNumber`, `c0`.`Id`, `c0`.`AccountHolderName`, `c0`.`AccountStatus`, `c0`.`CaseId`, `c0`.`CurrentBalance`, `c0`.`MatchedAccountNumber`, `c0`.`MatchedOn`, `c0`.`ValidatedAt`
+FROM `Cases` AS `c`
+LEFT JOIN `Defendants` AS `d` ON `c`.`Id` = `d`.`CaseId`
+LEFT JOIN `CaseValidationResults` AS `c0` ON `c`.`Id` = `c0`.`CaseId`
+WHERE `c`.`CreatedByUserId` = @__user_Id_0
+ORDER BY `c`.`CreatedAt` DESC
+2026-06-16 18:15:20.808 +05:30 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[ccms_backend.dtos.CaseSummaryDto, ccms-backend, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2026-06-16 18:15:20.809 +05:30 [INF] Executed action ccms_backend.controllers.CasesController.GetCases (ccms-backend) in 17.156ms
+2026-06-16 18:15:20.809 +05:30 [INF] Executed endpoint 'ccms_backend.controllers.CasesController.GetCases (ccms-backend)'
+2026-06-16 18:15:20.809 +05:30 [INF] Request finished HTTP/1.1 GET http://localhost:5000/api/cases - 200 null application/json; charset=utf-8 18.6293ms
+2026-06-16 18:15:28.034 +05:30 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:5000/api/cases - null null
+2026-06-16 18:15:28.034 +05:30 [INF] CORS policy execution successful.
+2026-06-16 18:15:28.034 +05:30 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:5000/api/cases - 204 null null 0.2935ms
+2026-06-16 18:15:28.039 +05:30 [INF] Request starting HTTP/1.1 GET http://localhost:5000/api/cases - null null
+2026-06-16 18:15:28.039 +05:30 [INF] CORS policy execution successful.
+2026-06-16 18:15:28.039 +05:30 [INF] Executing endpoint 'ccms_backend.controllers.CasesController.GetCases (ccms-backend)'
+2026-06-16 18:15:28.040 +05:30 [INF] Route matched with {action = "GetCases", controller = "Cases"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetCases() on controller ccms_backend.controllers.CasesController (ccms-backend).
+2026-06-16 18:15:28.053 +05:30 [INF] Executed DbCommand (0ms) [Parameters=[@__username_0='?' (Size = 255)], CommandType='"Text"', CommandTimeout='30']
+SELECT `u`.`Id`, `u`.`BankCode`, `u`.`CreatedAt`, `u`.`PasswordHash`, `u`.`Role`, `u`.`Username`
+FROM `Users` AS `u`
+WHERE `u`.`Username` = @__username_0
+LIMIT 1
+2026-06-16 18:15:28.055 +05:30 [INF] Executed DbCommand (1ms) [Parameters=[@__user_Id_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT `c`.`Id`, `c`.`CaseNumber`, `c`.`CreatedAt`, `c`.`CreatedByUserId`, `c`.`FreezeAmount`, `c`.`OrderType`, `c`.`Status`, `c`.`UpdatedAt`, `d`.`Id`, `d`.`BankAccountNumber`, `d`.`BankName`, `d`.`CaseId`, `d`.`FullName`, `d`.`IdentityNumber`, `c0`.`Id`, `c0`.`AccountHolderName`, `c0`.`AccountStatus`, `c0`.`CaseId`, `c0`.`CurrentBalance`, `c0`.`MatchedAccountNumber`, `c0`.`MatchedOn`, `c0`.`ValidatedAt`
+FROM `Cases` AS `c`
+LEFT JOIN `Defendants` AS `d` ON `c`.`Id` = `d`.`CaseId`
+LEFT JOIN `CaseValidationResults` AS `c0` ON `c`.`Id` = `c0`.`CaseId`
+WHERE `c`.`CreatedByUserId` = @__user_Id_0
+ORDER BY `c`.`CreatedAt` DESC
+2026-06-16 18:15:28.055 +05:30 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[ccms_backend.dtos.CaseSummaryDto, ccms-backend, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2026-06-16 18:15:28.055 +05:30 [INF] Executed action ccms_backend.controllers.CasesController.GetCases (ccms-backend) in 15.3201ms
+2026-06-16 18:15:28.055 +05:30 [INF] Executed endpoint 'ccms_backend.controllers.CasesController.GetCases (ccms-backend)'
+2026-06-16 18:15:28.055 +05:30 [INF] Request finished HTTP/1.1 GET http://localhost:5000/api/cases - 200 null application/json; charset=utf-8 16.3674ms
+2026-06-16 19:07:43.766 +05:30 [INF] Triggering scheduled batch run...
+2026-06-16 19:07:45.532 +05:30 [INF] Executed DbCommand (10ms) [Parameters=[@p0='?' (DbType = Int32), @p1='?' (DbType = Int32), @p2='?' (DbType = Int32), @p3='?' (DbType = Int32), @p4='?' (DbType = DateTime), @p5='?' (Size = 4000), @p6='?' (DbType = DateTime), @p7='?' (Size = 4000), @p8='?' (Size = 4000), @p9='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO `BatchJobLogs` (`AccountsMatched`, `AccountsNotFound`, `CasesProcessed`, `DurationSeconds`, `EndTime`, `RunId`, `StartTime`, `Status`, `TriggeredBy`, `TriggeredByUserId`)
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5, @p6, @p7, @p8, @p9);
+SELECT `Id`
+FROM `BatchJobLogs`
+WHERE ROW_COUNT() = 1 AND `Id` = LAST_INSERT_ID();
+2026-06-16 19:07:45.577 +05:30 [INF] Executed DbCommand (8ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT `c`.`Id`, `c`.`CaseNumber`, `c`.`CreatedAt`, `c`.`CreatedByUserId`, `c`.`FreezeAmount`, `c`.`OrderType`, `c`.`Status`, `c`.`UpdatedAt`, `d`.`Id`, `d`.`BankAccountNumber`, `d`.`BankName`, `d`.`CaseId`, `d`.`FullName`, `d`.`IdentityNumber`
+FROM `Cases` AS `c`
+LEFT JOIN `Defendants` AS `d` ON `c`.`Id` = `d`.`CaseId`
+WHERE `c`.`Status` = 'Pending'
+2026-06-16 19:07:45.607 +05:30 [INF] Executed DbCommand (14ms) [Parameters=[@p3='?' (DbType = Int32), @p0='?' (DbType = Int32), @p1='?' (DbType = DateTime), @p2='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SET AUTOCOMMIT = 1;
+UPDATE `BatchJobLogs` SET `DurationSeconds` = @p0, `EndTime` = @p1, `Status` = @p2
+WHERE `Id` = @p3;
+SELECT ROW_COUNT();
+2026-06-16 19:07:45.608 +05:30 [INF] Scheduled batch run BATCH-20260616-6A76 completed successfully. Cases processed: 0, Matched: 0, Not Found: 0.
+2026-06-16 21:08:38.244 +05:30 [INF] Triggering scheduled batch run...
+2026-06-16 21:08:38.282 +05:30 [INF] Executed DbCommand (2ms) [Parameters=[@p0='?' (DbType = Int32), @p1='?' (DbType = Int32), @p2='?' (DbType = Int32), @p3='?' (DbType = Int32), @p4='?' (DbType = DateTime), @p5='?' (Size = 4000), @p6='?' (DbType = DateTime), @p7='?' (Size = 4000), @p8='?' (Size = 4000), @p9='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO `BatchJobLogs` (`AccountsMatched`, `AccountsNotFound`, `CasesProcessed`, `DurationSeconds`, `EndTime`, `RunId`, `StartTime`, `Status`, `TriggeredBy`, `TriggeredByUserId`)
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5, @p6, @p7, @p8, @p9);
+SELECT `Id`
+FROM `BatchJobLogs`
+WHERE ROW_COUNT() = 1 AND `Id` = LAST_INSERT_ID();
+2026-06-16 21:08:38.288 +05:30 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT `c`.`Id`, `c`.`CaseNumber`, `c`.`CreatedAt`, `c`.`CreatedByUserId`, `c`.`FreezeAmount`, `c`.`OrderType`, `c`.`Status`, `c`.`UpdatedAt`, `d`.`Id`, `d`.`BankAccountNumber`, `d`.`BankName`, `d`.`CaseId`, `d`.`FullName`, `d`.`IdentityNumber`
+FROM `Cases` AS `c`
+LEFT JOIN `Defendants` AS `d` ON `c`.`Id` = `d`.`CaseId`
+WHERE `c`.`Status` = 'Pending'
+2026-06-16 21:08:38.292 +05:30 [INF] Executed DbCommand (3ms) [Parameters=[@p3='?' (DbType = Int32), @p0='?' (DbType = Int32), @p1='?' (DbType = DateTime), @p2='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SET AUTOCOMMIT = 1;
+UPDATE `BatchJobLogs` SET `DurationSeconds` = @p0, `EndTime` = @p1, `Status` = @p2
+WHERE `Id` = @p3;
+SELECT ROW_COUNT();
+2026-06-16 21:08:38.292 +05:30 [INF] Scheduled batch run BATCH-20260616-FBCD completed successfully. Cases processed: 0, Matched: 0, Not Found: 0.
+2026-06-16 21:32:11.259 +05:30 [INF] Triggering scheduled batch run...
+2026-06-16 21:32:11.288 +05:30 [INF] Executed DbCommand (2ms) [Parameters=[@p0='?' (DbType = Int32), @p1='?' (DbType = Int32), @p2='?' (DbType = Int32), @p3='?' (DbType = Int32), @p4='?' (DbType = DateTime), @p5='?' (Size = 4000), @p6='?' (DbType = DateTime), @p7='?' (Size = 4000), @p8='?' (Size = 4000), @p9='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO `BatchJobLogs` (`AccountsMatched`, `AccountsNotFound`, `CasesProcessed`, `DurationSeconds`, `EndTime`, `RunId`, `StartTime`, `Status`, `TriggeredBy`, `TriggeredByUserId`)
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5, @p6, @p7, @p8, @p9);
+SELECT `Id`
+FROM `BatchJobLogs`
+WHERE ROW_COUNT() = 1 AND `Id` = LAST_INSERT_ID();
+2026-06-16 21:32:11.294 +05:30 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT `c`.`Id`, `c`.`CaseNumber`, `c`.`CreatedAt`, `c`.`CreatedByUserId`, `c`.`FreezeAmount`, `c`.`OrderType`, `c`.`Status`, `c`.`UpdatedAt`, `d`.`Id`, `d`.`BankAccountNumber`, `d`.`BankName`, `d`.`CaseId`, `d`.`FullName`, `d`.`IdentityNumber`
+FROM `Cases` AS `c`
+LEFT JOIN `Defendants` AS `d` ON `c`.`Id` = `d`.`CaseId`
+WHERE `c`.`Status` = 'Pending'
+2026-06-16 21:32:11.298 +05:30 [INF] Executed DbCommand (3ms) [Parameters=[@p3='?' (DbType = Int32), @p0='?' (DbType = Int32), @p1='?' (DbType = DateTime), @p2='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SET AUTOCOMMIT = 1;
+UPDATE `BatchJobLogs` SET `DurationSeconds` = @p0, `EndTime` = @p1, `Status` = @p2
+WHERE `Id` = @p3;
+SELECT ROW_COUNT();
+2026-06-16 21:32:11.299 +05:30 [INF] Scheduled batch run BATCH-20260616-81B4 completed successfully. Cases processed: 0, Matched: 0, Not Found: 0.
+2026-06-16 22:07:15.902 +05:30 [INF] Triggering scheduled batch run...
+2026-06-16 22:07:15.979 +05:30 [INF] Executed DbCommand (2ms) [Parameters=[@p0='?' (DbType = Int32), @p1='?' (DbType = Int32), @p2='?' (DbType = Int32), @p3='?' (DbType = Int32), @p4='?' (DbType = DateTime), @p5='?' (Size = 4000), @p6='?' (DbType = DateTime), @p7='?' (Size = 4000), @p8='?' (Size = 4000), @p9='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO `BatchJobLogs` (`AccountsMatched`, `AccountsNotFound`, `CasesProcessed`, `DurationSeconds`, `EndTime`, `RunId`, `StartTime`, `Status`, `TriggeredBy`, `TriggeredByUserId`)
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5, @p6, @p7, @p8, @p9);
+SELECT `Id`
+FROM `BatchJobLogs`
+WHERE ROW_COUNT() = 1 AND `Id` = LAST_INSERT_ID();
+2026-06-16 22:07:15.989 +05:30 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT `c`.`Id`, `c`.`CaseNumber`, `c`.`CreatedAt`, `c`.`CreatedByUserId`, `c`.`FreezeAmount`, `c`.`OrderType`, `c`.`Status`, `c`.`UpdatedAt`, `d`.`Id`, `d`.`BankAccountNumber`, `d`.`BankName`, `d`.`CaseId`, `d`.`FullName`, `d`.`IdentityNumber`
+FROM `Cases` AS `c`
+LEFT JOIN `Defendants` AS `d` ON `c`.`Id` = `d`.`CaseId`
+WHERE `c`.`Status` = 'Pending'
+2026-06-16 22:07:15.994 +05:30 [INF] Executed DbCommand (3ms) [Parameters=[@p3='?' (DbType = Int32), @p0='?' (DbType = Int32), @p1='?' (DbType = DateTime), @p2='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SET AUTOCOMMIT = 1;
+UPDATE `BatchJobLogs` SET `DurationSeconds` = @p0, `EndTime` = @p1, `Status` = @p2
+WHERE `Id` = @p3;
+SELECT ROW_COUNT();
+2026-06-16 22:07:15.996 +05:30 [INF] Scheduled batch run BATCH-20260616-1AD0 completed successfully. Cases processed: 0, Matched: 0, Not Found: 0.
+2026-06-16 22:22:20.791 +05:30 [INF] Triggering scheduled batch run...
+2026-06-16 22:22:20.875 +05:30 [INF] Executed DbCommand (2ms) [Parameters=[@p0='?' (DbType = Int32), @p1='?' (DbType = Int32), @p2='?' (DbType = Int32), @p3='?' (DbType = Int32), @p4='?' (DbType = DateTime), @p5='?' (Size = 4000), @p6='?' (DbType = DateTime), @p7='?' (Size = 4000), @p8='?' (Size = 4000), @p9='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO `BatchJobLogs` (`AccountsMatched`, `AccountsNotFound`, `CasesProcessed`, `DurationSeconds`, `EndTime`, `RunId`, `StartTime`, `Status`, `TriggeredBy`, `TriggeredByUserId`)
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5, @p6, @p7, @p8, @p9);
+SELECT `Id`
+FROM `BatchJobLogs`
+WHERE ROW_COUNT() = 1 AND `Id` = LAST_INSERT_ID();
+2026-06-16 22:22:20.883 +05:30 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT `c`.`Id`, `c`.`CaseNumber`, `c`.`CreatedAt`, `c`.`CreatedByUserId`, `c`.`FreezeAmount`, `c`.`OrderType`, `c`.`Status`, `c`.`UpdatedAt`, `d`.`Id`, `d`.`BankAccountNumber`, `d`.`BankName`, `d`.`CaseId`, `d`.`FullName`, `d`.`IdentityNumber`
+FROM `Cases` AS `c`
+LEFT JOIN `Defendants` AS `d` ON `c`.`Id` = `d`.`CaseId`
+WHERE `c`.`Status` = 'Pending'
+2026-06-16 22:22:20.889 +05:30 [INF] Executed DbCommand (4ms) [Parameters=[@p3='?' (DbType = Int32), @p0='?' (DbType = Int32), @p1='?' (DbType = DateTime), @p2='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SET AUTOCOMMIT = 1;
+UPDATE `BatchJobLogs` SET `DurationSeconds` = @p0, `EndTime` = @p1, `Status` = @p2
+WHERE `Id` = @p3;
+SELECT ROW_COUNT();
+2026-06-16 22:22:20.889 +05:30 [INF] Scheduled batch run BATCH-20260616-6AF1 completed successfully. Cases processed: 0, Matched: 0, Not Found: 0.
+2026-06-16 23:09:34.828 +05:30 [INF] Triggering scheduled batch run...
+2026-06-16 23:09:34.908 +05:30 [INF] Executed DbCommand (5ms) [Parameters=[@p0='?' (DbType = Int32), @p1='?' (DbType = Int32), @p2='?' (DbType = Int32), @p3='?' (DbType = Int32), @p4='?' (DbType = DateTime), @p5='?' (Size = 4000), @p6='?' (DbType = DateTime), @p7='?' (Size = 4000), @p8='?' (Size = 4000), @p9='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO `BatchJobLogs` (`AccountsMatched`, `AccountsNotFound`, `CasesProcessed`, `DurationSeconds`, `EndTime`, `RunId`, `StartTime`, `Status`, `TriggeredBy`, `TriggeredByUserId`)
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5, @p6, @p7, @p8, @p9);
+SELECT `Id`
+FROM `BatchJobLogs`
+WHERE ROW_COUNT() = 1 AND `Id` = LAST_INSERT_ID();
+2026-06-16 23:09:34.917 +05:30 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT `c`.`Id`, `c`.`CaseNumber`, `c`.`CreatedAt`, `c`.`CreatedByUserId`, `c`.`FreezeAmount`, `c`.`OrderType`, `c`.`Status`, `c`.`UpdatedAt`, `d`.`Id`, `d`.`BankAccountNumber`, `d`.`BankName`, `d`.`CaseId`, `d`.`FullName`, `d`.`IdentityNumber`
+FROM `Cases` AS `c`
+LEFT JOIN `Defendants` AS `d` ON `c`.`Id` = `d`.`CaseId`
+WHERE `c`.`Status` = 'Pending'
+2026-06-16 23:09:34.922 +05:30 [INF] Executed DbCommand (3ms) [Parameters=[@p3='?' (DbType = Int32), @p0='?' (DbType = Int32), @p1='?' (DbType = DateTime), @p2='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SET AUTOCOMMIT = 1;
+UPDATE `BatchJobLogs` SET `DurationSeconds` = @p0, `EndTime` = @p1, `Status` = @p2
+WHERE `Id` = @p3;
+SELECT ROW_COUNT();
+2026-06-16 23:09:34.922 +05:30 [INF] Scheduled batch run BATCH-20260616-F796 completed successfully. Cases processed: 0, Matched: 0, Not Found: 0.

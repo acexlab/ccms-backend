@@ -77,6 +77,8 @@ public class CaseService
                 IdentityNumber = dto.ComplainantId
             };
             _context.Complainants.Add(complainant);
+            // Link navigation property
+            @case.Complainant = complainant;
 
             var defendant = new Defendant
             {
@@ -88,6 +90,8 @@ public class CaseService
                 BankName = dto.DefendantBankName
             };
             _context.Defendants.Add(defendant);
+            // Link navigation property so EF Core resolves Include(c => c.Defendant) correctly
+            @case.Defendant = defendant;
 
             // Save Court Order Copy File
             var uniqueCourtOrderName = $"{Guid.NewGuid()}_{courtOrderFileName}";
@@ -276,6 +280,9 @@ public class CaseService
                             payload.ResponseType == "AccountNotFound" ? CaseStatus.AccountNotFound : CaseStatus.Pending;
 
             caseEntity.Status = newStatus;
+            caseEntity.UpdatedAt = DateTime.UtcNow;
+
+            _context.Cases.Update(caseEntity);
 
             var responseEntity = new CaseResponse
             {

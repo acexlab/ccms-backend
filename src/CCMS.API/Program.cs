@@ -29,7 +29,13 @@ try
     {
         options.JsonSerializerOptions.Converters.Add(new UtcDateTimeConverter());
     });
-    builder.Services.AddSingleton<IBlobStorageService, AzureBlobStorageService>();
+    // Use LocalFileStorageService in dev (when Azure not configured), AzureBlobStorageService in prod
+    var blobConnStr = builder.Configuration["AZURE_STORAGE_CONNECTION_STRING"]
+                   ?? builder.Configuration["BlobStorage:ConnectionString"] ?? "";
+    if (string.IsNullOrEmpty(blobConnStr) || blobConnStr == "UseDevelopmentStorage=true;")
+        builder.Services.AddSingleton<IBlobStorageService, LocalFileStorageService>();
+    else
+        builder.Services.AddSingleton<IBlobStorageService, AzureBlobStorageService>();
     builder.Services.AddSwaggerGen(c =>
     {
         c.SwaggerDoc("v1", new Microsoft.OpenApi.OpenApiInfo { Title = "CCMS API", Version = "v1" });
