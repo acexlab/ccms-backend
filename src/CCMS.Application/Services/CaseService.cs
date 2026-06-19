@@ -279,9 +279,11 @@ public class CaseService
                             payload.ResponseType == "BalanceProvided" ? CaseStatus.BalanceProvided :
                             payload.ResponseType == "AccountNotFound" ? CaseStatus.AccountNotFound : CaseStatus.Pending;
 
-            caseEntity.Status = newStatus;
-            caseEntity.UpdatedAt = DateTime.UtcNow;
-            _context.Cases.Update(caseEntity);
+            await _context.Cases
+                .Where(c => c.Id == caseEntity.Id)
+                .ExecuteUpdateAsync(s => s
+                    .SetProperty(c => c.Status, newStatus)
+                    .SetProperty(c => c.UpdatedAt, DateTime.UtcNow));
 
             var responseEntity = new CaseResponse
             {
