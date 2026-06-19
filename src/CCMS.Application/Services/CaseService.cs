@@ -281,7 +281,6 @@ public class CaseService
 
             caseEntity.Status = newStatus;
             caseEntity.UpdatedAt = DateTime.UtcNow;
-
             _context.Cases.Update(caseEntity);
 
             var responseEntity = new CaseResponse
@@ -296,7 +295,9 @@ public class CaseService
             };
 
             _context.CaseResponses.Add(responseEntity);
-            await _context.SaveChangesAsync();
+            // CommitTransactionAsync already calls SaveChangesAsync internally.
+            // Do NOT call SaveChangesAsync here — double-save causes EF to throw,
+            // which triggers the catch block and rolls back the entire transaction.
             await _context.CommitTransactionAsync();
         }
         catch
